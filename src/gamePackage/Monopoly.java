@@ -718,26 +718,27 @@ public class Monopoly {
 		} catch (IOException ex) {
 		}
 		communityChest.setBounds((int) (frameHeight / 6.5 * 1.125),
-				(int) (frameHeight / 6.5 * 1.125), (int) (frameHeight / 6.4),
-				(int) (frameHeight / 6.4));
+				(int) (frameHeight / 6.5 * 1.125), (int) (frameHeight / 3.33),
+				(int) (frameHeight / 5));
 		communityChest.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		communityChest.setBorderPainted(false);
 		communityChest.setContentAreaFilled(false);
 		communityChest.setEnabled(false);
 		chanceButton = new JButton();
+		chanceButton.setBounds((int) (frameHeight / 6.5 * 3.5),
+				(int) (frameHeight / 6.5 * 4), (int) (frameHeight / 3.33),
+				(int) (frameHeight / 5));
 		try {
 			Image img = ImageIO.read(getClass().getResource(
 					"../resources/chance.jpg"));
 			chanceButton.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
-		chanceButton.setBounds((int) (frameHeight / 6.5 * 4.375),
-				(int) (frameHeight / 6.5 * 4.375), (int) (frameHeight / 6.4),
-				(int) (frameHeight / 6.4));
+		
 		chanceButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		chanceButton.setBorderPainted(false);
 		chanceButton.setContentAreaFilled(false);
-		chanceButton.setEnabled(false);
+		//chanceButton.setEnabled(false);
 		frame.getContentPane().add(communityChest);
 		frame.getContentPane().add(chanceButton);
 		frame.getContentPane().add(player1, 2);
