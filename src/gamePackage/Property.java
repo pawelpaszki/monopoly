@@ -11,6 +11,14 @@ public class Property {
 	private int position;
 	private boolean mortgaged;
 	
+	public Property(String name, String group, int cost, ArrayList<Double> rentValues, int position) {
+		this.name = name;
+		this.group = group;
+		this.cost = cost;
+		this.rentValues = rentValues;
+		this.position = position;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -46,5 +54,15 @@ public class Property {
 	}
 	public void setMortgaged(boolean mortgaged) {
 		this.mortgaged = mortgaged;
+	}
+	
+	public String toString() {
+		String rent = "\nRentValues: ";
+		for (Double rentValue: rentValues) {
+			rent += rentValue + " ";
+		}
+		return "\nName: " + name + "\nGroup: " + group + 
+		"\nCost: " + cost + "\nPosition: " + position + 
+		"\nMortgaged: " + mortgaged + rent;
 	}
 }

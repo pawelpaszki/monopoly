@@ -103,6 +103,9 @@ public class Monopoly {
 	private JLabel right7Label;
 	private JLabel right8Label;
 	private JLabel right9Label;
+	
+	
+	private PropertyMarket market;
 	/**
 	 * Launch the application.
 	 */
@@ -124,6 +127,8 @@ public class Monopoly {
 	 */
 	public Monopoly() {
 		initialize();
+		market = new PropertyMarket();
+		System.out.println(market.getProperties());
 	}
 
 	/**
