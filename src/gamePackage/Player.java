@@ -10,6 +10,10 @@ public class Player {
 	private ArrayList <Property> ownedProperties;
 	private boolean holdsGetOutOfJail;
 	
+	public Player(String name) {
+		this.name = name;
+		this.moneyHeld = 1500;
+	}
 	public String getName() {
 		return name;
 	}
@@ -19,8 +23,8 @@ public class Player {
 	public double getMoneyHeld() {
 		return moneyHeld;
 	}
-	public void setMoneyHeld(double moneyHeld) {
-		this.moneyHeld = moneyHeld;
+	public void setMoneyHeld(double update) {
+		this.moneyHeld += update;
 	}
 	public int getPositionOnGameBoard() {
 		return positionOnGameBoard;
@@ -34,7 +38,7 @@ public class Player {
 	public void setOwnedProperties(ArrayList<Property> ownedProperties) {
 		this.ownedProperties = ownedProperties;
 	}
-	public boolean isHoldsGetOutOfJail() {
+	public boolean getHoldsGetOutOfJail() {
 		return holdsGetOutOfJail;
 	}
 	public void setHoldsGetOutOfJail(boolean holdsGetOutOfJail) {

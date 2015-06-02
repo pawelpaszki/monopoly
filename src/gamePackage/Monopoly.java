@@ -6,7 +6,10 @@ import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -60,6 +63,12 @@ public class Monopoly {
 	private JLayeredPane bottom_7;
 	private JLayeredPane bottom_8;
 	private JLayeredPane bottom_9;
+	private JLayeredPane player_1;
+	private JLayeredPane player_2;
+	private JLayeredPane player_3;
+	private JLayeredPane player_4;
+	private JLayeredPane player_5;
+	private JLayeredPane player_6;
 	private int frameHeight;
 	private JButton communityChest;
 	private JButton chanceButton;
@@ -103,9 +112,17 @@ public class Monopoly {
 	private JLabel right7Label;
 	private JLabel right8Label;
 	private JLabel right9Label;
+	private JLabel addPlayer;
+	private JButton addPlayer1;
+	private JButton addPlayer2;
+	private JButton addPlayer3;
+	private JButton addPlayer4;
+	private JButton addPlayer5;
+	private JButton addPlayer6;
 	
 	
 	private PropertyMarket market;
+	private ArrayList<Player> players;
 	/**
 	 * Launch the application.
 	 */
@@ -126,9 +143,10 @@ public class Monopoly {
 	 * Create the application.
 	 */
 	public Monopoly() {
-		initialize();
+		players = new ArrayList<Player>();
 		market = new PropertyMarket();
 		System.out.println(market.getProperties());
+		initialize();
 	}
 
 	/**
@@ -739,8 +757,175 @@ public class Monopoly {
 		chanceButton.setBorderPainted(false);
 		chanceButton.setContentAreaFilled(false);
 		//chanceButton.setEnabled(false);
+		player_1 = new JLayeredPane();
+		player_1.setBounds(frameHeight + 40, 0, (int) (frameHeight / 4),
+				(int) (frameHeight / 6.5));
+		player_1.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		player_2 = new JLayeredPane();
+		addPlayer2 = new JButton();
+		player_2.setBounds(frameHeight + 40 + (int) (frameHeight / 4), 0, (int) (frameHeight / 4),
+				(int) (frameHeight / 6.5));
+		player_2.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		player_3 = new JLayeredPane();
+		addPlayer3 = new JButton();
+		player_3.setBounds(frameHeight + 40 + (int) (frameHeight / 2), 0, (int) (frameHeight / 4),
+				(int) (frameHeight / 6.5));
+		player_3.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		player_4 = new JLayeredPane();
+		addPlayer4 = new JButton();
+		player_4.setBounds(frameHeight + 40, (int) (frameHeight / 6.5), (int) (frameHeight / 4),
+				(int) (frameHeight / 6.5));
+		player_4.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		player_5 = new JLayeredPane();
+		addPlayer5 = new JButton();
+		player_5.setBounds(frameHeight + 40 + (int) (frameHeight / 4), (int) (frameHeight / 6.5), (int) (frameHeight / 4),
+				(int) (frameHeight / 6.5));
+		player_5.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		player_6 = new JLayeredPane();
+		addPlayer6 = new JButton();
+		player_6.setBounds(frameHeight + 40 + (int) (frameHeight / 2), (int) (frameHeight / 6.5), (int) (frameHeight / 4),
+				(int) (frameHeight / 6.5));
+		player_6.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		addPlayer1 = new JButton();
+		addPlayer1.setBounds(frameHeight + 60, 35, 140,
+				40);
+		try {
+			Image img = ImageIO.read(getClass().getResource(
+					"../resources/addplayer.jpg"));
+			addPlayer1.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		addPlayer1.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		addPlayer1.setBorderPainted(false);
+		addPlayer1.setContentAreaFilled(false);
+		addPlayer1.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Button 1 pressed");	
+			}	
+		});
+		
+		addPlayer2 = new JButton();
+		addPlayer2.setBounds(frameHeight + 60 + (int) (frameHeight / 4), 35, 140,
+				40);
+		try {
+			Image img = ImageIO.read(getClass().getResource(
+					"../resources/addplayer.jpg"));
+			addPlayer2.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		addPlayer2.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		addPlayer2.setBorderPainted(false);
+		addPlayer2.setContentAreaFilled(false);
+		addPlayer2.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Button 2 pressed");	
+			}	
+		});
+
+		addPlayer3 = new JButton();
+		addPlayer3.setBounds(frameHeight + 60 + (int) (frameHeight / 2), 35, 140,
+				40);
+		try {
+			Image img = ImageIO.read(getClass().getResource(
+					"../resources/addplayer.jpg"));
+			addPlayer3.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		addPlayer3.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		addPlayer3.setBorderPainted(false);
+		addPlayer3.setContentAreaFilled(false);
+		addPlayer3.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Button 3 pressed");	
+			}	
+		});
+
+		addPlayer4 = new JButton();
+		addPlayer4.setBounds(frameHeight + 60, (int) (frameHeight / 6.5) + 35, 140,
+				40);
+		try {
+			Image img = ImageIO.read(getClass().getResource(
+					"../resources/addplayer.jpg"));
+			addPlayer4.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		addPlayer4.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		addPlayer4.setBorderPainted(false);
+		addPlayer4.setContentAreaFilled(false);
+		addPlayer4.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Button 4 pressed");	
+			}	
+		});
+
+		addPlayer5 = new JButton();
+		addPlayer5.setBounds(frameHeight + 60 + (int) (frameHeight / 4), (int) (frameHeight / 6.5) + 35, 140,
+				40);
+		try {
+			Image img = ImageIO.read(getClass().getResource(
+					"../resources/addplayer.jpg"));
+			addPlayer5.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		addPlayer5.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		addPlayer5.setBorderPainted(false);
+		addPlayer5.setContentAreaFilled(false);
+		addPlayer5.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Button 5 pressed");	
+			}	
+		});
+
+		addPlayer6 = new JButton();
+		addPlayer6.setBounds(frameHeight + 60 + (int) (frameHeight / 2), (int) (frameHeight / 6.5) + 35, 140,
+				40);
+		try {
+			Image img = ImageIO.read(getClass().getResource(
+					"../resources/addplayer.jpg"));
+			addPlayer6.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		addPlayer6.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		addPlayer6.setBorderPainted(false);
+		addPlayer6.setContentAreaFilled(false);
+		addPlayer6.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Button 6 pressed");	
+			}	
+		});
+
 		frame.getContentPane().add(communityChest);
 		frame.getContentPane().add(chanceButton);
+		frame.getContentPane().add(player_1);
+		frame.getContentPane().add(player_2);
+		frame.getContentPane().add(player_3);
+		frame.getContentPane().add(player_4);
+		frame.getContentPane().add(player_5);
+		frame.getContentPane().add(player_6);
+		frame.getContentPane().add(addPlayer1);
+		frame.getContentPane().add(addPlayer2);
+		frame.getContentPane().add(addPlayer3);
+		frame.getContentPane().add(addPlayer4);
+		frame.getContentPane().add(addPlayer5);
+		frame.getContentPane().add(addPlayer6);
 		frame.getContentPane().add(player1, 2);
 
 	}
