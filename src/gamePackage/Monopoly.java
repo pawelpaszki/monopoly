@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -19,6 +20,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class Monopoly {
 
@@ -112,14 +115,25 @@ public class Monopoly {
 	private JLabel right7Label;
 	private JLabel right8Label;
 	private JLabel right9Label;
-	private JLabel addPlayer;
 	private JButton addPlayer1;
 	private JButton addPlayer2;
 	private JButton addPlayer3;
 	private JButton addPlayer4;
 	private JButton addPlayer5;
 	private JButton addPlayer6;
-	
+	private JButton startGame;
+	private JTextField player1name;
+	private JTextField player2name;
+	private JTextField player3name;
+	private JTextField player4name;
+	private JTextField player5name;
+	private JTextField player6name;
+	private JButton addPlayer1Name;
+	private JButton addPlayer2Name;
+	private JButton addPlayer3Name;
+	private JButton addPlayer4Name;
+	private JButton addPlayer5Name;
+	private JButton addPlayer6Name;
 	
 	private PropertyMarket market;
 	private ArrayList<Player> players;
@@ -761,36 +775,92 @@ public class Monopoly {
 		player_1.setBounds(frameHeight + 40, 0, (int) (frameHeight / 4),
 				(int) (frameHeight / 6.5));
 		player_1.setBorder(BorderFactory.createLineBorder(Color.black));
+		player1name = new JTextField();
+		player1name.setBounds(20, 10, 140, 30);
+		player1name.setFont(new Font("Arial", Font.ITALIC, 14));
+		player1name.setHorizontalAlignment(SwingConstants.CENTER);
+		player1name.setVisible(false);
+		player_1.add(player1name);
 		
 		player_2 = new JLayeredPane();
-		addPlayer2 = new JButton();
 		player_2.setBounds(frameHeight + 40 + (int) (frameHeight / 4), 0, (int) (frameHeight / 4),
 				(int) (frameHeight / 6.5));
 		player_2.setBorder(BorderFactory.createLineBorder(Color.black));
+		player2name = new JTextField();
+		player2name.setBounds(20, 10, 140, 30);
+		player2name.setFont(new Font("Arial", Font.ITALIC, 14));
+		player2name.setHorizontalAlignment(SwingConstants.CENTER);
+		player2name.setVisible(false);
+		player_2.add(player2name);
 		
 		player_3 = new JLayeredPane();
-		addPlayer3 = new JButton();
 		player_3.setBounds(frameHeight + 40 + (int) (frameHeight / 2), 0, (int) (frameHeight / 4),
 				(int) (frameHeight / 6.5));
 		player_3.setBorder(BorderFactory.createLineBorder(Color.black));
+		player3name = new JTextField();
+		player3name.setBounds(20, 10, 140, 30);
+		player3name.setFont(new Font("Arial", Font.ITALIC, 14));
+		player3name.setHorizontalAlignment(SwingConstants.CENTER);
+		player3name.setVisible(false);
+		player_3.add(player3name);
 		
 		player_4 = new JLayeredPane();
-		addPlayer4 = new JButton();
 		player_4.setBounds(frameHeight + 40, (int) (frameHeight / 6.5), (int) (frameHeight / 4),
 				(int) (frameHeight / 6.5));
 		player_4.setBorder(BorderFactory.createLineBorder(Color.black));
+		player4name = new JTextField();
+		player4name.setBounds(20, 10, 140, 30);
+		player4name.setFont(new Font("Arial", Font.ITALIC, 14));
+		player4name.setHorizontalAlignment(SwingConstants.CENTER);
+		player4name.setVisible(false);
+		player_4.add(player4name);
 		
 		player_5 = new JLayeredPane();
-		addPlayer5 = new JButton();
 		player_5.setBounds(frameHeight + 40 + (int) (frameHeight / 4), (int) (frameHeight / 6.5), (int) (frameHeight / 4),
 				(int) (frameHeight / 6.5));
 		player_5.setBorder(BorderFactory.createLineBorder(Color.black));
+		player5name = new JTextField();
+		player5name.setBounds(20, 10, 140, 30);
+		player5name.setFont(new Font("Arial", Font.ITALIC, 14));
+		player5name.setHorizontalAlignment(SwingConstants.CENTER);
+		player5name.setVisible(false);
+		player_5.add(player5name);
 		
 		player_6 = new JLayeredPane();
-		addPlayer6 = new JButton();
 		player_6.setBounds(frameHeight + 40 + (int) (frameHeight / 2), (int) (frameHeight / 6.5), (int) (frameHeight / 4),
 				(int) (frameHeight / 6.5));
 		player_6.setBorder(BorderFactory.createLineBorder(Color.black));
+		player6name = new JTextField();
+		player6name.setBounds(20, 10, 140, 30);
+		player6name.setFont(new Font("Arial", Font.ITALIC, 14));
+		player6name.setHorizontalAlignment(SwingConstants.CENTER);
+		player6name.setVisible(false);
+		player_6.add(player6name);
+		
+		addPlayer1Name = new JButton("Add player's name");
+		addPlayer2Name = new JButton("Add player's name");
+		addPlayer3Name = new JButton("Add player's name");
+		addPlayer4Name = new JButton("Add player's name");
+		addPlayer5Name = new JButton("Add player's name");
+		addPlayer6Name = new JButton("Add player's name");
+		addPlayer1Name.setBounds(frameHeight + 60, 45, 140,
+				40);
+		addPlayer2Name.setBounds(frameHeight + 60 + (int) (frameHeight / 4), 45, 140,
+				40);
+		addPlayer3Name.setBounds(frameHeight + 60 + (int) (frameHeight / 2), 45, 140,
+				40);
+		addPlayer4Name.setBounds(frameHeight + 60, (int) (frameHeight / 6.5) + 45, 140,
+				40);
+		addPlayer5Name.setBounds(frameHeight + 60 + (int) (frameHeight / 4), (int) (frameHeight / 6.5) + 45, 140,
+				40);
+		addPlayer6Name.setBounds(frameHeight + 60 + (int) (frameHeight / 2), (int) (frameHeight / 6.5) + 45, 140,
+				40);
+		addPlayer1Name.setVisible(false);
+		addPlayer2Name.setVisible(false);
+		addPlayer3Name.setVisible(false);
+		addPlayer4Name.setVisible(false);
+		addPlayer5Name.setVisible(false);
+		addPlayer6Name.setVisible(false);
 		
 		addPlayer1 = new JButton();
 		addPlayer1.setBounds(frameHeight + 60, 35, 140,
@@ -808,7 +878,9 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Button 1 pressed");	
+				addPlayer1.setVisible(false);
+				player1name.setVisible(true);
+				addPlayer1Name.setVisible(true);
 			}	
 		});
 		
@@ -824,6 +896,7 @@ public class Monopoly {
 		addPlayer2.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		addPlayer2.setBorderPainted(false);
 		addPlayer2.setContentAreaFilled(false);
+		addPlayer2.setEnabled(false);
 		addPlayer2.addActionListener(new ActionListener(){
 
 			@Override
@@ -844,6 +917,7 @@ public class Monopoly {
 		addPlayer3.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		addPlayer3.setBorderPainted(false);
 		addPlayer3.setContentAreaFilled(false);
+		addPlayer3.setEnabled(false);
 		addPlayer3.addActionListener(new ActionListener(){
 
 			@Override
@@ -864,6 +938,7 @@ public class Monopoly {
 		addPlayer4.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		addPlayer4.setBorderPainted(false);
 		addPlayer4.setContentAreaFilled(false);
+		addPlayer4.setEnabled(false);
 		addPlayer4.addActionListener(new ActionListener(){
 
 			@Override
@@ -884,6 +959,7 @@ public class Monopoly {
 		addPlayer5.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		addPlayer5.setBorderPainted(false);
 		addPlayer5.setContentAreaFilled(false);
+		addPlayer5.setEnabled(false);
 		addPlayer5.addActionListener(new ActionListener(){
 
 			@Override
@@ -904,6 +980,7 @@ public class Monopoly {
 		addPlayer6.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		addPlayer6.setBorderPainted(false);
 		addPlayer6.setContentAreaFilled(false);
+		addPlayer6.setEnabled(false);
 		addPlayer6.addActionListener(new ActionListener(){
 
 			@Override
@@ -911,7 +988,27 @@ public class Monopoly {
 				System.out.println("Button 6 pressed");	
 			}	
 		});
+		
+		startGame = new JButton();
+		startGame.setBounds(frameHeight + 60 + (int) (frameHeight / 4), (int) (frameHeight / 3), 140,
+				40);
+		try {
+			Image img = ImageIO.read(getClass().getResource(
+					"../resources/startthegame.jpg"));
+			startGame.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		startGame.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		startGame.setBorderPainted(false);
+		startGame.setContentAreaFilled(false);
+		startGame.setEnabled(false);
+		startGame.addActionListener(new ActionListener(){
 
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Button 6 pressed");	
+			}	
+		});
 		frame.getContentPane().add(communityChest);
 		frame.getContentPane().add(chanceButton);
 		frame.getContentPane().add(player_1);
@@ -926,6 +1023,13 @@ public class Monopoly {
 		frame.getContentPane().add(addPlayer4);
 		frame.getContentPane().add(addPlayer5);
 		frame.getContentPane().add(addPlayer6);
+		frame.getContentPane().add(addPlayer1Name);
+		frame.getContentPane().add(addPlayer2Name);
+		frame.getContentPane().add(addPlayer3Name);
+		frame.getContentPane().add(addPlayer4Name);
+		frame.getContentPane().add(addPlayer5Name);
+		frame.getContentPane().add(addPlayer6Name);
+		frame.getContentPane().add(startGame);
 		frame.getContentPane().add(player1, 2);
 
 	}
