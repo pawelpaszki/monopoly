@@ -22,6 +22,8 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 public class Monopoly {
 
@@ -134,6 +136,12 @@ public class Monopoly {
 	private JButton addPlayer4Name;
 	private JButton addPlayer5Name;
 	private JButton addPlayer6Name;
+	private JLabel player1nameLabel;
+	private JLabel player2nameLabel;
+	private JLabel player3nameLabel;
+	private JLabel player4nameLabel;
+	private JLabel player5nameLabel;
+	private JLabel player6nameLabel;
 	
 	private PropertyMarket market;
 	private ArrayList<Player> players;
@@ -863,6 +871,9 @@ public class Monopoly {
 		addPlayer6Name.setVisible(false);
 		
 		addPlayer1 = new JButton();
+		player1nameLabel = new JLabel();
+		player1nameLabel.setBounds(frameHeight + 60, 5, 140,
+				40);
 		addPlayer1.setBounds(frameHeight + 60, 35, 140,
 				40);
 		try {
@@ -881,11 +892,57 @@ public class Monopoly {
 				addPlayer1.setVisible(false);
 				player1name.setVisible(true);
 				addPlayer1Name.setVisible(true);
+				addPlayer1Name.setEnabled(false);
 			}	
 		});
-		
+		//length of the player1' name is to be between 3-15 characters 
+		player1name.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				checkName();
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				checkName();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				checkName();
+			}
+
+			public void checkName() {
+				String name = player1name.getText();
+				if (name.length() > 2 && name.length() < 15) {
+					addPlayer1Name.setEnabled(true);
+				} else {
+					addPlayer1Name.setEnabled(false);
+				}
+			}
+		});
+		addPlayer1Name.addActionListener(new ActionListener(){
+			//adds first player to the ArrayList of players
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				players.add(new Player(player1name.getText()));
+				player1nameLabel.setText(player1name.getText());
+				player1nameLabel.setForeground(Color.RED);
+				player1nameLabel.setFont(new Font("Arial", Font.BOLD, 14)); // to be finished
+				frame.getContentPane().add(player1nameLabel);
+				System.out.println(players.get(0).getName());
+				player1name.setVisible(false);
+				addPlayer1Name.setVisible(false);
+				addPlayer2.setEnabled(true);
+			}
+			
+		});
 		addPlayer2 = new JButton();
 		addPlayer2.setBounds(frameHeight + 60 + (int) (frameHeight / 4), 35, 140,
+				40);
+		player2nameLabel = new JLabel();
+		player2nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 4), 5, 140,
 				40);
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -901,11 +958,61 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Button 2 pressed");	
+				addPlayer2.setVisible(false);
+				player2name.setVisible(true);
+				addPlayer2Name.setVisible(true);
+				addPlayer2Name.setEnabled(false);
 			}	
 		});
 
+		player2name.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				checkName();
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				checkName();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				checkName();
+			}
+
+			//names are to be unique
+			public void checkName() {
+				String name = player2name.getText();
+				if (name.length() > 2 && name.length() < 15 && !name.equals(players.get(0).getName())) {
+					addPlayer2Name.setEnabled(true);
+				} else {
+					addPlayer2Name.setEnabled(false);
+				}
+			}
+		});
+		addPlayer2Name.addActionListener(new ActionListener(){
+			//adds second player to the ArrayList of players
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				players.add(new Player(player2name.getText()));
+				player2nameLabel.setText(player2name.getText());
+				frame.getContentPane().add(player2nameLabel);
+				System.out.println(players.get(1).getName());
+				player2name.setVisible(false);
+				addPlayer2Name.setVisible(false);
+				addPlayer3.setEnabled(true);
+				startGame.setEnabled(true); // after creating two players, the game can be started
+			}
+			
+		});
+		
+		
 		addPlayer3 = new JButton();
+		player3nameLabel = new JLabel();
+		player3nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 2), 5, 140,
+				40);
 		addPlayer3.setBounds(frameHeight + 60 + (int) (frameHeight / 2), 35, 140,
 				40);
 		try {
@@ -922,11 +1029,61 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Button 3 pressed");	
+				addPlayer3.setVisible(false);
+				player3name.setVisible(true);
+				addPlayer3Name.setVisible(true);
+				addPlayer3Name.setEnabled(false);
 			}	
 		});
 
+		player3name.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				checkName();
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				checkName();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				checkName();
+			}
+
+			//names are to be unique
+			public void checkName() {
+				String name = player3name.getText();
+				if (name.length() > 2 && name.length() < 15 && !name.equals(players.get(0).getName())
+						&& !name.equals(players.get(1).getName())) {
+					addPlayer3Name.setEnabled(true);
+				} else {
+					addPlayer3Name.setEnabled(false);
+				}
+			}
+		});
+
+		addPlayer3Name.addActionListener(new ActionListener(){
+			//adds third player to the ArrayList of players
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				players.add(new Player(player3name.getText()));
+				player3nameLabel.setText(player3name.getText());
+				frame.getContentPane().add(player3nameLabel);
+				System.out.println(players.get(2).getName());
+				player3name.setVisible(false);
+				addPlayer3Name.setVisible(false);
+				addPlayer4.setEnabled(true);
+			}
+			
+		});
+		
 		addPlayer4 = new JButton();
+		player4nameLabel = new JLabel();
+		player4nameLabel.setBounds(frameHeight + 60, (int) (frameHeight / 6.5) + 5, 140,
+				40);
 		addPlayer4.setBounds(frameHeight + 60, (int) (frameHeight / 6.5) + 35, 140,
 				40);
 		try {
@@ -943,11 +1100,61 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Button 4 pressed");	
+				addPlayer4.setVisible(false);
+				player4name.setVisible(true);
+				addPlayer4Name.setVisible(true);
+				addPlayer4Name.setEnabled(false);
 			}	
 		});
 
+		player4name.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				checkName();
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				checkName();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				checkName();
+			}
+
+			//names are to be unique
+			public void checkName() {
+				String name = player4name.getText();
+				if (name.length() > 2 && name.length() < 15 && !name.equals(players.get(0).getName())
+						&& !name.equals(players.get(1).getName()) && !name.equals(players.get(2).getName())) {
+					addPlayer4Name.setEnabled(true);
+				} else {
+					addPlayer4Name.setEnabled(false);
+				}
+			}
+		});
+
+		addPlayer4Name.addActionListener(new ActionListener(){
+			//adds fourth player to the ArrayList of players
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				players.add(new Player(player4name.getText()));
+				player4nameLabel.setText(player4name.getText());
+				frame.getContentPane().add(player4nameLabel);
+				System.out.println(players.get(3).getName());
+				player4name.setVisible(false);
+				addPlayer4Name.setVisible(false);
+				addPlayer5.setEnabled(true);
+			}
+			
+		});
+
 		addPlayer5 = new JButton();
+		player5nameLabel = new JLabel();
+		player5nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 4), (int) (frameHeight / 6.5) + 5, 140,
+				40);
 		addPlayer5.setBounds(frameHeight + 60 + (int) (frameHeight / 4), (int) (frameHeight / 6.5) + 35, 140,
 				40);
 		try {
@@ -964,11 +1171,62 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Button 5 pressed");	
+				addPlayer5.setVisible(false);
+				player5name.setVisible(true);
+				addPlayer5Name.setVisible(true);
+				addPlayer5Name.setEnabled(false);
 			}	
 		});
 
+		player5name.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				checkName();
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				checkName();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				checkName();
+			}
+
+			//names are to be unique
+			public void checkName() {
+				String name = player5name.getText();
+				if (name.length() > 2 && name.length() < 15 && !name.equals(players.get(0).getName())
+						&& !name.equals(players.get(1).getName()) && !name.equals(players.get(2).getName())
+						&& !name.equals(players.get(3).getName())) {
+					addPlayer5Name.setEnabled(true);
+				} else {
+					addPlayer5Name.setEnabled(false);
+				}
+			}
+		});
+
+		addPlayer5Name.addActionListener(new ActionListener(){
+			//adds fifth player to the ArrayList of players
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				players.add(new Player(player5name.getText()));
+				player5nameLabel.setText(player5name.getText());
+				frame.getContentPane().add(player5nameLabel);
+				System.out.println(players.get(4).getName());
+				player5name.setVisible(false);
+				addPlayer5Name.setVisible(false);
+				addPlayer6.setEnabled(true);
+			}
+			
+		});
+
 		addPlayer6 = new JButton();
+		player6nameLabel = new JLabel();
+		player6nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 2), (int) (frameHeight / 6.5) + 5, 140,
+				40);
 		addPlayer6.setBounds(frameHeight + 60 + (int) (frameHeight / 2), (int) (frameHeight / 6.5) + 35, 140,
 				40);
 		try {
@@ -985,8 +1243,55 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Button 6 pressed");	
+				addPlayer6.setVisible(false);
+				player6name.setVisible(true);
+				addPlayer6Name.setVisible(true);
+				addPlayer6Name.setEnabled(false);
 			}	
+		});
+
+		player6name.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				checkName();
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				checkName();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				checkName();
+			}
+
+			//names are to be unique
+			public void checkName() {
+				String name = player6name.getText();
+				if (name.length() > 2 && name.length() < 15 && !name.equals(players.get(0).getName())
+						&& !name.equals(players.get(1).getName()) && !name.equals(players.get(2).getName())
+						&& !name.equals(players.get(3).getName()) && !name.equals(players.get(4).getName())) {
+					addPlayer6Name.setEnabled(true);
+				} else {
+					addPlayer6Name.setEnabled(false);
+				}
+			}
+		});
+
+		addPlayer6Name.addActionListener(new ActionListener(){
+			//adds sixth player to the ArrayList of players
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				players.add(new Player(player6name.getText()));
+				player6nameLabel.setText(player6name.getText());
+				frame.getContentPane().add(player6nameLabel);
+				System.out.println(players.get(5).getName());
+				player6name.setVisible(false);
+				addPlayer6Name.setVisible(false);
+			}
+			
 		});
 		
 		startGame = new JButton();
@@ -1006,7 +1311,10 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Button 6 pressed");	
+				addPlayer3.setVisible(false);
+				addPlayer4.setVisible(false);
+				addPlayer5.setVisible(false);
+				addPlayer6.setVisible(false);
 			}	
 		});
 		frame.getContentPane().add(communityChest);
@@ -1030,6 +1338,12 @@ public class Monopoly {
 		frame.getContentPane().add(addPlayer5Name);
 		frame.getContentPane().add(addPlayer6Name);
 		frame.getContentPane().add(startGame);
+		
+		//
+		//frame.getContentPane().add(player3nameLabel);
+		//frame.getContentPane().add(player4nameLabel);
+		//frame.getContentPane().add(player5nameLabel);
+		//frame.getContentPane().add(player6nameLabel);
 		frame.getContentPane().add(player1, 2);
 
 	}
