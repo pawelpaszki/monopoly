@@ -142,6 +142,12 @@ public class Monopoly {
 	private JLabel player4nameLabel;
 	private JLabel player5nameLabel;
 	private JLabel player6nameLabel;
+	private JLabel player1balance;
+	private JLabel player2balance;
+	private JLabel player3balance;
+	private JLabel player4balance;
+	private JLabel player5balance;
+	private JLabel player6balance;
 	
 	private PropertyMarket market;
 	private ArrayList<Player> players;
@@ -872,7 +878,10 @@ public class Monopoly {
 		
 		addPlayer1 = new JButton();
 		player1nameLabel = new JLabel();
+		player1balance = new JLabel();
 		player1nameLabel.setBounds(frameHeight + 60, 5, 140,
+				40);
+		player1balance.setBounds(frameHeight + 60, 20, 140,
 				40);
 		addPlayer1.setBounds(frameHeight + 60, 35, 140,
 				40);
@@ -895,7 +904,7 @@ public class Monopoly {
 				addPlayer1Name.setEnabled(false);
 			}	
 		});
-		//length of the player1' name is to be between 3-15 characters 
+		//length of the player1' name is to be between 3-10 characters 
 		player1name.getDocument().addDocumentListener(new DocumentListener() {
 
 			@Override
@@ -915,7 +924,7 @@ public class Monopoly {
 
 			public void checkName() {
 				String name = player1name.getText();
-				if (name.length() > 2 && name.length() < 15) {
+				if (name.length() > 2 && name.length() <= 10) {
 					addPlayer1Name.setEnabled(true);
 				} else {
 					addPlayer1Name.setEnabled(false);
@@ -929,8 +938,11 @@ public class Monopoly {
 				players.add(new Player(player1name.getText()));
 				player1nameLabel.setText(player1name.getText());
 				player1nameLabel.setForeground(Color.RED);
-				player1nameLabel.setFont(new Font("Arial", Font.BOLD, 14)); // to be finished
+				player1nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
+				player1balance.setText("E" + String.valueOf(players.get(0).getMoneyHeld()));
+				player1balance.setFont(new Font("Arial", Font.ITALIC, 14));
 				frame.getContentPane().add(player1nameLabel);
+				frame.getContentPane().add(player1balance);
 				System.out.println(players.get(0).getName());
 				player1name.setVisible(false);
 				addPlayer1Name.setVisible(false);
@@ -942,6 +954,9 @@ public class Monopoly {
 		addPlayer2.setBounds(frameHeight + 60 + (int) (frameHeight / 4), 35, 140,
 				40);
 		player2nameLabel = new JLabel();
+		player2balance = new JLabel();
+		player2balance.setBounds(frameHeight + 60 + (int) (frameHeight / 4), 20, 140,
+				40);
 		player2nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 4), 5, 140,
 				40);
 		try {
@@ -985,7 +1000,7 @@ public class Monopoly {
 			//names are to be unique
 			public void checkName() {
 				String name = player2name.getText();
-				if (name.length() > 2 && name.length() < 15 && !name.equals(players.get(0).getName())) {
+				if (name.length() > 2 && name.length() <= 10 && !name.equals(players.get(0).getName())) {
 					addPlayer2Name.setEnabled(true);
 				} else {
 					addPlayer2Name.setEnabled(false);
@@ -997,8 +1012,13 @@ public class Monopoly {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				players.add(new Player(player2name.getText()));
-				player2nameLabel.setText(player2name.getText());
+				player2nameLabel.setText(player1name.getText());
+				player2nameLabel.setForeground(Color.RED);
+				player2nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
+				player2balance.setText("E" + String.valueOf(players.get(1).getMoneyHeld()));
+				player2balance.setFont(new Font("Arial", Font.ITALIC, 14));
 				frame.getContentPane().add(player2nameLabel);
+				frame.getContentPane().add(player2balance);
 				System.out.println(players.get(1).getName());
 				player2name.setVisible(false);
 				addPlayer2Name.setVisible(false);
@@ -1011,6 +1031,9 @@ public class Monopoly {
 		
 		addPlayer3 = new JButton();
 		player3nameLabel = new JLabel();
+		player3balance = new JLabel();
+		player3balance.setBounds(frameHeight + 60 + (int) (frameHeight / 2), 20, 140,
+				40);
 		player3nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 2), 5, 140,
 				40);
 		addPlayer3.setBounds(frameHeight + 60 + (int) (frameHeight / 2), 35, 140,
@@ -1056,7 +1079,7 @@ public class Monopoly {
 			//names are to be unique
 			public void checkName() {
 				String name = player3name.getText();
-				if (name.length() > 2 && name.length() < 15 && !name.equals(players.get(0).getName())
+				if (name.length() > 2 && name.length() <= 10 && !name.equals(players.get(0).getName())
 						&& !name.equals(players.get(1).getName())) {
 					addPlayer3Name.setEnabled(true);
 				} else {
@@ -1070,8 +1093,13 @@ public class Monopoly {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				players.add(new Player(player3name.getText()));
-				player3nameLabel.setText(player3name.getText());
+				player3nameLabel.setText(player1name.getText());
+				player3nameLabel.setForeground(Color.RED);
+				player3nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
+				player3balance.setText("E" + String.valueOf(players.get(2).getMoneyHeld()));
+				player3balance.setFont(new Font("Arial", Font.ITALIC, 14));
 				frame.getContentPane().add(player3nameLabel);
+				frame.getContentPane().add(player3balance);
 				System.out.println(players.get(2).getName());
 				player3name.setVisible(false);
 				addPlayer3Name.setVisible(false);
@@ -1082,6 +1110,9 @@ public class Monopoly {
 		
 		addPlayer4 = new JButton();
 		player4nameLabel = new JLabel();
+		player4balance = new JLabel();
+		player4balance.setBounds(frameHeight + 60, (int) (frameHeight / 6.5) + 20, 140,
+				40);
 		player4nameLabel.setBounds(frameHeight + 60, (int) (frameHeight / 6.5) + 5, 140,
 				40);
 		addPlayer4.setBounds(frameHeight + 60, (int) (frameHeight / 6.5) + 35, 140,
@@ -1127,7 +1158,7 @@ public class Monopoly {
 			//names are to be unique
 			public void checkName() {
 				String name = player4name.getText();
-				if (name.length() > 2 && name.length() < 15 && !name.equals(players.get(0).getName())
+				if (name.length() > 2 && name.length() <= 10 && !name.equals(players.get(0).getName())
 						&& !name.equals(players.get(1).getName()) && !name.equals(players.get(2).getName())) {
 					addPlayer4Name.setEnabled(true);
 				} else {
@@ -1141,8 +1172,13 @@ public class Monopoly {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				players.add(new Player(player4name.getText()));
-				player4nameLabel.setText(player4name.getText());
+				player4nameLabel.setText(player1name.getText());
+				player4nameLabel.setForeground(Color.RED);
+				player4nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
+				player4balance.setText("E" + String.valueOf(players.get(3).getMoneyHeld()));
+				player4balance.setFont(new Font("Arial", Font.ITALIC, 14));
 				frame.getContentPane().add(player4nameLabel);
+				frame.getContentPane().add(player4balance);
 				System.out.println(players.get(3).getName());
 				player4name.setVisible(false);
 				addPlayer4Name.setVisible(false);
@@ -1153,6 +1189,9 @@ public class Monopoly {
 
 		addPlayer5 = new JButton();
 		player5nameLabel = new JLabel();
+		player5balance = new JLabel();
+		player5balance.setBounds(frameHeight + 60 + (int) (frameHeight / 4), (int) (frameHeight / 6.5) + 20, 140,
+				40);
 		player5nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 4), (int) (frameHeight / 6.5) + 5, 140,
 				40);
 		addPlayer5.setBounds(frameHeight + 60 + (int) (frameHeight / 4), (int) (frameHeight / 6.5) + 35, 140,
@@ -1198,7 +1237,7 @@ public class Monopoly {
 			//names are to be unique
 			public void checkName() {
 				String name = player5name.getText();
-				if (name.length() > 2 && name.length() < 15 && !name.equals(players.get(0).getName())
+				if (name.length() > 2 && name.length() <= 10 && !name.equals(players.get(0).getName())
 						&& !name.equals(players.get(1).getName()) && !name.equals(players.get(2).getName())
 						&& !name.equals(players.get(3).getName())) {
 					addPlayer5Name.setEnabled(true);
@@ -1213,8 +1252,13 @@ public class Monopoly {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				players.add(new Player(player5name.getText()));
-				player5nameLabel.setText(player5name.getText());
+				player5nameLabel.setText(player1name.getText());
+				player5nameLabel.setForeground(Color.RED);
+				player5nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
+				player5balance.setText("E" + String.valueOf(players.get(4).getMoneyHeld()));
+				player5balance.setFont(new Font("Arial", Font.ITALIC, 14));
 				frame.getContentPane().add(player5nameLabel);
+				frame.getContentPane().add(player5balance);
 				System.out.println(players.get(4).getName());
 				player5name.setVisible(false);
 				addPlayer5Name.setVisible(false);
@@ -1225,6 +1269,9 @@ public class Monopoly {
 
 		addPlayer6 = new JButton();
 		player6nameLabel = new JLabel();
+		player6balance = new JLabel();
+		player6balance.setBounds(frameHeight + 60 + (int) (frameHeight / 2), (int) (frameHeight / 6.5) + 20, 140,
+				40);
 		player6nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 2), (int) (frameHeight / 6.5) + 5, 140,
 				40);
 		addPlayer6.setBounds(frameHeight + 60 + (int) (frameHeight / 2), (int) (frameHeight / 6.5) + 35, 140,
@@ -1270,7 +1317,7 @@ public class Monopoly {
 			//names are to be unique
 			public void checkName() {
 				String name = player6name.getText();
-				if (name.length() > 2 && name.length() < 15 && !name.equals(players.get(0).getName())
+				if (name.length() > 2 && name.length() <= 10 && !name.equals(players.get(0).getName())
 						&& !name.equals(players.get(1).getName()) && !name.equals(players.get(2).getName())
 						&& !name.equals(players.get(3).getName()) && !name.equals(players.get(4).getName())) {
 					addPlayer6Name.setEnabled(true);
@@ -1285,8 +1332,13 @@ public class Monopoly {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				players.add(new Player(player6name.getText()));
-				player6nameLabel.setText(player6name.getText());
+				player6nameLabel.setText(player1name.getText());
+				player6nameLabel.setForeground(Color.RED);
+				player6nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
+				player6balance.setText("E" + String.valueOf(players.get(5).getMoneyHeld()));
+				player6balance.setFont(new Font("Arial", Font.ITALIC, 14));
 				frame.getContentPane().add(player6nameLabel);
+				frame.getContentPane().add(player6balance);
 				System.out.println(players.get(5).getName());
 				player6name.setVisible(false);
 				addPlayer6Name.setVisible(false);
@@ -1308,13 +1360,23 @@ public class Monopoly {
 		startGame.setContentAreaFilled(false);
 		startGame.setEnabled(false);
 		startGame.addActionListener(new ActionListener(){
-
+			// to make sure that no player can be added after the startGame button is pressed
+			// all relevant components are set to be invisible
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				addPlayer3.setVisible(false);
+				addPlayer3Name.setVisible(false);
+				player3name.setVisible(false);
 				addPlayer4.setVisible(false);
+				player4name.setVisible(false);
+				addPlayer4Name.setVisible(false);
 				addPlayer5.setVisible(false);
+				player5name.setVisible(false);
+				addPlayer5Name.setVisible(false);
 				addPlayer6.setVisible(false);
+				player6name.setVisible(false);
+				addPlayer6Name.setVisible(false);
+				startNewGame();
 			}	
 		});
 		frame.getContentPane().add(communityChest);
@@ -1338,13 +1400,11 @@ public class Monopoly {
 		frame.getContentPane().add(addPlayer5Name);
 		frame.getContentPane().add(addPlayer6Name);
 		frame.getContentPane().add(startGame);
-		
-		//
-		//frame.getContentPane().add(player3nameLabel);
-		//frame.getContentPane().add(player4nameLabel);
-		//frame.getContentPane().add(player5nameLabel);
-		//frame.getContentPane().add(player6nameLabel);
 		frame.getContentPane().add(player1, 2);
 
+	}
+	
+	private void startNewGame() {
+		System.out.println("game started!");
 	}
 }

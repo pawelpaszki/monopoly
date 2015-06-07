@@ -2,6 +2,8 @@ package gamePackage;
 
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
+
 public class Player {
 
 	private String name;
