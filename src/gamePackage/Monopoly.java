@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -148,6 +149,12 @@ public class Monopoly {
 	private JLabel player4balance;
 	private JLabel player5balance;
 	private JLabel player6balance;
+	private JButton rollTheDice;
+	private JLabel dice1;
+	private JLabel dice2;
+	private int randomDice1;
+	private int randomDice2;
+	private Random random;
 	
 	private PropertyMarket market;
 	private ArrayList<Player> players;
@@ -173,6 +180,7 @@ public class Monopoly {
 	public Monopoly() {
 		players = new ArrayList<Player>();
 		market = new PropertyMarket();
+		random = new Random();
 		System.out.println(market.getProperties());
 		initialize();
 	}
@@ -1401,10 +1409,161 @@ public class Monopoly {
 		frame.getContentPane().add(addPlayer6Name);
 		frame.getContentPane().add(startGame);
 		frame.getContentPane().add(player1, 2);
+		rollTheDice = new JButton();
+		rollTheDice.setBounds(frameHeight/2 - 70, frameHeight / 2 + 40, 140,
+				40);
+		try {
+			Image img = ImageIO.read(getClass().getResource(
+					"../resources/rollthedice.jpg"));
+			rollTheDice.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		rollTheDice.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		rollTheDice.setBorderPainted(false);
+		rollTheDice.setContentAreaFilled(false);
+		rollTheDice.setVisible(false);
+		dice1 = new JLabel();
+		dice1.setBounds(frameHeight/2 - 110, frameHeight / 2 - 70, 100,
+				100);
+		try {
+			Image img = ImageIO.read(getClass().getResource(
+					"../resources/dice6.jpg"));
+			dice1.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		dice2 = new JLabel();
+		dice2.setBounds(frameHeight/2, frameHeight / 2 - 70, 100,
+				100);
+		try {
+			Image img = ImageIO.read(getClass().getResource(
+					"../resources/dice6.jpg"));
+			dice2.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		dice1.setVisible(false);
+		dice2.setVisible(false);
+		frame.getContentPane().add(rollTheDice);
+		frame.getContentPane().add(dice1);
+		frame.getContentPane().add(dice2);
 
 	}
 	
 	private void startNewGame() {
-		System.out.println("game started!");
+		startGame.setVisible(false);
+		rollTheDice.setVisible(true);
+		dice1.setVisible(true);
+		dice2.setVisible(true);
+		rollTheDice.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				randomDice1 = random.nextInt(6) + 1;
+				randomDice2 = random.nextInt(6) + 1;
+				System.out.println(randomDice1);
+				System.out.println(randomDice2);
+				switch (randomDice1) {
+				case 1:
+					try {
+						Image img = ImageIO.read(getClass().getResource(
+								"../resources/dice1.jpg"));
+						dice1.setIcon(new ImageIcon(img));
+					} catch (IOException ex) {
+					}
+					break;
+				case 2:
+					try {
+						Image img = ImageIO.read(getClass().getResource(
+								"../resources/dice2.jpg"));
+						dice1.setIcon(new ImageIcon(img));
+					} catch (IOException ex) {
+					}
+					break;
+				case 3:
+					try {
+						Image img = ImageIO.read(getClass().getResource(
+								"../resources/dice3.jpg"));
+						dice1.setIcon(new ImageIcon(img));
+					} catch (IOException ex) {
+					}
+					break;
+				case 4:
+					try {
+						Image img = ImageIO.read(getClass().getResource(
+								"../resources/dice4.jpg"));
+						dice1.setIcon(new ImageIcon(img));
+					} catch (IOException ex) {
+					}
+					break;
+				case 5:
+					try {
+						Image img = ImageIO.read(getClass().getResource(
+								"../resources/dice5.jpg"));
+						dice1.setIcon(new ImageIcon(img));
+					} catch (IOException ex) {
+					}
+					break;
+				case 6:
+					try {
+						Image img = ImageIO.read(getClass().getResource(
+								"../resources/dice6.jpg"));
+						dice1.setIcon(new ImageIcon(img));
+					} catch (IOException ex) {
+					}
+					break;
+				}
+				switch (randomDice2) {
+				case 1:
+					try {
+						Image img = ImageIO.read(getClass().getResource(
+								"../resources/dice1.jpg"));
+						dice2.setIcon(new ImageIcon(img));
+					} catch (IOException ex) {
+					}
+					break;
+				case 2:
+					try {
+						Image img = ImageIO.read(getClass().getResource(
+								"../resources/dice2.jpg"));
+						dice2.setIcon(new ImageIcon(img));
+					} catch (IOException ex) {
+					}
+					break;
+				case 3:
+					try {
+						Image img = ImageIO.read(getClass().getResource(
+								"../resources/dice3.jpg"));
+						dice2.setIcon(new ImageIcon(img));
+					} catch (IOException ex) {
+					}
+					break;
+				case 4:
+					try {
+						Image img = ImageIO.read(getClass().getResource(
+								"../resources/dice4.jpg"));
+						dice2.setIcon(new ImageIcon(img));
+					} catch (IOException ex) {
+					}
+					break;
+				case 5:
+					try {
+						Image img = ImageIO.read(getClass().getResource(
+								"../resources/dice5.jpg"));
+						dice2.setIcon(new ImageIcon(img));
+					} catch (IOException ex) {
+					}
+					break;
+				case 6:
+					try {
+						Image img = ImageIO.read(getClass().getResource(
+								"../resources/dice6.jpg"));
+						dice2.setIcon(new ImageIcon(img));
+					} catch (IOException ex) {
+					}
+					break;
+				}
+			}
+			
+		});
+		
 	}
 }
