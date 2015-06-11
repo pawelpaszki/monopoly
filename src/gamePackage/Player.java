@@ -2,8 +2,6 @@ package gamePackage;
 
 import java.util.ArrayList;
 
-import javax.swing.JLabel;
-
 public class Player {
 
 	private String name;
@@ -15,6 +13,7 @@ public class Player {
 	public Player(String name) {
 		this.name = name;
 		this.moneyHeld = 1500;
+		ownedProperties = new ArrayList<Property>();
 	}
 	public String getName() {
 		return name;

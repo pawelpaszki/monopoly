@@ -9,6 +9,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -155,9 +157,11 @@ public class Monopoly {
 	private int randomDice1;
 	private int randomDice2;
 	private Random random;
-	
+
 	private PropertyMarket market;
 	private ArrayList<Player> players;
+	private ArrayList<JLayeredPane> boardPanels;
+
 	/**
 	 * Launch the application.
 	 */
@@ -181,6 +185,7 @@ public class Monopoly {
 		players = new ArrayList<Player>();
 		market = new PropertyMarket();
 		random = new Random();
+		boardPanels = new ArrayList<JLayeredPane>();
 		System.out.println(market.getProperties());
 		initialize();
 	}
@@ -338,7 +343,9 @@ public class Monopoly {
 				(int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13),
 				(int) (frameHeight / 6.5));
 		bottom_9 = new JLayeredPane();
-		bottom_9.setBounds((int) (frameHeight / 6.5 * 5), (int) (frameHeight / 6.5 * 5.5) , 56,112 );//(int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13), 	(int) (frameHeight / 6.5));
+		bottom_9.setBounds((int) (frameHeight / 6.5 * 5),
+				(int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13),
+				(int) (frameHeight / 6.5));
 		bottomRight = new JLayeredPane();
 		bottomRight.setBounds((int) (frameHeight / 6.5 * 5.5),
 				(int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 6.5),
@@ -385,7 +392,47 @@ public class Monopoly {
 		frame.getContentPane().add(bottom_8);
 		frame.getContentPane().add(bottom_9);
 		frame.getContentPane().add(bottomRight);
-		
+		boardPanels.add(bottomRight);
+		boardPanels.add(bottom_9);
+		boardPanels.add(bottom_8);
+		boardPanels.add(bottom_7);
+		boardPanels.add(bottom_6);
+		boardPanels.add(bottom_5);
+		boardPanels.add(bottom_4);
+		boardPanels.add(bottom_3);
+		boardPanels.add(bottom_2);
+		boardPanels.add(bottom_1);
+		boardPanels.add(bottomLeft);
+		boardPanels.add(left_9);
+		boardPanels.add(left_8);
+		boardPanels.add(left_7);
+		boardPanels.add(left_6);
+		boardPanels.add(left_5);
+		boardPanels.add(left_4);
+		boardPanels.add(left_3);
+		boardPanels.add(left_2);
+		boardPanels.add(left_1);
+		boardPanels.add(topLeft);
+		boardPanels.add(top_1);
+		boardPanels.add(top_2);
+		boardPanels.add(top_3);
+		boardPanels.add(top_4);
+		boardPanels.add(top_5);
+		boardPanels.add(top_6);
+		boardPanels.add(top_7);
+		boardPanels.add(top_8);
+		boardPanels.add(top_9);
+		boardPanels.add(topRight);
+		boardPanels.add(right_1);
+		boardPanels.add(right_2);
+		boardPanels.add(right_3);
+		boardPanels.add(right_4);
+		boardPanels.add(right_5);
+		boardPanels.add(right_6);
+		boardPanels.add(right_7);
+		boardPanels.add(right_8);
+		boardPanels.add(right_9);
+
 		bottomRightLabel = new JLabel();
 		bottomLeftLabel = new JLabel();
 		try {
@@ -476,7 +523,7 @@ public class Monopoly {
 		bottomLeft.setLayout(flow);
 		bottomRight.add(bottomRightLabel);
 		bottomLeft.add(bottomLeftLabel);
-		
+
 		bottom_1.add(bottom1Label);
 		bottom_2.add(bottom2Label);
 		bottom_3.add(bottom3Label);
@@ -486,7 +533,7 @@ public class Monopoly {
 		bottom_7.add(bottom7Label);
 		bottom_8.add(bottom8Label);
 		bottom_9.add(bottom9Label);
-		
+
 		left1Label = new JLabel();
 		left2Label = new JLabel();
 		left3Label = new JLabel();
@@ -496,7 +543,7 @@ public class Monopoly {
 		left7Label = new JLabel();
 		left8Label = new JLabel();
 		left9Label = new JLabel();
-		
+
 		try {
 			Image img = ImageIO.read(getClass().getResource(
 					"../resources/left1.jpg"));
@@ -551,7 +598,7 @@ public class Monopoly {
 			left9Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
-		
+
 		left_1.setLayout(flow);
 		left_2.setLayout(flow);
 		left_3.setLayout(flow);
@@ -570,7 +617,7 @@ public class Monopoly {
 		left_7.add(left7Label);
 		left_8.add(left8Label);
 		left_9.add(left9Label);
-		
+
 		topLeftLabel = new JLabel();
 		top1Label = new JLabel();
 		top2Label = new JLabel();
@@ -581,7 +628,7 @@ public class Monopoly {
 		top7Label = new JLabel();
 		top8Label = new JLabel();
 		top9Label = new JLabel();
-		
+
 		topLeft.setLayout(flow);
 		top_1.setLayout(flow);
 		top_2.setLayout(flow);
@@ -602,7 +649,7 @@ public class Monopoly {
 		top_7.add(top7Label);
 		top_8.add(top8Label);
 		top_9.add(top9Label);
-		
+
 		try {
 			Image img = ImageIO.read(getClass().getResource(
 					"../resources/top1.jpg"));
@@ -663,13 +710,12 @@ public class Monopoly {
 			topLeftLabel.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
-		JPanel p1= new JPanel();
+		JPanel p1 = new JPanel();
 		JLayeredPane player1 = new JLayeredPane();
 		player1.setBounds((int) (frameHeight / 6.5 * 5.5 + 60),
-				(int) (frameHeight / 6.5) + 5, 20,
-				20);
-		
-		p1.setSize(10,10);
+				(int) (frameHeight / 6.5) + 5, 20, 20);
+
+		p1.setSize(10, 10);
 		p1.setBackground(Color.magenta);
 		player1.add(p1);
 		topRightLabel = new JLabel();
@@ -682,7 +728,7 @@ public class Monopoly {
 		right7Label = new JLabel();
 		right8Label = new JLabel();
 		right9Label = new JLabel();
-		
+
 		topRight.setLayout(flow);
 		right_1.setLayout(flow);
 		right_2.setLayout(flow);
@@ -703,7 +749,7 @@ public class Monopoly {
 		right_7.add(right7Label);
 		right_8.add(right8Label);
 		right_9.add(right9Label);
-		
+
 		try {
 			Image img = ImageIO.read(getClass().getResource(
 					"../resources/right1.jpg"));
@@ -788,11 +834,11 @@ public class Monopoly {
 			chanceButton.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
-		
+
 		chanceButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		chanceButton.setBorderPainted(false);
 		chanceButton.setContentAreaFilled(false);
-		//chanceButton.setEnabled(false);
+		// chanceButton.setEnabled(false);
 		player_1 = new JLayeredPane();
 		player_1.setBounds(frameHeight + 40, 0, (int) (frameHeight / 4),
 				(int) (frameHeight / 6.5));
@@ -805,8 +851,8 @@ public class Monopoly {
 		player_1.add(player1name);
 		
 		player_2 = new JLayeredPane();
-		player_2.setBounds(frameHeight + 40 + (int) (frameHeight / 4), 0, (int) (frameHeight / 4),
-				(int) (frameHeight / 6.5));
+		player_2.setBounds(frameHeight + 40 + (int) (frameHeight / 4), 0,
+				(int) (frameHeight / 4), (int) (frameHeight / 6.5));
 		player_2.setBorder(BorderFactory.createLineBorder(Color.black));
 		player2name = new JTextField();
 		player2name.setBounds(20, 10, 140, 30);
@@ -814,10 +860,10 @@ public class Monopoly {
 		player2name.setHorizontalAlignment(SwingConstants.CENTER);
 		player2name.setVisible(false);
 		player_2.add(player2name);
-		
+
 		player_3 = new JLayeredPane();
-		player_3.setBounds(frameHeight + 40 + (int) (frameHeight / 2), 0, (int) (frameHeight / 4),
-				(int) (frameHeight / 6.5));
+		player_3.setBounds(frameHeight + 40 + (int) (frameHeight / 2), 0,
+				(int) (frameHeight / 4), (int) (frameHeight / 6.5));
 		player_3.setBorder(BorderFactory.createLineBorder(Color.black));
 		player3name = new JTextField();
 		player3name.setBounds(20, 10, 140, 30);
@@ -825,10 +871,10 @@ public class Monopoly {
 		player3name.setHorizontalAlignment(SwingConstants.CENTER);
 		player3name.setVisible(false);
 		player_3.add(player3name);
-		
+
 		player_4 = new JLayeredPane();
-		player_4.setBounds(frameHeight + 40, (int) (frameHeight / 6.5), (int) (frameHeight / 4),
-				(int) (frameHeight / 6.5));
+		player_4.setBounds(frameHeight + 40, (int) (frameHeight / 6.5),
+				(int) (frameHeight / 4), (int) (frameHeight / 6.5));
 		player_4.setBorder(BorderFactory.createLineBorder(Color.black));
 		player4name = new JTextField();
 		player4name.setBounds(20, 10, 140, 30);
@@ -836,9 +882,10 @@ public class Monopoly {
 		player4name.setHorizontalAlignment(SwingConstants.CENTER);
 		player4name.setVisible(false);
 		player_4.add(player4name);
-		
+
 		player_5 = new JLayeredPane();
-		player_5.setBounds(frameHeight + 40 + (int) (frameHeight / 4), (int) (frameHeight / 6.5), (int) (frameHeight / 4),
+		player_5.setBounds(frameHeight + 40 + (int) (frameHeight / 4),
+				(int) (frameHeight / 6.5), (int) (frameHeight / 4),
 				(int) (frameHeight / 6.5));
 		player_5.setBorder(BorderFactory.createLineBorder(Color.black));
 		player5name = new JTextField();
@@ -847,9 +894,10 @@ public class Monopoly {
 		player5name.setHorizontalAlignment(SwingConstants.CENTER);
 		player5name.setVisible(false);
 		player_5.add(player5name);
-		
+
 		player_6 = new JLayeredPane();
-		player_6.setBounds(frameHeight + 40 + (int) (frameHeight / 2), (int) (frameHeight / 6.5), (int) (frameHeight / 4),
+		player_6.setBounds(frameHeight + 40 + (int) (frameHeight / 2),
+				(int) (frameHeight / 6.5), (int) (frameHeight / 4),
 				(int) (frameHeight / 6.5));
 		player_6.setBorder(BorderFactory.createLineBorder(Color.black));
 		player6name = new JTextField();
@@ -858,41 +906,37 @@ public class Monopoly {
 		player6name.setHorizontalAlignment(SwingConstants.CENTER);
 		player6name.setVisible(false);
 		player_6.add(player6name);
-		
+
 		addPlayer1Name = new JButton("Add player's name");
 		addPlayer2Name = new JButton("Add player's name");
 		addPlayer3Name = new JButton("Add player's name");
 		addPlayer4Name = new JButton("Add player's name");
 		addPlayer5Name = new JButton("Add player's name");
 		addPlayer6Name = new JButton("Add player's name");
-		addPlayer1Name.setBounds(frameHeight + 60, 45, 140,
-				40);
-		addPlayer2Name.setBounds(frameHeight + 60 + (int) (frameHeight / 4), 45, 140,
-				40);
-		addPlayer3Name.setBounds(frameHeight + 60 + (int) (frameHeight / 2), 45, 140,
-				40);
-		addPlayer4Name.setBounds(frameHeight + 60, (int) (frameHeight / 6.5) + 45, 140,
-				40);
-		addPlayer5Name.setBounds(frameHeight + 60 + (int) (frameHeight / 4), (int) (frameHeight / 6.5) + 45, 140,
-				40);
-		addPlayer6Name.setBounds(frameHeight + 60 + (int) (frameHeight / 2), (int) (frameHeight / 6.5) + 45, 140,
-				40);
+		addPlayer1Name.setBounds(frameHeight + 60, 45, 140, 40);
+		addPlayer2Name.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
+				45, 140, 40);
+		addPlayer3Name.setBounds(frameHeight + 60 + (int) (frameHeight / 2),
+				45, 140, 40);
+		addPlayer4Name.setBounds(frameHeight + 60,
+				(int) (frameHeight / 6.5) + 45, 140, 40);
+		addPlayer5Name.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
+				(int) (frameHeight / 6.5) + 45, 140, 40);
+		addPlayer6Name.setBounds(frameHeight + 60 + (int) (frameHeight / 2),
+				(int) (frameHeight / 6.5) + 45, 140, 40);
 		addPlayer1Name.setVisible(false);
 		addPlayer2Name.setVisible(false);
 		addPlayer3Name.setVisible(false);
 		addPlayer4Name.setVisible(false);
 		addPlayer5Name.setVisible(false);
 		addPlayer6Name.setVisible(false);
-		
+
 		addPlayer1 = new JButton();
 		player1nameLabel = new JLabel();
 		player1balance = new JLabel();
-		player1nameLabel.setBounds(frameHeight + 60, 5, 140,
-				40);
-		player1balance.setBounds(frameHeight + 60, 20, 140,
-				40);
-		addPlayer1.setBounds(frameHeight + 60, 35, 140,
-				40);
+		player1nameLabel.setBounds(frameHeight + 60, 5, 140, 40);
+		player1balance.setBounds(frameHeight + 60, 20, 140, 40);
+		addPlayer1.setBounds(frameHeight + 60, 35, 140, 40);
 		try {
 			Image img = ImageIO.read(getClass().getResource(
 					"../resources/addplayer.jpg"));
@@ -902,7 +946,7 @@ public class Monopoly {
 		addPlayer1.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		addPlayer1.setBorderPainted(false);
 		addPlayer1.setContentAreaFilled(false);
-		addPlayer1.addActionListener(new ActionListener(){
+		addPlayer1.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -910,9 +954,9 @@ public class Monopoly {
 				player1name.setVisible(true);
 				addPlayer1Name.setVisible(true);
 				addPlayer1Name.setEnabled(false);
-			}	
+			}
 		});
-		//length of the player1' name is to be between 3-10 characters 
+		// length of the player1' name is to be between 3-10 characters
 		player1name.getDocument().addDocumentListener(new DocumentListener() {
 
 			@Override
@@ -939,15 +983,16 @@ public class Monopoly {
 				}
 			}
 		});
-		addPlayer1Name.addActionListener(new ActionListener(){
-			//adds first player to the ArrayList of players
+		addPlayer1Name.addActionListener(new ActionListener() {
+			// adds first player to the ArrayList of players
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				players.add(new Player(player1name.getText()));
 				player1nameLabel.setText(player1name.getText());
 				player1nameLabel.setForeground(Color.RED);
 				player1nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
-				player1balance.setText("E" + String.valueOf(players.get(0).getMoneyHeld()));
+				player1balance.setText("E"
+						+ String.valueOf(players.get(0).getMoneyHeld()));
 				player1balance.setFont(new Font("Arial", Font.ITALIC, 14));
 				frame.getContentPane().add(player1nameLabel);
 				frame.getContentPane().add(player1balance);
@@ -955,18 +1000,79 @@ public class Monopoly {
 				player1name.setVisible(false);
 				addPlayer1Name.setVisible(false);
 				addPlayer2.setEnabled(true);
+				// test //
+				for (int i = 0; i < market.getProperties().size(); i++) {
+					players.get(0).getOwnedProperties()
+							.add(market.getProperties().get(i));
+				}
+				
+				// highlights panels representing owned properties
+				player_1.addMouseListener(new MouseListener() {
+
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+
+					}
+
+					@Override
+					public void mouseEntered(MouseEvent arg0) {
+
+						for (Property property : players.get(0)
+								.getOwnedProperties()) {
+							if (property.getPosition() < 10) {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(4, 0, 0, 0,
+												Color.red));
+							} else if (property.getPosition() < 20) {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(0, 0, 0, 6,
+												Color.red));
+							} else if (property.getPosition() < 30) {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(4, 0, 0, 0,
+												Color.red));
+							} else {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(0, 5, 0, 0,
+												Color.red));
+							}
+							
+							
+						}
+					}
+
+					@Override
+					public void mouseExited(MouseEvent arg0) {
+						for (Property property : players.get(0)
+								.getOwnedProperties()) {
+							boardPanels.get(property.getPosition()).setBorder(
+									BorderFactory.createEmptyBorder());
+						}
+					}
+
+					@Override
+					public void mousePressed(MouseEvent arg0) {
+
+					}
+
+					@Override
+					public void mouseReleased(MouseEvent arg0) {
+
+					}
+
+				});
 			}
-			
+
 		});
 		addPlayer2 = new JButton();
-		addPlayer2.setBounds(frameHeight + 60 + (int) (frameHeight / 4), 35, 140,
-				40);
+		addPlayer2.setBounds(frameHeight + 60 + (int) (frameHeight / 4), 35,
+				140, 40);
 		player2nameLabel = new JLabel();
 		player2balance = new JLabel();
-		player2balance.setBounds(frameHeight + 60 + (int) (frameHeight / 4), 20, 140,
-				40);
-		player2nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 4), 5, 140,
-				40);
+		player2balance.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
+				20, 140, 40);
+		player2nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
+				5, 140, 40);
 		try {
 			Image img = ImageIO.read(getClass().getResource(
 					"../resources/addplayer.jpg"));
@@ -977,7 +1083,7 @@ public class Monopoly {
 		addPlayer2.setBorderPainted(false);
 		addPlayer2.setContentAreaFilled(false);
 		addPlayer2.setEnabled(false);
-		addPlayer2.addActionListener(new ActionListener(){
+		addPlayer2.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -985,7 +1091,7 @@ public class Monopoly {
 				player2name.setVisible(true);
 				addPlayer2Name.setVisible(true);
 				addPlayer2Name.setEnabled(false);
-			}	
+			}
 		});
 
 		player2name.getDocument().addDocumentListener(new DocumentListener() {
@@ -1005,25 +1111,27 @@ public class Monopoly {
 				checkName();
 			}
 
-			//names are to be unique
+			// names are to be unique
 			public void checkName() {
 				String name = player2name.getText();
-				if (name.length() > 2 && name.length() <= 10 && !name.equals(players.get(0).getName())) {
+				if (name.length() > 2 && name.length() <= 10
+						&& !name.equals(players.get(0).getName())) {
 					addPlayer2Name.setEnabled(true);
 				} else {
 					addPlayer2Name.setEnabled(false);
 				}
 			}
 		});
-		addPlayer2Name.addActionListener(new ActionListener(){
-			//adds second player to the ArrayList of players
+		addPlayer2Name.addActionListener(new ActionListener() {
+			// adds second player to the ArrayList of players
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				players.add(new Player(player2name.getText()));
 				player2nameLabel.setText(player1name.getText());
-				player2nameLabel.setForeground(Color.RED);
+				player2nameLabel.setForeground(Color.BLUE);
 				player2nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
-				player2balance.setText("E" + String.valueOf(players.get(1).getMoneyHeld()));
+				player2balance.setText("E"
+						+ String.valueOf(players.get(1).getMoneyHeld()));
 				player2balance.setFont(new Font("Arial", Font.ITALIC, 14));
 				frame.getContentPane().add(player2nameLabel);
 				frame.getContentPane().add(player2balance);
@@ -1031,21 +1139,81 @@ public class Monopoly {
 				player2name.setVisible(false);
 				addPlayer2Name.setVisible(false);
 				addPlayer3.setEnabled(true);
-				startGame.setEnabled(true); // after creating two players, the game can be started
+				startGame.setEnabled(true); // after creating two players, the
+											// game can be started
+				
+				// test //
+				for (int i = 0; i < market.getProperties().size(); i++) {
+					players.get(1).getOwnedProperties()
+							.add(market.getProperties().get(i));
+				}
+				
+				// highlights panels representing owned properties
+				player_2.addMouseListener(new MouseListener() {
+
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+
+					}
+
+					@Override
+					public void mouseEntered(MouseEvent arg0) {
+
+						for (Property property : players.get(1)
+								.getOwnedProperties()) {
+							if (property.getPosition() < 10) {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(4, 0, 0, 0,
+												Color.blue));
+							} else if (property.getPosition() < 20) {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(0, 0, 0, 6,
+												Color.blue));
+							} else if (property.getPosition() < 30) {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(4, 0, 0, 0,
+												Color.blue));
+							} else {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(0, 5, 0, 0,
+												Color.blue));
+							}
+						}
+					}
+
+					@Override
+					public void mouseExited(MouseEvent arg0) {
+						for (Property property : players.get(1)
+								.getOwnedProperties()) {
+							boardPanels.get(property.getPosition()).setBorder(
+									BorderFactory.createEmptyBorder());
+						}
+					}
+
+					@Override
+					public void mousePressed(MouseEvent arg0) {
+
+					}
+
+					@Override
+					public void mouseReleased(MouseEvent arg0) {
+
+					}
+
+				});
 			}
-			
+
 		});
-		
-		
+
 		addPlayer3 = new JButton();
 		player3nameLabel = new JLabel();
 		player3balance = new JLabel();
-		player3balance.setBounds(frameHeight + 60 + (int) (frameHeight / 2), 20, 140,
-				40);
-		player3nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 2), 5, 140,
-				40);
-		addPlayer3.setBounds(frameHeight + 60 + (int) (frameHeight / 2), 35, 140,
-				40);
+		player3balance.setBounds(frameHeight + 60 + (int) (frameHeight / 2),
+				20, 140, 40);
+		player3nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 2),
+				5, 140, 40);
+		addPlayer3.setBounds(frameHeight + 60 + (int) (frameHeight / 2), 35,
+				140, 40);
 		try {
 			Image img = ImageIO.read(getClass().getResource(
 					"../resources/addplayer.jpg"));
@@ -1056,7 +1224,7 @@ public class Monopoly {
 		addPlayer3.setBorderPainted(false);
 		addPlayer3.setContentAreaFilled(false);
 		addPlayer3.setEnabled(false);
-		addPlayer3.addActionListener(new ActionListener(){
+		addPlayer3.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -1064,7 +1232,7 @@ public class Monopoly {
 				player3name.setVisible(true);
 				addPlayer3Name.setVisible(true);
 				addPlayer3Name.setEnabled(false);
-			}	
+			}
 		});
 
 		player3name.getDocument().addDocumentListener(new DocumentListener() {
@@ -1084,10 +1252,11 @@ public class Monopoly {
 				checkName();
 			}
 
-			//names are to be unique
+			// names are to be unique
 			public void checkName() {
 				String name = player3name.getText();
-				if (name.length() > 2 && name.length() <= 10 && !name.equals(players.get(0).getName())
+				if (name.length() > 2 && name.length() <= 10
+						&& !name.equals(players.get(0).getName())
 						&& !name.equals(players.get(1).getName())) {
 					addPlayer3Name.setEnabled(true);
 				} else {
@@ -1096,15 +1265,16 @@ public class Monopoly {
 			}
 		});
 
-		addPlayer3Name.addActionListener(new ActionListener(){
-			//adds third player to the ArrayList of players
+		addPlayer3Name.addActionListener(new ActionListener() {
+			// adds third player to the ArrayList of players
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				players.add(new Player(player3name.getText()));
 				player3nameLabel.setText(player1name.getText());
-				player3nameLabel.setForeground(Color.RED);
+				player3nameLabel.setForeground(Color.BLACK);
 				player3nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
-				player3balance.setText("E" + String.valueOf(players.get(2).getMoneyHeld()));
+				player3balance.setText("E"
+						+ String.valueOf(players.get(2).getMoneyHeld()));
 				player3balance.setFont(new Font("Arial", Font.ITALIC, 14));
 				frame.getContentPane().add(player3nameLabel);
 				frame.getContentPane().add(player3balance);
@@ -1112,19 +1282,79 @@ public class Monopoly {
 				player3name.setVisible(false);
 				addPlayer3Name.setVisible(false);
 				addPlayer4.setEnabled(true);
+				
+				// test //
+				for (int i = 0; i < market.getProperties().size(); i++) {
+					players.get(2).getOwnedProperties()
+							.add(market.getProperties().get(i));
+				}
+				
+				// highlights panels representing owned properties
+				player_3.addMouseListener(new MouseListener() {
+
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+
+					}
+
+					@Override
+					public void mouseEntered(MouseEvent arg0) {
+
+						for (Property property : players.get(2)
+								.getOwnedProperties()) {
+							if (property.getPosition() < 10) {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(4, 0, 0, 0,
+												Color.black));
+							} else if (property.getPosition() < 20) {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(0, 0, 0, 6,
+												Color.black));
+							} else if (property.getPosition() < 30) {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(4, 0, 0, 0,
+												Color.black));
+							} else {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(0, 5, 0, 0,
+												Color.black));
+							}
+						}
+					}
+
+					@Override
+					public void mouseExited(MouseEvent arg0) {
+						for (Property property : players.get(2)
+								.getOwnedProperties()) {
+							boardPanels.get(property.getPosition()).setBorder(
+									BorderFactory.createEmptyBorder());
+						}
+					}
+
+					@Override
+					public void mousePressed(MouseEvent arg0) {
+
+					}
+
+					@Override
+					public void mouseReleased(MouseEvent arg0) {
+
+					}
+
+				});
 			}
-			
+
 		});
-		
+
 		addPlayer4 = new JButton();
 		player4nameLabel = new JLabel();
 		player4balance = new JLabel();
-		player4balance.setBounds(frameHeight + 60, (int) (frameHeight / 6.5) + 20, 140,
-				40);
-		player4nameLabel.setBounds(frameHeight + 60, (int) (frameHeight / 6.5) + 5, 140,
-				40);
-		addPlayer4.setBounds(frameHeight + 60, (int) (frameHeight / 6.5) + 35, 140,
-				40);
+		player4balance.setBounds(frameHeight + 60,
+				(int) (frameHeight / 6.5) + 20, 140, 40);
+		player4nameLabel.setBounds(frameHeight + 60,
+				(int) (frameHeight / 6.5) + 5, 140, 40);
+		addPlayer4.setBounds(frameHeight + 60, (int) (frameHeight / 6.5) + 35,
+				140, 40);
 		try {
 			Image img = ImageIO.read(getClass().getResource(
 					"../resources/addplayer.jpg"));
@@ -1135,7 +1365,7 @@ public class Monopoly {
 		addPlayer4.setBorderPainted(false);
 		addPlayer4.setContentAreaFilled(false);
 		addPlayer4.setEnabled(false);
-		addPlayer4.addActionListener(new ActionListener(){
+		addPlayer4.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -1143,7 +1373,7 @@ public class Monopoly {
 				player4name.setVisible(true);
 				addPlayer4Name.setVisible(true);
 				addPlayer4Name.setEnabled(false);
-			}	
+			}
 		});
 
 		player4name.getDocument().addDocumentListener(new DocumentListener() {
@@ -1163,11 +1393,13 @@ public class Monopoly {
 				checkName();
 			}
 
-			//names are to be unique
+			// names are to be unique
 			public void checkName() {
 				String name = player4name.getText();
-				if (name.length() > 2 && name.length() <= 10 && !name.equals(players.get(0).getName())
-						&& !name.equals(players.get(1).getName()) && !name.equals(players.get(2).getName())) {
+				if (name.length() > 2 && name.length() <= 10
+						&& !name.equals(players.get(0).getName())
+						&& !name.equals(players.get(1).getName())
+						&& !name.equals(players.get(2).getName())) {
 					addPlayer4Name.setEnabled(true);
 				} else {
 					addPlayer4Name.setEnabled(false);
@@ -1175,15 +1407,16 @@ public class Monopoly {
 			}
 		});
 
-		addPlayer4Name.addActionListener(new ActionListener(){
-			//adds fourth player to the ArrayList of players
+		addPlayer4Name.addActionListener(new ActionListener() {
+			// adds fourth player to the ArrayList of players
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				players.add(new Player(player4name.getText()));
 				player4nameLabel.setText(player1name.getText());
-				player4nameLabel.setForeground(Color.RED);
+				player4nameLabel.setForeground(Color.GREEN);
 				player4nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
-				player4balance.setText("E" + String.valueOf(players.get(3).getMoneyHeld()));
+				player4balance.setText("E"
+						+ String.valueOf(players.get(3).getMoneyHeld()));
 				player4balance.setFont(new Font("Arial", Font.ITALIC, 14));
 				frame.getContentPane().add(player4nameLabel);
 				frame.getContentPane().add(player4balance);
@@ -1191,19 +1424,79 @@ public class Monopoly {
 				player4name.setVisible(false);
 				addPlayer4Name.setVisible(false);
 				addPlayer5.setEnabled(true);
+				
+				// test //
+				for (int i = 0; i < market.getProperties().size(); i++) {
+					players.get(3).getOwnedProperties()
+							.add(market.getProperties().get(i));
+				}
+				
+				// highlights panels representing owned properties
+				player_4.addMouseListener(new MouseListener() {
+
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+
+					}
+
+					@Override
+					public void mouseEntered(MouseEvent arg0) {
+
+						for (Property property : players.get(3)
+								.getOwnedProperties()) {
+							if (property.getPosition() < 10) {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(4, 0, 0, 0,
+												Color.green));
+							} else if (property.getPosition() < 20) {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(0, 0, 0, 6,
+												Color.green));
+							} else if (property.getPosition() < 30) {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(4, 0, 0, 0,
+												Color.green));
+							} else {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(0, 5, 0, 0,
+												Color.green));
+							}
+						}
+					}
+
+					@Override
+					public void mouseExited(MouseEvent arg0) {
+						for (Property property : players.get(3)
+								.getOwnedProperties()) {
+							boardPanels.get(property.getPosition()).setBorder(
+									BorderFactory.createEmptyBorder());
+						}
+					}
+
+					@Override
+					public void mousePressed(MouseEvent arg0) {
+
+					}
+
+					@Override
+					public void mouseReleased(MouseEvent arg0) {
+
+					}
+
+				});
 			}
-			
+
 		});
 
 		addPlayer5 = new JButton();
 		player5nameLabel = new JLabel();
 		player5balance = new JLabel();
-		player5balance.setBounds(frameHeight + 60 + (int) (frameHeight / 4), (int) (frameHeight / 6.5) + 20, 140,
-				40);
-		player5nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 4), (int) (frameHeight / 6.5) + 5, 140,
-				40);
-		addPlayer5.setBounds(frameHeight + 60 + (int) (frameHeight / 4), (int) (frameHeight / 6.5) + 35, 140,
-				40);
+		player5balance.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
+				(int) (frameHeight / 6.5) + 20, 140, 40);
+		player5nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
+				(int) (frameHeight / 6.5) + 5, 140, 40);
+		addPlayer5.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
+				(int) (frameHeight / 6.5) + 35, 140, 40);
 		try {
 			Image img = ImageIO.read(getClass().getResource(
 					"../resources/addplayer.jpg"));
@@ -1214,7 +1507,7 @@ public class Monopoly {
 		addPlayer5.setBorderPainted(false);
 		addPlayer5.setContentAreaFilled(false);
 		addPlayer5.setEnabled(false);
-		addPlayer5.addActionListener(new ActionListener(){
+		addPlayer5.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -1222,7 +1515,7 @@ public class Monopoly {
 				player5name.setVisible(true);
 				addPlayer5Name.setVisible(true);
 				addPlayer5Name.setEnabled(false);
-			}	
+			}
 		});
 
 		player5name.getDocument().addDocumentListener(new DocumentListener() {
@@ -1242,11 +1535,13 @@ public class Monopoly {
 				checkName();
 			}
 
-			//names are to be unique
+			// names are to be unique
 			public void checkName() {
 				String name = player5name.getText();
-				if (name.length() > 2 && name.length() <= 10 && !name.equals(players.get(0).getName())
-						&& !name.equals(players.get(1).getName()) && !name.equals(players.get(2).getName())
+				if (name.length() > 2 && name.length() <= 10
+						&& !name.equals(players.get(0).getName())
+						&& !name.equals(players.get(1).getName())
+						&& !name.equals(players.get(2).getName())
 						&& !name.equals(players.get(3).getName())) {
 					addPlayer5Name.setEnabled(true);
 				} else {
@@ -1255,15 +1550,16 @@ public class Monopoly {
 			}
 		});
 
-		addPlayer5Name.addActionListener(new ActionListener(){
-			//adds fifth player to the ArrayList of players
+		addPlayer5Name.addActionListener(new ActionListener() {
+			// adds fifth player to the ArrayList of players
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				players.add(new Player(player5name.getText()));
 				player5nameLabel.setText(player1name.getText());
-				player5nameLabel.setForeground(Color.RED);
+				player5nameLabel.setForeground(Color.ORANGE);
 				player5nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
-				player5balance.setText("E" + String.valueOf(players.get(4).getMoneyHeld()));
+				player5balance.setText("E"
+						+ String.valueOf(players.get(4).getMoneyHeld()));
 				player5balance.setFont(new Font("Arial", Font.ITALIC, 14));
 				frame.getContentPane().add(player5nameLabel);
 				frame.getContentPane().add(player5balance);
@@ -1271,19 +1567,79 @@ public class Monopoly {
 				player5name.setVisible(false);
 				addPlayer5Name.setVisible(false);
 				addPlayer6.setEnabled(true);
+				
+				// test //
+				for (int i = 0; i < market.getProperties().size(); i++) {
+					players.get(4).getOwnedProperties()
+							.add(market.getProperties().get(i));
+				}
+				
+				// highlights panels representing owned properties
+				player_5.addMouseListener(new MouseListener() {
+
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+
+					}
+
+					@Override
+					public void mouseEntered(MouseEvent arg0) {
+
+						for (Property property : players.get(4)
+								.getOwnedProperties()) {
+							if (property.getPosition() < 10) {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(4, 0, 0, 0,
+												Color.orange));
+							} else if (property.getPosition() < 20) {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(0, 0, 0, 6,
+												Color.orange));
+							} else if (property.getPosition() < 30) {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(4, 0, 0, 0,
+												Color.orange));
+							} else {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(0, 5, 0, 0,
+												Color.orange));
+							}
+						}
+					}
+
+					@Override
+					public void mouseExited(MouseEvent arg0) {
+						for (Property property : players.get(4)
+								.getOwnedProperties()) {
+							boardPanels.get(property.getPosition()).setBorder(
+									BorderFactory.createEmptyBorder());
+						}
+					}
+
+					@Override
+					public void mousePressed(MouseEvent arg0) {
+
+					}
+
+					@Override
+					public void mouseReleased(MouseEvent arg0) {
+
+					}
+
+				});
 			}
-			
+
 		});
 
 		addPlayer6 = new JButton();
 		player6nameLabel = new JLabel();
 		player6balance = new JLabel();
-		player6balance.setBounds(frameHeight + 60 + (int) (frameHeight / 2), (int) (frameHeight / 6.5) + 20, 140,
-				40);
-		player6nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 2), (int) (frameHeight / 6.5) + 5, 140,
-				40);
-		addPlayer6.setBounds(frameHeight + 60 + (int) (frameHeight / 2), (int) (frameHeight / 6.5) + 35, 140,
-				40);
+		player6balance.setBounds(frameHeight + 60 + (int) (frameHeight / 2),
+				(int) (frameHeight / 6.5) + 20, 140, 40);
+		player6nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 2),
+				(int) (frameHeight / 6.5) + 5, 140, 40);
+		addPlayer6.setBounds(frameHeight + 60 + (int) (frameHeight / 2),
+				(int) (frameHeight / 6.5) + 35, 140, 40);
 		try {
 			Image img = ImageIO.read(getClass().getResource(
 					"../resources/addplayer.jpg"));
@@ -1294,7 +1650,7 @@ public class Monopoly {
 		addPlayer6.setBorderPainted(false);
 		addPlayer6.setContentAreaFilled(false);
 		addPlayer6.setEnabled(false);
-		addPlayer6.addActionListener(new ActionListener(){
+		addPlayer6.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -1302,7 +1658,7 @@ public class Monopoly {
 				player6name.setVisible(true);
 				addPlayer6Name.setVisible(true);
 				addPlayer6Name.setEnabled(false);
-			}	
+			}
 		});
 
 		player6name.getDocument().addDocumentListener(new DocumentListener() {
@@ -1322,12 +1678,15 @@ public class Monopoly {
 				checkName();
 			}
 
-			//names are to be unique
+			// names are to be unique
 			public void checkName() {
 				String name = player6name.getText();
-				if (name.length() > 2 && name.length() <= 10 && !name.equals(players.get(0).getName())
-						&& !name.equals(players.get(1).getName()) && !name.equals(players.get(2).getName())
-						&& !name.equals(players.get(3).getName()) && !name.equals(players.get(4).getName())) {
+				if (name.length() > 2 && name.length() <= 10
+						&& !name.equals(players.get(0).getName())
+						&& !name.equals(players.get(1).getName())
+						&& !name.equals(players.get(2).getName())
+						&& !name.equals(players.get(3).getName())
+						&& !name.equals(players.get(4).getName())) {
 					addPlayer6Name.setEnabled(true);
 				} else {
 					addPlayer6Name.setEnabled(false);
@@ -1335,28 +1694,91 @@ public class Monopoly {
 			}
 		});
 
-		addPlayer6Name.addActionListener(new ActionListener(){
-			//adds sixth player to the ArrayList of players
+		addPlayer6Name.addActionListener(new ActionListener() {
+			// adds sixth player to the ArrayList of players
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				players.add(new Player(player6name.getText()));
 				player6nameLabel.setText(player1name.getText());
-				player6nameLabel.setForeground(Color.RED);
+				player6nameLabel.setForeground(Color.magenta);
 				player6nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
-				player6balance.setText("E" + String.valueOf(players.get(5).getMoneyHeld()));
+				player6balance.setText("E"
+						+ String.valueOf(players.get(5).getMoneyHeld()));
 				player6balance.setFont(new Font("Arial", Font.ITALIC, 14));
 				frame.getContentPane().add(player6nameLabel);
 				frame.getContentPane().add(player6balance);
 				System.out.println(players.get(5).getName());
 				player6name.setVisible(false);
 				addPlayer6Name.setVisible(false);
+				
+				// test //
+				for (int i = 0; i < market.getProperties().size(); i++) {
+					players.get(5).getOwnedProperties()
+							.add(market.getProperties().get(i));
+				}
+				
+				// highlights panels representing owned properties
+				player_6.addMouseListener(new MouseListener() {
+
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+
+					}
+
+					@Override
+					public void mouseEntered(MouseEvent arg0) {
+
+						for (Property property : players.get(5)
+								.getOwnedProperties()) {
+							if (property.getPosition() < 10) {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(4, 0, 0, 0,
+												Color.magenta));
+							} else if (property.getPosition() < 20) {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(0, 0, 0, 6,
+												Color.magenta));
+							} else if (property.getPosition() < 30) {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(4, 0, 0, 0,
+												Color.magenta));
+							} else {
+								boardPanels.get(property.getPosition()).setBorder(
+										BorderFactory.createMatteBorder(0, 5, 0, 0,
+												Color.magenta));
+							}
+							
+											
+						}
+					}
+
+					@Override
+					public void mouseExited(MouseEvent arg0) {
+						for (Property property : players.get(5)
+								.getOwnedProperties()) {
+							boardPanels.get(property.getPosition()).setBorder(
+									BorderFactory.createEmptyBorder());
+						}
+					}
+
+					@Override
+					public void mousePressed(MouseEvent arg0) {
+
+					}
+
+					@Override
+					public void mouseReleased(MouseEvent arg0) {
+
+					}
+
+				});
 			}
-			
+
 		});
-		
+
 		startGame = new JButton();
-		startGame.setBounds(frameHeight + 60 + (int) (frameHeight / 4), (int) (frameHeight / 3), 140,
-				40);
+		startGame.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
+				(int) (frameHeight / 3), 140, 40);
 		try {
 			Image img = ImageIO.read(getClass().getResource(
 					"../resources/startthegame.jpg"));
@@ -1367,8 +1789,9 @@ public class Monopoly {
 		startGame.setBorderPainted(false);
 		startGame.setContentAreaFilled(false);
 		startGame.setEnabled(false);
-		startGame.addActionListener(new ActionListener(){
-			// to make sure that no player can be added after the startGame button is pressed
+		startGame.addActionListener(new ActionListener() {
+			// to make sure that no player can be added after the startGame
+			// button is pressed
 			// all relevant components are set to be invisible
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -1385,7 +1808,7 @@ public class Monopoly {
 				player6name.setVisible(false);
 				addPlayer6Name.setVisible(false);
 				startNewGame();
-			}	
+			}
 		});
 		frame.getContentPane().add(communityChest);
 		frame.getContentPane().add(chanceButton);
@@ -1410,7 +1833,7 @@ public class Monopoly {
 		frame.getContentPane().add(startGame);
 		frame.getContentPane().add(player1, 2);
 		rollTheDice = new JButton();
-		rollTheDice.setBounds(frameHeight/2 - 70, frameHeight / 2 + 40, 140,
+		rollTheDice.setBounds(frameHeight / 2 - 70, frameHeight / 2 + 40, 140,
 				40);
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -1423,8 +1846,7 @@ public class Monopoly {
 		rollTheDice.setContentAreaFilled(false);
 		rollTheDice.setVisible(false);
 		dice1 = new JLabel();
-		dice1.setBounds(frameHeight/2 - 110, frameHeight / 2 - 70, 100,
-				100);
+		dice1.setBounds(frameHeight / 2 - 110, frameHeight / 2 - 70, 100, 100);
 		try {
 			Image img = ImageIO.read(getClass().getResource(
 					"../resources/dice6.jpg"));
@@ -1432,8 +1854,7 @@ public class Monopoly {
 		} catch (IOException ex) {
 		}
 		dice2 = new JLabel();
-		dice2.setBounds(frameHeight/2, frameHeight / 2 - 70, 100,
-				100);
+		dice2.setBounds(frameHeight / 2, frameHeight / 2 - 70, 100, 100);
 		try {
 			Image img = ImageIO.read(getClass().getResource(
 					"../resources/dice6.jpg"));
@@ -1447,7 +1868,7 @@ public class Monopoly {
 		frame.getContentPane().add(dice2);
 
 	}
-	
+
 	private void startNewGame() {
 		startGame.setVisible(false);
 		rollTheDice.setVisible(true);
@@ -1562,8 +1983,8 @@ public class Monopoly {
 					break;
 				}
 			}
-			
+
 		});
-		
+
 	}
 }
