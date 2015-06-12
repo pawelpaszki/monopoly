@@ -127,6 +127,7 @@ public class Monopoly {
 	private JButton addPlayer5;
 	private JButton addPlayer6;
 	private JButton startGame;
+	private JButton finishTurn;
 	private JTextField player1name;
 	private JTextField player2name;
 	private JTextField player3name;
@@ -161,7 +162,19 @@ public class Monopoly {
 	private PropertyMarket market;
 	private ArrayList<Player> players;
 	private ArrayList<JLayeredPane> boardPanels;
-
+	private int playerIndex;
+	private JLayeredPane player1;
+	private JPanel p1;
+	private JLayeredPane player2;
+	private JPanel p2;
+	private JLayeredPane player3;
+	private JPanel p3;
+	private JLayeredPane player4;
+	private JPanel p4;
+	private JLayeredPane player5;
+	private JPanel p5;
+	private JLayeredPane player6;
+	private JPanel p6;
 	/**
 	 * Launch the application.
 	 */
@@ -186,7 +199,7 @@ public class Monopoly {
 		market = new PropertyMarket();
 		random = new Random();
 		boardPanels = new ArrayList<JLayeredPane>();
-		System.out.println(market.getProperties());
+		playerIndex = 0;
 		initialize();
 	}
 
@@ -709,15 +722,8 @@ public class Monopoly {
 					"../resources/topLeft.jpg"));
 			topLeftLabel.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
-		}
-		JPanel p1 = new JPanel();
-		JLayeredPane player1 = new JLayeredPane();
-		player1.setBounds((int) (frameHeight / 6.5 * 5.5 + 60),
-				(int) (frameHeight / 6.5) + 5, 20, 20);
-
-		p1.setSize(10, 10);
-		p1.setBackground(Color.magenta);
-		player1.add(p1);
+		}		
+		
 		topRightLabel = new JLabel();
 		right1Label = new JLabel();
 		right2Label = new JLabel();
@@ -1061,8 +1067,17 @@ public class Monopoly {
 					}
 
 				});
-			}
+				p1 = new JPanel();
+				player1 = new JLayeredPane();
+				player1.setBounds(frameHeight - 80,
+						frameHeight - 80, 20, 20);
 
+				p1.setSize(15, 15);
+				p1.setBackground(Color.red);
+				player1.add(p1);
+				frame.getContentPane().add(player1, 2);
+			}
+			
 		});
 		addPlayer2 = new JButton();
 		addPlayer2.setBounds(frameHeight + 60 + (int) (frameHeight / 4), 35,
@@ -1201,6 +1216,16 @@ public class Monopoly {
 					}
 
 				});
+				
+				p2 = new JPanel();
+				player2 = new JLayeredPane();
+				player2.setBounds(frameHeight - 60,
+						frameHeight - 80, 20, 20);
+
+				p2.setSize(15, 15);
+				p2.setBackground(Color.blue);
+				player2.add(p2);
+				frame.getContentPane().add(player2, 2);
 			}
 
 		});
@@ -1342,6 +1367,16 @@ public class Monopoly {
 					}
 
 				});
+				
+				p3 = new JPanel();
+				player3 = new JLayeredPane();
+				player3.setBounds(frameHeight - 80,
+						frameHeight - 60, 20, 20);
+
+				p3.setSize(15, 15);
+				p3.setBackground(Color.black);
+				player3.add(p3);
+				frame.getContentPane().add(player3, 2);
 			}
 
 		});
@@ -1484,6 +1519,16 @@ public class Monopoly {
 					}
 
 				});
+				
+				p4 = new JPanel();
+				player4 = new JLayeredPane();
+				player4.setBounds(frameHeight - 60,
+						frameHeight - 60, 20, 20);
+
+				p4.setSize(15, 15);
+				p4.setBackground(Color.green);
+				player4.add(p4);
+				frame.getContentPane().add(player4, 2);
 			}
 
 		});
@@ -1627,6 +1672,16 @@ public class Monopoly {
 					}
 
 				});
+				
+				p5 = new JPanel();
+				player5 = new JLayeredPane();
+				player5.setBounds(frameHeight - 80,
+						frameHeight - 40, 20, 20);
+
+				p5.setSize(15, 15);
+				p5.setBackground(Color.orange);
+				player5.add(p5);
+				frame.getContentPane().add(player5, 2);
 			}
 
 		});
@@ -1772,12 +1827,25 @@ public class Monopoly {
 					}
 
 				});
+				
+				p6 = new JPanel();
+				player6 = new JLayeredPane();
+				player6.setBounds(frameHeight - 60,
+						frameHeight - 40, 20, 20);
+
+				p6.setSize(15, 15);
+				p6.setBackground(Color.magenta);
+				player6.add(p6);
+				frame.getContentPane().add(player6, 2);
 			}
 
 		});
 
 		startGame = new JButton();
+		finishTurn = new JButton();
 		startGame.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
+				(int) (frameHeight / 3), 140, 40);
+		finishTurn.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
 				(int) (frameHeight / 3), 140, 40);
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -1785,10 +1853,21 @@ public class Monopoly {
 			startGame.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
+		try {
+			Image img = ImageIO.read(getClass().getResource(
+					"../resources/finishturn.jpg"));
+			finishTurn.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
 		startGame.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		startGame.setBorderPainted(false);
 		startGame.setContentAreaFilled(false);
 		startGame.setEnabled(false);
+		finishTurn.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		finishTurn.setBorderPainted(false);
+		finishTurn.setContentAreaFilled(false);
+		finishTurn.setEnabled(false);
+		finishTurn.setVisible(false);
 		startGame.addActionListener(new ActionListener() {
 			// to make sure that no player can be added after the startGame
 			// button is pressed
@@ -1831,7 +1910,7 @@ public class Monopoly {
 		frame.getContentPane().add(addPlayer5Name);
 		frame.getContentPane().add(addPlayer6Name);
 		frame.getContentPane().add(startGame);
-		frame.getContentPane().add(player1, 2);
+		
 		rollTheDice = new JButton();
 		rollTheDice.setBounds(frameHeight / 2 - 70, frameHeight / 2 + 40, 140,
 				40);
@@ -1866,11 +1945,13 @@ public class Monopoly {
 		frame.getContentPane().add(rollTheDice);
 		frame.getContentPane().add(dice1);
 		frame.getContentPane().add(dice2);
+		frame.getContentPane().add(finishTurn);
 
 	}
 
 	private void startNewGame() {
 		startGame.setVisible(false);
+		finishTurn.setVisible(true);
 		rollTheDice.setVisible(true);
 		dice1.setVisible(true);
 		dice2.setVisible(true);
@@ -1985,6 +2066,22 @@ public class Monopoly {
 			}
 
 		});
+		//test//
+		/////////
+		///////////
+		/////////
+		/////////
+		//////////
+		finishTurn.setEnabled(true);
+		
+		finishTurn.addActionListener(new ActionListener(){
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playerIndex = (playerIndex + 1) % players.size();
+				
+			}
+			
+		});
 	}
 }
