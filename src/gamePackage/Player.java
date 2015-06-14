@@ -9,6 +9,7 @@ public class Player {
 	private int positionOnGameBoard;
 	private ArrayList <Property> ownedProperties;
 	private boolean holdsGetOutOfJail;
+	private boolean inJail;
 	
 	public Player(String name) {
 		this.name = name;
@@ -31,7 +32,8 @@ public class Player {
 		return positionOnGameBoard;
 	}
 	public void setPositionOnGameBoard(int positionOnGameBoard) {
-		this.positionOnGameBoard = positionOnGameBoard;
+		this.positionOnGameBoard += positionOnGameBoard;
+		this.positionOnGameBoard = this.positionOnGameBoard % 40;
 	}
 	public ArrayList<Property> getOwnedProperties() {
 		return ownedProperties;
@@ -44,6 +46,12 @@ public class Player {
 	}
 	public void setHoldsGetOutOfJail(boolean holdsGetOutOfJail) {
 		this.holdsGetOutOfJail = holdsGetOutOfJail;
+	}
+	public boolean isInJail() {
+		return inJail;
+	}
+	public void setInJail(boolean inJail) {
+		this.inJail = inJail;
 	}
 	
 }

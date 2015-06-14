@@ -158,7 +158,7 @@ public class Monopoly {
 	private int randomDice1;
 	private int randomDice2;
 	private Random random;
-
+	private int doubleCounter;
 	private PropertyMarket market;
 	private ArrayList<Player> players;
 	private ArrayList<JLayeredPane> boardPanels;
@@ -175,6 +175,8 @@ public class Monopoly {
 	private JPanel p5;
 	private JLayeredPane player6;
 	private JPanel p6;
+	private ArrayList <JLayeredPane> playerIndicators;
+
 	/**
 	 * Launch the application.
 	 */
@@ -199,8 +201,10 @@ public class Monopoly {
 		market = new PropertyMarket();
 		random = new Random();
 		boardPanels = new ArrayList<JLayeredPane>();
+		playerIndicators = new ArrayList<JLayeredPane>();
 		playerIndex = 0;
 		initialize();
+		doubleCounter = 0;
 	}
 
 	/**
@@ -722,8 +726,8 @@ public class Monopoly {
 					"../resources/topLeft.jpg"));
 			topLeftLabel.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
-		}		
-		
+		}
+
 		topRightLabel = new JLabel();
 		right1Label = new JLabel();
 		right2Label = new JLabel();
@@ -855,7 +859,7 @@ public class Monopoly {
 		player1name.setHorizontalAlignment(SwingConstants.CENTER);
 		player1name.setVisible(false);
 		player_1.add(player1name);
-		
+
 		player_2 = new JLayeredPane();
 		player_2.setBounds(frameHeight + 40 + (int) (frameHeight / 4), 0,
 				(int) (frameHeight / 4), (int) (frameHeight / 6.5));
@@ -1011,7 +1015,7 @@ public class Monopoly {
 					players.get(0).getOwnedProperties()
 							.add(market.getProperties().get(i));
 				}
-				
+
 				// highlights panels representing owned properties
 				player_1.addMouseListener(new MouseListener() {
 
@@ -1026,24 +1030,35 @@ public class Monopoly {
 						for (Property property : players.get(0)
 								.getOwnedProperties()) {
 							if (property.getPosition() < 10) {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(4, 0, 0, 0,
-												Color.red));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(4,
+																0, 0, 0,
+																Color.red));
 							} else if (property.getPosition() < 20) {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(0, 0, 0, 6,
-												Color.red));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(0,
+																0, 0, 6,
+																Color.red));
 							} else if (property.getPosition() < 30) {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(4, 0, 0, 0,
-												Color.red));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(4,
+																0, 0, 0,
+																Color.red));
 							} else {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(0, 5, 0, 0,
-												Color.red));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(0,
+																5, 0, 0,
+																Color.red));
 							}
-							
-							
+
 						}
 					}
 
@@ -1069,15 +1084,15 @@ public class Monopoly {
 				});
 				p1 = new JPanel();
 				player1 = new JLayeredPane();
-				player1.setBounds(frameHeight - 80,
-						frameHeight - 80, 20, 20);
+				player1.setBounds(frameHeight - 80, frameHeight - 80, 20, 20);
 
 				p1.setSize(15, 15);
 				p1.setBackground(Color.red);
 				player1.add(p1);
 				frame.getContentPane().add(player1, 2);
+				playerIndicators.add(player1);
 			}
-			
+
 		});
 		addPlayer2 = new JButton();
 		addPlayer2.setBounds(frameHeight + 60 + (int) (frameHeight / 4), 35,
@@ -1156,13 +1171,13 @@ public class Monopoly {
 				addPlayer3.setEnabled(true);
 				startGame.setEnabled(true); // after creating two players, the
 											// game can be started
-				
+
 				// test //
 				for (int i = 0; i < market.getProperties().size(); i++) {
 					players.get(1).getOwnedProperties()
 							.add(market.getProperties().get(i));
 				}
-				
+
 				// highlights panels representing owned properties
 				player_2.addMouseListener(new MouseListener() {
 
@@ -1177,21 +1192,33 @@ public class Monopoly {
 						for (Property property : players.get(1)
 								.getOwnedProperties()) {
 							if (property.getPosition() < 10) {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(4, 0, 0, 0,
-												Color.blue));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(4,
+																0, 0, 0,
+																Color.blue));
 							} else if (property.getPosition() < 20) {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(0, 0, 0, 6,
-												Color.blue));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(0,
+																0, 0, 6,
+																Color.blue));
 							} else if (property.getPosition() < 30) {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(4, 0, 0, 0,
-												Color.blue));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(4,
+																0, 0, 0,
+																Color.blue));
 							} else {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(0, 5, 0, 0,
-												Color.blue));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(0,
+																5, 0, 0,
+																Color.blue));
 							}
 						}
 					}
@@ -1216,16 +1243,16 @@ public class Monopoly {
 					}
 
 				});
-				
+
 				p2 = new JPanel();
 				player2 = new JLayeredPane();
-				player2.setBounds(frameHeight - 60,
-						frameHeight - 80, 20, 20);
+				player2.setBounds(frameHeight - 60, frameHeight - 80, 20, 20);
 
 				p2.setSize(15, 15);
 				p2.setBackground(Color.blue);
 				player2.add(p2);
 				frame.getContentPane().add(player2, 2);
+				playerIndicators.add(player2);
 			}
 
 		});
@@ -1307,13 +1334,13 @@ public class Monopoly {
 				player3name.setVisible(false);
 				addPlayer3Name.setVisible(false);
 				addPlayer4.setEnabled(true);
-				
+
 				// test //
 				for (int i = 0; i < market.getProperties().size(); i++) {
 					players.get(2).getOwnedProperties()
 							.add(market.getProperties().get(i));
 				}
-				
+
 				// highlights panels representing owned properties
 				player_3.addMouseListener(new MouseListener() {
 
@@ -1328,21 +1355,33 @@ public class Monopoly {
 						for (Property property : players.get(2)
 								.getOwnedProperties()) {
 							if (property.getPosition() < 10) {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(4, 0, 0, 0,
-												Color.black));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(4,
+																0, 0, 0,
+																Color.black));
 							} else if (property.getPosition() < 20) {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(0, 0, 0, 6,
-												Color.black));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(0,
+																0, 0, 6,
+																Color.black));
 							} else if (property.getPosition() < 30) {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(4, 0, 0, 0,
-												Color.black));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(4,
+																0, 0, 0,
+																Color.black));
 							} else {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(0, 5, 0, 0,
-												Color.black));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(0,
+																5, 0, 0,
+																Color.black));
 							}
 						}
 					}
@@ -1367,16 +1406,16 @@ public class Monopoly {
 					}
 
 				});
-				
+
 				p3 = new JPanel();
 				player3 = new JLayeredPane();
-				player3.setBounds(frameHeight - 80,
-						frameHeight - 60, 20, 20);
+				player3.setBounds(frameHeight - 80, frameHeight - 60, 20, 20);
 
 				p3.setSize(15, 15);
 				p3.setBackground(Color.black);
 				player3.add(p3);
 				frame.getContentPane().add(player3, 2);
+				playerIndicators.add(player3);
 			}
 
 		});
@@ -1459,13 +1498,13 @@ public class Monopoly {
 				player4name.setVisible(false);
 				addPlayer4Name.setVisible(false);
 				addPlayer5.setEnabled(true);
-				
+
 				// test //
 				for (int i = 0; i < market.getProperties().size(); i++) {
 					players.get(3).getOwnedProperties()
 							.add(market.getProperties().get(i));
 				}
-				
+
 				// highlights panels representing owned properties
 				player_4.addMouseListener(new MouseListener() {
 
@@ -1480,21 +1519,33 @@ public class Monopoly {
 						for (Property property : players.get(3)
 								.getOwnedProperties()) {
 							if (property.getPosition() < 10) {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(4, 0, 0, 0,
-												Color.green));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(4,
+																0, 0, 0,
+																Color.green));
 							} else if (property.getPosition() < 20) {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(0, 0, 0, 6,
-												Color.green));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(0,
+																0, 0, 6,
+																Color.green));
 							} else if (property.getPosition() < 30) {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(4, 0, 0, 0,
-												Color.green));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(4,
+																0, 0, 0,
+																Color.green));
 							} else {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(0, 5, 0, 0,
-												Color.green));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(0,
+																5, 0, 0,
+																Color.green));
 							}
 						}
 					}
@@ -1519,16 +1570,16 @@ public class Monopoly {
 					}
 
 				});
-				
+
 				p4 = new JPanel();
 				player4 = new JLayeredPane();
-				player4.setBounds(frameHeight - 60,
-						frameHeight - 60, 20, 20);
+				player4.setBounds(frameHeight - 60, frameHeight - 60, 20, 20);
 
 				p4.setSize(15, 15);
 				p4.setBackground(Color.green);
 				player4.add(p4);
 				frame.getContentPane().add(player4, 2);
+				playerIndicators.add(player4);
 			}
 
 		});
@@ -1612,13 +1663,13 @@ public class Monopoly {
 				player5name.setVisible(false);
 				addPlayer5Name.setVisible(false);
 				addPlayer6.setEnabled(true);
-				
+
 				// test //
 				for (int i = 0; i < market.getProperties().size(); i++) {
 					players.get(4).getOwnedProperties()
 							.add(market.getProperties().get(i));
 				}
-				
+
 				// highlights panels representing owned properties
 				player_5.addMouseListener(new MouseListener() {
 
@@ -1633,21 +1684,33 @@ public class Monopoly {
 						for (Property property : players.get(4)
 								.getOwnedProperties()) {
 							if (property.getPosition() < 10) {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(4, 0, 0, 0,
-												Color.orange));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(4,
+																0, 0, 0,
+																Color.orange));
 							} else if (property.getPosition() < 20) {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(0, 0, 0, 6,
-												Color.orange));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(0,
+																0, 0, 6,
+																Color.orange));
 							} else if (property.getPosition() < 30) {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(4, 0, 0, 0,
-												Color.orange));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(4,
+																0, 0, 0,
+																Color.orange));
 							} else {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(0, 5, 0, 0,
-												Color.orange));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(0,
+																5, 0, 0,
+																Color.orange));
 							}
 						}
 					}
@@ -1672,16 +1735,16 @@ public class Monopoly {
 					}
 
 				});
-				
+
 				p5 = new JPanel();
 				player5 = new JLayeredPane();
-				player5.setBounds(frameHeight - 80,
-						frameHeight - 40, 20, 20);
+				player5.setBounds(frameHeight - 80, frameHeight - 40, 20, 20);
 
 				p5.setSize(15, 15);
 				p5.setBackground(Color.orange);
 				player5.add(p5);
 				frame.getContentPane().add(player5, 2);
+				playerIndicators.add(player5);
 			}
 
 		});
@@ -1765,13 +1828,13 @@ public class Monopoly {
 				System.out.println(players.get(5).getName());
 				player6name.setVisible(false);
 				addPlayer6Name.setVisible(false);
-				
+
 				// test //
 				for (int i = 0; i < market.getProperties().size(); i++) {
 					players.get(5).getOwnedProperties()
 							.add(market.getProperties().get(i));
 				}
-				
+
 				// highlights panels representing owned properties
 				player_6.addMouseListener(new MouseListener() {
 
@@ -1786,24 +1849,35 @@ public class Monopoly {
 						for (Property property : players.get(5)
 								.getOwnedProperties()) {
 							if (property.getPosition() < 10) {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(4, 0, 0, 0,
-												Color.magenta));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(4,
+																0, 0, 0,
+																Color.magenta));
 							} else if (property.getPosition() < 20) {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(0, 0, 0, 6,
-												Color.magenta));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(0,
+																0, 0, 6,
+																Color.magenta));
 							} else if (property.getPosition() < 30) {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(4, 0, 0, 0,
-												Color.magenta));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(4,
+																0, 0, 0,
+																Color.magenta));
 							} else {
-								boardPanels.get(property.getPosition()).setBorder(
-										BorderFactory.createMatteBorder(0, 5, 0, 0,
-												Color.magenta));
+								boardPanels.get(property.getPosition())
+										.setBorder(
+												BorderFactory
+														.createMatteBorder(0,
+																5, 0, 0,
+																Color.magenta));
 							}
-							
-											
+
 						}
 					}
 
@@ -1827,16 +1901,16 @@ public class Monopoly {
 					}
 
 				});
-				
+
 				p6 = new JPanel();
 				player6 = new JLayeredPane();
-				player6.setBounds(frameHeight - 60,
-						frameHeight - 40, 20, 20);
+				player6.setBounds(frameHeight - 60, frameHeight - 40, 20, 20);
 
 				p6.setSize(15, 15);
 				p6.setBackground(Color.magenta);
 				player6.add(p6);
 				frame.getContentPane().add(player6, 2);
+				playerIndicators.add(player6);
 			}
 
 		});
@@ -1910,7 +1984,7 @@ public class Monopoly {
 		frame.getContentPane().add(addPlayer5Name);
 		frame.getContentPane().add(addPlayer6Name);
 		frame.getContentPane().add(startGame);
-		
+
 		rollTheDice = new JButton();
 		rollTheDice.setBounds(frameHeight / 2 - 70, frameHeight / 2 + 40, 140,
 				40);
@@ -1959,8 +2033,8 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				randomDice1 = random.nextInt(6) + 1;
-				randomDice2 = random.nextInt(6) + 1;
+				randomDice1 = random.nextInt(1) + 1;
+				randomDice2 = random.nextInt(1) + 1;
 				System.out.println(randomDice1);
 				System.out.println(randomDice2);
 				switch (randomDice1) {
@@ -2063,25 +2137,43 @@ public class Monopoly {
 					}
 					break;
 				}
+				players.get(playerIndex).setPositionOnGameBoard(
+						randomDice1 + randomDice2);
+				System.out.println(players.get(playerIndex).getName() + " "
+						+ players.get(playerIndex).getPositionOnGameBoard());
+				if (!(randomDice1 == randomDice2)) {
+					finishTurn.setEnabled(true);
+					rollTheDice.setEnabled(false);
+				} else {
+					doubleCounter++;
+				} // three doubles - player goes to the jail
+				if (doubleCounter == 3) {
+					finishTurn.setEnabled(true);
+					rollTheDice.setEnabled(false);
+					players.get(playerIndex).setInJail(true);
+					players.get(playerIndex).setPositionOnGameBoard(
+							10 - players.get(playerIndex)
+									.getPositionOnGameBoard());
+					;
+					System.out.println(players.get(playerIndex).getName() + " "
+							+ players.get(playerIndex).getPositionOnGameBoard()
+							+ " in Jail: "
+							+ players.get(playerIndex).isInJail());
+					doubleCounter = 0;
+				}
 			}
 
 		});
-		//test//
-		/////////
-		///////////
-		/////////
-		/////////
-		//////////
-		finishTurn.setEnabled(true);
-		
-		finishTurn.addActionListener(new ActionListener(){
+
+		finishTurn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				playerIndex = (playerIndex + 1) % players.size();
-				
+				finishTurn.setEnabled(false);
+				rollTheDice.setEnabled(true);
 			}
-			
+
 		});
 	}
 }
