@@ -369,46 +369,7 @@ public class Monopoly {
 				(int) (frameHeight / 6.5));
 		communityChest = new JButton();
 		communityChest = new JButton("?");
-		frame.getContentPane().add(bottomLeft);
-		frame.getContentPane().add(topLeft);
-		frame.getContentPane().add(left_1,-1);
-		frame.getContentPane().add(left_2,-1);
-		frame.getContentPane().add(left_3);
-		frame.getContentPane().add(left_4);
-		frame.getContentPane().add(left_5);
-		frame.getContentPane().add(left_6);
-		frame.getContentPane().add(left_7);
-		frame.getContentPane().add(left_8);
-		frame.getContentPane().add(left_9);
-		frame.getContentPane().add(top_1);
-		frame.getContentPane().add(top_2);
-		frame.getContentPane().add(top_3);
-		frame.getContentPane().add(top_4);
-		frame.getContentPane().add(top_5);
-		frame.getContentPane().add(top_6);
-		frame.getContentPane().add(top_7);
-		frame.getContentPane().add(top_8);
-		frame.getContentPane().add(top_9);
-		frame.getContentPane().add(topRight);
-		frame.getContentPane().add(right_1);
-		frame.getContentPane().add(right_2);
-		frame.getContentPane().add(right_3);
-		frame.getContentPane().add(right_4);
-		frame.getContentPane().add(right_5);
-		frame.getContentPane().add(right_6);
-		frame.getContentPane().add(right_7);
-		frame.getContentPane().add(right_8);
-		frame.getContentPane().add(right_9);
-		frame.getContentPane().add(bottom_1);
-		frame.getContentPane().add(bottom_2);
-		frame.getContentPane().add(bottom_3);
-		frame.getContentPane().add(bottom_4);
-		frame.getContentPane().add(bottom_5);
-		frame.getContentPane().add(bottom_6);
-		frame.getContentPane().add(bottom_7);
-		frame.getContentPane().add(bottom_8);
-		frame.getContentPane().add(bottom_9);
-		frame.getContentPane().add(bottomRight);
+
 		boardPanels.add(bottomRight);
 		boardPanels.add(bottom_9);
 		boardPanels.add(bottom_8);
@@ -449,8 +410,6 @@ public class Monopoly {
 		boardPanels.add(right_7);
 		boardPanels.add(right_8);
 		boardPanels.add(right_9);
-		frame.getContentPane().add(bottomLeft);
-		frame.getContentPane().add(topLeft);
 
 		bottomRightLabel = new JLabel();
 		bottomLeftLabel = new JLabel();
@@ -1965,14 +1924,54 @@ public class Monopoly {
 				startNewGame();
 			}
 		});
-		frame.getContentPane().add(communityChest);
-		frame.getContentPane().add(chanceButton);
 		frame.getContentPane().add(player_1);
 		frame.getContentPane().add(player_2);
 		frame.getContentPane().add(player_3);
 		frame.getContentPane().add(player_4);
 		frame.getContentPane().add(player_5);
 		frame.getContentPane().add(player_6);
+		frame.getContentPane().add(bottomLeft, -1);
+		frame.getContentPane().add(topLeft, -1);
+		frame.getContentPane().add(left_1, -1);
+		frame.getContentPane().add(left_2, -1);
+		frame.getContentPane().add(left_3, -1);
+		frame.getContentPane().add(left_4, -1);
+		frame.getContentPane().add(left_5, -1);
+		frame.getContentPane().add(left_6, -1);
+		frame.getContentPane().add(left_7, -1);
+		frame.getContentPane().add(left_8, -1);
+		frame.getContentPane().add(left_9, -1);
+		frame.getContentPane().add(top_1, -1);
+		frame.getContentPane().add(top_2, -1);
+		frame.getContentPane().add(top_3, -1);
+		frame.getContentPane().add(top_4, -1);
+		frame.getContentPane().add(top_5, -1);
+		frame.getContentPane().add(top_6, -1);
+		frame.getContentPane().add(top_7, -1);
+		frame.getContentPane().add(top_8, -1);
+		frame.getContentPane().add(top_9, -1);
+		frame.getContentPane().add(topRight, -1);
+		frame.getContentPane().add(right_1, -1);
+		frame.getContentPane().add(right_2, -1);
+		frame.getContentPane().add(right_3, -1);
+		frame.getContentPane().add(right_4, -1);
+		frame.getContentPane().add(right_5, -1);
+		frame.getContentPane().add(right_6, -1);
+		frame.getContentPane().add(right_7, -1);
+		frame.getContentPane().add(right_8, -1);
+		frame.getContentPane().add(right_9, -1);
+		frame.getContentPane().add(bottom_1, -1);
+		frame.getContentPane().add(bottom_2, -1);
+		frame.getContentPane().add(bottom_3, -1);
+		frame.getContentPane().add(bottom_4, -1);
+		frame.getContentPane().add(bottom_5, -1);
+		frame.getContentPane().add(bottom_6, -1);
+		frame.getContentPane().add(bottom_7, -1);
+		frame.getContentPane().add(bottom_8, -1);
+		frame.getContentPane().add(bottom_9, -1);
+		frame.getContentPane().add(bottomRight, -1);
+		frame.getContentPane().add(communityChest, -1);
+		frame.getContentPane().add(chanceButton, -1);
 		frame.getContentPane().add(addPlayer1);
 		frame.getContentPane().add(addPlayer2);
 		frame.getContentPane().add(addPlayer3);
@@ -2035,9 +2034,9 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				randomDice1 = 4;//random.nextInt(6) + 1;
-				randomDice2 = 6;//random.nextInt(6) + 1;// randomDice2 =
-												// random.nextInt(6) + 1;
+				randomDice1 = random.nextInt(6) + 1;
+				randomDice2 = random.nextInt(6) + 1;// randomDice2 =
+				// random.nextInt(6) + 1;
 				System.out.println(randomDice1);
 				System.out.println(randomDice2);
 				switch (randomDice1) {
@@ -2551,198 +2550,252 @@ public class Monopoly {
 		case 11:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(20, (int) (frameHeight / 6.5 * 5) + 10, 20, 20);
+				playerIndicators.get(0).setBounds(20,
+						(int) (frameHeight / 6.5 * 5) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(20, (int) (frameHeight / 6.5 * 5) + 30, 20, 20);
+				playerIndicators.get(1).setBounds(20,
+						(int) (frameHeight / 6.5 * 5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(40, (int) (frameHeight / 6.5 * 5) + 10, 20, 20);
+				playerIndicators.get(2).setBounds(40,
+						(int) (frameHeight / 6.5 * 5) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(40, (int) (frameHeight / 6.5 * 5) + 30, 20, 20);
+				playerIndicators.get(3).setBounds(40,
+						(int) (frameHeight / 6.5 * 5) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(60, (int) (frameHeight / 6.5 * 5) + 10, 20, 20);
+				playerIndicators.get(4).setBounds(60,
+						(int) (frameHeight / 6.5 * 5) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(60, (int) (frameHeight / 6.5 * 5) + 30, 20, 20);
+				playerIndicators.get(5).setBounds(60,
+						(int) (frameHeight / 6.5 * 5) + 30, 20, 20);
 				break;
 			}
 			break;
 		case 12:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(20, (int) (frameHeight / 6.5 * 4.5) + 10, 20, 20);
+				playerIndicators.get(0).setBounds(20,
+						(int) (frameHeight / 6.5 * 4.5) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(20, (int) (frameHeight / 6.5 * 4.5) + 30, 20, 20);
+				playerIndicators.get(1).setBounds(20,
+						(int) (frameHeight / 6.5 * 4.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(40, (int) (frameHeight / 6.5 * 4.5) + 10, 20, 20);
+				playerIndicators.get(2).setBounds(40,
+						(int) (frameHeight / 6.5 * 4.5) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(40, (int) (frameHeight / 6.5 * 4.5) + 30, 20, 20);
+				playerIndicators.get(3).setBounds(40,
+						(int) (frameHeight / 6.5 * 4.5) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(60, (int) (frameHeight / 6.5 * 4.5) + 10, 20, 20);
+				playerIndicators.get(4).setBounds(60,
+						(int) (frameHeight / 6.5 * 4.5) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(60, (int) (frameHeight / 6.5 * 4.5) + 30, 20, 20);
+				playerIndicators.get(5).setBounds(60,
+						(int) (frameHeight / 6.5 * 4.5) + 30, 20, 20);
 				break;
 			}
 			break;
 		case 13:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(20, (int) (frameHeight / 6.5 * 4) + 10, 20, 20);
+				playerIndicators.get(0).setBounds(20,
+						(int) (frameHeight / 6.5 * 4) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(20, (int) (frameHeight / 6.5 * 4) + 30, 20, 20);
+				playerIndicators.get(1).setBounds(20,
+						(int) (frameHeight / 6.5 * 4) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(40, (int) (frameHeight / 6.5 * 4) + 10, 20, 20);
+				playerIndicators.get(2).setBounds(40,
+						(int) (frameHeight / 6.5 * 4) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(40, (int) (frameHeight / 6.5 * 4) + 30, 20, 20);
+				playerIndicators.get(3).setBounds(40,
+						(int) (frameHeight / 6.5 * 4) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(60, (int) (frameHeight / 6.5 * 4) + 10, 20, 20);
+				playerIndicators.get(4).setBounds(60,
+						(int) (frameHeight / 6.5 * 4) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(60, (int) (frameHeight / 6.5 * 4) + 30, 20, 20);
+				playerIndicators.get(5).setBounds(60,
+						(int) (frameHeight / 6.5 * 4) + 30, 20, 20);
 				break;
 			}
 			break;
 		case 14:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(20, (int) (frameHeight / 6.5 * 3.5) + 10, 20, 20);
+				playerIndicators.get(0).setBounds(20,
+						(int) (frameHeight / 6.5 * 3.5) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(20, (int) (frameHeight / 6.5 * 3.5) + 30, 20, 20);
+				playerIndicators.get(1).setBounds(20,
+						(int) (frameHeight / 6.5 * 3.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(40, (int) (frameHeight / 6.5 * 3.5) + 10, 20, 20);
+				playerIndicators.get(2).setBounds(40,
+						(int) (frameHeight / 6.5 * 3.5) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(40, (int) (frameHeight / 6.5 * 3.5) + 30, 20, 20);
+				playerIndicators.get(3).setBounds(40,
+						(int) (frameHeight / 6.5 * 3.5) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(60, (int) (frameHeight / 6.5 * 3.5) + 10, 20, 20);
+				playerIndicators.get(4).setBounds(60,
+						(int) (frameHeight / 6.5 * 3.5) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(60, (int) (frameHeight / 6.5 * 3.5) + 30, 20, 20);
+				playerIndicators.get(5).setBounds(60,
+						(int) (frameHeight / 6.5 * 3.5) + 30, 20, 20);
 				break;
 			}
 			break;
 		case 15:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(20, (int) (frameHeight / 6.5 * 3) + 10, 20, 20);
+				playerIndicators.get(0).setBounds(20,
+						(int) (frameHeight / 6.5 * 3) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(20, (int) (frameHeight / 6.5 * 3) + 30, 20, 20);
+				playerIndicators.get(1).setBounds(20,
+						(int) (frameHeight / 6.5 * 3) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(40, (int) (frameHeight / 6.5 * 3) + 10, 20, 20);
+				playerIndicators.get(2).setBounds(40,
+						(int) (frameHeight / 6.5 * 3) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(40, (int) (frameHeight / 6.5 * 3) + 30, 20, 20);
+				playerIndicators.get(3).setBounds(40,
+						(int) (frameHeight / 6.5 * 3) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(60, (int) (frameHeight / 6.5 * 3) + 10, 20, 20);
+				playerIndicators.get(4).setBounds(60,
+						(int) (frameHeight / 6.5 * 3) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(60, (int) (frameHeight / 6.5 * 3) + 30, 20, 20);
+				playerIndicators.get(5).setBounds(60,
+						(int) (frameHeight / 6.5 * 3) + 30, 20, 20);
 				break;
 			}
 			break;
 		case 16:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(20, (int) (frameHeight / 6.5 * 2.5) + 10, 20, 20);
+				playerIndicators.get(0).setBounds(20,
+						(int) (frameHeight / 6.5 * 2.5) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(20, (int) (frameHeight / 6.5 * 2.5) + 30, 20, 20);
+				playerIndicators.get(1).setBounds(20,
+						(int) (frameHeight / 6.5 * 2.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(40, (int) (frameHeight / 6.5 * 2.5) + 10, 20, 20);
+				playerIndicators.get(2).setBounds(40,
+						(int) (frameHeight / 6.5 * 2.5) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(40, (int) (frameHeight / 6.5 * 2.5) + 30, 20, 20);
+				playerIndicators.get(3).setBounds(40,
+						(int) (frameHeight / 6.5 * 2.5) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(60, (int) (frameHeight / 6.5 * 2.5) + 10, 20, 20);
+				playerIndicators.get(4).setBounds(60,
+						(int) (frameHeight / 6.5 * 2.5) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(60, (int) (frameHeight / 6.5 * 2.5) + 30, 20, 20);
+				playerIndicators.get(5).setBounds(60,
+						(int) (frameHeight / 6.5 * 2.5) + 30, 20, 20);
 				break;
 			}
 			break;
 		case 17:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(20, (int) (frameHeight / 6.5 * 2) + 10, 20, 20);
+				playerIndicators.get(0).setBounds(20,
+						(int) (frameHeight / 6.5 * 2) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(20, (int) (frameHeight / 6.5 * 2) + 30, 20, 20);
+				playerIndicators.get(1).setBounds(20,
+						(int) (frameHeight / 6.5 * 2) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(40, (int) (frameHeight / 6.5 * 2) + 10, 20, 20);
+				playerIndicators.get(2).setBounds(40,
+						(int) (frameHeight / 6.5 * 2) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(40, (int) (frameHeight / 6.5 * 2) + 30, 20, 20);
+				playerIndicators.get(3).setBounds(40,
+						(int) (frameHeight / 6.5 * 2) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(60, (int) (frameHeight / 6.5 * 2) + 10, 20, 20);
+				playerIndicators.get(4).setBounds(60,
+						(int) (frameHeight / 6.5 * 2) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(60, (int) (frameHeight / 6.5 * 2) + 30, 20, 20);
+				playerIndicators.get(5).setBounds(60,
+						(int) (frameHeight / 6.5 * 2) + 30, 20, 20);
 				break;
 			}
 			break;
 		case 18:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(20, (int) (frameHeight / 6.5 * 1.5) + 10, 20, 20);
+				playerIndicators.get(0).setBounds(20,
+						(int) (frameHeight / 6.5 * 1.5) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(20, (int) (frameHeight / 6.5 * 1.5) + 30, 20, 20);
+				playerIndicators.get(1).setBounds(20,
+						(int) (frameHeight / 6.5 * 1.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(40, (int) (frameHeight / 6.5 * 1.5) + 10, 20, 20);
+				playerIndicators.get(2).setBounds(40,
+						(int) (frameHeight / 6.5 * 1.5) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(40, (int) (frameHeight / 6.5 * 1.5) + 30, 20, 20);
+				playerIndicators.get(3).setBounds(40,
+						(int) (frameHeight / 6.5 * 1.5) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(60, (int) (frameHeight / 6.5 * 1.5) + 10, 20, 20);
+				playerIndicators.get(4).setBounds(60,
+						(int) (frameHeight / 6.5 * 1.5) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(60, (int) (frameHeight / 6.5 * 1.5) + 30, 20, 20);
+				playerIndicators.get(5).setBounds(60,
+						(int) (frameHeight / 6.5 * 1.5) + 30, 20, 20);
 				break;
 			}
 			break;
 		case 19:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(20, (int) (frameHeight / 6.5) + 10, 20, 20);
+				playerIndicators.get(0).setBounds(20,
+						(int) (frameHeight / 6.5) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(20, (int) (frameHeight / 6.5) + 30, 20, 20);
+				playerIndicators.get(1).setBounds(20,
+						(int) (frameHeight / 6.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(40, (int) (frameHeight / 6.5) + 10, 20, 20);
+				playerIndicators.get(2).setBounds(40,
+						(int) (frameHeight / 6.5) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(40, (int) (frameHeight / 6.5) + 30, 20, 20);
+				playerIndicators.get(3).setBounds(40,
+						(int) (frameHeight / 6.5) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(60, (int) (frameHeight / 6.5) + 10, 20, 20);
+				playerIndicators.get(4).setBounds(60,
+						(int) (frameHeight / 6.5) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(60, (int) (frameHeight / 6.5) + 30, 20, 20);
+				playerIndicators.get(5).setBounds(60,
+						(int) (frameHeight / 6.5) + 30, 20, 20);
 				break;
 			}
 			break;
@@ -2765,6 +2818,592 @@ public class Monopoly {
 				break;
 			case 5:
 				playerIndicators.get(5).setBounds(80, 70, 20, 20);
+				break;
+			}
+			break;
+		case 21:
+			switch (playerIndex) {
+			case 0:
+				playerIndicators.get(0).setBounds(
+						(int) (frameHeight / 6.5) + 10, 30, 20, 20);
+				break;
+			case 1:
+				playerIndicators.get(1).setBounds(
+						(int) (frameHeight / 6.5) + 30, 30, 20, 20);
+				break;
+			case 2:
+				playerIndicators.get(2).setBounds(
+						(int) (frameHeight / 6.5) + 10, 50, 20, 20);
+				break;
+			case 3:
+				playerIndicators.get(3).setBounds(
+						(int) (frameHeight / 6.5) + 30, 50, 20, 20);
+				break;
+			case 4:
+				playerIndicators.get(4).setBounds(
+						(int) (frameHeight / 6.5) + 10, 70, 20, 20);
+				break;
+			case 5:
+				playerIndicators.get(5).setBounds(
+						(int) (frameHeight / 6.5) + 30, 70, 20, 20);
+				break;
+			}
+			break;
+		case 22:
+			switch (playerIndex) {
+			case 0:
+				playerIndicators.get(0).setBounds(
+						(int) (frameHeight / 6.5 * 1.5) + 10, 30, 20, 20);
+				break;
+			case 1:
+				playerIndicators.get(1).setBounds(
+						(int) (frameHeight / 6.5 * 1.5) + 30, 30, 20, 20);
+				break;
+			case 2:
+				playerIndicators.get(2).setBounds(
+						(int) (frameHeight / 6.5 * 1.5) + 10, 50, 20, 20);
+				break;
+			case 3:
+				playerIndicators.get(3).setBounds(
+						(int) (frameHeight / 6.5 * 1.5) + 30, 50, 20, 20);
+				break;
+			case 4:
+				playerIndicators.get(4).setBounds(
+						(int) (frameHeight / 6.5 * 1.5) + 10, 70, 20, 20);
+				break;
+			case 5:
+				playerIndicators.get(5).setBounds(
+						(int) (frameHeight / 6.5 * 1.5) + 30, 70, 20, 20);
+				break;
+			}
+			break;
+		case 23:
+			switch (playerIndex) {
+			case 0:
+				playerIndicators.get(0).setBounds(
+						(int) (frameHeight / 6.5 * 2) + 10, 30, 20, 20);
+				break;
+			case 1:
+				playerIndicators.get(1).setBounds(
+						(int) (frameHeight / 6.5 * 2) + 30, 30, 20, 20);
+				break;
+			case 2:
+				playerIndicators.get(2).setBounds(
+						(int) (frameHeight / 6.5 * 2) + 10, 50, 20, 20);
+				break;
+			case 3:
+				playerIndicators.get(3).setBounds(
+						(int) (frameHeight / 6.5 * 2) + 30, 50, 20, 20);
+				break;
+			case 4:
+				playerIndicators.get(4).setBounds(
+						(int) (frameHeight / 6.5 * 2) + 10, 70, 20, 20);
+				break;
+			case 5:
+				playerIndicators.get(5).setBounds(
+						(int) (frameHeight / 6.5 * 2) + 10, 70, 20, 20);
+				break;
+			}
+			break;
+		case 24:
+			switch (playerIndex) {
+			case 0:
+				playerIndicators.get(0).setBounds(
+						(int) (frameHeight / 6.5 * 2.5) + 10, 30, 20, 20);
+				break;
+			case 1:
+				playerIndicators.get(1).setBounds(
+						(int) (frameHeight / 6.5 * 2.5) + 30, 30, 20, 20);
+				break;
+			case 2:
+				playerIndicators.get(2).setBounds(
+						(int) (frameHeight / 6.5 * 2.5) + 10, 50, 20, 20);
+				break;
+			case 3:
+				playerIndicators.get(3).setBounds(
+						(int) (frameHeight / 6.5 * 2.5) + 30, 50, 20, 20);
+				break;
+			case 4:
+				playerIndicators.get(4).setBounds(
+						(int) (frameHeight / 6.5 * 2.5) + 10, 70, 20, 20);
+				break;
+			case 5:
+				playerIndicators.get(5).setBounds(
+						(int) (frameHeight / 6.5 * 2.5) + 10, 70, 20, 20);
+				break;
+			}
+			break;
+		case 25:
+			switch (playerIndex) {
+			case 0:
+				playerIndicators.get(0).setBounds(
+						(int) (frameHeight / 6.5 * 3) + 10, 30, 20, 20);
+				break;
+			case 1:
+				playerIndicators.get(1).setBounds(
+						(int) (frameHeight / 6.5 * 3) + 30, 30, 20, 20);
+				break;
+			case 2:
+				playerIndicators.get(2).setBounds(
+						(int) (frameHeight / 6.5 * 3) + 10, 50, 20, 20);
+				break;
+			case 3:
+				playerIndicators.get(3).setBounds(
+						(int) (frameHeight / 6.5 * 3) + 30, 50, 20, 20);
+				break;
+			case 4:
+				playerIndicators.get(4).setBounds(
+						(int) (frameHeight / 6.5 * 3) + 10, 70, 20, 20);
+				break;
+			case 5:
+				playerIndicators.get(5).setBounds(
+						(int) (frameHeight / 6.5 * 3) + 10, 70, 20, 20);
+				break;
+			}
+			break;
+		case 26:
+			switch (playerIndex) {
+			case 0:
+				playerIndicators.get(0).setBounds(
+						(int) (frameHeight / 6.5 * 3.5) + 10, 30, 20, 20);
+				break;
+			case 1:
+				playerIndicators.get(1).setBounds(
+						(int) (frameHeight / 6.5 * 3.5) + 30, 30, 20, 20);
+				break;
+			case 2:
+				playerIndicators.get(2).setBounds(
+						(int) (frameHeight / 6.5 * 3.5) + 10, 50, 20, 20);
+				break;
+			case 3:
+				playerIndicators.get(3).setBounds(
+						(int) (frameHeight / 6.5 * 3.5) + 30, 50, 20, 20);
+				break;
+			case 4:
+				playerIndicators.get(4).setBounds(
+						(int) (frameHeight / 6.5 * 3.5) + 10, 70, 20, 20);
+				break;
+			case 5:
+				playerIndicators.get(5).setBounds(
+						(int) (frameHeight / 6.5 * 3.5) + 10, 70, 20, 20);
+				break;
+			}
+			break;
+		case 27:
+			switch (playerIndex) {
+			case 0:
+				playerIndicators.get(0).setBounds(
+						(int) (frameHeight / 6.5 * 4) + 10, 30, 20, 20);
+				break;
+			case 1:
+				playerIndicators.get(1).setBounds(
+						(int) (frameHeight / 6.5 * 4) + 30, 30, 20, 20);
+				break;
+			case 2:
+				playerIndicators.get(2).setBounds(
+						(int) (frameHeight / 6.5 * 4) + 10, 50, 20, 20);
+				break;
+			case 3:
+				playerIndicators.get(3).setBounds(
+						(int) (frameHeight / 6.5 * 4) + 30, 50, 20, 20);
+				break;
+			case 4:
+				playerIndicators.get(4).setBounds(
+						(int) (frameHeight / 6.5 * 4) + 10, 70, 20, 20);
+				break;
+			case 5:
+				playerIndicators.get(5).setBounds(
+						(int) (frameHeight / 6.5 * 4) + 10, 70, 20, 20);
+				break;
+			}
+			break;
+		case 28:
+			switch (playerIndex) {
+			case 0:
+				playerIndicators.get(0).setBounds(
+						(int) (frameHeight / 6.5 * 4.5) + 10, 30, 20, 20);
+				break;
+			case 1:
+				playerIndicators.get(1).setBounds(
+						(int) (frameHeight / 6.5 * 4.5) + 30, 30, 20, 20);
+				break;
+			case 2:
+				playerIndicators.get(2).setBounds(
+						(int) (frameHeight / 6.5 * 4.5) + 10, 50, 20, 20);
+				break;
+			case 3:
+				playerIndicators.get(3).setBounds(
+						(int) (frameHeight / 6.5 * 4.5) + 30, 50, 20, 20);
+				break;
+			case 4:
+				playerIndicators.get(4).setBounds(
+						(int) (frameHeight / 6.5 * 4.5) + 10, 70, 20, 20);
+				break;
+			case 5:
+				playerIndicators.get(5).setBounds(
+						(int) (frameHeight / 6.5 * 4.5) + 10, 70, 20, 20);
+				break;
+			}
+			break;
+		case 29:
+			switch (playerIndex) {
+			case 0:
+				playerIndicators.get(0).setBounds(
+						(int) (frameHeight / 6.5 * 5) + 10, 30, 20, 20);
+				break;
+			case 1:
+				playerIndicators.get(1).setBounds(
+						(int) (frameHeight / 6.5 * 5) + 30, 30, 20, 20);
+				break;
+			case 2:
+				playerIndicators.get(2).setBounds(
+						(int) (frameHeight / 6.5 * 5) + 10, 50, 20, 20);
+				break;
+			case 3:
+				playerIndicators.get(3).setBounds(
+						(int) (frameHeight / 6.5 * 5) + 30, 50, 20, 20);
+				break;
+			case 4:
+				playerIndicators.get(4).setBounds(
+						(int) (frameHeight / 6.5 * 5) + 10, 70, 20, 20);
+				break;
+			case 5:
+				playerIndicators.get(5).setBounds(
+						(int) (frameHeight / 6.5 * 5) + 10, 70, 20, 20);
+				break;
+			}
+			break;
+		case 30:
+			switch (playerIndex) {
+			case 0:
+				playerIndicators.get(0).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 10, 30, 20, 20);
+				break;
+			case 1:
+				playerIndicators.get(1).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 30, 30, 20, 20);
+				break;
+			case 2:
+				playerIndicators.get(2).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 10, 50, 20, 20);
+				break;
+			case 3:
+				playerIndicators.get(3).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 30, 50, 20, 20);
+				break;
+			case 4:
+				playerIndicators.get(4).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 10, 70, 20, 20);
+				break;
+			case 5:
+				playerIndicators.get(5).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 10, 70, 20, 20);
+				break;
+			}
+			break;
+		case 31:
+			switch (playerIndex) {
+			case 0:
+				playerIndicators.get(0).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 40,
+						(int) (frameHeight / 6.5) + 10, 20, 20);
+				break;
+			case 1:
+				playerIndicators.get(1).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 40,
+						(int) (frameHeight / 6.5) + 30, 20, 20);
+				break;
+			case 2:
+				playerIndicators.get(2).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 60,
+						(int) (frameHeight / 6.5) + 10, 20, 20);
+				break;
+			case 3:
+				playerIndicators.get(3).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 60,
+						(int) (frameHeight / 6.5) + 30, 20, 20);
+				break;
+			case 4:
+				playerIndicators.get(4).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 80,
+						(int) (frameHeight / 6.5) + 10, 20, 20);
+				break;
+			case 5:
+				playerIndicators.get(5).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 80,
+						(int) (frameHeight / 6.5) + 30, 20, 20);
+				break;
+			}
+			break;
+		case 32:
+			switch (playerIndex) {
+			case 0:
+				playerIndicators.get(0).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 40,
+						(int) (frameHeight / 6.5 * 1.5) + 10, 20, 20);
+				break;
+			case 1:
+				playerIndicators.get(1).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 40,
+						(int) (frameHeight / 6.5 * 1.5) + 30, 20, 20);
+				break;
+			case 2:
+				playerIndicators.get(2).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 60,
+						(int) (frameHeight / 6.5 * 1.5) + 10, 20, 20);
+				break;
+			case 3:
+				playerIndicators.get(3).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 60,
+						(int) (frameHeight / 6.5 * 1.5) + 30, 20, 20);
+				break;
+			case 4:
+				playerIndicators.get(4).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 80,
+						(int) (frameHeight / 6.5 * 1.5) + 10, 20, 20);
+				break;
+			case 5:
+				playerIndicators.get(5).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 80,
+						(int) (frameHeight / 6.5 * 1.5) + 30, 20, 20);
+				break;
+			}
+			break;
+		case 33:
+			switch (playerIndex) {
+			case 0:
+				playerIndicators.get(0).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 40,
+						(int) (frameHeight / 6.5 * 2) + 10, 20, 20);
+				break;
+			case 1:
+				playerIndicators.get(1).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 40,
+						(int) (frameHeight / 6.5 * 2) + 30, 20, 20);
+				break;
+			case 2:
+				playerIndicators.get(2).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 60,
+						(int) (frameHeight / 6.5 * 2) + 10, 20, 20);
+				break;
+			case 3:
+				playerIndicators.get(3).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 60,
+						(int) (frameHeight / 6.5 * 2) + 30, 20, 20);
+				break;
+			case 4:
+				playerIndicators.get(4).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 80,
+						(int) (frameHeight / 6.5 * 2) + 10, 20, 20);
+				break;
+			case 5:
+				playerIndicators.get(5).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 80,
+						(int) (frameHeight / 6.5 * 2) + 30, 20, 20);
+				break;
+			}
+			break;
+		case 34:
+			switch (playerIndex) {
+			case 0:
+				playerIndicators.get(0).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 40,
+						(int) (frameHeight / 6.5 * 2.5) + 10, 20, 20);
+				break;
+			case 1:
+				playerIndicators.get(1).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 40,
+						(int) (frameHeight / 6.5 * 2.5) + 30, 20, 20);
+				break;
+			case 2:
+				playerIndicators.get(2).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 60,
+						(int) (frameHeight / 6.5 * 2.5) + 10, 20, 20);
+				break;
+			case 3:
+				playerIndicators.get(3).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 60,
+						(int) (frameHeight / 6.5 * 2.5) + 30, 20, 20);
+				break;
+			case 4:
+				playerIndicators.get(4).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 80,
+						(int) (frameHeight / 6.5 * 2.5) + 10, 20, 20);
+				break;
+			case 5:
+				playerIndicators.get(5).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 80,
+						(int) (frameHeight / 6.5 * 2.5) + 30, 20, 20);
+				break;
+			}
+			break;
+		case 35:
+			switch (playerIndex) {
+			case 0:
+				playerIndicators.get(0).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 40,
+						(int) (frameHeight / 6.5 * 3) + 10, 20, 20);
+				break;
+			case 1:
+				playerIndicators.get(1).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 40,
+						(int) (frameHeight / 6.5 * 3) + 30, 20, 20);
+				break;
+			case 2:
+				playerIndicators.get(2).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 60,
+						(int) (frameHeight / 6.5 * 3) + 10, 20, 20);
+				break;
+			case 3:
+				playerIndicators.get(3).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 60,
+						(int) (frameHeight / 6.5 * 3) + 30, 20, 20);
+				break;
+			case 4:
+				playerIndicators.get(4).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 80,
+						(int) (frameHeight / 6.5 * 3) + 10, 20, 20);
+				break;
+			case 5:
+				playerIndicators.get(5).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 80,
+						(int) (frameHeight / 6.5 * 3) + 30, 20, 20);
+				break;
+			}
+			break;
+		case 36:
+			switch (playerIndex) {
+			case 0:
+				playerIndicators.get(0).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 40,
+						(int) (frameHeight / 6.5 * 3.5) + 10, 20, 20);
+				break;
+			case 1:
+				playerIndicators.get(1).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 40,
+						(int) (frameHeight / 6.5 * 3.5) + 30, 20, 20);
+				break;
+			case 2:
+				playerIndicators.get(2).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 60,
+						(int) (frameHeight / 6.5 * 3.5) + 10, 20, 20);
+				break;
+			case 3:
+				playerIndicators.get(3).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 60,
+						(int) (frameHeight / 6.5 * 3.5) + 30, 20, 20);
+				break;
+			case 4:
+				playerIndicators.get(4).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 80,
+						(int) (frameHeight / 6.5 * 3.5) + 10, 20, 20);
+				break;
+			case 5:
+				playerIndicators.get(5).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 80,
+						(int) (frameHeight / 6.5 * 3.5) + 30, 20, 20);
+				break;
+			}
+			break;
+		case 37:
+			switch (playerIndex) {
+			case 0:
+				playerIndicators.get(0).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 40,
+						(int) (frameHeight / 6.5 * 4) + 10, 20, 20);
+				break;
+			case 1:
+				playerIndicators.get(1).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 40,
+						(int) (frameHeight / 6.5 * 4) + 30, 20, 20);
+				break;
+			case 2:
+				playerIndicators.get(2).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 60,
+						(int) (frameHeight / 6.5 * 4) + 10, 20, 20);
+				break;
+			case 3:
+				playerIndicators.get(3).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 60,
+						(int) (frameHeight / 6.5 * 4) + 30, 20, 20);
+				break;
+			case 4:
+				playerIndicators.get(4).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 80,
+						(int) (frameHeight / 6.5 * 4) + 10, 20, 20);
+				break;
+			case 5:
+				playerIndicators.get(5).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 80,
+						(int) (frameHeight / 6.5 * 4) + 30, 20, 20);
+				break;
+			}
+			break;
+		case 38:
+			switch (playerIndex) {
+			case 0:
+				playerIndicators.get(0).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 40,
+						(int) (frameHeight / 6.5 * 4.5) + 10, 20, 20);
+				break;
+			case 1:
+				playerIndicators.get(1).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 40,
+						(int) (frameHeight / 6.5 * 4.5) + 30, 20, 20);
+				break;
+			case 2:
+				playerIndicators.get(2).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 60,
+						(int) (frameHeight / 6.5 * 4.5) + 10, 20, 20);
+				break;
+			case 3:
+				playerIndicators.get(3).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 60,
+						(int) (frameHeight / 6.5 * 4.5) + 30, 20, 20);
+				break;
+			case 4:
+				playerIndicators.get(4).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 80,
+						(int) (frameHeight / 6.5 * 4.5) + 10, 20, 20);
+				break;
+			case 5:
+				playerIndicators.get(5).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 80,
+						(int) (frameHeight / 6.5 * 4.5) + 30, 20, 20);
+				break;
+			}
+			break;
+		case 39:
+			switch (playerIndex) {
+			case 0:
+				playerIndicators.get(0).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 40,
+						(int) (frameHeight / 6.5 * 5) + 10, 20, 20);
+				break;
+			case 1:
+				playerIndicators.get(1).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 40,
+						(int) (frameHeight / 6.5 * 5) + 30, 20, 20);
+				break;
+			case 2:
+				playerIndicators.get(2).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 60,
+						(int) (frameHeight / 6.5 * 5) + 10, 20, 20);
+				break;
+			case 3:
+				playerIndicators.get(3).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 60,
+						(int) (frameHeight / 6.5 * 5) + 30, 20, 20);
+				break;
+			case 4:
+				playerIndicators.get(4).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 80,
+						(int) (frameHeight / 6.5 * 5) + 10, 20, 20);
+				break;
+			case 5:
+				playerIndicators.get(5).setBounds(
+						(int) (frameHeight / 6.5 * 5.5) + 80,
+						(int) (frameHeight / 6.5 * 5) + 30, 20, 20);
 				break;
 			}
 			break;
