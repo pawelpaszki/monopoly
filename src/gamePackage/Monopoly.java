@@ -25,6 +25,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -77,6 +78,8 @@ public class Monopoly {
 	private JLayeredPane player_4;
 	private JLayeredPane player_5;
 	private JLayeredPane player_6;
+	private JLayeredPane gameLog;
+	private JLayeredPane gameConsole;
 	private int frameHeight;
 	private JButton communityChest;
 	private JButton chanceButton;
@@ -877,7 +880,24 @@ public class Monopoly {
 		player6name.setHorizontalAlignment(SwingConstants.CENTER);
 		player6name.setVisible(false);
 		player_6.add(player6name);
-
+		gameConsole = new JLayeredPane();
+		gameLog = new JLayeredPane();
+		gameConsole.setBounds(frameHeight + 40, (int) (frameHeight / 2), (int) (frameHeight / 4) * 3, (int) (frameHeight / 2.8));
+		gameLog.setBounds(frameHeight + 40, (int) (frameHeight / 3.25 + 20), (int) (frameHeight / 4) * 3, (int) (frameHeight / 6.5));
+		Border lined = BorderFactory.createLineBorder(Color.black, 1);
+		Border innerGameLog1 = BorderFactory.createTitledBorder(lined,
+				"Game info:", 2, 2, new Font("Arial", Font.ITALIC, 12),
+				Color.black);
+		Border innerGameConsole1 = BorderFactory.createTitledBorder(lined,
+				"Game console:", 2, 2, new Font("Arial", Font.ITALIC, 12),
+				Color.black);
+		Border outerBorder = BorderFactory.createEmptyBorder(2, 0, 2, 0);
+		gameLog.setBorder(BorderFactory.createCompoundBorder(outerBorder,
+				innerGameLog1));
+		gameConsole.setBorder(BorderFactory.createCompoundBorder(outerBorder,
+				innerGameConsole1));
+		
+		gameLog.setVisible(false);
 		addPlayer1Name = new JButton("Add player's name");
 		addPlayer2Name = new JButton("Add player's name");
 		addPlayer3Name = new JButton("Add player's name");
@@ -1881,7 +1901,7 @@ public class Monopoly {
 		startGame.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
 				(int) (frameHeight / 3), 140, 40);
 		finishTurn.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
-				(int) (frameHeight / 3), 140, 40);
+				frameHeight - 80, 140, 40);
 		try {
 			Image img = ImageIO.read(getClass().getResource(
 					"../resources/startthegame.jpg"));
@@ -1985,6 +2005,8 @@ public class Monopoly {
 		frame.getContentPane().add(addPlayer5Name);
 		frame.getContentPane().add(addPlayer6Name);
 		frame.getContentPane().add(startGame);
+		frame.getContentPane().add(gameLog);
+		frame.getContentPane().add(gameConsole);
 
 		rollTheDice = new JButton();
 		rollTheDice.setBounds(frameHeight / 2 - 70, frameHeight / 2 + 40, 140,
@@ -2026,6 +2048,7 @@ public class Monopoly {
 
 	private void startNewGame() {
 		startGame.setVisible(false);
+		gameLog.setVisible(true);
 		finishTurn.setVisible(true);
 		rollTheDice.setVisible(true);
 		dice1.setVisible(true);
