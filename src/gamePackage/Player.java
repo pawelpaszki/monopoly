@@ -33,6 +33,9 @@ public class Player {
 	}
 	public void setPositionOnGameBoard(int positionOnGameBoard) {
 		this.positionOnGameBoard += positionOnGameBoard;
+		if (this.positionOnGameBoard >= 40) {
+			setMoneyHeld(200);
+		}
 		this.positionOnGameBoard = this.positionOnGameBoard % 40;
 	}
 	public ArrayList<Property> getOwnedProperties() {

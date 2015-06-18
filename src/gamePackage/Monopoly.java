@@ -797,7 +797,7 @@ public class Monopoly {
 		communityChest.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		communityChest.setBorderPainted(false);
 		communityChest.setContentAreaFilled(false);
-		communityChest.setEnabled(false);
+		//communityChest.setEnabled(false);
 		chanceButton = new JButton();
 		chanceButton.setBounds((int) (frameHeight / 6.5 * 3.5),
 				(int) (frameHeight / 6.5 * 4), (int) (frameHeight / 3.33),
