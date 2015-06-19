@@ -2,7 +2,7 @@ package gamePackage;
 
 import java.util.ArrayList;
 
-public class Property {
+public class Entity {
 
 	private String name;
 	private String group;
@@ -10,13 +10,19 @@ public class Property {
 	private ArrayList<Double> rentValues;
 	private int position;
 	private boolean mortgaged;
+	private Player owner;
+	private boolean canBePurchased;
+	private int numberOfHouses;
+	private int numberOfHotels;
+	private boolean buldingPurchasedInCurrentTurn;
 	
-	public Property(String name, String group, int cost, ArrayList<Double> rentValues, int position) {
+	public Entity(String name, String group, int cost, ArrayList<Double> rentValues, int position, boolean canBePurchased) {
 		this.name = name;
 		this.group = group;
 		this.cost = cost;
 		this.rentValues = rentValues;
 		this.position = position;
+		this.canBePurchased = canBePurchased;
 	}
 	
 	public String getName() {
@@ -64,5 +70,46 @@ public class Property {
 		return "\nName: " + name + "\nGroup: " + group + 
 		"\nCost: " + cost + "\nPosition: " + position + 
 		"\nMortgaged: " + mortgaged + rent;
+	}
+
+	public Player getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Player owner) {
+		this.owner = owner;
+	}
+
+	public boolean isCanBePurchased() {
+		return canBePurchased;
+	}
+
+	public void setCanBePurchased(boolean canBePurchased) {
+		this.canBePurchased = canBePurchased;
+	}
+
+	public int getNumberOfHouses() {
+		return numberOfHouses;
+	}
+
+	public void setNumberOfHouses(int numberOfHouses) {
+		this.numberOfHouses += numberOfHouses;
+	}
+
+	public int getNumberOfHotels() {
+		return numberOfHotels;
+	}
+
+	public void setNumberOfHotels(int numberOfHotels) {
+		this.numberOfHotels += numberOfHotels;
+	}
+
+	public boolean isBuldingPurchasedInCurrentTurn() {
+		return buldingPurchasedInCurrentTurn;
+	}
+
+	public void setBuldingPurchasedInCurrentTurn(
+			boolean buldingPurchasedInCurrentTurn) {
+		this.buldingPurchasedInCurrentTurn = buldingPurchasedInCurrentTurn;
 	}
 }

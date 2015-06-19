@@ -23,7 +23,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.event.DocumentEvent;
@@ -78,7 +81,9 @@ public class Monopoly {
 	private JLayeredPane player_4;
 	private JLayeredPane player_5;
 	private JLayeredPane player_6;
-	private JLayeredPane gameLog;
+	private JScrollPane gameLog;
+	private JTextArea logText;
+	private String log;
 	private JLayeredPane gameConsole;
 	private int frameHeight;
 	private JButton communityChest;
@@ -162,7 +167,7 @@ public class Monopoly {
 	private int randomDice2;
 	private Random random;
 	private int doubleCounter;
-	private PropertyMarket market;
+	private Entities entities;
 	private ArrayList<Player> players;
 	private ArrayList<JLayeredPane> boardPanels;
 	private int playerIndex;
@@ -201,7 +206,7 @@ public class Monopoly {
 	 */
 	public Monopoly() {
 		players = new ArrayList<Player>();
-		market = new PropertyMarket();
+		entities = new Entities();
 		random = new Random();
 		boardPanels = new ArrayList<JLayeredPane>();
 		playerIndicators = new ArrayList<JLayeredPane>();
@@ -881,9 +886,15 @@ public class Monopoly {
 		player6name.setVisible(false);
 		player_6.add(player6name);
 		gameConsole = new JLayeredPane();
-		gameLog = new JLayeredPane();
+		logText = new JTextArea();
+		logText.setFont(new Font("Arial", Font.BOLD, 12));
+		System.out.println(log);
+		log = "  /> the Game has started\n";
+		logText.append(log);
+		gameLog = new JScrollPane(logText);
 		gameConsole.setBounds(frameHeight + 40, (int) (frameHeight / 2), (int) (frameHeight / 4) * 3, (int) (frameHeight / 2.8));
 		gameLog.setBounds(frameHeight + 40, (int) (frameHeight / 3.25 + 20), (int) (frameHeight / 4) * 3, (int) (frameHeight / 6.5));
+		gameLog.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		Border lined = BorderFactory.createLineBorder(Color.black, 1);
 		Border innerGameLog1 = BorderFactory.createTitledBorder(lined,
 				"Game info:", 2, 2, new Font("Arial", Font.ITALIC, 12),
@@ -992,9 +1003,9 @@ public class Monopoly {
 				addPlayer1Name.setVisible(false);
 				addPlayer2.setEnabled(true);
 				// test //
-				for (int i = 0; i < market.getProperties().size(); i++) {
+				for (int i = 0; i < entities.getEntities().size(); i++) {
 					players.get(0).getOwnedProperties()
-							.add(market.getProperties().get(i));
+							.add(entities.getEntities().get(i));
 				}
 
 				// highlights panels representing owned properties
@@ -1008,7 +1019,7 @@ public class Monopoly {
 					@Override
 					public void mouseEntered(MouseEvent arg0) {
 
-						for (Property property : players.get(0)
+						for (Entity property : players.get(0)
 								.getOwnedProperties()) {
 							if (property.getPosition() < 10) {
 								boardPanels.get(property.getPosition())
@@ -1045,7 +1056,7 @@ public class Monopoly {
 
 					@Override
 					public void mouseExited(MouseEvent arg0) {
-						for (Property property : players.get(0)
+						for (Entity property : players.get(0)
 								.getOwnedProperties()) {
 							boardPanels.get(property.getPosition()).setBorder(
 									BorderFactory.createEmptyBorder());
@@ -1154,9 +1165,9 @@ public class Monopoly {
 											// game can be started
 
 				// test //
-				for (int i = 0; i < market.getProperties().size(); i++) {
+				for (int i = 0; i < entities.getEntities().size(); i++) {
 					players.get(1).getOwnedProperties()
-							.add(market.getProperties().get(i));
+							.add(entities.getEntities().get(i));
 				}
 
 				// highlights panels representing owned properties
@@ -1170,7 +1181,7 @@ public class Monopoly {
 					@Override
 					public void mouseEntered(MouseEvent arg0) {
 
-						for (Property property : players.get(1)
+						for (Entity property : players.get(1)
 								.getOwnedProperties()) {
 							if (property.getPosition() < 10) {
 								boardPanels.get(property.getPosition())
@@ -1206,7 +1217,7 @@ public class Monopoly {
 
 					@Override
 					public void mouseExited(MouseEvent arg0) {
-						for (Property property : players.get(1)
+						for (Entity property : players.get(1)
 								.getOwnedProperties()) {
 							boardPanels.get(property.getPosition()).setBorder(
 									BorderFactory.createEmptyBorder());
@@ -1317,9 +1328,9 @@ public class Monopoly {
 				addPlayer4.setEnabled(true);
 
 				// test //
-				for (int i = 0; i < market.getProperties().size(); i++) {
+				for (int i = 0; i < entities.getEntities().size(); i++) {
 					players.get(2).getOwnedProperties()
-							.add(market.getProperties().get(i));
+							.add(entities.getEntities().get(i));
 				}
 
 				// highlights panels representing owned properties
@@ -1333,7 +1344,7 @@ public class Monopoly {
 					@Override
 					public void mouseEntered(MouseEvent arg0) {
 
-						for (Property property : players.get(2)
+						for (Entity property : players.get(2)
 								.getOwnedProperties()) {
 							if (property.getPosition() < 10) {
 								boardPanels.get(property.getPosition())
@@ -1369,7 +1380,7 @@ public class Monopoly {
 
 					@Override
 					public void mouseExited(MouseEvent arg0) {
-						for (Property property : players.get(2)
+						for (Entity property : players.get(2)
 								.getOwnedProperties()) {
 							boardPanels.get(property.getPosition()).setBorder(
 									BorderFactory.createEmptyBorder());
@@ -1481,9 +1492,9 @@ public class Monopoly {
 				addPlayer5.setEnabled(true);
 
 				// test //
-				for (int i = 0; i < market.getProperties().size(); i++) {
+				for (int i = 0; i < entities.getEntities().size(); i++) {
 					players.get(3).getOwnedProperties()
-							.add(market.getProperties().get(i));
+							.add(entities.getEntities().get(i));
 				}
 
 				// highlights panels representing owned properties
@@ -1497,7 +1508,7 @@ public class Monopoly {
 					@Override
 					public void mouseEntered(MouseEvent arg0) {
 
-						for (Property property : players.get(3)
+						for (Entity property : players.get(3)
 								.getOwnedProperties()) {
 							if (property.getPosition() < 10) {
 								boardPanels.get(property.getPosition())
@@ -1533,7 +1544,7 @@ public class Monopoly {
 
 					@Override
 					public void mouseExited(MouseEvent arg0) {
-						for (Property property : players.get(3)
+						for (Entity property : players.get(3)
 								.getOwnedProperties()) {
 							boardPanels.get(property.getPosition()).setBorder(
 									BorderFactory.createEmptyBorder());
@@ -1646,9 +1657,9 @@ public class Monopoly {
 				addPlayer6.setEnabled(true);
 
 				// test //
-				for (int i = 0; i < market.getProperties().size(); i++) {
+				for (int i = 0; i < entities.getEntities().size(); i++) {
 					players.get(4).getOwnedProperties()
-							.add(market.getProperties().get(i));
+							.add(entities.getEntities().get(i));
 				}
 
 				// highlights panels representing owned properties
@@ -1662,7 +1673,7 @@ public class Monopoly {
 					@Override
 					public void mouseEntered(MouseEvent arg0) {
 
-						for (Property property : players.get(4)
+						for (Entity property : players.get(4)
 								.getOwnedProperties()) {
 							if (property.getPosition() < 10) {
 								boardPanels.get(property.getPosition())
@@ -1698,7 +1709,7 @@ public class Monopoly {
 
 					@Override
 					public void mouseExited(MouseEvent arg0) {
-						for (Property property : players.get(4)
+						for (Entity property : players.get(4)
 								.getOwnedProperties()) {
 							boardPanels.get(property.getPosition()).setBorder(
 									BorderFactory.createEmptyBorder());
@@ -1811,9 +1822,9 @@ public class Monopoly {
 				addPlayer6Name.setVisible(false);
 
 				// test //
-				for (int i = 0; i < market.getProperties().size(); i++) {
+				for (int i = 0; i < entities.getEntities().size(); i++) {
 					players.get(5).getOwnedProperties()
-							.add(market.getProperties().get(i));
+							.add(entities.getEntities().get(i));
 				}
 
 				// highlights panels representing owned properties
@@ -1827,7 +1838,7 @@ public class Monopoly {
 					@Override
 					public void mouseEntered(MouseEvent arg0) {
 
-						for (Property property : players.get(5)
+						for (Entity property : players.get(5)
 								.getOwnedProperties()) {
 							if (property.getPosition() < 10) {
 								boardPanels.get(property.getPosition())
@@ -1864,7 +1875,7 @@ public class Monopoly {
 
 					@Override
 					public void mouseExited(MouseEvent arg0) {
-						for (Property property : players.get(5)
+						for (Entity property : players.get(5)
 								.getOwnedProperties()) {
 							boardPanels.get(property.getPosition()).setBorder(
 									BorderFactory.createEmptyBorder());
@@ -2058,8 +2069,7 @@ public class Monopoly {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				randomDice1 = random.nextInt(6) + 1;
-				randomDice2 = random.nextInt(6) + 1;// randomDice2 =
-				// random.nextInt(6) + 1;
+				randomDice2 = random.nextInt(6) + 1;
 				System.out.println(randomDice1);
 				System.out.println(randomDice2);
 				switch (randomDice1) {
@@ -2165,6 +2175,7 @@ public class Monopoly {
 				players.get(playerIndex).setPositionOnGameBoard(
 						randomDice1 + randomDice2);
 				adjustPlayerPosition();
+				
 				System.out.println(players.get(playerIndex).getName() + " "
 						+ players.get(playerIndex).getPositionOnGameBoard());
 				if (!(randomDice1 == randomDice2)) {
@@ -2172,7 +2183,7 @@ public class Monopoly {
 					rollTheDice.setEnabled(false);
 				} else {
 					doubleCounter++;
-					adjustPlayerPosition();
+					//adjustPlayerPosition();
 				} // three doubles - player goes to the jail
 				if (doubleCounter == 3) {
 					finishTurn.setEnabled(true);
@@ -2206,6 +2217,9 @@ public class Monopoly {
 	}
 
 	private void adjustPlayerPosition() {
+		log = "  />" + players.get(playerIndex).getName() + " has landed on " 
+				+ entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getName() +  "\n";
+		logText.append(log);
 		switch (players.get(playerIndex).getPositionOnGameBoard()) {
 		case 0:
 			switch (playerIndex) {
