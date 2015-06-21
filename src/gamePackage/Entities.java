@@ -170,7 +170,7 @@ public class Entities {
 		rentValues.add(1400.0);
 		rentValues.add(1700.0);
 		rentValues.add(2000.0);
-		entities.add(new Entity("Pacific Avenue", "blue", 400, rentValues, 39, true));
+		entities.add(new Entity("Boardwalk", "blue", 400, rentValues, 39, true));
 	}
 	public ArrayList<Entity> getEntities() {
 		return entities;

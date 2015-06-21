@@ -184,6 +184,12 @@ public class Monopoly {
 	private JLayeredPane player6;
 	private JPanel p6;
 	private ArrayList<JLayeredPane> playerIndicators;
+	private ArrayList<JLabel> balanceLabels;
+	private JLabel gamePrompt;
+	private JButton useGetOutOfJailCard;
+	private JButton dontUseGetOutOfJailCard;
+	private JButton pay50toGetOutOfJail;
+	private boolean extraRollNeeded;
 
 	/**
 	 * Launch the application.
@@ -210,6 +216,7 @@ public class Monopoly {
 		random = new Random();
 		boardPanels = new ArrayList<JLayeredPane>();
 		playerIndicators = new ArrayList<JLayeredPane>();
+		balanceLabels = new ArrayList<JLabel>();
 		playerIndex = 0;
 		initialize();
 		doubleCounter = 0;
@@ -802,7 +809,7 @@ public class Monopoly {
 		communityChest.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		communityChest.setBorderPainted(false);
 		communityChest.setContentAreaFilled(false);
-		//communityChest.setEnabled(false);
+		// communityChest.setEnabled(false);
 		chanceButton = new JButton();
 		chanceButton.setBounds((int) (frameHeight / 6.5 * 3.5),
 				(int) (frameHeight / 6.5 * 4), (int) (frameHeight / 3.33),
@@ -886,14 +893,34 @@ public class Monopoly {
 		player6name.setVisible(false);
 		player_6.add(player6name);
 		gameConsole = new JLayeredPane();
+		gamePrompt = new JLabel();
+		gamePrompt.setBounds(frameHeight + 50, (int) (frameHeight / 2 + 15),
+				(int) (frameHeight / 4) * 3 - 20, 15);
+		// ////////////////////
+		// ////////////////////
+		pay50toGetOutOfJail = new JButton("pay M50 to get out of Jail");
+		pay50toGetOutOfJail.setBounds(frameHeight + 200,
+				(int) (frameHeight / 2 + 60), 230, 20);
+		pay50toGetOutOfJail.setVisible(false);
+		gamePrompt.setHorizontalAlignment(SwingConstants.CENTER);
+		gamePrompt.setForeground(Color.RED);
+		useGetOutOfJailCard = new JButton("use the card");
+		dontUseGetOutOfJailCard = new JButton("don't use the card");
+		useGetOutOfJailCard.setBounds(frameHeight + 150,
+				(int) (frameHeight / 2 + 35), 160, 20);
+		dontUseGetOutOfJailCard.setBounds(frameHeight + 320,
+				(int) (frameHeight / 2 + 35), 160, 20);
+		useGetOutOfJailCard.setVisible(false);
+		dontUseGetOutOfJailCard.setVisible(false);
 		logText = new JTextArea();
 		logText.setFont(new Font("Arial", Font.BOLD, 12));
-		System.out.println(log);
 		log = "  /> the Game has started\n";
 		logText.append(log);
 		gameLog = new JScrollPane(logText);
-		gameConsole.setBounds(frameHeight + 40, (int) (frameHeight / 2), (int) (frameHeight / 4) * 3, (int) (frameHeight / 2.8));
-		gameLog.setBounds(frameHeight + 40, (int) (frameHeight / 3.25 + 20), (int) (frameHeight / 4) * 3, (int) (frameHeight / 6.5));
+		gameConsole.setBounds(frameHeight + 40, (int) (frameHeight / 2),
+				(int) (frameHeight / 4) * 3, (int) (frameHeight / 2.8));
+		gameLog.setBounds(frameHeight + 40, (int) (frameHeight / 3.25 + 20),
+				(int) (frameHeight / 4) * 3, (int) (frameHeight / 6.5));
 		gameLog.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		Border lined = BorderFactory.createLineBorder(Color.black, 1);
 		Border innerGameLog1 = BorderFactory.createTitledBorder(lined,
@@ -907,7 +934,7 @@ public class Monopoly {
 				innerGameLog1));
 		gameConsole.setBorder(BorderFactory.createCompoundBorder(outerBorder,
 				innerGameConsole1));
-		
+
 		gameLog.setVisible(false);
 		addPlayer1Name = new JButton("Add player's name");
 		addPlayer2Name = new JButton("Add player's name");
@@ -936,6 +963,7 @@ public class Monopoly {
 		addPlayer1 = new JButton();
 		player1nameLabel = new JLabel();
 		player1balance = new JLabel();
+		balanceLabels.add(player1balance);
 		player1nameLabel.setBounds(frameHeight + 60, 5, 140, 40);
 		player1balance.setBounds(frameHeight + 60, 20, 140, 40);
 		addPlayer1.setBounds(frameHeight + 60, 35, 140, 40);
@@ -1091,6 +1119,7 @@ public class Monopoly {
 				140, 40);
 		player2nameLabel = new JLabel();
 		player2balance = new JLabel();
+		balanceLabels.add(player2balance);
 		player2balance.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
 				20, 140, 40);
 		player2nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
@@ -1149,7 +1178,7 @@ public class Monopoly {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				players.add(new Player(player2name.getText()));
-				player2nameLabel.setText(player1name.getText());
+				player2nameLabel.setText(player2name.getText());
 				player2nameLabel.setForeground(Color.BLUE);
 				player2nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
 				player2balance.setText("E"
@@ -1252,6 +1281,7 @@ public class Monopoly {
 		addPlayer3 = new JButton();
 		player3nameLabel = new JLabel();
 		player3balance = new JLabel();
+		balanceLabels.add(player3balance);
 		player3balance.setBounds(frameHeight + 60 + (int) (frameHeight / 2),
 				20, 140, 40);
 		player3nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 2),
@@ -1314,7 +1344,7 @@ public class Monopoly {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				players.add(new Player(player3name.getText()));
-				player3nameLabel.setText(player1name.getText());
+				player3nameLabel.setText(player3name.getText());
 				player3nameLabel.setForeground(Color.BLACK);
 				player3nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
 				player3balance.setText("E"
@@ -1415,6 +1445,7 @@ public class Monopoly {
 		addPlayer4 = new JButton();
 		player4nameLabel = new JLabel();
 		player4balance = new JLabel();
+		balanceLabels.add(player4balance);
 		player4balance.setBounds(frameHeight + 60,
 				(int) (frameHeight / 6.5) + 20, 140, 40);
 		player4nameLabel.setBounds(frameHeight + 60,
@@ -1478,7 +1509,7 @@ public class Monopoly {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				players.add(new Player(player4name.getText()));
-				player4nameLabel.setText(player1name.getText());
+				player4nameLabel.setText(player4name.getText());
 				player4nameLabel.setForeground(Color.GREEN);
 				player4nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
 				player4balance.setText("E"
@@ -1579,6 +1610,7 @@ public class Monopoly {
 		addPlayer5 = new JButton();
 		player5nameLabel = new JLabel();
 		player5balance = new JLabel();
+		balanceLabels.add(player5balance);
 		player5balance.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
 				(int) (frameHeight / 6.5) + 20, 140, 40);
 		player5nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
@@ -1643,7 +1675,7 @@ public class Monopoly {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				players.add(new Player(player5name.getText()));
-				player5nameLabel.setText(player1name.getText());
+				player5nameLabel.setText(player5name.getText());
 				player5nameLabel.setForeground(Color.ORANGE);
 				player5nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
 				player5balance.setText("E"
@@ -1744,6 +1776,7 @@ public class Monopoly {
 		addPlayer6 = new JButton();
 		player6nameLabel = new JLabel();
 		player6balance = new JLabel();
+		balanceLabels.add(player6balance);
 		player6balance.setBounds(frameHeight + 60 + (int) (frameHeight / 2),
 				(int) (frameHeight / 6.5) + 20, 140, 40);
 		player6nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 2),
@@ -1809,7 +1842,7 @@ public class Monopoly {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				players.add(new Player(player6name.getText()));
-				player6nameLabel.setText(player1name.getText());
+				player6nameLabel.setText(player6name.getText());
 				player6nameLabel.setForeground(Color.magenta);
 				player6nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
 				player6balance.setText("E"
@@ -2018,6 +2051,8 @@ public class Monopoly {
 		frame.getContentPane().add(startGame);
 		frame.getContentPane().add(gameLog);
 		frame.getContentPane().add(gameConsole);
+		frame.getContentPane().add(useGetOutOfJailCard);
+		frame.getContentPane().add(dontUseGetOutOfJailCard);
 
 		rollTheDice = new JButton();
 		rollTheDice.setBounds(frameHeight / 2 - 70, frameHeight / 2 + 40, 140,
@@ -2054,6 +2089,8 @@ public class Monopoly {
 		frame.getContentPane().add(dice1);
 		frame.getContentPane().add(dice2);
 		frame.getContentPane().add(finishTurn);
+		frame.getContentPane().add(gamePrompt);
+		frame.getContentPane().add(pay50toGetOutOfJail);
 
 	}
 
@@ -2172,35 +2209,173 @@ public class Monopoly {
 					}
 					break;
 				}
-				players.get(playerIndex).setPositionOnGameBoard(
-						randomDice1 + randomDice2);
-				adjustPlayerPosition();
-				
-				System.out.println(players.get(playerIndex).getName() + " "
-						+ players.get(playerIndex).getPositionOnGameBoard());
-				if (!(randomDice1 == randomDice2)) {
-					finishTurn.setEnabled(true);
-					rollTheDice.setEnabled(false);
+				if (!extraRollNeeded) {
+					if (!(randomDice1 == randomDice2)) {
+						finishTurn.setEnabled(true);
+						rollTheDice.setEnabled(false);
+						players.get(playerIndex).setPositionOnGameBoard(
+								randomDice1 + randomDice2);
+					} else {
+						doubleCounter++;
+						players.get(playerIndex).setPositionOnGameBoard(
+								randomDice1 + randomDice2);
+					} // three doubles - player goes to the jail
+					if (doubleCounter == 3
+							|| players.get(playerIndex)
+									.getPositionOnGameBoard() == 30) {
+						if (players.get(playerIndex)
+								.getNumberOfGetOutOfJailCards() == 0) {
+							finishTurn.setEnabled(true);
+							rollTheDice.setEnabled(false);
+							players.get(playerIndex).setInJail(true);
+							if (doubleCounter < 3) {
+								log = "  /> "
+										+ players.get(playerIndex).getName()
+										+ " went to Jail" + "\n";
+								logText.append(log);
+							} else {
+								log = "  /> "
+										+ players.get(playerIndex).getName()
+										+ " went to Jail for rolling 3 doubles "
+										+ "\n";
+								logText.append(log);
+							}
+							players.get(playerIndex).setPositionOnGameBoard(
+									10 - players.get(playerIndex)
+											.getPositionOnGameBoard());
+							adjustPlayerPosition();
+							System.out.println(players.get(playerIndex)
+									.getName()
+									+ " "
+									+ players.get(playerIndex)
+											.getPositionOnGameBoard()
+									+ " in Jail: "
+									+ players.get(playerIndex).isInJail());
+							doubleCounter = 0;
+						} else {
+							gamePrompt
+									.setText("Do you want to use your get out of jail card?");
+							useGetOutOfJailCard.setVisible(true);
+							dontUseGetOutOfJailCard.setVisible(true);
+							rollTheDice.setEnabled(false);
+						}
+					} else {
+						adjustPlayerPosition();
+						System.out.println(players.get(playerIndex).getName()
+								+ " "
+								+ players.get(playerIndex)
+										.getPositionOnGameBoard());
+					}
 				} else {
-					doubleCounter++;
-					//adjustPlayerPosition();
-				} // three doubles - player goes to the jail
-				if (doubleCounter == 3) {
-					finishTurn.setEnabled(true);
-					rollTheDice.setEnabled(false);
-					players.get(playerIndex).setInJail(true);
-					players.get(playerIndex).setPositionOnGameBoard(
-							10 - players.get(playerIndex)
-									.getPositionOnGameBoard());
-					adjustPlayerPosition();
-					System.out.println(players.get(playerIndex).getName() + " "
-							+ players.get(playerIndex).getPositionOnGameBoard()
-							+ " in Jail: "
-							+ players.get(playerIndex).isInJail());
-					doubleCounter = 0;
+					if (players.get(playerIndex).isInJail()) {
+						if (!(randomDice1 == randomDice2)) {
+							if (players.get(playerIndex).getTurnsInJail() == 1) {
+								log = "  /> "
+										+ players.get(playerIndex).getName()
+										+ " has his/her balance deducted by M50 and got out of Jail"
+										+ "\n";
+								logText.append(log);
+							} else {
+								players.get(playerIndex).setTurnsInJail(1);
+								useGetOutOfJailCard.setVisible(false);
+								pay50toGetOutOfJail.setVisible(false);
+								gamePrompt.setText("");
+							}
+							rollTheDice.setEnabled(false);
+							finishTurn.setEnabled(true);
+						} else {
+							players.get(playerIndex).setInJail(false);
+							players.get(playerIndex).setTurnsInJail(0);
+							useGetOutOfJailCard.setVisible(false);
+							pay50toGetOutOfJail.setVisible(false);
+							log = "  /> "
+									+ players.get(playerIndex).getName()
+									+ " rolled double and got out of Jail"
+									+ "\n";
+							logText.append(log);
+							gamePrompt.setText("");
+							extraRollNeeded = false;
+						}
+					}
 				}
 			}
 
+		});
+
+		pay50toGetOutOfJail.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				players.get(playerIndex).setMoneyHeld(-50);
+				pay50toGetOutOfJail.setVisible(false);
+				useGetOutOfJailCard.setVisible(false);
+				rollTheDice.setEnabled(true);
+				players.get(playerIndex).setInJail(false);
+				players.get(playerIndex).setTurnsInJail(0);
+				pay50toGetOutOfJail.setVisible(false);
+				log = "  /> " + players.get(playerIndex).getName()
+						+ " paid M50 to get out of Jail" + "\n";
+				logText.append(log);
+				gamePrompt.setText("");
+				extraRollNeeded = false;
+			}
+
+		});
+
+		useGetOutOfJailCard.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (!players.get(playerIndex).isInJail()) {
+					finishTurn.setEnabled(true);
+					log = "  /> "
+							+ players.get(playerIndex).getName()
+							+ " used his/her get out of Jail card to avoid going to Jail"
+							+ "\n";
+					logText.append(log);
+				} else {
+					rollTheDice.setEnabled(true);
+					players.get(playerIndex).setInJail(false);
+					players.get(playerIndex).setTurnsInJail(0);
+					pay50toGetOutOfJail.setVisible(false);
+					log = "  /> "
+							+ players.get(playerIndex).getName()
+							+ " used his/her get out of Jail card to get out of Jail"
+							+ "\n";
+					logText.append(log);
+					extraRollNeeded = false;
+				}
+				useGetOutOfJailCard.setVisible(false);
+				dontUseGetOutOfJailCard.setVisible(false);
+				players.get(playerIndex).setNumberOfGetOutOfJailCards(-1);
+				gamePrompt.setText("");
+			}
+		});
+
+		dontUseGetOutOfJailCard.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				players.get(playerIndex).setPositionOnGameBoard(
+						10 - players.get(playerIndex).getPositionOnGameBoard());
+				players.get(playerIndex).setInJail(true);
+				adjustPlayerPosition();
+				if (doubleCounter == 3) {
+				log = "  /> " + players.get(playerIndex).getName()
+						+ " went to Jail for rolling 3 doubles " + "\n";
+				logText.append(log);
+				} else {
+					log = "  /> " + players.get(playerIndex).getName()
+							+ " went to Jail" + "\n";
+					logText.append(log);
+				}
+				finishTurn.setEnabled(true);
+				gamePrompt.setText("");
+				useGetOutOfJailCard.setVisible(false);
+				dontUseGetOutOfJailCard.setVisible(false);
+
+			}
 		});
 
 		finishTurn.addActionListener(new ActionListener() {
@@ -2208,18 +2383,45 @@ public class Monopoly {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				playerIndex = (playerIndex + 1) % players.size();
+				if (players.get(playerIndex).isInJail()
+						&& players.get(playerIndex)
+								.getNumberOfGetOutOfJailCards() > 0) {
+					gamePrompt
+							.setText("Use the card, pay M50 or roll the dice to get out of Jail");
+					useGetOutOfJailCard.setVisible(true);
+					pay50toGetOutOfJail.setVisible(true);
+					rollTheDice.setEnabled(true);
+					extraRollNeeded = true;
+				} else if (players.get(playerIndex).isInJail()) {
+					gamePrompt
+							.setText("You need to pay M50 or roll double to get out of Jail");
+					extraRollNeeded = true;
+					rollTheDice.setEnabled(true);
+					pay50toGetOutOfJail.setVisible(true);
+				} else {
+					rollTheDice.setEnabled(true);
+					gamePrompt.setText("");
+				}
 				finishTurn.setEnabled(false);
-				rollTheDice.setEnabled(true);
 				doubleCounter = 0;
+
 			}
 
 		});
 	}
 
 	private void adjustPlayerPosition() {
-		log = "  />" + players.get(playerIndex).getName() + " has landed on " 
-				+ entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getName() +  "\n";
-		logText.append(log);
+		if (!(players.get(playerIndex).isInJail())) {
+			log = "  /> "
+					+ players.get(playerIndex).getName()
+					+ " has landed on "
+					+ entities
+							.getEntities()
+							.get(players.get(playerIndex)
+									.getPositionOnGameBoard()).getName() + "\n";
+			logText.append(log);
+		}
+
 		switch (players.get(playerIndex).getPositionOnGameBoard()) {
 		case 0:
 			switch (playerIndex) {
@@ -2353,6 +2555,12 @@ public class Monopoly {
 			}
 			break;
 		case 4:
+			players.get(playerIndex).setMoneyHeld(-200);
+			balanceLabels.get(playerIndex).setText(
+					"E" + players.get(playerIndex).getMoneyHeld());
+			log = "  /> " + players.get(playerIndex).getName()
+					+ " paid income tax (M200) " + "\n";
+			logText.append(log);
 			switch (playerIndex) {
 			case 0:
 				playerIndicators.get(0).setBounds(
@@ -3377,6 +3585,12 @@ public class Monopoly {
 			}
 			break;
 		case 38:
+			players.get(playerIndex).setMoneyHeld(-100);
+			balanceLabels.get(playerIndex).setText(
+					"E" + players.get(playerIndex).getMoneyHeld());
+			log = "  /> " + players.get(playerIndex).getName()
+					+ " paid luxury tax (M100) " + "\n";
+			logText.append(log);
 			switch (playerIndex) {
 			case 0:
 				playerIndicators.get(0).setBounds(
@@ -3444,6 +3658,14 @@ public class Monopoly {
 				break;
 			}
 			break;
+		}
+		if (players.get(playerIndex).didPassGo()) {
+			balanceLabels.get(playerIndex).setText(
+					"E" + players.get(playerIndex).getMoneyHeld());
+			log = "  /> " + players.get(playerIndex).getName()
+					+ " got M200 for passing \"GO\" " + "\n";
+			logText.append(log);
+			players.get(playerIndex).setPassedGo(false);
 		}
 	}
 }

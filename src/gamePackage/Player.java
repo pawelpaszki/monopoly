@@ -8,13 +8,16 @@ public class Player {
 	private double moneyHeld;
 	private int positionOnGameBoard;
 	private ArrayList <Entity> ownedProperties;
-	private boolean holdsGetOutOfJail;
+	private int numberOfGetOutOfJailCards;
 	private boolean inJail;
+	private boolean passedGo;
+	private int turnsInJail;
 	
 	public Player(String name) {
 		this.name = name;
 		this.moneyHeld = 1500;
 		ownedProperties = new ArrayList<Entity>();
+		numberOfGetOutOfJailCards = 1;
 	}
 	public String getName() {
 		return name;
@@ -35,6 +38,7 @@ public class Player {
 		this.positionOnGameBoard += positionOnGameBoard;
 		if (this.positionOnGameBoard >= 40) {
 			setMoneyHeld(200);
+			setPassedGo(true);
 		}
 		this.positionOnGameBoard = this.positionOnGameBoard % 40;
 	}
@@ -44,17 +48,30 @@ public class Player {
 	public void setOwnedProperties(ArrayList<Entity> ownedProperties) {
 		this.ownedProperties = ownedProperties;
 	}
-	public boolean getHoldsGetOutOfJail() {
-		return holdsGetOutOfJail;
+
+	public int getNumberOfGetOutOfJailCards() {
+		return numberOfGetOutOfJailCards;
 	}
-	public void setHoldsGetOutOfJail(boolean holdsGetOutOfJail) {
-		this.holdsGetOutOfJail = holdsGetOutOfJail;
+	public void setNumberOfGetOutOfJailCards(int change) {
+		this.numberOfGetOutOfJailCards += change;
 	}
 	public boolean isInJail() {
 		return inJail;
 	}
 	public void setInJail(boolean inJail) {
 		this.inJail = inJail;
+	}
+	public boolean didPassGo() {
+		return passedGo;
+	}
+	public void setPassedGo(boolean passedGo) {
+		this.passedGo = passedGo;
+	}
+	public int getTurnsInJail() {
+		return turnsInJail;
+	}
+	public void setTurnsInJail(int turnsInJail) {
+		this.turnsInJail = turnsInJail;
 	}
 	
 }
