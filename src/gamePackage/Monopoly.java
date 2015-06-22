@@ -183,6 +183,12 @@ public class Monopoly {
 	private JPanel p5;
 	private JLayeredPane player6;
 	private JPanel p6;
+	private JLabel player1getOutOfJailLabel;
+	private JLabel player2getOutOfJailLabel;
+	private JLabel player3getOutOfJailLabel;
+	private JLabel player4getOutOfJailLabel;
+	private JLabel player5getOutOfJailLabel;
+	private JLabel player6getOutOfJailLabel;
 	private ArrayList<JLayeredPane> playerIndicators;
 	private ArrayList<JLabel> balanceLabels;
 	private JLabel gamePrompt;
@@ -190,7 +196,8 @@ public class Monopoly {
 	private JButton dontUseGetOutOfJailCard;
 	private JButton pay50toGetOutOfJail;
 	private boolean extraRollNeeded;
-	private ArrayList <JLabel> playersNames;
+	private ArrayList <JLayeredPane> playersPanes;
+	private ArrayList <JLabel> getOutOfJailLabels;
 
 	/**
 	 * Launch the application.
@@ -219,9 +226,10 @@ public class Monopoly {
 		playerIndicators = new ArrayList<JLayeredPane>();
 		balanceLabels = new ArrayList<JLabel>();
 		playerIndex = 0;
-		initialize();
 		doubleCounter = 0;
-		playersNames = new ArrayList<JLabel>();
+		playersPanes = new ArrayList<JLayeredPane>();
+		getOutOfJailLabels = new ArrayList<JLabel>();
+		initialize();
 	}
 
 	/**
@@ -830,7 +838,7 @@ public class Monopoly {
 		player_1 = new JLayeredPane();
 		player_1.setBounds(frameHeight + 40, 0, (int) (frameHeight / 4),
 				(int) (frameHeight / 6.5));
-		player_1.setBorder(BorderFactory.createLineBorder(Color.black));
+		player_1.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 		player1name = new JTextField();
 		player1name.setBounds(20, 10, 140, 30);
 		player1name.setFont(new Font("Arial", Font.ITALIC, 14));
@@ -839,9 +847,9 @@ public class Monopoly {
 		player_1.add(player1name);
 
 		player_2 = new JLayeredPane();
-		player_2.setBounds(frameHeight + 40 + (int) (frameHeight / 4), 0,
+		player_2.setBounds(frameHeight + 42 + (int) (frameHeight / 4), 0,
 				(int) (frameHeight / 4), (int) (frameHeight / 6.5));
-		player_2.setBorder(BorderFactory.createLineBorder(Color.black));
+		player_2.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 		player2name = new JTextField();
 		player2name.setBounds(20, 10, 140, 30);
 		player2name.setFont(new Font("Arial", Font.ITALIC, 14));
@@ -850,9 +858,9 @@ public class Monopoly {
 		player_2.add(player2name);
 
 		player_3 = new JLayeredPane();
-		player_3.setBounds(frameHeight + 40 + (int) (frameHeight / 2), 0,
+		player_3.setBounds(frameHeight + 44 + (int) (frameHeight / 2), 0,
 				(int) (frameHeight / 4), (int) (frameHeight / 6.5));
-		player_3.setBorder(BorderFactory.createLineBorder(Color.black));
+		player_3.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 		player3name = new JTextField();
 		player3name.setBounds(20, 10, 140, 30);
 		player3name.setFont(new Font("Arial", Font.ITALIC, 14));
@@ -861,9 +869,9 @@ public class Monopoly {
 		player_3.add(player3name);
 
 		player_4 = new JLayeredPane();
-		player_4.setBounds(frameHeight + 40, (int) (frameHeight / 6.5),
+		player_4.setBounds(frameHeight + 40, (int) (frameHeight / 6.5) + 2,
 				(int) (frameHeight / 4), (int) (frameHeight / 6.5));
-		player_4.setBorder(BorderFactory.createLineBorder(Color.black));
+		player_4.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 		player4name = new JTextField();
 		player4name.setBounds(20, 10, 140, 30);
 		player4name.setFont(new Font("Arial", Font.ITALIC, 14));
@@ -872,10 +880,10 @@ public class Monopoly {
 		player_4.add(player4name);
 
 		player_5 = new JLayeredPane();
-		player_5.setBounds(frameHeight + 40 + (int) (frameHeight / 4),
-				(int) (frameHeight / 6.5), (int) (frameHeight / 4),
+		player_5.setBounds(frameHeight + 42 + (int) (frameHeight / 4),
+				(int) (frameHeight / 6.5) + 2, (int) (frameHeight / 4),
 				(int) (frameHeight / 6.5));
-		player_5.setBorder(BorderFactory.createLineBorder(Color.black));
+		player_5.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 		player5name = new JTextField();
 		player5name.setBounds(20, 10, 140, 30);
 		player5name.setFont(new Font("Arial", Font.ITALIC, 14));
@@ -884,16 +892,23 @@ public class Monopoly {
 		player_5.add(player5name);
 
 		player_6 = new JLayeredPane();
-		player_6.setBounds(frameHeight + 40 + (int) (frameHeight / 2),
-				(int) (frameHeight / 6.5), (int) (frameHeight / 4),
+		player_6.setBounds(frameHeight + 44 + (int) (frameHeight / 2),
+				(int) (frameHeight / 6.5) + 2, (int) (frameHeight / 4),
 				(int) (frameHeight / 6.5));
-		player_6.setBorder(BorderFactory.createLineBorder(Color.black));
+		player_6.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 		player6name = new JTextField();
 		player6name.setBounds(20, 10, 140, 30);
 		player6name.setFont(new Font("Arial", Font.ITALIC, 14));
 		player6name.setHorizontalAlignment(SwingConstants.CENTER);
 		player6name.setVisible(false);
 		player_6.add(player6name);
+		
+		playersPanes.add(player_1);
+		playersPanes.add(player_2);
+		playersPanes.add(player_3);
+		playersPanes.add(player_4);
+		playersPanes.add(player_5);
+		playersPanes.add(player_6);
 		gameConsole = new JLayeredPane();
 		gamePrompt = new JLabel();
 		gamePrompt.setBounds(frameHeight + 50, (int) (frameHeight / 2 + 15),
@@ -945,16 +960,16 @@ public class Monopoly {
 		addPlayer5Name = new JButton("Add player's name");
 		addPlayer6Name = new JButton("Add player's name");
 		addPlayer1Name.setBounds(frameHeight + 60, 45, 140, 40);
-		addPlayer2Name.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
+		addPlayer2Name.setBounds(frameHeight + 62 + (int) (frameHeight / 4),
 				45, 140, 40);
-		addPlayer3Name.setBounds(frameHeight + 60 + (int) (frameHeight / 2),
+		addPlayer3Name.setBounds(frameHeight + 64 + (int) (frameHeight / 2),
 				45, 140, 40);
 		addPlayer4Name.setBounds(frameHeight + 60,
-				(int) (frameHeight / 6.5) + 45, 140, 40);
-		addPlayer5Name.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
-				(int) (frameHeight / 6.5) + 45, 140, 40);
-		addPlayer6Name.setBounds(frameHeight + 60 + (int) (frameHeight / 2),
-				(int) (frameHeight / 6.5) + 45, 140, 40);
+				(int) (frameHeight / 6.5) + 47, 140, 40);
+		addPlayer5Name.setBounds(frameHeight + 62 + (int) (frameHeight / 4),
+				(int) (frameHeight / 6.5) + 47, 140, 40);
+		addPlayer6Name.setBounds(frameHeight + 64 + (int) (frameHeight / 2),
+				(int) (frameHeight / 6.5) + 47, 140, 40);
 		addPlayer1Name.setVisible(false);
 		addPlayer2Name.setVisible(false);
 		addPlayer3Name.setVisible(false);
@@ -963,6 +978,7 @@ public class Monopoly {
 		addPlayer6Name.setVisible(false);
 
 		addPlayer1 = new JButton();
+		player1getOutOfJailLabel = new JLabel();
 		player1nameLabel = new JLabel();
 		player1balance = new JLabel();
 		balanceLabels.add(player1balance);
@@ -1038,6 +1054,11 @@ public class Monopoly {
 							.add(entities.getEntities().get(i));
 				}
 
+				player1getOutOfJailLabel.setText("get out of jail cards : " + players.get(0).getNumberOfGetOutOfJailCards());
+				player1getOutOfJailLabel.setBounds(frameHeight + 60, 50, 140, 15);
+				player1getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC, 12));
+				player1getOutOfJailLabel.setVisible(true);
+				getOutOfJailLabels.add(player1getOutOfJailLabel);
 				// highlights panels representing owned properties
 				player_1.addMouseListener(new MouseListener() {
 
@@ -1121,10 +1142,11 @@ public class Monopoly {
 				140, 40);
 		player2nameLabel = new JLabel();
 		player2balance = new JLabel();
+		player2getOutOfJailLabel = new JLabel();
 		balanceLabels.add(player2balance);
-		player2balance.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
+		player2balance.setBounds(frameHeight + 62 + (int) (frameHeight / 4),
 				20, 140, 40);
-		player2nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
+		player2nameLabel.setBounds(frameHeight + 62 + (int) (frameHeight / 4),
 				5, 140, 40);
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -1201,6 +1223,12 @@ public class Monopoly {
 							.add(entities.getEntities().get(i));
 				}
 
+				player2getOutOfJailLabel.setText("get out of jail cards : " + players.get(1).getNumberOfGetOutOfJailCards());
+				player2getOutOfJailLabel.setBounds(frameHeight + 62 + (int) (frameHeight / 4),
+						50, 140, 15);
+				player2getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC, 12));
+				player2getOutOfJailLabel.setVisible(true);
+				getOutOfJailLabels.add(player2getOutOfJailLabel);
 				// highlights panels representing owned properties
 				player_2.addMouseListener(new MouseListener() {
 
@@ -1283,10 +1311,11 @@ public class Monopoly {
 		addPlayer3 = new JButton();
 		player3nameLabel = new JLabel();
 		player3balance = new JLabel();
+		player3getOutOfJailLabel = new JLabel();
 		balanceLabels.add(player3balance);
-		player3balance.setBounds(frameHeight + 60 + (int) (frameHeight / 2),
+		player3balance.setBounds(frameHeight + 64 + (int) (frameHeight / 2),
 				20, 140, 40);
-		player3nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 2),
+		player3nameLabel.setBounds(frameHeight + 64 + (int) (frameHeight / 2),
 				5, 140, 40);
 		addPlayer3.setBounds(frameHeight + 60 + (int) (frameHeight / 2), 35,
 				140, 40);
@@ -1365,6 +1394,12 @@ public class Monopoly {
 							.add(entities.getEntities().get(i));
 				}
 
+				player3getOutOfJailLabel.setText("get out of jail cards : " + players.get(2).getNumberOfGetOutOfJailCards());
+				player3getOutOfJailLabel.setBounds(frameHeight + 64 + (int) (frameHeight / 2),
+						50, 140, 15);
+				player3getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC, 12));
+				player3getOutOfJailLabel.setVisible(true);
+				getOutOfJailLabels.add(player3getOutOfJailLabel);
 				// highlights panels representing owned properties
 				player_3.addMouseListener(new MouseListener() {
 
@@ -1447,11 +1482,12 @@ public class Monopoly {
 		addPlayer4 = new JButton();
 		player4nameLabel = new JLabel();
 		player4balance = new JLabel();
+		player4getOutOfJailLabel = new JLabel();
 		balanceLabels.add(player4balance);
 		player4balance.setBounds(frameHeight + 60,
-				(int) (frameHeight / 6.5) + 20, 140, 40);
+				(int) (frameHeight / 6.5) + 22, 140, 40);
 		player4nameLabel.setBounds(frameHeight + 60,
-				(int) (frameHeight / 6.5) + 5, 140, 40);
+				(int) (frameHeight / 6.5) + 7, 140, 40);
 		addPlayer4.setBounds(frameHeight + 60, (int) (frameHeight / 6.5) + 35,
 				140, 40);
 		try {
@@ -1530,6 +1566,13 @@ public class Monopoly {
 							.add(entities.getEntities().get(i));
 				}
 
+				player4getOutOfJailLabel.setText("get out of jail cards : " + players.get(3).getNumberOfGetOutOfJailCards());
+				player4getOutOfJailLabel.setBounds(frameHeight + 60,
+						(int) (frameHeight / 6.5) + 52, 140, 15);
+				player4getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC, 12));
+				player4getOutOfJailLabel.setVisible(true);
+				getOutOfJailLabels.add(player4getOutOfJailLabel);
+				
 				// highlights panels representing owned properties
 				player_4.addMouseListener(new MouseListener() {
 
@@ -1612,11 +1655,12 @@ public class Monopoly {
 		addPlayer5 = new JButton();
 		player5nameLabel = new JLabel();
 		player5balance = new JLabel();
+		player5getOutOfJailLabel = new JLabel();
 		balanceLabels.add(player5balance);
-		player5balance.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
-				(int) (frameHeight / 6.5) + 20, 140, 40);
-		player5nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
-				(int) (frameHeight / 6.5) + 5, 140, 40);
+		player5balance.setBounds(frameHeight + 62 + (int) (frameHeight / 4),
+				(int) (frameHeight / 6.5) + 22, 140, 40);
+		player5nameLabel.setBounds(frameHeight + 62 + (int) (frameHeight / 4),
+				(int) (frameHeight / 6.5) + 7, 140, 40);
 		addPlayer5.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
 				(int) (frameHeight / 6.5) + 35, 140, 40);
 		try {
@@ -1696,6 +1740,13 @@ public class Monopoly {
 							.add(entities.getEntities().get(i));
 				}
 
+				player5getOutOfJailLabel.setText("get out of jail cards : " + players.get(4).getNumberOfGetOutOfJailCards());
+				player5getOutOfJailLabel.setBounds(frameHeight + 62 + (int) (frameHeight / 4),
+						(int) (frameHeight / 6.5) + 52, 140, 15);
+				player5getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC, 12));
+				player5getOutOfJailLabel.setVisible(true);
+				getOutOfJailLabels.add(player5getOutOfJailLabel);
+				
 				// highlights panels representing owned properties
 				player_5.addMouseListener(new MouseListener() {
 
@@ -1778,11 +1829,12 @@ public class Monopoly {
 		addPlayer6 = new JButton();
 		player6nameLabel = new JLabel();
 		player6balance = new JLabel();
+		player6getOutOfJailLabel = new JLabel();
 		balanceLabels.add(player6balance);
-		player6balance.setBounds(frameHeight + 60 + (int) (frameHeight / 2),
-				(int) (frameHeight / 6.5) + 20, 140, 40);
-		player6nameLabel.setBounds(frameHeight + 60 + (int) (frameHeight / 2),
-				(int) (frameHeight / 6.5) + 5, 140, 40);
+		player6balance.setBounds(frameHeight + 64 + (int) (frameHeight / 2),
+				(int) (frameHeight / 6.5) + 22, 140, 40);
+		player6nameLabel.setBounds(frameHeight + 64 + (int) (frameHeight / 2),
+				(int) (frameHeight / 6.5) + 7, 140, 40);
 		addPlayer6.setBounds(frameHeight + 60 + (int) (frameHeight / 2),
 				(int) (frameHeight / 6.5) + 35, 140, 40);
 		try {
@@ -1862,6 +1914,13 @@ public class Monopoly {
 							.add(entities.getEntities().get(i));
 				}
 
+				player6getOutOfJailLabel.setText("get out of jail cards : " + players.get(5).getNumberOfGetOutOfJailCards());
+				player6getOutOfJailLabel.setBounds(frameHeight + 64 + (int) (frameHeight / 2),
+						(int) (frameHeight / 6.5) + 52, 140, 15);
+				player6getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC, 12));
+				player6getOutOfJailLabel.setVisible(true);
+				getOutOfJailLabels.add(player6getOutOfJailLabel);
+				
 				// highlights panels representing owned properties
 				player_6.addMouseListener(new MouseListener() {
 
@@ -1975,6 +2034,7 @@ public class Monopoly {
 			// all relevant components are set to be invisible
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				player_1.setBorder(BorderFactory.createLineBorder(Color.green, 2));
 				addPlayer3.setVisible(false);
 				addPlayer3Name.setVisible(false);
 				player3name.setVisible(false);
@@ -2093,6 +2153,12 @@ public class Monopoly {
 		frame.getContentPane().add(finishTurn);
 		frame.getContentPane().add(gamePrompt);
 		frame.getContentPane().add(pay50toGetOutOfJail);
+		frame.getContentPane().add(player1getOutOfJailLabel);
+		frame.getContentPane().add(player2getOutOfJailLabel);
+		frame.getContentPane().add(player3getOutOfJailLabel);
+		frame.getContentPane().add(player4getOutOfJailLabel);
+		frame.getContentPane().add(player5getOutOfJailLabel);
+		frame.getContentPane().add(player6getOutOfJailLabel);
 
 	}
 
@@ -2260,6 +2326,7 @@ public class Monopoly {
 							useGetOutOfJailCard.setVisible(true);
 							dontUseGetOutOfJailCard.setVisible(true);
 							rollTheDice.setEnabled(false);
+							finishTurn.setEnabled(false);
 						}
 					} else {
 						adjustPlayerPosition();
@@ -2367,6 +2434,8 @@ public class Monopoly {
 				dontUseGetOutOfJailCard.setVisible(false);
 				players.get(playerIndex).setNumberOfGetOutOfJailCards(-1);
 				gamePrompt.setText("");
+				getOutOfJailLabels.get(playerIndex).setText("get out of jail cards : " + players.get(playerIndex).getNumberOfGetOutOfJailCards());
+				doubleCounter = 0;
 			}
 		});
 
@@ -2400,7 +2469,9 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				playersPanes.get(playerIndex).setBorder(BorderFactory.createLineBorder(Color.black, 2));
 				playerIndex = (playerIndex + 1) % players.size();
+				playersPanes.get(playerIndex).setBorder(BorderFactory.createLineBorder(Color.green, 2));
 				if (players.get(playerIndex).isInJail()
 						&& players.get(playerIndex)
 								.getNumberOfGetOutOfJailCards() > 0) {
@@ -2432,7 +2503,7 @@ public class Monopoly {
 		if (!(players.get(playerIndex).isInJail())) {
 			log = "  /> "
 					+ players.get(playerIndex).getName()
-					+ " has landed on "
+					+ " went to "
 					+ entities
 							.getEntities()
 							.get(players.get(playerIndex)
