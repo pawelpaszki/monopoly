@@ -190,6 +190,7 @@ public class Monopoly {
 	private JButton dontUseGetOutOfJailCard;
 	private JButton pay50toGetOutOfJail;
 	private boolean extraRollNeeded;
+	private ArrayList <JLabel> playersNames;
 
 	/**
 	 * Launch the application.
@@ -220,6 +221,7 @@ public class Monopoly {
 		playerIndex = 0;
 		initialize();
 		doubleCounter = 0;
+		playersNames = new ArrayList<JLabel>();
 	}
 
 	/**
@@ -2275,12 +2277,21 @@ public class Monopoly {
 										+ " has his/her balance deducted by M50 and got out of Jail"
 										+ "\n";
 								logText.append(log);
+								players.get(playerIndex).setMoneyHeld(-50);
+								players.get(playerIndex).setInJail(false);
+								players.get(playerIndex).setTurnsInJail(0);
+								useGetOutOfJailCard.setVisible(false);
+								pay50toGetOutOfJail.setVisible(false);
+								gamePrompt.setText("");
+								balanceLabels.get(playerIndex).setText(
+										"E" + players.get(playerIndex).getMoneyHeld());
 							} else {
 								players.get(playerIndex).setTurnsInJail(1);
 								useGetOutOfJailCard.setVisible(false);
 								pay50toGetOutOfJail.setVisible(false);
 								gamePrompt.setText("");
 							}
+							extraRollNeeded = false;
 							rollTheDice.setEnabled(false);
 							finishTurn.setEnabled(true);
 						} else {
@@ -2295,6 +2306,8 @@ public class Monopoly {
 							logText.append(log);
 							gamePrompt.setText("");
 							extraRollNeeded = false;
+							balanceLabels.get(playerIndex).setText(
+									"E" + players.get(playerIndex).getMoneyHeld());
 						}
 					}
 				}
@@ -2318,6 +2331,8 @@ public class Monopoly {
 				logText.append(log);
 				gamePrompt.setText("");
 				extraRollNeeded = false;
+				balanceLabels.get(playerIndex).setText(
+						"E" + players.get(playerIndex).getMoneyHeld());
 			}
 
 		});
@@ -2326,13 +2341,16 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (!players.get(playerIndex).isInJail()) {
+				if (!players.get(playerIndex).isInJail() && doubleCounter < 3) {
 					finishTurn.setEnabled(true);
 					log = "  /> "
 							+ players.get(playerIndex).getName()
 							+ " used his/her get out of Jail card to avoid going to Jail"
 							+ "\n";
 					logText.append(log);
+					players.get(playerIndex).setPositionOnGameBoard(30 - players.get(playerIndex)
+											.getPositionOnGameBoard());
+					adjustPlayerPosition();
 				} else {
 					rollTheDice.setEnabled(true);
 					players.get(playerIndex).setInJail(false);
