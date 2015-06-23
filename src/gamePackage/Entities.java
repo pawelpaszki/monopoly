@@ -32,7 +32,7 @@ public class Entities {
 		entities.add(new Entity("Income Tax", null, 200, noRent, 4, false));
 		rentValues = new ArrayList<Double>();
 		rentValues.add(25.0);
-		entities.add(new Entity("Reading Railroad", "Railroads", 200, rentValues, 5, true));
+		entities.add(new Entity("Reading Railroad", "railroads", 200, rentValues, 5, true));
 		rentValues = new ArrayList<Double>();
 		rentValues.add(6.0);
 		rentValues.add(30.0);
@@ -72,7 +72,7 @@ public class Entities {
 		entities.add(new Entity("Virginia Avenue", "purple", 160, rentValues, 14, true));
 		rentValues = new ArrayList<Double>();
 		rentValues.add(25.0);
-		entities.add(new Entity("Pensylvania Railroad", "Railroads", 200, rentValues, 15, true));
+		entities.add(new Entity("Pensylvania Railroad", "railroads", 200, rentValues, 15, true));
 		rentValues = new ArrayList<Double>();
 		rentValues.add(14.0);
 		rentValues.add(70.0);
@@ -112,7 +112,7 @@ public class Entities {
 		entities.add(new Entity("Illinois Avenue", "red", 240, rentValues, 24, true));
 		rentValues = new ArrayList<Double>();
 		rentValues.add(25.0);
-		entities.add(new Entity("B & O Railroad", "Railroads", 200, rentValues, 25, true));
+		entities.add(new Entity("B & O Railroad", "railroads", 200, rentValues, 25, true));
 		rentValues = new ArrayList<Double>();
 		rentValues.add(22.0);
 		rentValues.add(110.0);
@@ -152,7 +152,7 @@ public class Entities {
 		entities.add(new Entity("Pennsylvania Avenue", "green", 320, rentValues, 34, true));
 		rentValues = new ArrayList<Double>();
 		rentValues.add(25.0);
-		entities.add(new Entity("Short Line Railroad", "Railroads", 200, rentValues, 35, true));
+		entities.add(new Entity("Short Line Railroad", "railroads", 200, rentValues, 35, true));
 		entities.add(new Entity("Chance (3)", null, 0, noRent, 36, false));
 		rentValues = new ArrayList<Double>();
 		rentValues.add(35.0);

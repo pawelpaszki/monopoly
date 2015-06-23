@@ -195,9 +195,14 @@ public class Monopoly {
 	private JButton useGetOutOfJailCard;
 	private JButton dontUseGetOutOfJailCard;
 	private JButton pay50toGetOutOfJail;
+	private JButton buyProperty;
+	private JButton dontBuyProperty;
+	private JButton payRent;
 	private boolean extraRollNeeded;
-	private ArrayList <JLayeredPane> playersPanes;
-	private ArrayList <JLabel> getOutOfJailLabels;
+	private ArrayList<JLayeredPane> playersPanes;
+	private ArrayList<JLabel> getOutOfJailLabels;
+	double rentValue;
+	private int ownerIndex;
 
 	/**
 	 * Launch the application.
@@ -902,7 +907,7 @@ public class Monopoly {
 		player6name.setHorizontalAlignment(SwingConstants.CENTER);
 		player6name.setVisible(false);
 		player_6.add(player6name);
-		
+
 		playersPanes.add(player_1);
 		playersPanes.add(player_2);
 		playersPanes.add(player_3);
@@ -913,8 +918,7 @@ public class Monopoly {
 		gamePrompt = new JLabel();
 		gamePrompt.setBounds(frameHeight + 50, (int) (frameHeight / 2 + 15),
 				(int) (frameHeight / 4) * 3 - 20, 15);
-		// ////////////////////
-		// ////////////////////
+
 		pay50toGetOutOfJail = new JButton("pay M50 to get out of Jail");
 		pay50toGetOutOfJail.setBounds(frameHeight + 200,
 				(int) (frameHeight / 2 + 60), 230, 20);
@@ -929,6 +933,18 @@ public class Monopoly {
 				(int) (frameHeight / 2 + 35), 160, 20);
 		useGetOutOfJailCard.setVisible(false);
 		dontUseGetOutOfJailCard.setVisible(false);
+		buyProperty = new JButton("buy");
+		dontBuyProperty = new JButton("don't buy");
+		payRent = new JButton("pay rent");
+		buyProperty.setBounds(frameHeight + 150, (int) (frameHeight / 2 + 35),
+				160, 20);
+		dontBuyProperty.setBounds(frameHeight + 320,
+				(int) (frameHeight / 2 + 35), 160, 20);
+		payRent.setBounds(frameHeight + 200, (int) (frameHeight / 2 + 60), 230,
+				20);
+		buyProperty.setVisible(false);
+		dontBuyProperty.setVisible(false);
+		payRent.setVisible(false);
 		logText = new JTextArea();
 		logText.setFont(new Font("Arial", Font.BOLD, 12));
 		log = "  /> the Game has started\n";
@@ -1048,15 +1064,13 @@ public class Monopoly {
 				player1name.setVisible(false);
 				addPlayer1Name.setVisible(false);
 				addPlayer2.setEnabled(true);
-				// test //
-				for (int i = 0; i < entities.getEntities().size(); i++) {
-					players.get(0).getOwnedProperties()
-							.add(entities.getEntities().get(i));
-				}
 
-				player1getOutOfJailLabel.setText("get out of jail cards : " + players.get(0).getNumberOfGetOutOfJailCards());
-				player1getOutOfJailLabel.setBounds(frameHeight + 60, 50, 140, 15);
-				player1getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC, 12));
+				player1getOutOfJailLabel.setText("get out of jail cards : "
+						+ players.get(0).getNumberOfGetOutOfJailCards());
+				player1getOutOfJailLabel.setBounds(frameHeight + 60, 50, 140,
+						15);
+				player1getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC,
+						12));
 				player1getOutOfJailLabel.setVisible(true);
 				getOutOfJailLabels.add(player1getOutOfJailLabel);
 				// highlights panels representing owned properties
@@ -1217,16 +1231,12 @@ public class Monopoly {
 				startGame.setEnabled(true); // after creating two players, the
 											// game can be started
 
-				// test //
-				for (int i = 0; i < entities.getEntities().size(); i++) {
-					players.get(1).getOwnedProperties()
-							.add(entities.getEntities().get(i));
-				}
-
-				player2getOutOfJailLabel.setText("get out of jail cards : " + players.get(1).getNumberOfGetOutOfJailCards());
-				player2getOutOfJailLabel.setBounds(frameHeight + 62 + (int) (frameHeight / 4),
-						50, 140, 15);
-				player2getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC, 12));
+				player2getOutOfJailLabel.setText("get out of jail cards : "
+						+ players.get(1).getNumberOfGetOutOfJailCards());
+				player2getOutOfJailLabel.setBounds(frameHeight + 62
+						+ (int) (frameHeight / 4), 50, 140, 15);
+				player2getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC,
+						12));
 				player2getOutOfJailLabel.setVisible(true);
 				getOutOfJailLabels.add(player2getOutOfJailLabel);
 				// highlights panels representing owned properties
@@ -1388,16 +1398,12 @@ public class Monopoly {
 				addPlayer3Name.setVisible(false);
 				addPlayer4.setEnabled(true);
 
-				// test //
-				for (int i = 0; i < entities.getEntities().size(); i++) {
-					players.get(2).getOwnedProperties()
-							.add(entities.getEntities().get(i));
-				}
-
-				player3getOutOfJailLabel.setText("get out of jail cards : " + players.get(2).getNumberOfGetOutOfJailCards());
-				player3getOutOfJailLabel.setBounds(frameHeight + 64 + (int) (frameHeight / 2),
-						50, 140, 15);
-				player3getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC, 12));
+				player3getOutOfJailLabel.setText("get out of jail cards : "
+						+ players.get(2).getNumberOfGetOutOfJailCards());
+				player3getOutOfJailLabel.setBounds(frameHeight + 64
+						+ (int) (frameHeight / 2), 50, 140, 15);
+				player3getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC,
+						12));
 				player3getOutOfJailLabel.setVisible(true);
 				getOutOfJailLabels.add(player3getOutOfJailLabel);
 				// highlights panels representing owned properties
@@ -1560,19 +1566,15 @@ public class Monopoly {
 				addPlayer4Name.setVisible(false);
 				addPlayer5.setEnabled(true);
 
-				// test //
-				for (int i = 0; i < entities.getEntities().size(); i++) {
-					players.get(3).getOwnedProperties()
-							.add(entities.getEntities().get(i));
-				}
-
-				player4getOutOfJailLabel.setText("get out of jail cards : " + players.get(3).getNumberOfGetOutOfJailCards());
+				player4getOutOfJailLabel.setText("get out of jail cards : "
+						+ players.get(3).getNumberOfGetOutOfJailCards());
 				player4getOutOfJailLabel.setBounds(frameHeight + 60,
 						(int) (frameHeight / 6.5) + 52, 140, 15);
-				player4getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC, 12));
+				player4getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC,
+						12));
 				player4getOutOfJailLabel.setVisible(true);
 				getOutOfJailLabels.add(player4getOutOfJailLabel);
-				
+
 				// highlights panels representing owned properties
 				player_4.addMouseListener(new MouseListener() {
 
@@ -1734,19 +1736,16 @@ public class Monopoly {
 				addPlayer5Name.setVisible(false);
 				addPlayer6.setEnabled(true);
 
-				// test //
-				for (int i = 0; i < entities.getEntities().size(); i++) {
-					players.get(4).getOwnedProperties()
-							.add(entities.getEntities().get(i));
-				}
-
-				player5getOutOfJailLabel.setText("get out of jail cards : " + players.get(4).getNumberOfGetOutOfJailCards());
-				player5getOutOfJailLabel.setBounds(frameHeight + 62 + (int) (frameHeight / 4),
+				player5getOutOfJailLabel.setText("get out of jail cards : "
+						+ players.get(4).getNumberOfGetOutOfJailCards());
+				player5getOutOfJailLabel.setBounds(frameHeight + 62
+						+ (int) (frameHeight / 4),
 						(int) (frameHeight / 6.5) + 52, 140, 15);
-				player5getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC, 12));
+				player5getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC,
+						12));
 				player5getOutOfJailLabel.setVisible(true);
 				getOutOfJailLabels.add(player5getOutOfJailLabel);
-				
+
 				// highlights panels representing owned properties
 				player_5.addMouseListener(new MouseListener() {
 
@@ -1908,19 +1907,16 @@ public class Monopoly {
 				player6name.setVisible(false);
 				addPlayer6Name.setVisible(false);
 
-				// test //
-				for (int i = 0; i < entities.getEntities().size(); i++) {
-					players.get(5).getOwnedProperties()
-							.add(entities.getEntities().get(i));
-				}
-
-				player6getOutOfJailLabel.setText("get out of jail cards : " + players.get(5).getNumberOfGetOutOfJailCards());
-				player6getOutOfJailLabel.setBounds(frameHeight + 64 + (int) (frameHeight / 2),
+				player6getOutOfJailLabel.setText("get out of jail cards : "
+						+ players.get(5).getNumberOfGetOutOfJailCards());
+				player6getOutOfJailLabel.setBounds(frameHeight + 64
+						+ (int) (frameHeight / 2),
 						(int) (frameHeight / 6.5) + 52, 140, 15);
-				player6getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC, 12));
+				player6getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC,
+						12));
 				player6getOutOfJailLabel.setVisible(true);
 				getOutOfJailLabels.add(player6getOutOfJailLabel);
-				
+
 				// highlights panels representing owned properties
 				player_6.addMouseListener(new MouseListener() {
 
@@ -2034,7 +2030,8 @@ public class Monopoly {
 			// all relevant components are set to be invisible
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				player_1.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+				player_1.setBorder(BorderFactory.createLineBorder(Color.green,
+						2));
 				addPlayer3.setVisible(false);
 				addPlayer3Name.setVisible(false);
 				player3name.setVisible(false);
@@ -2115,6 +2112,9 @@ public class Monopoly {
 		frame.getContentPane().add(gameConsole);
 		frame.getContentPane().add(useGetOutOfJailCard);
 		frame.getContentPane().add(dontUseGetOutOfJailCard);
+		frame.getContentPane().add(buyProperty);
+		frame.getContentPane().add(dontBuyProperty);
+		frame.getContentPane().add(payRent);
 
 		rollTheDice = new JButton();
 		rollTheDice.setBounds(frameHeight / 2 - 70, frameHeight / 2 + 40, 140,
@@ -2279,10 +2279,10 @@ public class Monopoly {
 				}
 				if (!extraRollNeeded) {
 					if (!(randomDice1 == randomDice2)) {
-						finishTurn.setEnabled(true);
-						rollTheDice.setEnabled(false);
 						players.get(playerIndex).setPositionOnGameBoard(
 								randomDice1 + randomDice2);
+						finishTurn.setEnabled(true);
+						rollTheDice.setEnabled(false);
 					} else {
 						doubleCounter++;
 						players.get(playerIndex).setPositionOnGameBoard(
@@ -2334,6 +2334,7 @@ public class Monopoly {
 								+ " "
 								+ players.get(playerIndex)
 										.getPositionOnGameBoard());
+						buyOrRent();
 					}
 				} else {
 					if (players.get(playerIndex).isInJail()) {
@@ -2351,7 +2352,9 @@ public class Monopoly {
 								pay50toGetOutOfJail.setVisible(false);
 								gamePrompt.setText("");
 								balanceLabels.get(playerIndex).setText(
-										"E" + players.get(playerIndex).getMoneyHeld());
+										"E"
+												+ players.get(playerIndex)
+														.getMoneyHeld());
 							} else {
 								players.get(playerIndex).setTurnsInJail(1);
 								useGetOutOfJailCard.setVisible(false);
@@ -2366,22 +2369,171 @@ public class Monopoly {
 							players.get(playerIndex).setTurnsInJail(0);
 							useGetOutOfJailCard.setVisible(false);
 							pay50toGetOutOfJail.setVisible(false);
-							log = "  /> "
-									+ players.get(playerIndex).getName()
+							log = "  /> " + players.get(playerIndex).getName()
 									+ " rolled double and got out of Jail"
 									+ "\n";
 							logText.append(log);
 							gamePrompt.setText("");
 							extraRollNeeded = false;
 							balanceLabels.get(playerIndex).setText(
-									"E" + players.get(playerIndex).getMoneyHeld());
+									"E"
+											+ players.get(playerIndex)
+													.getMoneyHeld());
 						}
+					} else {
+						payRent.setVisible(true);
 					}
 				}
 			}
 
 		});
 
+		buyProperty.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// adding property to player's ArrayList of properties
+				players.get(playerIndex)
+						.getOwnedProperties()
+						.add(entities.getEntities().get(
+								players.get(playerIndex)
+										.getPositionOnGameBoard()));
+
+				// deducting the value of the property from player's balance
+				players.get(playerIndex).setMoneyHeld(
+						-entities
+								.getEntities()
+								.get(players.get(playerIndex)
+										.getPositionOnGameBoard()).getCost());
+
+				// setting new owner of a property
+				entities.getEntities()
+						.get(players.get(playerIndex).getPositionOnGameBoard())
+						.setOwner(players.get(playerIndex));
+
+				if (randomDice1 != randomDice2) {
+					finishTurn.setEnabled(true);
+				}
+				buyProperty.setVisible(false);
+				dontBuyProperty.setVisible(false);
+				log = "  /> "
+						+ players.get(playerIndex).getName()
+						+ " has just bought "
+						+ entities
+								.getEntities()
+								.get(players.get(playerIndex)
+										.getPositionOnGameBoard()).getName() + 
+										"(worth M" +
+										entities
+										.getEntities()
+										.get(players.get(playerIndex)
+												.getPositionOnGameBoard()).getCost()
+						+ ")\n";
+				logText.append(log);
+				balanceLabels.get(playerIndex).setText(
+						"E" + players.get(playerIndex).getMoneyHeld());
+			}
+		});
+
+		dontBuyProperty.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (randomDice1 != randomDice2) {
+					finishTurn.setEnabled(true);
+				}
+				buyProperty.setVisible(false);
+				dontBuyProperty.setVisible(false);
+				log = "  /> "
+						+ players.get(playerIndex).getName()
+						+ " did not buy "
+						+ entities
+								.getEntities()
+								.get(players.get(playerIndex)
+										.getPositionOnGameBoard()).getName()
+						+ "\n";
+				logText.append(log);
+			}
+		});
+
+		payRent.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				if (entities.getEntities()
+						.get(players.get(playerIndex).getPositionOnGameBoard())
+						.getNumberOfHotels() == 0 && !entities.getEntities()
+								.get(players.get(playerIndex).getPositionOnGameBoard())
+								.getGroup().equals("utilities") && !entities.getEntities()
+								.get(players.get(playerIndex).getPositionOnGameBoard())
+								.getGroup().equals("railroads")) {
+					rentValue = entities
+							.getEntities()
+							.get(players.get(playerIndex)
+									.getPositionOnGameBoard())
+							.getRentValues()
+							.get(entities
+									.getEntities()
+									.get(players.get(playerIndex)
+											.getPositionOnGameBoard())
+									.getNumberOfHouses());
+					players.get(playerIndex).setMoneyHeld(-rentValue);
+					ownerIndex = getPlayerIndex(entities
+							.getEntities()
+							.get(players.get(playerIndex)
+									.getPositionOnGameBoard()).getOwner());
+					players.get(ownerIndex).setMoneyHeld(rentValue);
+				} else if (players.get(playerIndex).getPositionOnGameBoard() == 12 && entities.getEntities()
+						.get(29).getOwner() != null || players.get(playerIndex).getPositionOnGameBoard() == 29 && entities.getEntities()
+						.get(12).getOwner() != null) {
+					rentValue = 10 * (randomDice1 + randomDice2);
+					players.get(playerIndex).setMoneyHeld(-rentValue);
+					ownerIndex = getPlayerIndex(entities
+							.getEntities()
+							.get(players.get(playerIndex)
+									.getPositionOnGameBoard()).getOwner());
+					players.get(ownerIndex).setMoneyHeld(rentValue);
+					extraRollNeeded = false;
+				} else if (players.get(playerIndex).getPositionOnGameBoard() == 12 && entities.getEntities()
+						.get(29).getOwner() == null || players.get(playerIndex).getPositionOnGameBoard() == 29 && entities.getEntities()
+						.get(12).getOwner() == null) {
+					rentValue = 4 * (randomDice1 + randomDice2);
+					players.get(playerIndex).setMoneyHeld(-rentValue);
+					ownerIndex = getPlayerIndex(entities
+							.getEntities()
+							.get(players.get(playerIndex)
+									.getPositionOnGameBoard()).getOwner());
+					players.get(ownerIndex).setMoneyHeld(rentValue);
+					extraRollNeeded = false;
+				}
+				payRent.setVisible(false);
+				log = "  /> "
+						+ players.get(playerIndex).getName()
+						+ " paid "
+						+ rentValue
+						+ " rent to "
+						+ players.get(
+								getPlayerIndex(entities
+										.getEntities()
+										.get(players.get(playerIndex)
+												.getPositionOnGameBoard())
+										.getOwner())).getName() + "\n";
+				logText.append(log);
+				balanceLabels.get(playerIndex).setText(
+						"E" + players.get(playerIndex).getMoneyHeld());
+				balanceLabels.get(ownerIndex).setText(
+						"E" + players.get(ownerIndex).getMoneyHeld());
+
+				if (randomDice1 != randomDice2) {
+					finishTurn.setEnabled(true);
+					rollTheDice.setEnabled(false);
+				} else {
+					rollTheDice.setEnabled(true);
+				}
+			}
+			
+		});
 		pay50toGetOutOfJail.addActionListener(new ActionListener() {
 
 			@Override
@@ -2415,8 +2567,9 @@ public class Monopoly {
 							+ " used his/her get out of Jail card to avoid going to Jail"
 							+ "\n";
 					logText.append(log);
-					players.get(playerIndex).setPositionOnGameBoard(30 - players.get(playerIndex)
-											.getPositionOnGameBoard());
+					players.get(playerIndex).setPositionOnGameBoard(
+							30 - players.get(playerIndex)
+									.getPositionOnGameBoard());
 					adjustPlayerPosition();
 				} else {
 					rollTheDice.setEnabled(true);
@@ -2434,7 +2587,10 @@ public class Monopoly {
 				dontUseGetOutOfJailCard.setVisible(false);
 				players.get(playerIndex).setNumberOfGetOutOfJailCards(-1);
 				gamePrompt.setText("");
-				getOutOfJailLabels.get(playerIndex).setText("get out of jail cards : " + players.get(playerIndex).getNumberOfGetOutOfJailCards());
+				getOutOfJailLabels.get(playerIndex).setText(
+						"get out of jail cards : "
+								+ players.get(playerIndex)
+										.getNumberOfGetOutOfJailCards());
 				doubleCounter = 0;
 			}
 		});
@@ -2449,9 +2605,9 @@ public class Monopoly {
 				players.get(playerIndex).setInJail(true);
 				adjustPlayerPosition();
 				if (doubleCounter == 3) {
-				log = "  /> " + players.get(playerIndex).getName()
-						+ " went to Jail for rolling 3 doubles " + "\n";
-				logText.append(log);
+					log = "  /> " + players.get(playerIndex).getName()
+							+ " went to Jail for rolling 3 doubles " + "\n";
+					logText.append(log);
 				} else {
 					log = "  /> " + players.get(playerIndex).getName()
 							+ " went to Jail" + "\n";
@@ -2469,9 +2625,11 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				playersPanes.get(playerIndex).setBorder(BorderFactory.createLineBorder(Color.black, 2));
+				playersPanes.get(playerIndex).setBorder(
+						BorderFactory.createLineBorder(Color.black, 2));
 				playerIndex = (playerIndex + 1) % players.size();
-				playersPanes.get(playerIndex).setBorder(BorderFactory.createLineBorder(Color.green, 2));
+				playersPanes.get(playerIndex).setBorder(
+						BorderFactory.createLineBorder(Color.green, 2));
 				if (players.get(playerIndex).isInJail()
 						&& players.get(playerIndex)
 								.getNumberOfGetOutOfJailCards() > 0) {
@@ -2493,10 +2651,70 @@ public class Monopoly {
 				}
 				finishTurn.setEnabled(false);
 				doubleCounter = 0;
+				buyProperty.setEnabled(true);
 
 			}
 
 		});
+	}
+
+	private void buyOrRent() {
+		if (entities.getEntities()
+				.get(players.get(playerIndex).getPositionOnGameBoard())
+				.canBePurchased()) {
+			finishTurn.setEnabled(false);
+
+			if (entities.getEntities()
+					.get(players.get(playerIndex).getPositionOnGameBoard())
+					.getOwner() == null) {
+				if (entities.getEntities()
+						.get(players.get(playerIndex).getPositionOnGameBoard())
+						.getCost() <= players.get(playerIndex).getMoneyHeld()) {
+					buyProperty.setVisible(true);
+					dontBuyProperty.setVisible(true);
+				} else {
+					buyProperty.setVisible(true);
+					buyProperty.setEnabled(false);
+					gamePrompt
+							.setText("You don't have enough cash to buy this property. Press don't buy or borrow money from the bank");
+					dontBuyProperty.setVisible(true);
+				}
+			} else if (!entities.getEntities()
+					.get(players.get(playerIndex).getPositionOnGameBoard())
+					.getOwner().getName()
+					.equals(players.get(playerIndex).getName()) && 
+					players.get(playerIndex).getPositionOnGameBoard() != 
+					12 && players.get(playerIndex).getPositionOnGameBoard() != 
+					29) {
+				payRent.setVisible(true);
+				if (randomDice1 == randomDice2) {
+					rollTheDice.setEnabled(false);
+				}
+			} else if (!entities.getEntities()
+					.get(players.get(playerIndex).getPositionOnGameBoard())
+					.getOwner().getName()
+					.equals(players.get(playerIndex).getName()) && 
+					players.get(playerIndex).getPositionOnGameBoard() == 
+					12 || players.get(playerIndex).getPositionOnGameBoard() == 
+					29) {
+				extraRollNeeded = true;
+				rollTheDice.setEnabled(true);
+			} else {
+				finishTurn.setEnabled(true);
+			}
+		}
+
+		
+
+	}
+
+	private int getPlayerIndex(Player player) {
+		for (int i = 0; i < players.size(); i++) {
+			if (players.get(i).getName().equals(player.getName())) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	private void adjustPlayerPosition() {

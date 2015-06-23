@@ -80,7 +80,7 @@ public class Entity {
 		this.owner = owner;
 	}
 
-	public boolean isCanBePurchased() {
+	public boolean canBePurchased() {
 		return canBePurchased;
 	}
 
