@@ -17,8 +17,10 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -203,6 +205,9 @@ public class Monopoly {
 	private ArrayList<JLabel> getOutOfJailLabels;
 	double rentValue;
 	private int ownerIndex;
+	private JComboBox<String> buyUnwantedProperty;
+	private DefaultComboBoxModel<String> buyUnwantedPropertyModel;
+	
 
 	/**
 	 * Launch the application.
@@ -967,7 +972,17 @@ public class Monopoly {
 				innerGameLog1));
 		gameConsole.setBorder(BorderFactory.createCompoundBorder(outerBorder,
 				innerGameConsole1));
-
+		buyUnwantedProperty = new JComboBox<String>();
+		buyUnwantedProperty.setBounds(frameHeight + 60, (int) (frameHeight / 2 + 85),
+				120, 20);
+		buyUnwantedProperty.setVisible(true);
+		buyUnwantedPropertyModel = new DefaultComboBoxModel<String>();
+		for (Player player : players) {
+			if (!player.getName().equals(players.get(playerIndex).getName())) {
+				buyUnwantedPropertyModel.addElement(player.getName());
+			}
+		}
+		buyUnwantedProperty.setModel(buyUnwantedPropertyModel);
 		gameLog.setVisible(false);
 		addPlayer1Name = new JButton("Add player's name");
 		addPlayer2Name = new JButton("Add player's name");
@@ -2159,6 +2174,7 @@ public class Monopoly {
 		frame.getContentPane().add(player4getOutOfJailLabel);
 		frame.getContentPane().add(player5getOutOfJailLabel);
 		frame.getContentPane().add(player6getOutOfJailLabel);
+		frame.getContentPane().add(buyUnwantedProperty);
 
 	}
 
@@ -2173,8 +2189,8 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				randomDice1 = random.nextInt(6) + 1;
-				randomDice2 = random.nextInt(6) + 1;
+				randomDice1 = 4;// random.nextInt(6) + 1;
+				randomDice2 = 1;// random.nextInt(6) + 1;
 				System.out.println(randomDice1);
 				System.out.println(randomDice2);
 				switch (randomDice1) {
@@ -2287,6 +2303,7 @@ public class Monopoly {
 						doubleCounter++;
 						players.get(playerIndex).setPositionOnGameBoard(
 								randomDice1 + randomDice2);
+						finishTurn.setEnabled(false);
 					} // three doubles - player goes to the jail
 					if (doubleCounter == 3
 							|| players.get(playerIndex)
@@ -2422,12 +2439,12 @@ public class Monopoly {
 						+ entities
 								.getEntities()
 								.get(players.get(playerIndex)
-										.getPositionOnGameBoard()).getName() + 
-										"(worth M" +
-										entities
-										.getEntities()
-										.get(players.get(playerIndex)
-												.getPositionOnGameBoard()).getCost()
+										.getPositionOnGameBoard()).getName()
+						+ "(worth M"
+						+ entities
+								.getEntities()
+								.get(players.get(playerIndex)
+										.getPositionOnGameBoard()).getCost()
 						+ ")\n";
 				logText.append(log);
 				balanceLabels.get(playerIndex).setText(
@@ -2463,11 +2480,17 @@ public class Monopoly {
 
 				if (entities.getEntities()
 						.get(players.get(playerIndex).getPositionOnGameBoard())
-						.getNumberOfHotels() == 0 && !entities.getEntities()
-								.get(players.get(playerIndex).getPositionOnGameBoard())
-								.getGroup().equals("utilities") && !entities.getEntities()
-								.get(players.get(playerIndex).getPositionOnGameBoard())
-								.getGroup().equals("railroads")) {
+						.getNumberOfHotels() == 0
+						&& !entities
+								.getEntities()
+								.get(players.get(playerIndex)
+										.getPositionOnGameBoard()).getGroup()
+								.equals("utilities")
+						&& !entities
+								.getEntities()
+								.get(players.get(playerIndex)
+										.getPositionOnGameBoard()).getGroup()
+								.equals("railroads")) {
 					rentValue = entities
 							.getEntities()
 							.get(players.get(playerIndex)
@@ -2478,15 +2501,25 @@ public class Monopoly {
 									.get(players.get(playerIndex)
 											.getPositionOnGameBoard())
 									.getNumberOfHouses());
-					players.get(playerIndex).setMoneyHeld(-rentValue);
+
 					ownerIndex = getPlayerIndex(entities
 							.getEntities()
 							.get(players.get(playerIndex)
 									.getPositionOnGameBoard()).getOwner());
+					if (playerHasAll(
+							entities.getEntities()
+									.get(players.get(playerIndex)
+											.getPositionOnGameBoard())
+									.getGroup(), players.get(ownerIndex)
+									.getName())) {
+						rentValue = rentValue * 2;
+					}
+					players.get(playerIndex).setMoneyHeld(-rentValue);
 					players.get(ownerIndex).setMoneyHeld(rentValue);
-				} else if (players.get(playerIndex).getPositionOnGameBoard() == 12 && entities.getEntities()
-						.get(29).getOwner() != null || players.get(playerIndex).getPositionOnGameBoard() == 29 && entities.getEntities()
-						.get(12).getOwner() != null) {
+				} else if (players.get(playerIndex).getPositionOnGameBoard() == 12
+						&& entities.getEntities().get(28).getOwner() != null
+						|| players.get(playerIndex).getPositionOnGameBoard() == 28
+						&& entities.getEntities().get(12).getOwner() != null) {
 					rentValue = 10 * (randomDice1 + randomDice2);
 					players.get(playerIndex).setMoneyHeld(-rentValue);
 					ownerIndex = getPlayerIndex(entities
@@ -2495,9 +2528,10 @@ public class Monopoly {
 									.getPositionOnGameBoard()).getOwner());
 					players.get(ownerIndex).setMoneyHeld(rentValue);
 					extraRollNeeded = false;
-				} else if (players.get(playerIndex).getPositionOnGameBoard() == 12 && entities.getEntities()
-						.get(29).getOwner() == null || players.get(playerIndex).getPositionOnGameBoard() == 29 && entities.getEntities()
-						.get(12).getOwner() == null) {
+				} else if (players.get(playerIndex).getPositionOnGameBoard() == 12
+						&& entities.getEntities().get(28).getOwner() == null
+						|| players.get(playerIndex).getPositionOnGameBoard() == 28
+						&& entities.getEntities().get(12).getOwner() == null) {
 					rentValue = 4 * (randomDice1 + randomDice2);
 					players.get(playerIndex).setMoneyHeld(-rentValue);
 					ownerIndex = getPlayerIndex(entities
@@ -2506,6 +2540,17 @@ public class Monopoly {
 									.getPositionOnGameBoard()).getOwner());
 					players.get(ownerIndex).setMoneyHeld(rentValue);
 					extraRollNeeded = false;
+				} else if (entities.getEntities()
+						.get(players.get(playerIndex).getPositionOnGameBoard())
+						.getGroup().equals("railroads")) {
+					ownerIndex = getPlayerIndex(entities
+							.getEntities()
+							.get(players.get(playerIndex)
+									.getPositionOnGameBoard()).getOwner());
+					rentValue = getRailRoadRent(players.get(ownerIndex)
+							.getName());
+					players.get(playerIndex).setMoneyHeld(-rentValue);
+					players.get(ownerIndex).setMoneyHeld(rentValue);
 				}
 				payRent.setVisible(false);
 				log = "  /> "
@@ -2532,7 +2577,7 @@ public class Monopoly {
 					rollTheDice.setEnabled(true);
 				}
 			}
-			
+
 		});
 		pay50toGetOutOfJail.addActionListener(new ActionListener() {
 
@@ -2652,6 +2697,19 @@ public class Monopoly {
 				finishTurn.setEnabled(false);
 				doubleCounter = 0;
 				buyProperty.setEnabled(true);
+				
+				/////
+				/////
+				buyUnwantedPropertyModel = new DefaultComboBoxModel<String>();
+				for (Player player : players) {
+					if (!player.getName().equals(players.get(playerIndex).getName())) {
+						buyUnwantedPropertyModel.addElement(player.getName());
+					}
+				}
+				buyUnwantedProperty.setModel(buyUnwantedPropertyModel);
+				////
+				////
+				
 
 			}
 
@@ -2682,10 +2740,9 @@ public class Monopoly {
 			} else if (!entities.getEntities()
 					.get(players.get(playerIndex).getPositionOnGameBoard())
 					.getOwner().getName()
-					.equals(players.get(playerIndex).getName()) && 
-					players.get(playerIndex).getPositionOnGameBoard() != 
-					12 && players.get(playerIndex).getPositionOnGameBoard() != 
-					29) {
+					.equals(players.get(playerIndex).getName())
+					&& players.get(playerIndex).getPositionOnGameBoard() != 12
+					&& players.get(playerIndex).getPositionOnGameBoard() != 28) {
 				payRent.setVisible(true);
 				if (randomDice1 == randomDice2) {
 					rollTheDice.setEnabled(false);
@@ -2693,10 +2750,9 @@ public class Monopoly {
 			} else if (!entities.getEntities()
 					.get(players.get(playerIndex).getPositionOnGameBoard())
 					.getOwner().getName()
-					.equals(players.get(playerIndex).getName()) && 
-					players.get(playerIndex).getPositionOnGameBoard() == 
-					12 || players.get(playerIndex).getPositionOnGameBoard() == 
-					29) {
+					.equals(players.get(playerIndex).getName())
+					&& players.get(playerIndex).getPositionOnGameBoard() == 12
+					|| players.get(playerIndex).getPositionOnGameBoard() == 28) {
 				extraRollNeeded = true;
 				rollTheDice.setEnabled(true);
 			} else {
@@ -2704,8 +2760,60 @@ public class Monopoly {
 			}
 		}
 
-		
+	}
 
+	private boolean playerHasAll(String group, String name) {
+		int counter = 0;
+		for (Entity entity : entities.getEntities()) {
+			if (entity.canBePurchased()) {
+				if (entity.getGroup().equals(group)) {
+					if (entity.getOwner() != null
+							&& entity.getOwner().getName().equals(name)) {
+						counter++;
+					}
+				}
+			}
+		}
+		if ((group.equals("brown") || group.equals("blue"))) {
+			if (counter == 2) {
+				return true;
+			}
+
+		} else if (!group.equals("brown") || !group.equals("blue")) {
+			if (counter == 3) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private double getRailRoadRent(String name) {
+		int counter = 0;
+		double rentValue = 0;
+		for (Entity entity : entities.getEntities()) {
+			if (entity.getGroup() != null && entity.getGroup().equals("railroads")) {
+				if (entity.getOwner() != null
+						&& entity.getOwner().getName().equals(name)) {
+					counter++;
+				}
+			}
+
+		}
+		switch(counter) {
+		case 1:
+			rentValue = 25;
+			break;
+		case 2:
+			rentValue = 50;
+			break;
+		case 3:
+			rentValue = 100;
+			break;
+		case 4:
+			rentValue = 200;
+			break;
+		}
+		return rentValue;
 	}
 
 	private int getPlayerIndex(Player player) {
