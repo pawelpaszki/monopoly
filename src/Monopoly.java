@@ -1,5 +1,4 @@
 
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -210,6 +209,11 @@ public class Monopoly {
 	private JTextField priceOfUnwantedProperty;
 	private double valueOfUnwantedProperty;
 	private JButton buyUnwantedPropertyButton;
+	private JLabel mortgageManagement;
+	private JComboBox<String> mortgageComboBox;
+	private DefaultComboBoxModel<String> mortgageModel;
+	private JButton takeLoan;
+	private JButton payLoan;
 
 	/**
 	 * Launch the application.
@@ -975,20 +979,35 @@ public class Monopoly {
 		gameConsole.setBorder(BorderFactory.createCompoundBorder(outerBorder,
 				innerGameConsole1));
 		buyUnwantedProperty = new JComboBox<String>();
-		buyUnwantedProperty.setBounds(frameHeight + 150, (int) (frameHeight / 2 + 35),
-				140, 20);
+		buyUnwantedProperty.setBounds(frameHeight + 150,
+				(int) (frameHeight / 2 + 35), 140, 20);
 		buyUnwantedProperty.setVisible(false);
 		buyUnwantedPropertyButton = new JButton("buy");
-		buyUnwantedPropertyButton.setBounds(frameHeight + 360, (int) (frameHeight / 2 + 35),
-				120, 20);
+		buyUnwantedPropertyButton.setBounds(frameHeight + 360,
+				(int) (frameHeight / 2 + 35), 120, 20);
 		buyUnwantedPropertyButton.setEnabled(false);
 		buyUnwantedPropertyButton.setVisible(false);
 		priceOfUnwantedProperty = new JTextField();
-		priceOfUnwantedProperty.setBounds(frameHeight + 300, (int) (frameHeight / 2 + 35),
-				45, 20);
+		priceOfUnwantedProperty.setBounds(frameHeight + 300,
+				(int) (frameHeight / 2 + 35), 45, 20);
 		priceOfUnwantedProperty.setVisible(false);
 		gameLog.setVisible(false);
-		
+		mortgageManagement = new JLabel("Mortgage management >>");
+		mortgageManagement.setBounds(frameHeight + 50,
+				(int) (frameHeight / 2 + 90), 150, 20);
+		mortgageComboBox = new JComboBox<String>();
+		mortgageComboBox.setBounds(frameHeight + 210,
+				(int) (frameHeight / 2 + 90), 140, 20);
+		takeLoan = new JButton("take a loan");
+		payLoan = new JButton("pay the loan");
+		takeLoan.setBounds(frameHeight + 355, (int) (frameHeight / 2 + 90),
+				100, 20);
+		payLoan.setBounds(frameHeight + 460, (int) (frameHeight / 2 + 90), 115,
+				20);
+		mortgageManagement.setVisible(false);
+		mortgageComboBox.setVisible(false);
+		takeLoan.setVisible(false);
+		payLoan.setVisible(false);
 		buyUnwantedProperty.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -998,41 +1017,47 @@ public class Monopoly {
 				System.out.println(tempShare);
 			}
 		});
-		
-		priceOfUnwantedProperty.getDocument().addDocumentListener(new DocumentListener() {
-			@Override
-			public void changedUpdate(DocumentEvent arg0) {
-				checkValue();
-			}
 
-			@Override
-			public void insertUpdate(DocumentEvent arg0) {
-				checkValue();
-			}
+		priceOfUnwantedProperty.getDocument().addDocumentListener(
+				new DocumentListener() {
+					@Override
+					public void changedUpdate(DocumentEvent arg0) {
+						checkValue();
+					}
 
-			@Override
-			public void removeUpdate(DocumentEvent arg0) {
-				checkValue();
-			}
+					@Override
+					public void insertUpdate(DocumentEvent arg0) {
+						checkValue();
+					}
 
-			public void checkValue() {
-				String value = priceOfUnwantedProperty.getText();
-				int tempQty = 0;
-				try {
-					tempQty = Integer.parseInt(value);
-				} catch (Exception e) {
-					
-				}
-				
-				if (tempQty > 0 && tempQty <= players.get(getPlayerIndex(String.valueOf(buyUnwantedProperty.getSelectedItem()))).getMoneyHeld()) {
-					buyUnwantedPropertyButton.setEnabled(true);
-					valueOfUnwantedProperty = tempQty;
-				} else {
-					buyUnwantedPropertyButton.setEnabled(false);
-					//valueOfUnwantedProperty = 0;
-				}
-			}
-		});
+					@Override
+					public void removeUpdate(DocumentEvent arg0) {
+						checkValue();
+					}
+
+					public void checkValue() {
+						String value = priceOfUnwantedProperty.getText();
+						int tempQty = 0;
+						try {
+							tempQty = Integer.parseInt(value);
+						} catch (Exception e) {
+
+						}
+
+						if (tempQty > 0
+								&& tempQty <= players.get(
+										getPlayerIndex(String
+												.valueOf(buyUnwantedProperty
+														.getSelectedItem())))
+										.getMoneyHeld()) {
+							buyUnwantedPropertyButton.setEnabled(true);
+							valueOfUnwantedProperty = tempQty;
+						} else {
+							buyUnwantedPropertyButton.setEnabled(false);
+							// valueOfUnwantedProperty = 0;
+						}
+					}
+				});
 		addPlayer1Name = new JButton("Add player's name");
 		addPlayer2Name = new JButton("Add player's name");
 		addPlayer3Name = new JButton("Add player's name");
@@ -2226,6 +2251,10 @@ public class Monopoly {
 		frame.getContentPane().add(buyUnwantedProperty);
 		frame.getContentPane().add(priceOfUnwantedProperty);
 		frame.getContentPane().add(buyUnwantedPropertyButton);
+		frame.getContentPane().add(mortgageManagement);
+		frame.getContentPane().add(mortgageComboBox);
+		frame.getContentPane().add(takeLoan);
+		frame.getContentPane().add(payLoan);
 
 	}
 
@@ -2240,10 +2269,15 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				gamePrompt.setText("");
 				randomDice1 = random.nextInt(6) + 1;
 				randomDice2 = random.nextInt(6) + 1;
 				System.out.println(randomDice1);
 				System.out.println(randomDice2);
+				buyProperty.setEnabled(true);
+				buyUnwantedProperty.setVisible(false);
+				buyUnwantedPropertyButton.setVisible(false);
+				priceOfUnwantedProperty.setVisible(false);
 				switch (randomDice1) {
 				case 1:
 					try {
@@ -2355,10 +2389,13 @@ public class Monopoly {
 						players.get(playerIndex).setPositionOnGameBoard(
 								randomDice1 + randomDice2);
 						finishTurn.setEnabled(false);
-					} // three doubles - player goes to the jail
+					}
+
+					// three doubles - player goes to the jail
 					if (doubleCounter == 3
 							|| players.get(playerIndex)
 									.getPositionOnGameBoard() == 30) {
+						// no get out of jail card
 						if (players.get(playerIndex)
 								.getNumberOfGetOutOfJailCards() == 0) {
 							finishTurn.setEnabled(true);
@@ -2479,7 +2516,7 @@ public class Monopoly {
 						.get(players.get(playerIndex).getPositionOnGameBoard())
 						.setOwner(players.get(playerIndex));
 
-				if (randomDice1 != randomDice2) {
+				if (randomDice1 != randomDice2 || doubleCounter == 3) {
 					finishTurn.setEnabled(true);
 				}
 				buyProperty.setVisible(false);
@@ -2500,6 +2537,17 @@ public class Monopoly {
 				logText.append(log);
 				balanceLabels.get(playerIndex).setText(
 						"E" + players.get(playerIndex).getMoneyHeld());
+				mortgageModel = new DefaultComboBoxModel<String>();
+				for (Entity entity : players.get(playerIndex)
+						.getOwnedProperties()) {
+					mortgageModel.addElement(entity.getName());
+				}
+				mortgageComboBox.setModel(mortgageModel);
+				mortgageComboBox.setSelectedItem(null);
+				mortgageManagement.setVisible(true);
+				mortgageComboBox.setVisible(true);
+				takeLoan.setVisible(true);
+				payLoan.setVisible(true);
 			}
 		});
 
@@ -2507,7 +2555,7 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (randomDice1 != randomDice2) {
+				if (randomDice1 != randomDice2 || doubleCounter == 3) {
 					finishTurn.setEnabled(true);
 				}
 				buyProperty.setVisible(false);
@@ -2521,16 +2569,17 @@ public class Monopoly {
 										.getPositionOnGameBoard()).getName()
 						+ "\n";
 				logText.append(log);
-				
+
 				buyUnwantedPropertyModel = new DefaultComboBoxModel<String>();
 				for (Player player : players) {
-					if (!player.getName().equals(players.get(playerIndex).getName())) {
+					if (!player.getName().equals(
+							players.get(playerIndex).getName())) {
 						buyUnwantedPropertyModel.addElement(player.getName());
 					}
 				}
 				buyUnwantedProperty.setModel(buyUnwantedPropertyModel);
 				gamePrompt
-				.setText("Please pick a name of a player (if interested) and enter the amount to be paid for the property");
+						.setText("Please pick a name of a player (if interested) and enter the amount to be paid for the property");
 				buyUnwantedProperty.setVisible(true);
 				buyUnwantedPropertyButton.setVisible(true);
 				priceOfUnwantedProperty.setVisible(true);
@@ -2575,13 +2624,17 @@ public class Monopoly {
 									.get(players.get(playerIndex)
 											.getPositionOnGameBoard())
 									.getGroup(), players.get(ownerIndex)
-									.getName()) && entities
+									.getName())
+							&& entities
 									.getEntities()
 									.get(players.get(playerIndex)
-											.getPositionOnGameBoard()).getNumberOfHotels() == 0 && entities
-											.getEntities()
-											.get(players.get(playerIndex)
-													.getPositionOnGameBoard()).getNumberOfHouses() == 0) {
+											.getPositionOnGameBoard())
+									.getNumberOfHotels() == 0
+							&& entities
+									.getEntities()
+									.get(players.get(playerIndex)
+											.getPositionOnGameBoard())
+									.getNumberOfHouses() == 0) {
 						rentValue = rentValue * 2;
 					}
 					players.get(playerIndex).setMoneyHeld(-rentValue);
@@ -2640,12 +2693,13 @@ public class Monopoly {
 				balanceLabels.get(ownerIndex).setText(
 						"E" + players.get(ownerIndex).getMoneyHeld());
 
-				if (randomDice1 != randomDice2) {
+				if (randomDice1 != randomDice2 || doubleCounter == 3) {
 					finishTurn.setEnabled(true);
 					rollTheDice.setEnabled(false);
-				} else {
+				} else if (doubleCounter < 3) {
 					rollTheDice.setEnabled(true);
-				}
+				} 
+				gamePrompt.setText("");
 			}
 
 		});
@@ -2675,17 +2729,26 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (!players.get(playerIndex).isInJail() && doubleCounter < 3) {
-					finishTurn.setEnabled(true);
+				if (!players.get(playerIndex).isInJail()
+						&& players.get(playerIndex).getPositionOnGameBoard() == 30) {
+					if (doubleCounter == 3 || randomDice1 != randomDice2) {
+						finishTurn.setEnabled(true);
+						log = "  /> "
+								+ players.get(playerIndex).getName()
+								+ " used his/her get out of Jail card to avoid going to Jail"
+								+ "\n";
+						logText.append(log);
+						adjustPlayerPosition();
+					}
+				
+				} else if (!players.get(playerIndex).isInJail()
+						&& players.get(playerIndex).getPositionOnGameBoard() != 30) {
+					adjustPlayerPosition();
 					log = "  /> "
 							+ players.get(playerIndex).getName()
 							+ " used his/her get out of Jail card to avoid going to Jail"
 							+ "\n";
 					logText.append(log);
-					players.get(playerIndex).setPositionOnGameBoard(
-							30 - players.get(playerIndex)
-									.getPositionOnGameBoard());
-					adjustPlayerPosition();
 				} else {
 					rollTheDice.setEnabled(true);
 					players.get(playerIndex).setInJail(false);
@@ -2706,7 +2769,7 @@ public class Monopoly {
 						"get out of jail cards : "
 								+ players.get(playerIndex)
 										.getNumberOfGetOutOfJailCards());
-				doubleCounter = 0;
+				buyOrRent();
 			}
 		});
 
@@ -2767,13 +2830,32 @@ public class Monopoly {
 				finishTurn.setEnabled(false);
 				doubleCounter = 0;
 				buyProperty.setEnabled(true);
-				
-				
+				buyUnwantedProperty.setVisible(false);
+				buyUnwantedPropertyButton.setVisible(false);
+				priceOfUnwantedProperty.setVisible(false);
+				if (players.get(playerIndex).getOwnedProperties().size() > 0) {
+					mortgageModel = new DefaultComboBoxModel<String>();
+					for (Entity entity : players.get(playerIndex)
+							.getOwnedProperties()) {
+						mortgageModel.addElement(entity.getName());
+					}
+					mortgageComboBox.setModel(mortgageModel);
+					mortgageComboBox.setSelectedItem(null);
+					mortgageManagement.setVisible(true);
+					mortgageComboBox.setVisible(true);
+					takeLoan.setVisible(true);
+					payLoan.setVisible(true);
+				} else {
+					mortgageManagement.setVisible(false);
+					mortgageComboBox.setVisible(false);
+					takeLoan.setVisible(false);
+					payLoan.setVisible(false);
+				}
 			}
 
 		});
-	
-		buyUnwantedPropertyButton.addActionListener(new ActionListener(){
+
+		buyUnwantedPropertyButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -2781,7 +2863,8 @@ public class Monopoly {
 				buyUnwantedPropertyButton.setVisible(false);
 				priceOfUnwantedProperty.setVisible(false);
 				gamePrompt.setText("");
-				ownerIndex = getPlayerIndex(String.valueOf(buyUnwantedProperty.getSelectedItem()));
+				ownerIndex = getPlayerIndex(String.valueOf(buyUnwantedProperty
+						.getSelectedItem()));
 				log = "  /> "
 						+ players.get(ownerIndex).getName()
 						+ " has just bought "
@@ -2789,23 +2872,25 @@ public class Monopoly {
 								.getEntities()
 								.get(players.get(playerIndex)
 										.getPositionOnGameBoard()).getName()
-						+ "(for M"
-						+ valueOfUnwantedProperty
-						+ ")\n";
+						+ "(for M" + valueOfUnwantedProperty + ")\n";
 				logText.append(log);
 				players.get(ownerIndex).setMoneyHeld(-valueOfUnwantedProperty);
 				balanceLabels.get(ownerIndex).setText(
 						"E" + players.get(ownerIndex).getMoneyHeld());
-				
-				players.get(ownerIndex).getOwnedProperties().add(entities.getEntities().get(players.get(playerIndex)
+
+				players.get(ownerIndex)
+						.getOwnedProperties()
+						.add(entities.getEntities().get(
+								players.get(playerIndex)
 										.getPositionOnGameBoard()));
-				entities.getEntities().get(players.get(playerIndex)
-						.getPositionOnGameBoard()).setOwner(players.get(ownerIndex));
+				entities.getEntities()
+						.get(players.get(playerIndex).getPositionOnGameBoard())
+						.setOwner(players.get(ownerIndex));
 				priceOfUnwantedProperty.setText("");
 			}
-			
+
 		});
-	
+
 	}
 
 	private void buyOrRent() {
@@ -2814,20 +2899,35 @@ public class Monopoly {
 				.canBePurchased()) {
 			finishTurn.setEnabled(false);
 
-			if (!entities.getEntities()
+			// mortgaged
+			if (entities.getEntities()
 					.get(players.get(playerIndex).getPositionOnGameBoard())
-					.getOwner().getName().equals(players.get(playerIndex).getName()) && entities.getEntities()
-					.get(players.get(playerIndex).getPositionOnGameBoard()).isMortgaged()) {
-				gamePrompt.setText("The property is mortgaged, so there is no need to pay rent");
+					.getOwner() != null
+					&& !entities
+							.getEntities()
+							.get(players.get(playerIndex)
+									.getPositionOnGameBoard()).getOwner()
+							.getName()
+							.equals(players.get(playerIndex).getName())
+					&& entities
+							.getEntities()
+							.get(players.get(playerIndex)
+									.getPositionOnGameBoard()).isMortgaged()) {
+				gamePrompt
+						.setText("The property is mortgaged, so there is no need to pay rent");
 			}
+
+			// unowned property
 			if (entities.getEntities()
 					.get(players.get(playerIndex).getPositionOnGameBoard())
 					.getOwner() == null) {
+				// sufficient funds to buy
 				if (entities.getEntities()
 						.get(players.get(playerIndex).getPositionOnGameBoard())
 						.getCost() <= players.get(playerIndex).getMoneyHeld()) {
 					buyProperty.setVisible(true);
 					dontBuyProperty.setVisible(true);
+					// insufficient funds
 				} else {
 					buyProperty.setVisible(true);
 					buyProperty.setEnabled(false);
@@ -2851,6 +2951,7 @@ public class Monopoly {
 					.equals(players.get(playerIndex).getName())
 					&& players.get(playerIndex).getPositionOnGameBoard() == 12
 					|| players.get(playerIndex).getPositionOnGameBoard() == 28) {
+				gamePrompt.setText("Roll the dice to estimate the amount of rent");
 				extraRollNeeded = true;
 				rollTheDice.setEnabled(true);
 			} else {
@@ -2889,7 +2990,8 @@ public class Monopoly {
 		int counter = 0;
 		double rentValue = 0;
 		for (Entity entity : entities.getEntities()) {
-			if (entity.getGroup() != null && entity.getGroup().equals("railroads")) {
+			if (entity.getGroup() != null
+					&& entity.getGroup().equals("railroads")) {
 				if (entity.getOwner() != null
 						&& entity.getOwner().getName().equals(name)) {
 					counter++;
@@ -2897,7 +2999,7 @@ public class Monopoly {
 			}
 
 		}
-		switch(counter) {
+		switch (counter) {
 		case 1:
 			rentValue = 25;
 			break;
@@ -2922,7 +3024,7 @@ public class Monopoly {
 		}
 		return -1;
 	}
-	
+
 	private int getPlayerIndex(String name) {
 		for (int i = 0; i < players.size(); i++) {
 			if (players.get(i).getName().equals(name)) {
