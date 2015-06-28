@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -1012,9 +1011,9 @@ public class Monopoly {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				priceOfUnwantedProperty.setText("");
-				String tempShare = String.valueOf(buyUnwantedProperty
+				String comboSelection = String.valueOf(buyUnwantedProperty
 						.getSelectedItem());
-				System.out.println(tempShare);
+				System.out.println(comboSelection);
 			}
 		});
 
@@ -2484,6 +2483,7 @@ public class Monopoly {
 									"E"
 											+ players.get(playerIndex)
 													.getMoneyHeld());
+							doubleCounter = 0;
 						}
 					} else {
 						payRent.setVisible(true);
@@ -2548,6 +2548,8 @@ public class Monopoly {
 				mortgageComboBox.setVisible(true);
 				takeLoan.setVisible(true);
 				payLoan.setVisible(true);
+				takeLoan.setEnabled(false);
+				payLoan.setEnabled(false);
 			}
 		});
 
@@ -2698,7 +2700,7 @@ public class Monopoly {
 					rollTheDice.setEnabled(false);
 				} else if (doubleCounter < 3) {
 					rollTheDice.setEnabled(true);
-				} 
+				}
 				gamePrompt.setText("");
 			}
 
@@ -2740,9 +2742,12 @@ public class Monopoly {
 						logText.append(log);
 						adjustPlayerPosition();
 					}
-				
+
 				} else if (!players.get(playerIndex).isInJail()
 						&& players.get(playerIndex).getPositionOnGameBoard() != 30) {
+					if (doubleCounter == 3 || randomDice1 != randomDice2) {
+						finishTurn.setEnabled(true);
+					}
 					adjustPlayerPosition();
 					log = "  /> "
 							+ players.get(playerIndex).getName()
@@ -2845,6 +2850,8 @@ public class Monopoly {
 					mortgageComboBox.setVisible(true);
 					takeLoan.setVisible(true);
 					payLoan.setVisible(true);
+					takeLoan.setEnabled(false);
+					payLoan.setEnabled(false);
 				} else {
 					mortgageManagement.setVisible(false);
 					mortgageComboBox.setVisible(false);
@@ -2891,6 +2898,102 @@ public class Monopoly {
 
 		});
 
+		mortgageComboBox.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String comboSelection = String.valueOf(mortgageComboBox
+						.getSelectedItem());
+				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
+					if (entity.getName().equals(comboSelection)
+							&& entity.isMortgaged()
+							&& players.get(playerIndex).getMoneyHeld() >= (entity
+									.getCost() * 0.55)) {
+						payLoan.setEnabled(true);
+						takeLoan.setEnabled(false);
+					} else if (entity.getName().equals(comboSelection)
+							&& !entity.isMortgaged()) {
+						payLoan.setEnabled(false);
+						takeLoan.setEnabled(true);
+					}
+				}
+
+			}
+
+		});
+		payLoan.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String comboSelection = String.valueOf(mortgageComboBox
+						.getSelectedItem());
+				for (Entity anEntity: entities.getEntities()) {
+					if (anEntity.getName().equals(comboSelection)) {
+						anEntity.setMortgaged(false);
+					}
+				}
+				for (Entity entity: players.get(playerIndex).getOwnedProperties()) {
+					if (entity.getName().equals(comboSelection)) {
+						entity.setMortgaged(false);
+						players.get(playerIndex).setMoneyHeld(-(entity.getCost() * 0.55));
+						log = "  /> "
+								+ players.get(playerIndex).getName()
+								+ " entity: "
+								+ entity.getName() + "\'s mortgage is now paid" + "\n";
+						logText.append(log);
+						balanceLabels.get(playerIndex).setText(
+								"E" + players.get(playerIndex).getMoneyHeld());
+						mortgageComboBox.setSelectedItem(null);
+						payLoan.setEnabled(false);
+						takeLoan.setEnabled(false);
+					}
+				}
+			}
+			
+		});
+		
+		takeLoan.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String comboSelection = String.valueOf(mortgageComboBox
+						.getSelectedItem());
+				for (Entity anEntity: entities.getEntities()) {
+					if (anEntity.getName().equals(comboSelection)) {
+						anEntity.setMortgaged(true);
+					}
+				}
+				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
+					if (entity.getName().equals(comboSelection)) {
+						entity.setMortgaged(true);
+						players.get(playerIndex).setMoneyHeld(entity.getCost() * 0.5);
+						log = "  /> "
+								+ players.get(playerIndex).getName()
+								+ " entity: "
+								+ entity.getName() + " is now mortgaged" + "\n";
+						logText.append(log);
+						balanceLabels.get(playerIndex).setText(
+								"E" + players.get(playerIndex).getMoneyHeld());
+						mortgageComboBox.setSelectedItem(null);
+						payLoan.setEnabled(false);
+						takeLoan.setEnabled(false);
+						if (entities.getEntities()
+								.get(players.get(playerIndex).getPositionOnGameBoard())
+								.canBePurchased() && entities.getEntities()
+								.get(players.get(playerIndex).getPositionOnGameBoard())
+								.getOwner() == null) {
+							buyProperty.setVisible(false);
+							buyProperty.setEnabled(true);
+							gamePrompt
+									.setText("");
+							dontBuyProperty.setVisible(false);
+							buyOrRent();	
+						}
+					}
+				}
+			}
+			
+		});
 	}
 
 	private void buyOrRent() {
@@ -2932,7 +3035,7 @@ public class Monopoly {
 					buyProperty.setVisible(true);
 					buyProperty.setEnabled(false);
 					gamePrompt
-							.setText("You don't have enough cash to buy this property. Press don't buy or borrow money from the bank");
+							.setText("You don't have enough cash to buy this property. Press don't buy or borrow some money");
 					dontBuyProperty.setVisible(true);
 				}
 			} else if (!entities.getEntities()
@@ -2940,7 +3043,8 @@ public class Monopoly {
 					.getOwner().getName()
 					.equals(players.get(playerIndex).getName())
 					&& players.get(playerIndex).getPositionOnGameBoard() != 12
-					&& players.get(playerIndex).getPositionOnGameBoard() != 28) {
+					&& players.get(playerIndex).getPositionOnGameBoard() != 28 && !entities.getEntities()
+							.get(players.get(playerIndex).getPositionOnGameBoard()).isMortgaged()) {
 				payRent.setVisible(true);
 				if (randomDice1 == randomDice2) {
 					rollTheDice.setEnabled(false);
@@ -2948,14 +3052,19 @@ public class Monopoly {
 			} else if (!entities.getEntities()
 					.get(players.get(playerIndex).getPositionOnGameBoard())
 					.getOwner().getName()
-					.equals(players.get(playerIndex).getName())
-					&& players.get(playerIndex).getPositionOnGameBoard() == 12
-					|| players.get(playerIndex).getPositionOnGameBoard() == 28) {
-				gamePrompt.setText("Roll the dice to estimate the amount of rent");
-				extraRollNeeded = true;
-				rollTheDice.setEnabled(true);
+					.equals(players.get(playerIndex).getName()) && entities.getEntities()
+					.get(players.get(playerIndex).getPositionOnGameBoard()).getGroup().equals("utilities")){
+				if (!entities.getEntities()
+						.get(players.get(playerIndex).getPositionOnGameBoard()).isMortgaged()) {
+					gamePrompt
+							.setText("Roll the dice to estimate the amount of rent");
+					extraRollNeeded = true;
+					rollTheDice.setEnabled(true);
+				}
 			} else {
+				if (randomDice1 != randomDice2) {
 				finishTurn.setEnabled(true);
+				}
 			}
 		}
 
