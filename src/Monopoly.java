@@ -213,6 +213,13 @@ public class Monopoly {
 	private DefaultComboBoxModel<String> mortgageModel;
 	private JButton takeLoan;
 	private JButton payLoan;
+	private JLabel sellProperty;
+	private JComboBox<String> sellPropertyComboBox;
+	private DefaultComboBoxModel<String> sellPropertyModel;
+	private JComboBox<String> buyer;
+	private DefaultComboBoxModel<String> buyerModel;
+	private JTextField sellingPrice;
+	private JButton sellPropertyButton;
 
 	/**
 	 * Launch the application.
@@ -269,144 +276,104 @@ public class Monopoly {
 		// frameWidth = frame.getWidth();
 		frameHeight = frame.getHeight() - 40;
 		topLeft = new JLayeredPane();
-		topLeft.setBounds(0, 0, (int) (frameHeight / 6.5),
-				(int) (frameHeight / 6.5));
+		topLeft.setBounds(0, 0, (int) (frameHeight / 6.5), (int) (frameHeight / 6.5));
 		left_1 = new JLayeredPane();
-		left_1.setBounds(0, (int) (frameHeight / 6.5),
-				(int) (frameHeight / 6.5), (int) (frameHeight / 13));
+		left_1.setBounds(0, (int) (frameHeight / 6.5), (int) (frameHeight / 6.5), (int) (frameHeight / 13));
 		left_2 = new JLayeredPane();
-		left_2.setBounds(0, (int) (frameHeight / 6.5 * 1.5),
-				(int) (frameHeight / 6.5), (int) (frameHeight / 13));
+		left_2.setBounds(0, (int) (frameHeight / 6.5 * 1.5), (int) (frameHeight / 6.5), (int) (frameHeight / 13));
 		left_3 = new JLayeredPane();
-		left_3.setBounds(0, (int) (frameHeight / 6.5 * 2),
-				(int) (frameHeight / 6.5), (int) (frameHeight / 13));
+		left_3.setBounds(0, (int) (frameHeight / 6.5 * 2), (int) (frameHeight / 6.5), (int) (frameHeight / 13));
 		left_4 = new JLayeredPane();
-		left_4.setBounds(0, (int) (frameHeight / 6.5 * 2.5),
-				(int) (frameHeight / 6.5), (int) (frameHeight / 13));
+		left_4.setBounds(0, (int) (frameHeight / 6.5 * 2.5), (int) (frameHeight / 6.5), (int) (frameHeight / 13));
 		left_5 = new JLayeredPane();
-		left_5.setBounds(0, (int) (frameHeight / 6.5 * 3),
-				(int) (frameHeight / 6.5), (int) (frameHeight / 13));
+		left_5.setBounds(0, (int) (frameHeight / 6.5 * 3), (int) (frameHeight / 6.5), (int) (frameHeight / 13));
 		left_6 = new JLayeredPane();
-		left_6.setBounds(0, (int) (frameHeight / 6.5 * 3.5),
-				(int) (frameHeight / 6.5), (int) (frameHeight / 13));
+		left_6.setBounds(0, (int) (frameHeight / 6.5 * 3.5), (int) (frameHeight / 6.5), (int) (frameHeight / 13));
 		left_7 = new JLayeredPane();
-		left_7.setBounds(0, (int) (frameHeight / 6.5 * 4),
-				(int) (frameHeight / 6.5), (int) (frameHeight / 13));
+		left_7.setBounds(0, (int) (frameHeight / 6.5 * 4), (int) (frameHeight / 6.5), (int) (frameHeight / 13));
 		left_8 = new JLayeredPane();
-		left_8.setBounds(0, (int) (frameHeight / 6.5 * 4.5),
-				(int) (frameHeight / 6.5), (int) (frameHeight / 13));
+		left_8.setBounds(0, (int) (frameHeight / 6.5 * 4.5), (int) (frameHeight / 6.5), (int) (frameHeight / 13));
 		left_9 = new JLayeredPane();
-		left_9.setBounds(0, (int) (frameHeight / 6.5 * 5),
-				(int) (frameHeight / 6.5), (int) (frameHeight / 13));
+		left_9.setBounds(0, (int) (frameHeight / 6.5 * 5), (int) (frameHeight / 6.5), (int) (frameHeight / 13));
 		bottomLeft = new JLayeredPane();
-		bottomLeft.setBounds(0, (int) (frameHeight / 6.5 * 5.5),
-				(int) (frameHeight / 6.5), (int) (frameHeight / 6.5));
+		bottomLeft.setBounds(0, (int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 6.5), (int) (frameHeight / 6.5));
 		top_1 = new JLayeredPane();
-		top_1.setBounds((int) (frameHeight / 6.5), 0, (int) (frameHeight / 13),
-				(int) (frameHeight / 6.5));
+		top_1.setBounds((int) (frameHeight / 6.5), 0, (int) (frameHeight / 13), (int) (frameHeight / 6.5));
 		top_2 = new JLayeredPane();
-		top_2.setBounds((int) (frameHeight / 6.5 * 1.5), 0,
-				(int) (frameHeight / 13), (int) (frameHeight / 6.5));
+		top_2.setBounds((int) (frameHeight / 6.5 * 1.5), 0, (int) (frameHeight / 13), (int) (frameHeight / 6.5));
 		top_3 = new JLayeredPane();
-		top_3.setBounds((int) (frameHeight / 6.5 * 2), 0,
-				(int) (frameHeight / 13), (int) (frameHeight / 6.5));
+		top_3.setBounds((int) (frameHeight / 6.5 * 2), 0, (int) (frameHeight / 13), (int) (frameHeight / 6.5));
 		top_4 = new JLayeredPane();
-		top_4.setBounds((int) (frameHeight / 6.5 * 2.5), 0,
-				(int) (frameHeight / 13), (int) (frameHeight / 6.5));
+		top_4.setBounds((int) (frameHeight / 6.5 * 2.5), 0, (int) (frameHeight / 13), (int) (frameHeight / 6.5));
 		top_5 = new JLayeredPane();
-		top_5.setBounds((int) (frameHeight / 6.5 * 3), 0,
-				(int) (frameHeight / 13), (int) (frameHeight / 6.5));
+		top_5.setBounds((int) (frameHeight / 6.5 * 3), 0, (int) (frameHeight / 13), (int) (frameHeight / 6.5));
 		top_6 = new JLayeredPane();
-		top_6.setBounds((int) (frameHeight / 6.5 * 3.5), 0,
-				(int) (frameHeight / 13), (int) (frameHeight / 6.5));
+		top_6.setBounds((int) (frameHeight / 6.5 * 3.5), 0, (int) (frameHeight / 13), (int) (frameHeight / 6.5));
 		top_7 = new JLayeredPane();
-		top_7.setBounds((int) (frameHeight / 6.5 * 4), 0,
-				(int) (frameHeight / 13), (int) (frameHeight / 6.5));
+		top_7.setBounds((int) (frameHeight / 6.5 * 4), 0, (int) (frameHeight / 13), (int) (frameHeight / 6.5));
 		top_8 = new JLayeredPane();
-		top_8.setBounds((int) (frameHeight / 6.5 * 4.5), 0,
-				(int) (frameHeight / 13), (int) (frameHeight / 6.5));
+		top_8.setBounds((int) (frameHeight / 6.5 * 4.5), 0, (int) (frameHeight / 13), (int) (frameHeight / 6.5));
 		top_9 = new JLayeredPane();
-		top_9.setBounds((int) (frameHeight / 6.5 * 5), 0,
-				(int) (frameHeight / 13), (int) (frameHeight / 6.5));
+		top_9.setBounds((int) (frameHeight / 6.5 * 5), 0, (int) (frameHeight / 13), (int) (frameHeight / 6.5));
 		topRight = new JLayeredPane();
-		topRight.setBounds((int) (frameHeight / 6.5 * 5.5), 0,
-				(int) (frameHeight / 6.5), (int) (frameHeight / 6.5));
+		topRight.setBounds((int) (frameHeight / 6.5 * 5.5), 0, (int) (frameHeight / 6.5), (int) (frameHeight / 6.5));
 		right_1 = new JLayeredPane();
-		right_1.setBounds((int) (frameHeight / 6.5 * 5.5),
-				(int) (frameHeight / 6.5), (int) (frameHeight / 6.5),
+		right_1.setBounds((int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 6.5), (int) (frameHeight / 6.5),
 				(int) (frameHeight / 13));
 		right_2 = new JLayeredPane();
-		right_2.setBounds((int) (frameHeight / 6.5 * 5.5),
-				(int) (frameHeight / 6.5 * 1.5), (int) (frameHeight / 6.5),
+		right_2.setBounds((int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 6.5 * 1.5), (int) (frameHeight / 6.5),
 				(int) (frameHeight / 13));
 		right_3 = new JLayeredPane();
-		right_3.setBounds((int) (frameHeight / 6.5 * 5.5),
-				(int) (frameHeight / 6.5 * 2), (int) (frameHeight / 6.5),
+		right_3.setBounds((int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 6.5 * 2), (int) (frameHeight / 6.5),
 				(int) (frameHeight / 13));
 		right_4 = new JLayeredPane();
-		right_4.setBounds((int) (frameHeight / 6.5 * 5.5),
-				(int) (frameHeight / 6.5 * 2.5), (int) (frameHeight / 6.5),
+		right_4.setBounds((int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 6.5 * 2.5), (int) (frameHeight / 6.5),
 				(int) (frameHeight / 13));
 		right_5 = new JLayeredPane();
-		right_5.setBounds((int) (frameHeight / 6.5 * 5.5),
-				(int) (frameHeight / 6.5 * 3), (int) (frameHeight / 6.5),
+		right_5.setBounds((int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 6.5 * 3), (int) (frameHeight / 6.5),
 				(int) (frameHeight / 13));
 		right_6 = new JLayeredPane();
-		right_6.setBounds((int) (frameHeight / 6.5 * 5.5),
-				(int) (frameHeight / 6.5 * 3.5), (int) (frameHeight / 6.5),
+		right_6.setBounds((int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 6.5 * 3.5), (int) (frameHeight / 6.5),
 				(int) (frameHeight / 13));
 		right_7 = new JLayeredPane();
-		right_7.setBounds((int) (frameHeight / 6.5 * 5.5),
-				(int) (frameHeight / 6.5 * 4), (int) (frameHeight / 6.5),
+		right_7.setBounds((int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 6.5 * 4), (int) (frameHeight / 6.5),
 				(int) (frameHeight / 13));
 		right_8 = new JLayeredPane();
-		right_8.setBounds((int) (frameHeight / 6.5 * 5.5),
-				(int) (frameHeight / 6.5 * 4.5), (int) (frameHeight / 6.5),
+		right_8.setBounds((int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 6.5 * 4.5), (int) (frameHeight / 6.5),
 				(int) (frameHeight / 13));
 		right_9 = new JLayeredPane();
-		right_9.setBounds((int) (frameHeight / 6.5 * 5.5),
-				(int) (frameHeight / 6.5 * 5), (int) (frameHeight / 6.5),
+		right_9.setBounds((int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 6.5 * 5), (int) (frameHeight / 6.5),
 				(int) (frameHeight / 13));
 		bottom_1 = new JLayeredPane();
-		bottom_1.setBounds((int) (frameHeight / 6.5),
-				(int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13),
+		bottom_1.setBounds((int) (frameHeight / 6.5), (int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13),
 				(int) (frameHeight / 6.5));
 		bottom_2 = new JLayeredPane();
-		bottom_2.setBounds((int) (frameHeight / 6.5 * 1.5),
-				(int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13),
+		bottom_2.setBounds((int) (frameHeight / 6.5 * 1.5), (int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13),
 				(int) (frameHeight / 6.5));
 		bottom_3 = new JLayeredPane();
-		bottom_3.setBounds((int) (frameHeight / 6.5 * 2),
-				(int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13),
+		bottom_3.setBounds((int) (frameHeight / 6.5 * 2), (int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13),
 				(int) (frameHeight / 6.5));
 		bottom_4 = new JLayeredPane();
-		bottom_4.setBounds((int) (frameHeight / 6.5 * 2.5),
-				(int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13),
+		bottom_4.setBounds((int) (frameHeight / 6.5 * 2.5), (int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13),
 				(int) (frameHeight / 6.5));
 		bottom_5 = new JLayeredPane();
-		bottom_5.setBounds((int) (frameHeight / 6.5 * 3),
-				(int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13),
+		bottom_5.setBounds((int) (frameHeight / 6.5 * 3), (int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13),
 				(int) (frameHeight / 6.5));
 		bottom_6 = new JLayeredPane();
-		bottom_6.setBounds((int) (frameHeight / 6.5 * 3.5),
-				(int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13),
+		bottom_6.setBounds((int) (frameHeight / 6.5 * 3.5), (int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13),
 				(int) (frameHeight / 6.5));
 		bottom_7 = new JLayeredPane();
-		bottom_7.setBounds((int) (frameHeight / 6.5 * 4),
-				(int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13),
+		bottom_7.setBounds((int) (frameHeight / 6.5 * 4), (int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13),
 				(int) (frameHeight / 6.5));
 		bottom_8 = new JLayeredPane();
-		bottom_8.setBounds((int) (frameHeight / 6.5 * 4.5),
-				(int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13),
+		bottom_8.setBounds((int) (frameHeight / 6.5 * 4.5), (int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13),
 				(int) (frameHeight / 6.5));
 		bottom_9 = new JLayeredPane();
-		bottom_9.setBounds((int) (frameHeight / 6.5 * 5),
-				(int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13),
+		bottom_9.setBounds((int) (frameHeight / 6.5 * 5), (int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 13),
 				(int) (frameHeight / 6.5));
 		bottomRight = new JLayeredPane();
-		bottomRight.setBounds((int) (frameHeight / 6.5 * 5.5),
-				(int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 6.5),
-				(int) (frameHeight / 6.5));
+		bottomRight.setBounds((int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 6.5 * 5.5),
+				(int) (frameHeight / 6.5), (int) (frameHeight / 6.5));
 		communityChest = new JButton();
 		communityChest = new JButton("?");
 
@@ -454,14 +421,12 @@ public class Monopoly {
 		bottomRightLabel = new JLabel();
 		bottomLeftLabel = new JLabel();
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/start.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/start.jpg"));
 			bottomRightLabel.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/bottomLeft.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/bottomLeft.jpg"));
 			bottomLeftLabel.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
@@ -475,56 +440,47 @@ public class Monopoly {
 		bottom8Label = new JLabel();
 		bottom9Label = new JLabel();
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/bottom1.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/bottom1.jpg"));
 			bottom1Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/bottom2.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/bottom2.jpg"));
 			bottom2Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/bottom3.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/bottom3.jpg"));
 			bottom3Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/bottom4.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/bottom4.jpg"));
 			bottom4Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/bottom5.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/bottom5.jpg"));
 			bottom5Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/bottom6.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/bottom6.jpg"));
 			bottom6Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/bottom7.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/bottom7.jpg"));
 			bottom7Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/bottom8.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/bottom8.jpg"));
 			bottom8Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/bottom9.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/bottom9.jpg"));
 			bottom9Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
@@ -563,56 +519,47 @@ public class Monopoly {
 		left9Label = new JLabel();
 
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/left1.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/left1.jpg"));
 			left1Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/left2.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/left2.jpg"));
 			left2Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/left3.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/left3.jpg"));
 			left3Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/left4.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/left4.jpg"));
 			left4Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/left5.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/left5.jpg"));
 			left5Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/left6.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/left6.jpg"));
 			left6Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/left7.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/left7.jpg"));
 			left7Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/left8.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/left8.jpg"));
 			left8Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/left9.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/left9.jpg"));
 			left9Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
@@ -669,62 +616,52 @@ public class Monopoly {
 		top_9.add(top9Label);
 
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/top1.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/top1.jpg"));
 			top1Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/top2.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/top2.jpg"));
 			top2Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/top3.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/top3.jpg"));
 			top3Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/top4.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/top4.jpg"));
 			top4Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/top5.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/top5.jpg"));
 			top5Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/top6.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/top6.jpg"));
 			top6Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/top7.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/top7.jpg"));
 			top7Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/top8.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/top8.jpg"));
 			top8Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/top9.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/top9.jpg"));
 			top9Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/topLeft.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/topLeft.jpg"));
 			topLeftLabel.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
@@ -762,86 +699,72 @@ public class Monopoly {
 		right_9.add(right9Label);
 
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/right1.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/right1.jpg"));
 			right1Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/right2.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/right2.jpg"));
 			right2Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/right3.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/right3.jpg"));
 			right3Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/right4.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/right4.jpg"));
 			right4Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/right5.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/right5.jpg"));
 			right5Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/right6.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/right6.jpg"));
 			right6Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/right7.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/right7.jpg"));
 			right7Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/right8.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/right8.jpg"));
 			right8Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/right9.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/right9.jpg"));
 			right9Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/topRight.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/topRight.jpg"));
 			topRightLabel.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		communityChest = new JButton();
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/chest.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/chest.jpg"));
 			communityChest.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
-		communityChest.setBounds((int) (frameHeight / 6.5 * 1.125),
-				(int) (frameHeight / 6.5 * 1.125), (int) (frameHeight / 3.33),
-				(int) (frameHeight / 5));
+		communityChest.setBounds((int) (frameHeight / 6.5 * 1.125), (int) (frameHeight / 6.5 * 1.125),
+				(int) (frameHeight / 3.33), (int) (frameHeight / 5));
 		communityChest.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		communityChest.setBorderPainted(false);
 		communityChest.setContentAreaFilled(false);
 		// communityChest.setEnabled(false);
 		chanceButton = new JButton();
-		chanceButton.setBounds((int) (frameHeight / 6.5 * 3.5),
-				(int) (frameHeight / 6.5 * 4), (int) (frameHeight / 3.33),
-				(int) (frameHeight / 5));
+		chanceButton.setBounds((int) (frameHeight / 6.5 * 3.5), (int) (frameHeight / 6.5 * 4),
+				(int) (frameHeight / 3.33), (int) (frameHeight / 5));
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/chance.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/chance.jpg"));
 			chanceButton.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
@@ -851,8 +774,7 @@ public class Monopoly {
 		chanceButton.setContentAreaFilled(false);
 		// chanceButton.setEnabled(false);
 		player_1 = new JLayeredPane();
-		player_1.setBounds(frameHeight + 40, 0, (int) (frameHeight / 4),
-				(int) (frameHeight / 6.5));
+		player_1.setBounds(frameHeight + 40, 0, (int) (frameHeight / 4), (int) (frameHeight / 6.5));
 		player_1.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 		player1name = new JTextField();
 		player1name.setBounds(20, 10, 140, 30);
@@ -862,8 +784,8 @@ public class Monopoly {
 		player_1.add(player1name);
 
 		player_2 = new JLayeredPane();
-		player_2.setBounds(frameHeight + 42 + (int) (frameHeight / 4), 0,
-				(int) (frameHeight / 4), (int) (frameHeight / 6.5));
+		player_2.setBounds(frameHeight + 42 + (int) (frameHeight / 4), 0, (int) (frameHeight / 4),
+				(int) (frameHeight / 6.5));
 		player_2.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 		player2name = new JTextField();
 		player2name.setBounds(20, 10, 140, 30);
@@ -873,8 +795,8 @@ public class Monopoly {
 		player_2.add(player2name);
 
 		player_3 = new JLayeredPane();
-		player_3.setBounds(frameHeight + 44 + (int) (frameHeight / 2), 0,
-				(int) (frameHeight / 4), (int) (frameHeight / 6.5));
+		player_3.setBounds(frameHeight + 44 + (int) (frameHeight / 2), 0, (int) (frameHeight / 4),
+				(int) (frameHeight / 6.5));
 		player_3.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 		player3name = new JTextField();
 		player3name.setBounds(20, 10, 140, 30);
@@ -884,8 +806,8 @@ public class Monopoly {
 		player_3.add(player3name);
 
 		player_4 = new JLayeredPane();
-		player_4.setBounds(frameHeight + 40, (int) (frameHeight / 6.5) + 2,
-				(int) (frameHeight / 4), (int) (frameHeight / 6.5));
+		player_4.setBounds(frameHeight + 40, (int) (frameHeight / 6.5) + 2, (int) (frameHeight / 4),
+				(int) (frameHeight / 6.5));
 		player_4.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 		player4name = new JTextField();
 		player4name.setBounds(20, 10, 140, 30);
@@ -895,9 +817,8 @@ public class Monopoly {
 		player_4.add(player4name);
 
 		player_5 = new JLayeredPane();
-		player_5.setBounds(frameHeight + 42 + (int) (frameHeight / 4),
-				(int) (frameHeight / 6.5) + 2, (int) (frameHeight / 4),
-				(int) (frameHeight / 6.5));
+		player_5.setBounds(frameHeight + 42 + (int) (frameHeight / 4), (int) (frameHeight / 6.5) + 2,
+				(int) (frameHeight / 4), (int) (frameHeight / 6.5));
 		player_5.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 		player5name = new JTextField();
 		player5name.setBounds(20, 10, 140, 30);
@@ -907,9 +828,8 @@ public class Monopoly {
 		player_5.add(player5name);
 
 		player_6 = new JLayeredPane();
-		player_6.setBounds(frameHeight + 44 + (int) (frameHeight / 2),
-				(int) (frameHeight / 6.5) + 2, (int) (frameHeight / 4),
-				(int) (frameHeight / 6.5));
+		player_6.setBounds(frameHeight + 44 + (int) (frameHeight / 2), (int) (frameHeight / 6.5) + 2,
+				(int) (frameHeight / 4), (int) (frameHeight / 6.5));
 		player_6.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 		player6name = new JTextField();
 		player6name.setBounds(20, 10, 140, 30);
@@ -926,32 +846,25 @@ public class Monopoly {
 		playersPanes.add(player_6);
 		gameConsole = new JLayeredPane();
 		gamePrompt = new JLabel();
-		gamePrompt.setBounds(frameHeight + 50, (int) (frameHeight / 2 + 15),
-				(int) (frameHeight / 4) * 3 - 20, 15);
+		gamePrompt.setBounds(frameHeight + 50, (int) (frameHeight / 2 + 15), (int) (frameHeight / 4) * 3 - 20, 15);
 
 		pay50toGetOutOfJail = new JButton("pay M50 to get out of Jail");
-		pay50toGetOutOfJail.setBounds(frameHeight + 200,
-				(int) (frameHeight / 2 + 60), 230, 20);
+		pay50toGetOutOfJail.setBounds(frameHeight + 200, (int) (frameHeight / 2 + 60), 230, 20);
 		pay50toGetOutOfJail.setVisible(false);
 		gamePrompt.setHorizontalAlignment(SwingConstants.CENTER);
 		gamePrompt.setForeground(Color.RED);
 		useGetOutOfJailCard = new JButton("use the card");
 		dontUseGetOutOfJailCard = new JButton("don't use the card");
-		useGetOutOfJailCard.setBounds(frameHeight + 150,
-				(int) (frameHeight / 2 + 35), 160, 20);
-		dontUseGetOutOfJailCard.setBounds(frameHeight + 320,
-				(int) (frameHeight / 2 + 35), 160, 20);
+		useGetOutOfJailCard.setBounds(frameHeight + 150, (int) (frameHeight / 2 + 35), 160, 20);
+		dontUseGetOutOfJailCard.setBounds(frameHeight + 320, (int) (frameHeight / 2 + 35), 160, 20);
 		useGetOutOfJailCard.setVisible(false);
 		dontUseGetOutOfJailCard.setVisible(false);
 		buyProperty = new JButton("buy");
 		dontBuyProperty = new JButton("don't buy");
 		payRent = new JButton("pay rent");
-		buyProperty.setBounds(frameHeight + 150, (int) (frameHeight / 2 + 35),
-				160, 20);
-		dontBuyProperty.setBounds(frameHeight + 320,
-				(int) (frameHeight / 2 + 35), 160, 20);
-		payRent.setBounds(frameHeight + 200, (int) (frameHeight / 2 + 60), 230,
-				20);
+		buyProperty.setBounds(frameHeight + 150, (int) (frameHeight / 2 + 35), 160, 20);
+		dontBuyProperty.setBounds(frameHeight + 320, (int) (frameHeight / 2 + 35), 160, 20);
+		payRent.setBounds(frameHeight + 200, (int) (frameHeight / 2 + 60), 230, 20);
 		buyProperty.setVisible(false);
 		dontBuyProperty.setVisible(false);
 		payRent.setVisible(false);
@@ -960,103 +873,104 @@ public class Monopoly {
 		log = "  /> the Game has started\n";
 		logText.append(log);
 		gameLog = new JScrollPane(logText);
-		gameConsole.setBounds(frameHeight + 40, (int) (frameHeight / 2),
-				(int) (frameHeight / 4) * 3, (int) (frameHeight / 2.8));
-		gameLog.setBounds(frameHeight + 40, (int) (frameHeight / 3.25 + 20),
-				(int) (frameHeight / 4) * 3, (int) (frameHeight / 6.5));
+		gameConsole.setBounds(frameHeight + 40, (int) (frameHeight / 2), (int) (frameHeight / 4) * 3,
+				(int) (frameHeight / 2.8));
+		gameLog.setBounds(frameHeight + 40, (int) (frameHeight / 3.25 + 20), (int) (frameHeight / 4) * 3,
+				(int) (frameHeight / 6.5));
 		gameLog.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		Border lined = BorderFactory.createLineBorder(Color.black, 1);
-		Border innerGameLog1 = BorderFactory.createTitledBorder(lined,
-				"Game info:", 2, 2, new Font("Arial", Font.ITALIC, 12),
-				Color.black);
-		Border innerGameConsole1 = BorderFactory.createTitledBorder(lined,
-				"Game console:", 2, 2, new Font("Arial", Font.ITALIC, 12),
-				Color.black);
+		Border innerGameLog1 = BorderFactory.createTitledBorder(lined, "Game info:", 2, 2,
+				new Font("Arial", Font.ITALIC, 12), Color.black);
+		Border innerGameConsole1 = BorderFactory.createTitledBorder(lined, "Game console:", 2, 2,
+				new Font("Arial", Font.ITALIC, 12), Color.black);
 		Border outerBorder = BorderFactory.createEmptyBorder(2, 0, 2, 0);
-		gameLog.setBorder(BorderFactory.createCompoundBorder(outerBorder,
-				innerGameLog1));
-		gameConsole.setBorder(BorderFactory.createCompoundBorder(outerBorder,
-				innerGameConsole1));
+		gameLog.setBorder(BorderFactory.createCompoundBorder(outerBorder, innerGameLog1));
+		gameConsole.setBorder(BorderFactory.createCompoundBorder(outerBorder, innerGameConsole1));
 		buyUnwantedProperty = new JComboBox<String>();
-		buyUnwantedProperty.setBounds(frameHeight + 150,
-				(int) (frameHeight / 2 + 35), 140, 20);
+		buyUnwantedProperty.setBounds(frameHeight + 150, (int) (frameHeight / 2 + 35), 140, 20);
 		buyUnwantedProperty.setVisible(false);
 		buyUnwantedPropertyButton = new JButton("buy");
-		buyUnwantedPropertyButton.setBounds(frameHeight + 360,
-				(int) (frameHeight / 2 + 35), 120, 20);
+		buyUnwantedPropertyButton.setBounds(frameHeight + 360, (int) (frameHeight / 2 + 35), 120, 20);
 		buyUnwantedPropertyButton.setEnabled(false);
 		buyUnwantedPropertyButton.setVisible(false);
 		priceOfUnwantedProperty = new JTextField();
-		priceOfUnwantedProperty.setBounds(frameHeight + 300,
-				(int) (frameHeight / 2 + 35), 45, 20);
+		priceOfUnwantedProperty.setBounds(frameHeight + 300, (int) (frameHeight / 2 + 35), 45, 20);
 		priceOfUnwantedProperty.setVisible(false);
 		gameLog.setVisible(false);
 		mortgageManagement = new JLabel("Mortgage management >>");
-		mortgageManagement.setBounds(frameHeight + 50,
-				(int) (frameHeight / 2 + 90), 150, 20);
+		mortgageManagement.setBounds(frameHeight + 50, (int) (frameHeight / 2 + 90), 150, 20);
 		mortgageComboBox = new JComboBox<String>();
-		mortgageComboBox.setBounds(frameHeight + 210,
-				(int) (frameHeight / 2 + 90), 140, 20);
+		mortgageComboBox.setBounds(frameHeight + 205, (int) (frameHeight / 2 + 90), 160, 20);
 		takeLoan = new JButton("take a loan");
 		payLoan = new JButton("pay the loan");
-		takeLoan.setBounds(frameHeight + 355, (int) (frameHeight / 2 + 90),
-				100, 20);
-		payLoan.setBounds(frameHeight + 460, (int) (frameHeight / 2 + 90), 115,
-				20);
+		takeLoan.setBounds(frameHeight + 370, (int) (frameHeight / 2 + 90), 100, 20);
+		payLoan.setBounds(frameHeight + 475, (int) (frameHeight / 2 + 90), 105, 20);
 		mortgageManagement.setVisible(false);
 		mortgageComboBox.setVisible(false);
 		takeLoan.setVisible(false);
 		payLoan.setVisible(false);
+
+		sellProperty = new JLabel("Sell property >>");
+		sellProperty.setBounds(frameHeight + 50, (int) (frameHeight / 2 + 120), 90, 20);
+		sellProperty.setVisible(true);
+		sellPropertyComboBox = new JComboBox<String>();
+		sellPropertyComboBox.setBounds(frameHeight + 155, (int) (frameHeight / 2 + 120), 160, 20);
+		buyer = new JComboBox<String>();
+		buyer.setBounds(frameHeight + 320, (int) (frameHeight / 2 + 120), 140, 20);
+		sellingPrice = new JTextField();
+		sellingPrice.setBounds(frameHeight + 465, (int) (frameHeight / 2 + 120), 45, 20);
+		sellPropertyButton = new JButton("sell");
+		sellPropertyButton.setBounds(frameHeight + 515, (int) (frameHeight / 2 + 120), 60, 20);
+		sellProperty.setVisible(false);
+		sellPropertyComboBox.setVisible(false);
+		buyer.setVisible(false);
+		sellingPrice.setVisible(false);
+		sellPropertyButton.setVisible(false);
+
 		buyUnwantedProperty.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				priceOfUnwantedProperty.setText("");
-				String comboSelection = String.valueOf(buyUnwantedProperty
-						.getSelectedItem());
+				String comboSelection = String.valueOf(buyUnwantedProperty.getSelectedItem());
 				System.out.println(comboSelection);
 			}
 		});
 
-		priceOfUnwantedProperty.getDocument().addDocumentListener(
-				new DocumentListener() {
-					@Override
-					public void changedUpdate(DocumentEvent arg0) {
-						checkValue();
-					}
+		priceOfUnwantedProperty.getDocument().addDocumentListener(new DocumentListener() {
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {
+				checkValue();
+			}
 
-					@Override
-					public void insertUpdate(DocumentEvent arg0) {
-						checkValue();
-					}
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				checkValue();
+			}
 
-					@Override
-					public void removeUpdate(DocumentEvent arg0) {
-						checkValue();
-					}
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				checkValue();
+			}
 
-					public void checkValue() {
-						String value = priceOfUnwantedProperty.getText();
-						int tempQty = 0;
-						try {
-							tempQty = Integer.parseInt(value);
-						} catch (Exception e) {
+			public void checkValue() {
+				String value = priceOfUnwantedProperty.getText();
+				int tempQty = 0;
+				try {
+					tempQty = Integer.parseInt(value);
+				} catch (Exception e) {
 
-						}
+				}
 
-						if (tempQty > 0
-								&& tempQty <= players.get(
-										getPlayerIndex(String
-												.valueOf(buyUnwantedProperty
-														.getSelectedItem())))
-										.getMoneyHeld()) {
-							buyUnwantedPropertyButton.setEnabled(true);
-							valueOfUnwantedProperty = tempQty;
-						} else {
-							buyUnwantedPropertyButton.setEnabled(false);
-							// valueOfUnwantedProperty = 0;
-						}
-					}
-				});
+				if (tempQty > 0 && tempQty <= players
+						.get(getPlayerIndex(String.valueOf(buyUnwantedProperty.getSelectedItem()))).getMoneyHeld()) {
+					buyUnwantedPropertyButton.setEnabled(true);
+					valueOfUnwantedProperty = tempQty;
+				} else {
+					buyUnwantedPropertyButton.setEnabled(false);
+					// valueOfUnwantedProperty = 0;
+				}
+			}
+		});
 		addPlayer1Name = new JButton("Add player's name");
 		addPlayer2Name = new JButton("Add player's name");
 		addPlayer3Name = new JButton("Add player's name");
@@ -1064,16 +978,11 @@ public class Monopoly {
 		addPlayer5Name = new JButton("Add player's name");
 		addPlayer6Name = new JButton("Add player's name");
 		addPlayer1Name.setBounds(frameHeight + 60, 45, 140, 40);
-		addPlayer2Name.setBounds(frameHeight + 62 + (int) (frameHeight / 4),
-				45, 140, 40);
-		addPlayer3Name.setBounds(frameHeight + 64 + (int) (frameHeight / 2),
-				45, 140, 40);
-		addPlayer4Name.setBounds(frameHeight + 60,
-				(int) (frameHeight / 6.5) + 47, 140, 40);
-		addPlayer5Name.setBounds(frameHeight + 62 + (int) (frameHeight / 4),
-				(int) (frameHeight / 6.5) + 47, 140, 40);
-		addPlayer6Name.setBounds(frameHeight + 64 + (int) (frameHeight / 2),
-				(int) (frameHeight / 6.5) + 47, 140, 40);
+		addPlayer2Name.setBounds(frameHeight + 62 + (int) (frameHeight / 4), 45, 140, 40);
+		addPlayer3Name.setBounds(frameHeight + 64 + (int) (frameHeight / 2), 45, 140, 40);
+		addPlayer4Name.setBounds(frameHeight + 60, (int) (frameHeight / 6.5) + 47, 140, 40);
+		addPlayer5Name.setBounds(frameHeight + 62 + (int) (frameHeight / 4), (int) (frameHeight / 6.5) + 47, 140, 40);
+		addPlayer6Name.setBounds(frameHeight + 64 + (int) (frameHeight / 2), (int) (frameHeight / 6.5) + 47, 140, 40);
 		addPlayer1Name.setVisible(false);
 		addPlayer2Name.setVisible(false);
 		addPlayer3Name.setVisible(false);
@@ -1090,8 +999,7 @@ public class Monopoly {
 		player1balance.setBounds(frameHeight + 60, 20, 140, 40);
 		addPlayer1.setBounds(frameHeight + 60, 35, 140, 40);
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/addplayer.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/addplayer.jpg"));
 			addPlayer1.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
@@ -1143,8 +1051,7 @@ public class Monopoly {
 				player1nameLabel.setText(player1name.getText());
 				player1nameLabel.setForeground(Color.RED);
 				player1nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
-				player1balance.setText("E"
-						+ String.valueOf(players.get(0).getMoneyHeld()));
+				player1balance.setText("E" + String.valueOf(players.get(0).getMoneyHeld()));
 				player1balance.setFont(new Font("Arial", Font.ITALIC, 14));
 				frame.getContentPane().add(player1nameLabel);
 				frame.getContentPane().add(player1balance);
@@ -1153,12 +1060,10 @@ public class Monopoly {
 				addPlayer1Name.setVisible(false);
 				addPlayer2.setEnabled(true);
 
-				player1getOutOfJailLabel.setText("get out of jail cards : "
-						+ players.get(0).getNumberOfGetOutOfJailCards());
-				player1getOutOfJailLabel.setBounds(frameHeight + 60, 50, 140,
-						15);
-				player1getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC,
-						12));
+				player1getOutOfJailLabel
+						.setText("get out of jail cards : " + players.get(0).getNumberOfGetOutOfJailCards());
+				player1getOutOfJailLabel.setBounds(frameHeight + 60, 50, 140, 15);
+				player1getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC, 12));
 				player1getOutOfJailLabel.setVisible(true);
 				getOutOfJailLabels.add(player1getOutOfJailLabel);
 				// highlights panels representing owned properties
@@ -1172,36 +1077,19 @@ public class Monopoly {
 					@Override
 					public void mouseEntered(MouseEvent arg0) {
 
-						for (Entity property : players.get(0)
-								.getOwnedProperties()) {
+						for (Entity property : players.get(0).getOwnedProperties()) {
 							if (property.getPosition() < 10) {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(4,
-																0, 0, 0,
-																Color.red));
+										.setBorder(BorderFactory.createMatteBorder(4, 0, 0, 0, Color.red));
 							} else if (property.getPosition() < 20) {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(0,
-																0, 0, 6,
-																Color.red));
+										.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 6, Color.red));
 							} else if (property.getPosition() < 30) {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(4,
-																0, 0, 0,
-																Color.red));
+										.setBorder(BorderFactory.createMatteBorder(4, 0, 0, 0, Color.red));
 							} else {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(0,
-																5, 0, 0,
-																Color.red));
+										.setBorder(BorderFactory.createMatteBorder(0, 5, 0, 0, Color.red));
 							}
 
 						}
@@ -1209,10 +1097,8 @@ public class Monopoly {
 
 					@Override
 					public void mouseExited(MouseEvent arg0) {
-						for (Entity property : players.get(0)
-								.getOwnedProperties()) {
-							boardPanels.get(property.getPosition()).setBorder(
-									BorderFactory.createEmptyBorder());
+						for (Entity property : players.get(0).getOwnedProperties()) {
+							boardPanels.get(property.getPosition()).setBorder(BorderFactory.createEmptyBorder());
 						}
 					}
 
@@ -1240,19 +1126,15 @@ public class Monopoly {
 
 		});
 		addPlayer2 = new JButton();
-		addPlayer2.setBounds(frameHeight + 60 + (int) (frameHeight / 4), 35,
-				140, 40);
+		addPlayer2.setBounds(frameHeight + 60 + (int) (frameHeight / 4), 35, 140, 40);
 		player2nameLabel = new JLabel();
 		player2balance = new JLabel();
 		player2getOutOfJailLabel = new JLabel();
 		balanceLabels.add(player2balance);
-		player2balance.setBounds(frameHeight + 62 + (int) (frameHeight / 4),
-				20, 140, 40);
-		player2nameLabel.setBounds(frameHeight + 62 + (int) (frameHeight / 4),
-				5, 140, 40);
+		player2balance.setBounds(frameHeight + 62 + (int) (frameHeight / 4), 20, 140, 40);
+		player2nameLabel.setBounds(frameHeight + 62 + (int) (frameHeight / 4), 5, 140, 40);
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/addplayer.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/addplayer.jpg"));
 			addPlayer2.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
@@ -1291,8 +1173,7 @@ public class Monopoly {
 			// names are to be unique
 			public void checkName() {
 				String name = player2name.getText();
-				if (name.length() > 2 && name.length() <= 10
-						&& !name.equals(players.get(0).getName())) {
+				if (name.length() > 2 && name.length() <= 10 && !name.equals(players.get(0).getName())) {
 					addPlayer2Name.setEnabled(true);
 				} else {
 					addPlayer2Name.setEnabled(false);
@@ -1307,8 +1188,7 @@ public class Monopoly {
 				player2nameLabel.setText(player2name.getText());
 				player2nameLabel.setForeground(Color.BLUE);
 				player2nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
-				player2balance.setText("E"
-						+ String.valueOf(players.get(1).getMoneyHeld()));
+				player2balance.setText("E" + String.valueOf(players.get(1).getMoneyHeld()));
 				player2balance.setFont(new Font("Arial", Font.ITALIC, 14));
 				frame.getContentPane().add(player2nameLabel);
 				frame.getContentPane().add(player2balance);
@@ -1319,12 +1199,10 @@ public class Monopoly {
 				startGame.setEnabled(true); // after creating two players, the
 											// game can be started
 
-				player2getOutOfJailLabel.setText("get out of jail cards : "
-						+ players.get(1).getNumberOfGetOutOfJailCards());
-				player2getOutOfJailLabel.setBounds(frameHeight + 62
-						+ (int) (frameHeight / 4), 50, 140, 15);
-				player2getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC,
-						12));
+				player2getOutOfJailLabel
+						.setText("get out of jail cards : " + players.get(1).getNumberOfGetOutOfJailCards());
+				player2getOutOfJailLabel.setBounds(frameHeight + 62 + (int) (frameHeight / 4), 50, 140, 15);
+				player2getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC, 12));
 				player2getOutOfJailLabel.setVisible(true);
 				getOutOfJailLabels.add(player2getOutOfJailLabel);
 				// highlights panels representing owned properties
@@ -1338,46 +1216,27 @@ public class Monopoly {
 					@Override
 					public void mouseEntered(MouseEvent arg0) {
 
-						for (Entity property : players.get(1)
-								.getOwnedProperties()) {
+						for (Entity property : players.get(1).getOwnedProperties()) {
 							if (property.getPosition() < 10) {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(4,
-																0, 0, 0,
-																Color.blue));
+										.setBorder(BorderFactory.createMatteBorder(4, 0, 0, 0, Color.blue));
 							} else if (property.getPosition() < 20) {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(0,
-																0, 0, 6,
-																Color.blue));
+										.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 6, Color.blue));
 							} else if (property.getPosition() < 30) {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(4,
-																0, 0, 0,
-																Color.blue));
+										.setBorder(BorderFactory.createMatteBorder(4, 0, 0, 0, Color.blue));
 							} else {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(0,
-																5, 0, 0,
-																Color.blue));
+										.setBorder(BorderFactory.createMatteBorder(0, 5, 0, 0, Color.blue));
 							}
 						}
 					}
 
 					@Override
 					public void mouseExited(MouseEvent arg0) {
-						for (Entity property : players.get(1)
-								.getOwnedProperties()) {
-							boardPanels.get(property.getPosition()).setBorder(
-									BorderFactory.createEmptyBorder());
+						for (Entity property : players.get(1).getOwnedProperties()) {
+							boardPanels.get(property.getPosition()).setBorder(BorderFactory.createEmptyBorder());
 						}
 					}
 
@@ -1411,15 +1270,11 @@ public class Monopoly {
 		player3balance = new JLabel();
 		player3getOutOfJailLabel = new JLabel();
 		balanceLabels.add(player3balance);
-		player3balance.setBounds(frameHeight + 64 + (int) (frameHeight / 2),
-				20, 140, 40);
-		player3nameLabel.setBounds(frameHeight + 64 + (int) (frameHeight / 2),
-				5, 140, 40);
-		addPlayer3.setBounds(frameHeight + 60 + (int) (frameHeight / 2), 35,
-				140, 40);
+		player3balance.setBounds(frameHeight + 64 + (int) (frameHeight / 2), 20, 140, 40);
+		player3nameLabel.setBounds(frameHeight + 64 + (int) (frameHeight / 2), 5, 140, 40);
+		addPlayer3.setBounds(frameHeight + 60 + (int) (frameHeight / 2), 35, 140, 40);
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/addplayer.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/addplayer.jpg"));
 			addPlayer3.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
@@ -1458,8 +1313,7 @@ public class Monopoly {
 			// names are to be unique
 			public void checkName() {
 				String name = player3name.getText();
-				if (name.length() > 2 && name.length() <= 10
-						&& !name.equals(players.get(0).getName())
+				if (name.length() > 2 && name.length() <= 10 && !name.equals(players.get(0).getName())
 						&& !name.equals(players.get(1).getName())) {
 					addPlayer3Name.setEnabled(true);
 				} else {
@@ -1476,8 +1330,7 @@ public class Monopoly {
 				player3nameLabel.setText(player3name.getText());
 				player3nameLabel.setForeground(Color.BLACK);
 				player3nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
-				player3balance.setText("E"
-						+ String.valueOf(players.get(2).getMoneyHeld()));
+				player3balance.setText("E" + String.valueOf(players.get(2).getMoneyHeld()));
 				player3balance.setFont(new Font("Arial", Font.ITALIC, 14));
 				frame.getContentPane().add(player3nameLabel);
 				frame.getContentPane().add(player3balance);
@@ -1486,12 +1339,10 @@ public class Monopoly {
 				addPlayer3Name.setVisible(false);
 				addPlayer4.setEnabled(true);
 
-				player3getOutOfJailLabel.setText("get out of jail cards : "
-						+ players.get(2).getNumberOfGetOutOfJailCards());
-				player3getOutOfJailLabel.setBounds(frameHeight + 64
-						+ (int) (frameHeight / 2), 50, 140, 15);
-				player3getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC,
-						12));
+				player3getOutOfJailLabel
+						.setText("get out of jail cards : " + players.get(2).getNumberOfGetOutOfJailCards());
+				player3getOutOfJailLabel.setBounds(frameHeight + 64 + (int) (frameHeight / 2), 50, 140, 15);
+				player3getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC, 12));
 				player3getOutOfJailLabel.setVisible(true);
 				getOutOfJailLabels.add(player3getOutOfJailLabel);
 				// highlights panels representing owned properties
@@ -1505,46 +1356,27 @@ public class Monopoly {
 					@Override
 					public void mouseEntered(MouseEvent arg0) {
 
-						for (Entity property : players.get(2)
-								.getOwnedProperties()) {
+						for (Entity property : players.get(2).getOwnedProperties()) {
 							if (property.getPosition() < 10) {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(4,
-																0, 0, 0,
-																Color.black));
+										.setBorder(BorderFactory.createMatteBorder(4, 0, 0, 0, Color.black));
 							} else if (property.getPosition() < 20) {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(0,
-																0, 0, 6,
-																Color.black));
+										.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 6, Color.black));
 							} else if (property.getPosition() < 30) {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(4,
-																0, 0, 0,
-																Color.black));
+										.setBorder(BorderFactory.createMatteBorder(4, 0, 0, 0, Color.black));
 							} else {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(0,
-																5, 0, 0,
-																Color.black));
+										.setBorder(BorderFactory.createMatteBorder(0, 5, 0, 0, Color.black));
 							}
 						}
 					}
 
 					@Override
 					public void mouseExited(MouseEvent arg0) {
-						for (Entity property : players.get(2)
-								.getOwnedProperties()) {
-							boardPanels.get(property.getPosition()).setBorder(
-									BorderFactory.createEmptyBorder());
+						for (Entity property : players.get(2).getOwnedProperties()) {
+							boardPanels.get(property.getPosition()).setBorder(BorderFactory.createEmptyBorder());
 						}
 					}
 
@@ -1578,15 +1410,11 @@ public class Monopoly {
 		player4balance = new JLabel();
 		player4getOutOfJailLabel = new JLabel();
 		balanceLabels.add(player4balance);
-		player4balance.setBounds(frameHeight + 60,
-				(int) (frameHeight / 6.5) + 22, 140, 40);
-		player4nameLabel.setBounds(frameHeight + 60,
-				(int) (frameHeight / 6.5) + 7, 140, 40);
-		addPlayer4.setBounds(frameHeight + 60, (int) (frameHeight / 6.5) + 35,
-				140, 40);
+		player4balance.setBounds(frameHeight + 60, (int) (frameHeight / 6.5) + 22, 140, 40);
+		player4nameLabel.setBounds(frameHeight + 60, (int) (frameHeight / 6.5) + 7, 140, 40);
+		addPlayer4.setBounds(frameHeight + 60, (int) (frameHeight / 6.5) + 35, 140, 40);
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/addplayer.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/addplayer.jpg"));
 			addPlayer4.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
@@ -1625,10 +1453,8 @@ public class Monopoly {
 			// names are to be unique
 			public void checkName() {
 				String name = player4name.getText();
-				if (name.length() > 2 && name.length() <= 10
-						&& !name.equals(players.get(0).getName())
-						&& !name.equals(players.get(1).getName())
-						&& !name.equals(players.get(2).getName())) {
+				if (name.length() > 2 && name.length() <= 10 && !name.equals(players.get(0).getName())
+						&& !name.equals(players.get(1).getName()) && !name.equals(players.get(2).getName())) {
 					addPlayer4Name.setEnabled(true);
 				} else {
 					addPlayer4Name.setEnabled(false);
@@ -1644,8 +1470,7 @@ public class Monopoly {
 				player4nameLabel.setText(player4name.getText());
 				player4nameLabel.setForeground(Color.GREEN);
 				player4nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
-				player4balance.setText("E"
-						+ String.valueOf(players.get(3).getMoneyHeld()));
+				player4balance.setText("E" + String.valueOf(players.get(3).getMoneyHeld()));
 				player4balance.setFont(new Font("Arial", Font.ITALIC, 14));
 				frame.getContentPane().add(player4nameLabel);
 				frame.getContentPane().add(player4balance);
@@ -1654,12 +1479,10 @@ public class Monopoly {
 				addPlayer4Name.setVisible(false);
 				addPlayer5.setEnabled(true);
 
-				player4getOutOfJailLabel.setText("get out of jail cards : "
-						+ players.get(3).getNumberOfGetOutOfJailCards());
-				player4getOutOfJailLabel.setBounds(frameHeight + 60,
-						(int) (frameHeight / 6.5) + 52, 140, 15);
-				player4getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC,
-						12));
+				player4getOutOfJailLabel
+						.setText("get out of jail cards : " + players.get(3).getNumberOfGetOutOfJailCards());
+				player4getOutOfJailLabel.setBounds(frameHeight + 60, (int) (frameHeight / 6.5) + 52, 140, 15);
+				player4getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC, 12));
 				player4getOutOfJailLabel.setVisible(true);
 				getOutOfJailLabels.add(player4getOutOfJailLabel);
 
@@ -1674,46 +1497,27 @@ public class Monopoly {
 					@Override
 					public void mouseEntered(MouseEvent arg0) {
 
-						for (Entity property : players.get(3)
-								.getOwnedProperties()) {
+						for (Entity property : players.get(3).getOwnedProperties()) {
 							if (property.getPosition() < 10) {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(4,
-																0, 0, 0,
-																Color.green));
+										.setBorder(BorderFactory.createMatteBorder(4, 0, 0, 0, Color.green));
 							} else if (property.getPosition() < 20) {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(0,
-																0, 0, 6,
-																Color.green));
+										.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 6, Color.green));
 							} else if (property.getPosition() < 30) {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(4,
-																0, 0, 0,
-																Color.green));
+										.setBorder(BorderFactory.createMatteBorder(4, 0, 0, 0, Color.green));
 							} else {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(0,
-																5, 0, 0,
-																Color.green));
+										.setBorder(BorderFactory.createMatteBorder(0, 5, 0, 0, Color.green));
 							}
 						}
 					}
 
 					@Override
 					public void mouseExited(MouseEvent arg0) {
-						for (Entity property : players.get(3)
-								.getOwnedProperties()) {
-							boardPanels.get(property.getPosition()).setBorder(
-									BorderFactory.createEmptyBorder());
+						for (Entity property : players.get(3).getOwnedProperties()) {
+							boardPanels.get(property.getPosition()).setBorder(BorderFactory.createEmptyBorder());
 						}
 					}
 
@@ -1747,15 +1551,11 @@ public class Monopoly {
 		player5balance = new JLabel();
 		player5getOutOfJailLabel = new JLabel();
 		balanceLabels.add(player5balance);
-		player5balance.setBounds(frameHeight + 62 + (int) (frameHeight / 4),
-				(int) (frameHeight / 6.5) + 22, 140, 40);
-		player5nameLabel.setBounds(frameHeight + 62 + (int) (frameHeight / 4),
-				(int) (frameHeight / 6.5) + 7, 140, 40);
-		addPlayer5.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
-				(int) (frameHeight / 6.5) + 35, 140, 40);
+		player5balance.setBounds(frameHeight + 62 + (int) (frameHeight / 4), (int) (frameHeight / 6.5) + 22, 140, 40);
+		player5nameLabel.setBounds(frameHeight + 62 + (int) (frameHeight / 4), (int) (frameHeight / 6.5) + 7, 140, 40);
+		addPlayer5.setBounds(frameHeight + 60 + (int) (frameHeight / 4), (int) (frameHeight / 6.5) + 35, 140, 40);
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/addplayer.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/addplayer.jpg"));
 			addPlayer5.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
@@ -1794,10 +1594,8 @@ public class Monopoly {
 			// names are to be unique
 			public void checkName() {
 				String name = player5name.getText();
-				if (name.length() > 2 && name.length() <= 10
-						&& !name.equals(players.get(0).getName())
-						&& !name.equals(players.get(1).getName())
-						&& !name.equals(players.get(2).getName())
+				if (name.length() > 2 && name.length() <= 10 && !name.equals(players.get(0).getName())
+						&& !name.equals(players.get(1).getName()) && !name.equals(players.get(2).getName())
 						&& !name.equals(players.get(3).getName())) {
 					addPlayer5Name.setEnabled(true);
 				} else {
@@ -1814,8 +1612,7 @@ public class Monopoly {
 				player5nameLabel.setText(player5name.getText());
 				player5nameLabel.setForeground(Color.ORANGE);
 				player5nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
-				player5balance.setText("E"
-						+ String.valueOf(players.get(4).getMoneyHeld()));
+				player5balance.setText("E" + String.valueOf(players.get(4).getMoneyHeld()));
 				player5balance.setFont(new Font("Arial", Font.ITALIC, 14));
 				frame.getContentPane().add(player5nameLabel);
 				frame.getContentPane().add(player5balance);
@@ -1824,13 +1621,11 @@ public class Monopoly {
 				addPlayer5Name.setVisible(false);
 				addPlayer6.setEnabled(true);
 
-				player5getOutOfJailLabel.setText("get out of jail cards : "
-						+ players.get(4).getNumberOfGetOutOfJailCards());
-				player5getOutOfJailLabel.setBounds(frameHeight + 62
-						+ (int) (frameHeight / 4),
+				player5getOutOfJailLabel
+						.setText("get out of jail cards : " + players.get(4).getNumberOfGetOutOfJailCards());
+				player5getOutOfJailLabel.setBounds(frameHeight + 62 + (int) (frameHeight / 4),
 						(int) (frameHeight / 6.5) + 52, 140, 15);
-				player5getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC,
-						12));
+				player5getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC, 12));
 				player5getOutOfJailLabel.setVisible(true);
 				getOutOfJailLabels.add(player5getOutOfJailLabel);
 
@@ -1845,46 +1640,27 @@ public class Monopoly {
 					@Override
 					public void mouseEntered(MouseEvent arg0) {
 
-						for (Entity property : players.get(4)
-								.getOwnedProperties()) {
+						for (Entity property : players.get(4).getOwnedProperties()) {
 							if (property.getPosition() < 10) {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(4,
-																0, 0, 0,
-																Color.orange));
+										.setBorder(BorderFactory.createMatteBorder(4, 0, 0, 0, Color.orange));
 							} else if (property.getPosition() < 20) {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(0,
-																0, 0, 6,
-																Color.orange));
+										.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 6, Color.orange));
 							} else if (property.getPosition() < 30) {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(4,
-																0, 0, 0,
-																Color.orange));
+										.setBorder(BorderFactory.createMatteBorder(4, 0, 0, 0, Color.orange));
 							} else {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(0,
-																5, 0, 0,
-																Color.orange));
+										.setBorder(BorderFactory.createMatteBorder(0, 5, 0, 0, Color.orange));
 							}
 						}
 					}
 
 					@Override
 					public void mouseExited(MouseEvent arg0) {
-						for (Entity property : players.get(4)
-								.getOwnedProperties()) {
-							boardPanels.get(property.getPosition()).setBorder(
-									BorderFactory.createEmptyBorder());
+						for (Entity property : players.get(4).getOwnedProperties()) {
+							boardPanels.get(property.getPosition()).setBorder(BorderFactory.createEmptyBorder());
 						}
 					}
 
@@ -1918,15 +1694,11 @@ public class Monopoly {
 		player6balance = new JLabel();
 		player6getOutOfJailLabel = new JLabel();
 		balanceLabels.add(player6balance);
-		player6balance.setBounds(frameHeight + 64 + (int) (frameHeight / 2),
-				(int) (frameHeight / 6.5) + 22, 140, 40);
-		player6nameLabel.setBounds(frameHeight + 64 + (int) (frameHeight / 2),
-				(int) (frameHeight / 6.5) + 7, 140, 40);
-		addPlayer6.setBounds(frameHeight + 60 + (int) (frameHeight / 2),
-				(int) (frameHeight / 6.5) + 35, 140, 40);
+		player6balance.setBounds(frameHeight + 64 + (int) (frameHeight / 2), (int) (frameHeight / 6.5) + 22, 140, 40);
+		player6nameLabel.setBounds(frameHeight + 64 + (int) (frameHeight / 2), (int) (frameHeight / 6.5) + 7, 140, 40);
+		addPlayer6.setBounds(frameHeight + 60 + (int) (frameHeight / 2), (int) (frameHeight / 6.5) + 35, 140, 40);
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/addplayer.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/addplayer.jpg"));
 			addPlayer6.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
@@ -1965,12 +1737,9 @@ public class Monopoly {
 			// names are to be unique
 			public void checkName() {
 				String name = player6name.getText();
-				if (name.length() > 2 && name.length() <= 10
-						&& !name.equals(players.get(0).getName())
-						&& !name.equals(players.get(1).getName())
-						&& !name.equals(players.get(2).getName())
-						&& !name.equals(players.get(3).getName())
-						&& !name.equals(players.get(4).getName())) {
+				if (name.length() > 2 && name.length() <= 10 && !name.equals(players.get(0).getName())
+						&& !name.equals(players.get(1).getName()) && !name.equals(players.get(2).getName())
+						&& !name.equals(players.get(3).getName()) && !name.equals(players.get(4).getName())) {
 					addPlayer6Name.setEnabled(true);
 				} else {
 					addPlayer6Name.setEnabled(false);
@@ -1986,8 +1755,7 @@ public class Monopoly {
 				player6nameLabel.setText(player6name.getText());
 				player6nameLabel.setForeground(Color.magenta);
 				player6nameLabel.setFont(new Font("Arial", Font.ITALIC, 14));
-				player6balance.setText("E"
-						+ String.valueOf(players.get(5).getMoneyHeld()));
+				player6balance.setText("E" + String.valueOf(players.get(5).getMoneyHeld()));
 				player6balance.setFont(new Font("Arial", Font.ITALIC, 14));
 				frame.getContentPane().add(player6nameLabel);
 				frame.getContentPane().add(player6balance);
@@ -1995,13 +1763,11 @@ public class Monopoly {
 				player6name.setVisible(false);
 				addPlayer6Name.setVisible(false);
 
-				player6getOutOfJailLabel.setText("get out of jail cards : "
-						+ players.get(5).getNumberOfGetOutOfJailCards());
-				player6getOutOfJailLabel.setBounds(frameHeight + 64
-						+ (int) (frameHeight / 2),
+				player6getOutOfJailLabel
+						.setText("get out of jail cards : " + players.get(5).getNumberOfGetOutOfJailCards());
+				player6getOutOfJailLabel.setBounds(frameHeight + 64 + (int) (frameHeight / 2),
 						(int) (frameHeight / 6.5) + 52, 140, 15);
-				player6getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC,
-						12));
+				player6getOutOfJailLabel.setFont(new Font("Arial", Font.ITALIC, 12));
 				player6getOutOfJailLabel.setVisible(true);
 				getOutOfJailLabels.add(player6getOutOfJailLabel);
 
@@ -2016,36 +1782,19 @@ public class Monopoly {
 					@Override
 					public void mouseEntered(MouseEvent arg0) {
 
-						for (Entity property : players.get(5)
-								.getOwnedProperties()) {
+						for (Entity property : players.get(5).getOwnedProperties()) {
 							if (property.getPosition() < 10) {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(4,
-																0, 0, 0,
-																Color.magenta));
+										.setBorder(BorderFactory.createMatteBorder(4, 0, 0, 0, Color.magenta));
 							} else if (property.getPosition() < 20) {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(0,
-																0, 0, 6,
-																Color.magenta));
+										.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 6, Color.magenta));
 							} else if (property.getPosition() < 30) {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(4,
-																0, 0, 0,
-																Color.magenta));
+										.setBorder(BorderFactory.createMatteBorder(4, 0, 0, 0, Color.magenta));
 							} else {
 								boardPanels.get(property.getPosition())
-										.setBorder(
-												BorderFactory
-														.createMatteBorder(0,
-																5, 0, 0,
-																Color.magenta));
+										.setBorder(BorderFactory.createMatteBorder(0, 5, 0, 0, Color.magenta));
 							}
 
 						}
@@ -2053,10 +1802,8 @@ public class Monopoly {
 
 					@Override
 					public void mouseExited(MouseEvent arg0) {
-						for (Entity property : players.get(5)
-								.getOwnedProperties()) {
-							boardPanels.get(property.getPosition()).setBorder(
-									BorderFactory.createEmptyBorder());
+						for (Entity property : players.get(5).getOwnedProperties()) {
+							boardPanels.get(property.getPosition()).setBorder(BorderFactory.createEmptyBorder());
 						}
 					}
 
@@ -2087,19 +1834,15 @@ public class Monopoly {
 
 		startGame = new JButton();
 		finishTurn = new JButton();
-		startGame.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
-				(int) (frameHeight / 3), 140, 40);
-		finishTurn.setBounds(frameHeight + 60 + (int) (frameHeight / 4),
-				frameHeight - 80, 140, 40);
+		startGame.setBounds(frameHeight + 60 + (int) (frameHeight / 4), (int) (frameHeight / 3), 140, 40);
+		finishTurn.setBounds(frameHeight + 60 + (int) (frameHeight / 4), frameHeight - 80, 140, 40);
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/startthegame.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/startthegame.jpg"));
 			startGame.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/finishturn.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/finishturn.jpg"));
 			finishTurn.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
@@ -2118,8 +1861,7 @@ public class Monopoly {
 			// all relevant components are set to be invisible
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				player_1.setBorder(BorderFactory.createLineBorder(Color.green,
-						2));
+				player_1.setBorder(BorderFactory.createLineBorder(Color.green, 2));
 				addPlayer3.setVisible(false);
 				addPlayer3Name.setVisible(false);
 				player3name.setVisible(false);
@@ -2205,11 +1947,9 @@ public class Monopoly {
 		frame.getContentPane().add(payRent);
 
 		rollTheDice = new JButton();
-		rollTheDice.setBounds(frameHeight / 2 - 70, frameHeight / 2 + 40, 140,
-				40);
+		rollTheDice.setBounds(frameHeight / 2 - 70, frameHeight / 2 + 40, 140, 40);
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/rollthedice.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/rollthedice.jpg"));
 			rollTheDice.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
@@ -2220,16 +1960,14 @@ public class Monopoly {
 		dice1 = new JLabel();
 		dice1.setBounds(frameHeight / 2 - 110, frameHeight / 2 - 70, 100, 100);
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/dice6.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/dice6.jpg"));
 			dice1.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		dice2 = new JLabel();
 		dice2.setBounds(frameHeight / 2, frameHeight / 2 - 70, 100, 100);
 		try {
-			Image img = ImageIO.read(getClass().getResource(
-					"resources/dice6.jpg"));
+			Image img = ImageIO.read(getClass().getResource("resources/dice6.jpg"));
 			dice2.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
@@ -2254,6 +1992,11 @@ public class Monopoly {
 		frame.getContentPane().add(mortgageComboBox);
 		frame.getContentPane().add(takeLoan);
 		frame.getContentPane().add(payLoan);
+		frame.getContentPane().add(sellProperty);
+		frame.getContentPane().add(sellPropertyComboBox);
+		frame.getContentPane().add(buyer);
+		frame.getContentPane().add(sellingPrice);
+		frame.getContentPane().add(sellPropertyButton);
 
 	}
 
@@ -2280,48 +2023,42 @@ public class Monopoly {
 				switch (randomDice1) {
 				case 1:
 					try {
-						Image img = ImageIO.read(getClass().getResource(
-								"resources/dice1.jpg"));
+						Image img = ImageIO.read(getClass().getResource("resources/dice1.jpg"));
 						dice1.setIcon(new ImageIcon(img));
 					} catch (IOException ex) {
 					}
 					break;
 				case 2:
 					try {
-						Image img = ImageIO.read(getClass().getResource(
-								"resources/dice2.jpg"));
+						Image img = ImageIO.read(getClass().getResource("resources/dice2.jpg"));
 						dice1.setIcon(new ImageIcon(img));
 					} catch (IOException ex) {
 					}
 					break;
 				case 3:
 					try {
-						Image img = ImageIO.read(getClass().getResource(
-								"resources/dice3.jpg"));
+						Image img = ImageIO.read(getClass().getResource("resources/dice3.jpg"));
 						dice1.setIcon(new ImageIcon(img));
 					} catch (IOException ex) {
 					}
 					break;
 				case 4:
 					try {
-						Image img = ImageIO.read(getClass().getResource(
-								"resources/dice4.jpg"));
+						Image img = ImageIO.read(getClass().getResource("resources/dice4.jpg"));
 						dice1.setIcon(new ImageIcon(img));
 					} catch (IOException ex) {
 					}
 					break;
 				case 5:
 					try {
-						Image img = ImageIO.read(getClass().getResource(
-								"resources/dice5.jpg"));
+						Image img = ImageIO.read(getClass().getResource("resources/dice5.jpg"));
 						dice1.setIcon(new ImageIcon(img));
 					} catch (IOException ex) {
 					}
 					break;
 				case 6:
 					try {
-						Image img = ImageIO.read(getClass().getResource(
-								"resources/dice6.jpg"));
+						Image img = ImageIO.read(getClass().getResource("resources/dice6.jpg"));
 						dice1.setIcon(new ImageIcon(img));
 					} catch (IOException ex) {
 					}
@@ -2330,48 +2067,42 @@ public class Monopoly {
 				switch (randomDice2) {
 				case 1:
 					try {
-						Image img = ImageIO.read(getClass().getResource(
-								"resources/dice1.jpg"));
+						Image img = ImageIO.read(getClass().getResource("resources/dice1.jpg"));
 						dice2.setIcon(new ImageIcon(img));
 					} catch (IOException ex) {
 					}
 					break;
 				case 2:
 					try {
-						Image img = ImageIO.read(getClass().getResource(
-								"resources/dice2.jpg"));
+						Image img = ImageIO.read(getClass().getResource("resources/dice2.jpg"));
 						dice2.setIcon(new ImageIcon(img));
 					} catch (IOException ex) {
 					}
 					break;
 				case 3:
 					try {
-						Image img = ImageIO.read(getClass().getResource(
-								"resources/dice3.jpg"));
+						Image img = ImageIO.read(getClass().getResource("resources/dice3.jpg"));
 						dice2.setIcon(new ImageIcon(img));
 					} catch (IOException ex) {
 					}
 					break;
 				case 4:
 					try {
-						Image img = ImageIO.read(getClass().getResource(
-								"resources/dice4.jpg"));
+						Image img = ImageIO.read(getClass().getResource("resources/dice4.jpg"));
 						dice2.setIcon(new ImageIcon(img));
 					} catch (IOException ex) {
 					}
 					break;
 				case 5:
 					try {
-						Image img = ImageIO.read(getClass().getResource(
-								"resources/dice5.jpg"));
+						Image img = ImageIO.read(getClass().getResource("resources/dice5.jpg"));
 						dice2.setIcon(new ImageIcon(img));
 					} catch (IOException ex) {
 					}
 					break;
 				case 6:
 					try {
-						Image img = ImageIO.read(getClass().getResource(
-								"resources/dice6.jpg"));
+						Image img = ImageIO.read(getClass().getResource("resources/dice6.jpg"));
 						dice2.setIcon(new ImageIcon(img));
 					} catch (IOException ex) {
 					}
@@ -2379,54 +2110,39 @@ public class Monopoly {
 				}
 				if (!extraRollNeeded) {
 					if (!(randomDice1 == randomDice2)) {
-						players.get(playerIndex).setPositionOnGameBoard(
-								randomDice1 + randomDice2);
+						players.get(playerIndex).setPositionOnGameBoard(randomDice1 + randomDice2);
 						finishTurn.setEnabled(true);
 						rollTheDice.setEnabled(false);
 					} else {
 						doubleCounter++;
-						players.get(playerIndex).setPositionOnGameBoard(
-								randomDice1 + randomDice2);
+						players.get(playerIndex).setPositionOnGameBoard(randomDice1 + randomDice2);
 						finishTurn.setEnabled(false);
 					}
 
 					// three doubles - player goes to the jail
-					if (doubleCounter == 3
-							|| players.get(playerIndex)
-									.getPositionOnGameBoard() == 30) {
+					if (doubleCounter == 3 || players.get(playerIndex).getPositionOnGameBoard() == 30) {
 						// no get out of jail card
-						if (players.get(playerIndex)
-								.getNumberOfGetOutOfJailCards() == 0) {
+						if (players.get(playerIndex).getNumberOfGetOutOfJailCards() == 0) {
 							finishTurn.setEnabled(true);
 							rollTheDice.setEnabled(false);
 							players.get(playerIndex).setInJail(true);
 							if (doubleCounter < 3) {
-								log = "  /> "
-										+ players.get(playerIndex).getName()
-										+ " went to Jail" + "\n";
+								log = "  /> " + players.get(playerIndex).getName() + " went to Jail" + "\n";
 								logText.append(log);
 							} else {
-								log = "  /> "
-										+ players.get(playerIndex).getName()
-										+ " went to Jail for rolling 3 doubles "
-										+ "\n";
+								log = "  /> " + players.get(playerIndex).getName()
+										+ " went to Jail for rolling 3 doubles " + "\n";
 								logText.append(log);
 							}
-							players.get(playerIndex).setPositionOnGameBoard(
-									10 - players.get(playerIndex)
-											.getPositionOnGameBoard());
+							players.get(playerIndex)
+									.setPositionOnGameBoard(10 - players.get(playerIndex).getPositionOnGameBoard());
 							adjustPlayerPosition();
-							System.out.println(players.get(playerIndex)
-									.getName()
-									+ " "
-									+ players.get(playerIndex)
-											.getPositionOnGameBoard()
-									+ " in Jail: "
+							System.out.println(players.get(playerIndex).getName() + " "
+									+ players.get(playerIndex).getPositionOnGameBoard() + " in Jail: "
 									+ players.get(playerIndex).isInJail());
 							doubleCounter = 0;
 						} else {
-							gamePrompt
-									.setText("Do you want to use your get out of jail card?");
+							gamePrompt.setText("Do you want to use your get out of jail card?");
 							useGetOutOfJailCard.setVisible(true);
 							dontUseGetOutOfJailCard.setVisible(true);
 							rollTheDice.setEnabled(false);
@@ -2434,20 +2150,16 @@ public class Monopoly {
 						}
 					} else {
 						adjustPlayerPosition();
-						System.out.println(players.get(playerIndex).getName()
-								+ " "
-								+ players.get(playerIndex)
-										.getPositionOnGameBoard());
+						System.out.println(players.get(playerIndex).getName() + " "
+								+ players.get(playerIndex).getPositionOnGameBoard());
 						buyOrRent();
 					}
 				} else {
 					if (players.get(playerIndex).isInJail()) {
 						if (!(randomDice1 == randomDice2)) {
 							if (players.get(playerIndex).getTurnsInJail() == 1) {
-								log = "  /> "
-										+ players.get(playerIndex).getName()
-										+ " has his/her balance deducted by M50 and got out of Jail"
-										+ "\n";
+								log = "  /> " + players.get(playerIndex).getName()
+										+ " has his/her balance deducted by M50 and got out of Jail" + "\n";
 								logText.append(log);
 								players.get(playerIndex).setMoneyHeld(-50);
 								players.get(playerIndex).setInJail(false);
@@ -2455,10 +2167,7 @@ public class Monopoly {
 								useGetOutOfJailCard.setVisible(false);
 								pay50toGetOutOfJail.setVisible(false);
 								gamePrompt.setText("");
-								balanceLabels.get(playerIndex).setText(
-										"E"
-												+ players.get(playerIndex)
-														.getMoneyHeld());
+								balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
 							} else {
 								players.get(playerIndex).setTurnsInJail(1);
 								useGetOutOfJailCard.setVisible(false);
@@ -2473,16 +2182,12 @@ public class Monopoly {
 							players.get(playerIndex).setTurnsInJail(0);
 							useGetOutOfJailCard.setVisible(false);
 							pay50toGetOutOfJail.setVisible(false);
-							log = "  /> " + players.get(playerIndex).getName()
-									+ " rolled double and got out of Jail"
+							log = "  /> " + players.get(playerIndex).getName() + " rolled double and got out of Jail"
 									+ "\n";
 							logText.append(log);
 							gamePrompt.setText("");
 							extraRollNeeded = false;
-							balanceLabels.get(playerIndex).setText(
-									"E"
-											+ players.get(playerIndex)
-													.getMoneyHeld());
+							balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
 							doubleCounter = 0;
 						}
 					} else {
@@ -2497,51 +2202,40 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+
+				// setting new owner of a property
+				entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard())
+						.setOwner(players.get(playerIndex));
+
 				// adding property to player's ArrayList of properties
-				players.get(playerIndex)
-						.getOwnedProperties()
-						.add(entities.getEntities().get(
-								players.get(playerIndex)
-										.getPositionOnGameBoard()));
+				players.get(playerIndex).getOwnedProperties()
+						.add(entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()));
 
 				// deducting the value of the property from player's balance
 				players.get(playerIndex).setMoneyHeld(
-						-entities
-								.getEntities()
-								.get(players.get(playerIndex)
-										.getPositionOnGameBoard()).getCost());
-
-				// setting new owner of a property
-				entities.getEntities()
-						.get(players.get(playerIndex).getPositionOnGameBoard())
-						.setOwner(players.get(playerIndex));
+						-entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getCost());
 
 				if (randomDice1 != randomDice2 || doubleCounter == 3) {
 					finishTurn.setEnabled(true);
 				}
 				buyProperty.setVisible(false);
 				dontBuyProperty.setVisible(false);
-				log = "  /> "
-						+ players.get(playerIndex).getName()
-						+ " has just bought "
-						+ entities
-								.getEntities()
-								.get(players.get(playerIndex)
-										.getPositionOnGameBoard()).getName()
+				log = "  /> " + players.get(playerIndex).getName() + " has just bought "
+						+ entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getName()
 						+ "(worth M"
-						+ entities
-								.getEntities()
-								.get(players.get(playerIndex)
-										.getPositionOnGameBoard()).getCost()
+						+ entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getCost()
 						+ ")\n";
 				logText.append(log);
-				balanceLabels.get(playerIndex).setText(
-						"E" + players.get(playerIndex).getMoneyHeld());
+				balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
 				mortgageModel = new DefaultComboBoxModel<String>();
-				for (Entity entity : players.get(playerIndex)
-						.getOwnedProperties()) {
+				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
 					mortgageModel.addElement(entity.getName());
 				}
+				sellPropertyModel = new DefaultComboBoxModel<String>();
+				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
+					sellPropertyModel.addElement(entity.getName());
+				}
+				sellPropertyComboBox.setModel(sellPropertyModel);
 				mortgageComboBox.setModel(mortgageModel);
 				mortgageComboBox.setSelectedItem(null);
 				mortgageManagement.setVisible(true);
@@ -2550,6 +2244,14 @@ public class Monopoly {
 				payLoan.setVisible(true);
 				takeLoan.setEnabled(false);
 				payLoan.setEnabled(false);
+				sellProperty.setVisible(true);
+				sellPropertyComboBox.setVisible(true);
+				sellPropertyComboBox.setSelectedItem(null);
+				buyer.setVisible(true);
+				buyer.setSelectedItem(null);
+				sellingPrice.setVisible(true);
+				sellPropertyButton.setVisible(true);
+				sellPropertyButton.setEnabled(false);
 			}
 		});
 
@@ -2562,26 +2264,20 @@ public class Monopoly {
 				}
 				buyProperty.setVisible(false);
 				dontBuyProperty.setVisible(false);
-				log = "  /> "
-						+ players.get(playerIndex).getName()
-						+ " did not buy "
-						+ entities
-								.getEntities()
-								.get(players.get(playerIndex)
-										.getPositionOnGameBoard()).getName()
+				log = "  /> " + players.get(playerIndex).getName() + " did not buy "
+						+ entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getName()
 						+ "\n";
 				logText.append(log);
 
 				buyUnwantedPropertyModel = new DefaultComboBoxModel<String>();
 				for (Player player : players) {
-					if (!player.getName().equals(
-							players.get(playerIndex).getName())) {
+					if (!player.getName().equals(players.get(playerIndex).getName())) {
 						buyUnwantedPropertyModel.addElement(player.getName());
 					}
 				}
 				buyUnwantedProperty.setModel(buyUnwantedPropertyModel);
-				gamePrompt
-						.setText("Please pick a name of a player (if interested) and enter the amount to be paid for the property");
+				gamePrompt.setText(
+						"Please pick a name of a player (if interested) and enter the amount to be paid for the property");
 				buyUnwantedProperty.setVisible(true);
 				buyUnwantedPropertyButton.setVisible(true);
 				priceOfUnwantedProperty.setVisible(true);
@@ -2593,49 +2289,24 @@ public class Monopoly {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				if (entities.getEntities()
-						.get(players.get(playerIndex).getPositionOnGameBoard())
+				if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard())
 						.getNumberOfHotels() == 0
-						&& !entities
-								.getEntities()
-								.get(players.get(playerIndex)
-										.getPositionOnGameBoard()).getGroup()
+						&& !entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getGroup()
 								.equals("utilities")
-						&& !entities
-								.getEntities()
-								.get(players.get(playerIndex)
-										.getPositionOnGameBoard()).getGroup()
+						&& !entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getGroup()
 								.equals("railroads")) {
-					rentValue = entities
-							.getEntities()
-							.get(players.get(playerIndex)
-									.getPositionOnGameBoard())
-							.getRentValues()
-							.get(entities
-									.getEntities()
-									.get(players.get(playerIndex)
-											.getPositionOnGameBoard())
-									.getNumberOfHouses());
+					rentValue = entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard())
+							.getRentValues().get(entities.getEntities()
+									.get(players.get(playerIndex).getPositionOnGameBoard()).getNumberOfHouses());
 
-					ownerIndex = getPlayerIndex(entities
-							.getEntities()
-							.get(players.get(playerIndex)
-									.getPositionOnGameBoard()).getOwner());
+					ownerIndex = getPlayerIndex(
+							entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner());
 					if (playerHasAll(
-							entities.getEntities()
-									.get(players.get(playerIndex)
-											.getPositionOnGameBoard())
-									.getGroup(), players.get(ownerIndex)
-									.getName())
-							&& entities
-									.getEntities()
-									.get(players.get(playerIndex)
-											.getPositionOnGameBoard())
+							entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getGroup(),
+							players.get(ownerIndex).getName())
+							&& entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard())
 									.getNumberOfHotels() == 0
-							&& entities
-									.getEntities()
-									.get(players.get(playerIndex)
-											.getPositionOnGameBoard())
+							&& entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard())
 									.getNumberOfHouses() == 0) {
 						rentValue = rentValue * 2;
 					}
@@ -2644,56 +2315,41 @@ public class Monopoly {
 				} else if (players.get(playerIndex).getPositionOnGameBoard() == 12
 						&& entities.getEntities().get(28).getOwner() != null
 						|| players.get(playerIndex).getPositionOnGameBoard() == 28
-						&& entities.getEntities().get(12).getOwner() != null) {
+								&& entities.getEntities().get(12).getOwner() != null) {
 					rentValue = 10 * (randomDice1 + randomDice2);
 					players.get(playerIndex).setMoneyHeld(-rentValue);
-					ownerIndex = getPlayerIndex(entities
-							.getEntities()
-							.get(players.get(playerIndex)
-									.getPositionOnGameBoard()).getOwner());
+					ownerIndex = getPlayerIndex(
+							entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner());
 					players.get(ownerIndex).setMoneyHeld(rentValue);
 					extraRollNeeded = false;
 				} else if (players.get(playerIndex).getPositionOnGameBoard() == 12
 						&& entities.getEntities().get(28).getOwner() == null
 						|| players.get(playerIndex).getPositionOnGameBoard() == 28
-						&& entities.getEntities().get(12).getOwner() == null) {
+								&& entities.getEntities().get(12).getOwner() == null) {
 					rentValue = 4 * (randomDice1 + randomDice2);
 					players.get(playerIndex).setMoneyHeld(-rentValue);
-					ownerIndex = getPlayerIndex(entities
-							.getEntities()
-							.get(players.get(playerIndex)
-									.getPositionOnGameBoard()).getOwner());
+					ownerIndex = getPlayerIndex(
+							entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner());
 					players.get(ownerIndex).setMoneyHeld(rentValue);
 					extraRollNeeded = false;
-				} else if (entities.getEntities()
-						.get(players.get(playerIndex).getPositionOnGameBoard())
-						.getGroup().equals("railroads")) {
-					ownerIndex = getPlayerIndex(entities
-							.getEntities()
-							.get(players.get(playerIndex)
-									.getPositionOnGameBoard()).getOwner());
-					rentValue = getRailRoadRent(players.get(ownerIndex)
-							.getName());
+				} else if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getGroup()
+						.equals("railroads")) {
+					ownerIndex = getPlayerIndex(
+							entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner());
+					rentValue = getRailRoadRent(players.get(ownerIndex).getName());
 					players.get(playerIndex).setMoneyHeld(-rentValue);
 					players.get(ownerIndex).setMoneyHeld(rentValue);
 				}
 				payRent.setVisible(false);
 				log = "  /> "
-						+ players.get(playerIndex).getName()
-						+ " paid "
-						+ rentValue
-						+ " rent to "
-						+ players.get(
-								getPlayerIndex(entities
-										.getEntities()
-										.get(players.get(playerIndex)
-												.getPositionOnGameBoard())
-										.getOwner())).getName() + "\n";
+						+ players.get(playerIndex)
+								.getName()
+						+ " paid " + rentValue + " rent to " + players.get(getPlayerIndex(entities.getEntities()
+								.get(players.get(playerIndex).getPositionOnGameBoard()).getOwner())).getName()
+						+ "\n";
 				logText.append(log);
-				balanceLabels.get(playerIndex).setText(
-						"E" + players.get(playerIndex).getMoneyHeld());
-				balanceLabels.get(ownerIndex).setText(
-						"E" + players.get(ownerIndex).getMoneyHeld());
+				balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
+				balanceLabels.get(ownerIndex).setText("E" + players.get(ownerIndex).getMoneyHeld());
 
 				if (randomDice1 != randomDice2 || doubleCounter == 3) {
 					finishTurn.setEnabled(true);
@@ -2716,13 +2372,11 @@ public class Monopoly {
 				players.get(playerIndex).setInJail(false);
 				players.get(playerIndex).setTurnsInJail(0);
 				pay50toGetOutOfJail.setVisible(false);
-				log = "  /> " + players.get(playerIndex).getName()
-						+ " paid M50 to get out of Jail" + "\n";
+				log = "  /> " + players.get(playerIndex).getName() + " paid M50 to get out of Jail" + "\n";
 				logText.append(log);
 				gamePrompt.setText("");
 				extraRollNeeded = false;
-				balanceLabels.get(playerIndex).setText(
-						"E" + players.get(playerIndex).getMoneyHeld());
+				balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
 			}
 
 		});
@@ -2731,14 +2385,11 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (!players.get(playerIndex).isInJail()
-						&& players.get(playerIndex).getPositionOnGameBoard() == 30) {
+				if (!players.get(playerIndex).isInJail() && players.get(playerIndex).getPositionOnGameBoard() == 30) {
 					if (doubleCounter == 3 || randomDice1 != randomDice2) {
 						finishTurn.setEnabled(true);
-						log = "  /> "
-								+ players.get(playerIndex).getName()
-								+ " used his/her get out of Jail card to avoid going to Jail"
-								+ "\n";
+						log = "  /> " + players.get(playerIndex).getName()
+								+ " used his/her get out of Jail card to avoid going to Jail" + "\n";
 						logText.append(log);
 						adjustPlayerPosition();
 					}
@@ -2749,20 +2400,16 @@ public class Monopoly {
 						finishTurn.setEnabled(true);
 					}
 					adjustPlayerPosition();
-					log = "  /> "
-							+ players.get(playerIndex).getName()
-							+ " used his/her get out of Jail card to avoid going to Jail"
-							+ "\n";
+					log = "  /> " + players.get(playerIndex).getName()
+							+ " used his/her get out of Jail card to avoid going to Jail" + "\n";
 					logText.append(log);
 				} else {
 					rollTheDice.setEnabled(true);
 					players.get(playerIndex).setInJail(false);
 					players.get(playerIndex).setTurnsInJail(0);
 					pay50toGetOutOfJail.setVisible(false);
-					log = "  /> "
-							+ players.get(playerIndex).getName()
-							+ " used his/her get out of Jail card to get out of Jail"
-							+ "\n";
+					log = "  /> " + players.get(playerIndex).getName()
+							+ " used his/her get out of Jail card to get out of Jail" + "\n";
 					logText.append(log);
 					extraRollNeeded = false;
 				}
@@ -2770,10 +2417,8 @@ public class Monopoly {
 				dontUseGetOutOfJailCard.setVisible(false);
 				players.get(playerIndex).setNumberOfGetOutOfJailCards(-1);
 				gamePrompt.setText("");
-				getOutOfJailLabels.get(playerIndex).setText(
-						"get out of jail cards : "
-								+ players.get(playerIndex)
-										.getNumberOfGetOutOfJailCards());
+				getOutOfJailLabels.get(playerIndex)
+						.setText("get out of jail cards : " + players.get(playerIndex).getNumberOfGetOutOfJailCards());
 				buyOrRent();
 			}
 		});
@@ -2783,17 +2428,14 @@ public class Monopoly {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				players.get(playerIndex).setPositionOnGameBoard(
-						10 - players.get(playerIndex).getPositionOnGameBoard());
+				players.get(playerIndex).setPositionOnGameBoard(10 - players.get(playerIndex).getPositionOnGameBoard());
 				players.get(playerIndex).setInJail(true);
 				adjustPlayerPosition();
 				if (doubleCounter == 3) {
-					log = "  /> " + players.get(playerIndex).getName()
-							+ " went to Jail for rolling 3 doubles " + "\n";
+					log = "  /> " + players.get(playerIndex).getName() + " went to Jail for rolling 3 doubles " + "\n";
 					logText.append(log);
 				} else {
-					log = "  /> " + players.get(playerIndex).getName()
-							+ " went to Jail" + "\n";
+					log = "  /> " + players.get(playerIndex).getName() + " went to Jail" + "\n";
 					logText.append(log);
 				}
 				finishTurn.setEnabled(true);
@@ -2808,23 +2450,18 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				playersPanes.get(playerIndex).setBorder(
-						BorderFactory.createLineBorder(Color.black, 2));
+				playersPanes.get(playerIndex).setBorder(BorderFactory.createLineBorder(Color.black, 2));
 				playerIndex = (playerIndex + 1) % players.size();
-				playersPanes.get(playerIndex).setBorder(
-						BorderFactory.createLineBorder(Color.green, 2));
+				playersPanes.get(playerIndex).setBorder(BorderFactory.createLineBorder(Color.green, 2));
 				if (players.get(playerIndex).isInJail()
-						&& players.get(playerIndex)
-								.getNumberOfGetOutOfJailCards() > 0) {
-					gamePrompt
-							.setText("Use the card, pay M50 or roll the dice to get out of Jail");
+						&& players.get(playerIndex).getNumberOfGetOutOfJailCards() > 0) {
+					gamePrompt.setText("Use the card, pay M50 or roll the dice to get out of Jail");
 					useGetOutOfJailCard.setVisible(true);
 					pay50toGetOutOfJail.setVisible(true);
 					rollTheDice.setEnabled(true);
 					extraRollNeeded = true;
 				} else if (players.get(playerIndex).isInJail()) {
-					gamePrompt
-							.setText("You need to pay M50 or roll double to get out of Jail");
+					gamePrompt.setText("You need to pay M50 or roll double to get out of Jail");
 					extraRollNeeded = true;
 					rollTheDice.setEnabled(true);
 					pay50toGetOutOfJail.setVisible(true);
@@ -2840,23 +2477,40 @@ public class Monopoly {
 				priceOfUnwantedProperty.setVisible(false);
 				if (players.get(playerIndex).getOwnedProperties().size() > 0) {
 					mortgageModel = new DefaultComboBoxModel<String>();
-					for (Entity entity : players.get(playerIndex)
-							.getOwnedProperties()) {
+					for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
 						mortgageModel.addElement(entity.getName());
 					}
 					mortgageComboBox.setModel(mortgageModel);
 					mortgageComboBox.setSelectedItem(null);
+					sellPropertyModel = new DefaultComboBoxModel<String>();
+					for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
+						sellPropertyModel.addElement(entity.getName());
+					}
+					sellPropertyComboBox.setModel(sellPropertyModel);
 					mortgageManagement.setVisible(true);
 					mortgageComboBox.setVisible(true);
 					takeLoan.setVisible(true);
 					payLoan.setVisible(true);
 					takeLoan.setEnabled(false);
 					payLoan.setEnabled(false);
+					sellProperty.setVisible(true);
+					sellPropertyComboBox.setVisible(true);
+					sellPropertyComboBox.setSelectedItem(null);
+					buyer.setVisible(true);
+					buyer.setSelectedItem(null);
+					sellingPrice.setVisible(true);
+					sellPropertyButton.setVisible(true);
+					sellPropertyButton.setEnabled(false);
 				} else {
 					mortgageManagement.setVisible(false);
 					mortgageComboBox.setVisible(false);
 					takeLoan.setVisible(false);
 					payLoan.setVisible(false);
+					sellProperty.setVisible(false);
+					sellPropertyComboBox.setVisible(false);
+					buyer.setVisible(false);
+					sellingPrice.setVisible(false);
+					sellPropertyButton.setVisible(false);
 				}
 			}
 
@@ -2870,29 +2524,20 @@ public class Monopoly {
 				buyUnwantedPropertyButton.setVisible(false);
 				priceOfUnwantedProperty.setVisible(false);
 				gamePrompt.setText("");
-				ownerIndex = getPlayerIndex(String.valueOf(buyUnwantedProperty
-						.getSelectedItem()));
-				log = "  /> "
-						+ players.get(ownerIndex).getName()
-						+ " has just bought "
-						+ entities
-								.getEntities()
-								.get(players.get(playerIndex)
-										.getPositionOnGameBoard()).getName()
+				ownerIndex = getPlayerIndex(String.valueOf(buyUnwantedProperty.getSelectedItem()));
+				log = "  /> " + players.get(ownerIndex).getName() + " has just bought "
+						+ entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getName()
 						+ "(for M" + valueOfUnwantedProperty + ")\n";
 				logText.append(log);
 				players.get(ownerIndex).setMoneyHeld(-valueOfUnwantedProperty);
-				balanceLabels.get(ownerIndex).setText(
-						"E" + players.get(ownerIndex).getMoneyHeld());
+				balanceLabels.get(ownerIndex).setText("E" + players.get(ownerIndex).getMoneyHeld());
 
-				players.get(ownerIndex)
-						.getOwnedProperties()
-						.add(entities.getEntities().get(
-								players.get(playerIndex)
-										.getPositionOnGameBoard()));
-				entities.getEntities()
-						.get(players.get(playerIndex).getPositionOnGameBoard())
+				entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard())
 						.setOwner(players.get(ownerIndex));
+
+				players.get(ownerIndex).getOwnedProperties()
+						.add(entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()));
+
 				priceOfUnwantedProperty.setText("");
 			}
 
@@ -2902,63 +2547,217 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String comboSelection = String.valueOf(mortgageComboBox
-						.getSelectedItem());
+				String comboSelection = String.valueOf(mortgageComboBox.getSelectedItem());
 				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
-					if (entity.getName().equals(comboSelection)
-							&& entity.isMortgaged()
-							&& players.get(playerIndex).getMoneyHeld() >= (entity
-									.getCost() * 0.55)) {
+					if (entity.getName().equals(comboSelection) && entity.isMortgaged()
+							&& players.get(playerIndex).getMoneyHeld() >= (entity.getCost() * 0.55)) {
 						payLoan.setEnabled(true);
 						takeLoan.setEnabled(false);
-					} else if (entity.getName().equals(comboSelection)
-							&& !entity.isMortgaged()) {
+					} else if (entity.getName().equals(comboSelection) && !entity.isMortgaged()) {
 						payLoan.setEnabled(false);
 						takeLoan.setEnabled(true);
 					}
 				}
+				// buyer.setSelectedItem(null);
+				sellPropertyComboBox.setSelectedItem(null);
 
 			}
 
 		});
-		payLoan.addActionListener(new ActionListener(){
+
+		sellPropertyComboBox.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String combo = String.valueOf(sellPropertyComboBox.getSelectedItem());
+				boolean isMortgaged = false;
+				for (Entity entity : entities.getEntities()) {
+					if (entity.getName().equals(combo)) {
+						if (entity.isMortgaged()) {
+							isMortgaged = true;
+						}
+					}
+				}
+				buyerModel = new DefaultComboBoxModel<String>();
+				for (int i = 0; i < players.size(); i++) {
+					if (i != playerIndex) {
+						if (isMortgaged && (getEntityCost(combo) * 0.55) <= players.get(i).getMoneyHeld()) {
+							buyerModel.addElement(players.get(i).getName());
+						} else if (!isMortgaged && players.get(i).getMoneyHeld() >= 1) {
+							buyerModel.addElement(players.get(i).getName());
+						}
+					}
+				}
+				buyer.setModel(buyerModel);
+				buyer.setSelectedItem(null);
+				// mortgageComboBox.setSelectedItem(null);
+			}
+
+		});
+
+		sellingPrice.getDocument().addDocumentListener(new DocumentListener() {
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {
+				checkValue();
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				checkValue();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				checkValue();
+			}
+
+			public void checkValue() {
+				String value = sellingPrice.getText();
+				int tempQty = 0;
+				try {
+					tempQty = Integer.parseInt(value);
+				} catch (Exception e) {
+
+				}
+
+				if (tempQty > 0 && tempQty <= players.get(getPlayerIndex(String.valueOf(buyer.getSelectedItem())))
+						.getMoneyHeld()) {
+					if (entities.getEntities()
+							.get(getEntityPosition(String.valueOf(sellPropertyComboBox.getSelectedItem())))
+							.isMortgaged()
+							&& tempQty >= (entities.getEntities()
+									.get(getEntityPosition(String.valueOf(sellPropertyComboBox.getSelectedItem())))
+									.getCost() * 0.55)) {
+						sellPropertyButton.setEnabled(true);
+						valueOfUnwantedProperty = tempQty;
+					}
+				} else {
+					sellPropertyButton.setEnabled(false);
+					// valueOfUnwantedProperty = 0;
+				}
+			}
+		});
+
+		sellPropertyButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String comboSelection = String.valueOf(mortgageComboBox
-						.getSelectedItem());
-				for (Entity anEntity: entities.getEntities()) {
+				boolean isMortgaged = false;
+				String entityName = String.valueOf(sellPropertyComboBox.getSelectedItem());
+				for (int i = 0; i < players.get(playerIndex).getOwnedProperties().size(); i++) {
+					if (players.get(playerIndex).getOwnedProperties().get(i).getName().equals(entityName)) {
+						players.get(playerIndex).getOwnedProperties().remove(i);
+						continue;
+					}
+				}
+				ownerIndex = getPlayerIndex(String.valueOf(buyer.getSelectedItem()));
+				int entityPosition = getEntityPosition(entityName);
+				entities.getEntities().get(entityPosition).setOwner(players.get(ownerIndex));
+				
+				if (entities.getEntities().get(entityPosition).isMortgaged()) {
+					isMortgaged = true;
+				}
+				entities.getEntities().get(entityPosition).setMortgaged(false);
+				players.get(ownerIndex).getOwnedProperties().add(entities.getEntities().get(entityPosition));
+
+				log = "  /> " + players.get(playerIndex).getName() + " has just sold "
+						+ entities.getEntities().get(entityPosition).getName() + " to "
+						+ players.get(ownerIndex).getName() + " (for M" + valueOfUnwantedProperty + ")\n";
+				logText.append(log);
+				if (isMortgaged) {
+					players.get(playerIndex).setMoneyHeld(
+							valueOfUnwantedProperty - (entities.getEntities().get(entityPosition).getCost() * 0.55));
+					log = "  /> " + entities.getEntities().get(entityPosition).getName() + " is no longer mortgaged "
+							+ "\n";
+					logText.append(log);
+				} else {
+					players.get(playerIndex).setMoneyHeld(valueOfUnwantedProperty);
+				}
+				players.get(ownerIndex).setMoneyHeld(-valueOfUnwantedProperty);
+
+				balanceLabels.get(ownerIndex).setText("E" + players.get(ownerIndex).getMoneyHeld());
+				balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
+				if (players.get(playerIndex).getOwnedProperties().size() > 0) {
+					mortgageModel = new DefaultComboBoxModel<String>();
+					for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
+						mortgageModel.addElement(entity.getName());
+					}
+					mortgageComboBox.setModel(mortgageModel);
+					mortgageComboBox.setSelectedItem(null);
+					sellPropertyModel = new DefaultComboBoxModel<String>();
+					for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
+						sellPropertyModel.addElement(entity.getName());
+					}
+					sellPropertyComboBox.setModel(sellPropertyModel);
+					mortgageManagement.setVisible(true);
+					mortgageComboBox.setVisible(true);
+					takeLoan.setVisible(true);
+					payLoan.setVisible(true);
+					takeLoan.setEnabled(false);
+					payLoan.setEnabled(false);
+					sellProperty.setVisible(true);
+					sellPropertyComboBox.setVisible(true);
+					sellPropertyComboBox.setSelectedItem(null);
+					buyer.setVisible(true);
+					buyer.setSelectedItem(null);
+					sellingPrice.setVisible(true);
+					sellingPrice.setText("");
+					sellPropertyButton.setVisible(true);
+					sellPropertyButton.setEnabled(false);
+				} else {
+					mortgageManagement.setVisible(false);
+					mortgageComboBox.setVisible(false);
+					takeLoan.setVisible(false);
+					payLoan.setVisible(false);
+					takeLoan.setEnabled(false);
+					payLoan.setEnabled(false);
+					sellProperty.setVisible(false);
+					sellPropertyComboBox.setVisible(false);
+					sellPropertyComboBox.setSelectedItem(null);
+					buyer.setVisible(false);
+					buyer.setSelectedItem(null);
+					sellingPrice.setVisible(false);
+					sellingPrice.setText("");
+					sellPropertyButton.setVisible(false);
+					sellPropertyButton.setEnabled(false);
+				}
+			}
+
+		});
+
+		payLoan.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String comboSelection = String.valueOf(mortgageComboBox.getSelectedItem());
+				for (Entity anEntity : entities.getEntities()) {
 					if (anEntity.getName().equals(comboSelection)) {
 						anEntity.setMortgaged(false);
 					}
 				}
-				for (Entity entity: players.get(playerIndex).getOwnedProperties()) {
+				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
 					if (entity.getName().equals(comboSelection)) {
 						entity.setMortgaged(false);
 						players.get(playerIndex).setMoneyHeld(-(entity.getCost() * 0.55));
-						log = "  /> "
-								+ players.get(playerIndex).getName()
-								+ " entity: "
-								+ entity.getName() + "\'s mortgage is now paid" + "\n";
+						log = "  /> " + players.get(playerIndex).getName() + " entity: " + entity.getName()
+								+ "\'s mortgage is now paid" + "\n";
 						logText.append(log);
-						balanceLabels.get(playerIndex).setText(
-								"E" + players.get(playerIndex).getMoneyHeld());
+						balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
 						mortgageComboBox.setSelectedItem(null);
 						payLoan.setEnabled(false);
 						takeLoan.setEnabled(false);
 					}
 				}
 			}
-			
+
 		});
-		
-		takeLoan.addActionListener(new ActionListener(){
+
+		takeLoan.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String comboSelection = String.valueOf(mortgageComboBox
-						.getSelectedItem());
-				for (Entity anEntity: entities.getEntities()) {
+				String comboSelection = String.valueOf(mortgageComboBox.getSelectedItem());
+				for (Entity anEntity : entities.getEntities()) {
 					if (anEntity.getName().equals(comboSelection)) {
 						anEntity.setMortgaged(true);
 					}
@@ -2967,103 +2766,78 @@ public class Monopoly {
 					if (entity.getName().equals(comboSelection)) {
 						entity.setMortgaged(true);
 						players.get(playerIndex).setMoneyHeld(entity.getCost() * 0.5);
-						log = "  /> "
-								+ players.get(playerIndex).getName()
-								+ " entity: "
-								+ entity.getName() + " is now mortgaged" + "\n";
+						log = "  /> " + players.get(playerIndex).getName() + " entity: " + entity.getName()
+								+ " is now mortgaged" + "\n";
 						logText.append(log);
-						balanceLabels.get(playerIndex).setText(
-								"E" + players.get(playerIndex).getMoneyHeld());
+						balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
 						mortgageComboBox.setSelectedItem(null);
 						payLoan.setEnabled(false);
 						takeLoan.setEnabled(false);
-						if (entities.getEntities()
-								.get(players.get(playerIndex).getPositionOnGameBoard())
-								.canBePurchased() && entities.getEntities()
-								.get(players.get(playerIndex).getPositionOnGameBoard())
-								.getOwner() == null) {
+						if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard())
+								.canBePurchased()
+								&& entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard())
+										.getOwner() == null) {
 							buyProperty.setVisible(false);
 							buyProperty.setEnabled(true);
-							gamePrompt
-									.setText("");
+							gamePrompt.setText("");
 							dontBuyProperty.setVisible(false);
-							buyOrRent();	
+							buyOrRent();
 						}
 					}
 				}
 			}
-			
+
 		});
 	}
 
 	private void buyOrRent() {
-		if (entities.getEntities()
-				.get(players.get(playerIndex).getPositionOnGameBoard())
-				.canBePurchased()) {
+		if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).canBePurchased()) {
 			finishTurn.setEnabled(false);
 
 			// mortgaged
-			if (entities.getEntities()
-					.get(players.get(playerIndex).getPositionOnGameBoard())
-					.getOwner() != null
-					&& !entities
-							.getEntities()
-							.get(players.get(playerIndex)
-									.getPositionOnGameBoard()).getOwner()
-							.getName()
-							.equals(players.get(playerIndex).getName())
-					&& entities
-							.getEntities()
-							.get(players.get(playerIndex)
-									.getPositionOnGameBoard()).isMortgaged()) {
-				gamePrompt
-						.setText("The property is mortgaged, so there is no need to pay rent");
+			if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner() != null
+					&& !entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner()
+							.getName().equals(players.get(playerIndex).getName())
+					&& entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).isMortgaged()) {
+				gamePrompt.setText("The property is mortgaged, so there is no need to pay rent");
 			}
 
 			// unowned property
-			if (entities.getEntities()
-					.get(players.get(playerIndex).getPositionOnGameBoard())
-					.getOwner() == null) {
+			if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner() == null) {
 				// sufficient funds to buy
-				if (entities.getEntities()
-						.get(players.get(playerIndex).getPositionOnGameBoard())
-						.getCost() <= players.get(playerIndex).getMoneyHeld()) {
+				if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getCost() <= players
+						.get(playerIndex).getMoneyHeld()) {
 					buyProperty.setVisible(true);
 					dontBuyProperty.setVisible(true);
 					// insufficient funds
 				} else {
 					buyProperty.setVisible(true);
 					buyProperty.setEnabled(false);
-					gamePrompt
-							.setText("You don't have enough cash to buy this property. Press don't buy or borrow some money");
+					gamePrompt.setText(
+							"You don't have enough cash to buy this property. Press don't buy or borrow some money");
 					dontBuyProperty.setVisible(true);
 				}
-			} else if (!entities.getEntities()
-					.get(players.get(playerIndex).getPositionOnGameBoard())
-					.getOwner().getName()
-					.equals(players.get(playerIndex).getName())
+			} else if (!entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner()
+					.getName().equals(players.get(playerIndex).getName())
 					&& players.get(playerIndex).getPositionOnGameBoard() != 12
-					&& players.get(playerIndex).getPositionOnGameBoard() != 28 && !entities.getEntities()
-							.get(players.get(playerIndex).getPositionOnGameBoard()).isMortgaged()) {
+					&& players.get(playerIndex).getPositionOnGameBoard() != 28
+					&& !entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).isMortgaged()) {
 				payRent.setVisible(true);
 				if (randomDice1 == randomDice2) {
 					rollTheDice.setEnabled(false);
 				}
-			} else if (!entities.getEntities()
-					.get(players.get(playerIndex).getPositionOnGameBoard())
-					.getOwner().getName()
-					.equals(players.get(playerIndex).getName()) && entities.getEntities()
-					.get(players.get(playerIndex).getPositionOnGameBoard()).getGroup().equals("utilities")){
-				if (!entities.getEntities()
-						.get(players.get(playerIndex).getPositionOnGameBoard()).isMortgaged()) {
-					gamePrompt
-							.setText("Roll the dice to estimate the amount of rent");
+			} else if (!entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner()
+					.getName().equals(players.get(playerIndex).getName())
+					&& entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getGroup()
+							.equals("utilities")) {
+				if (!entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).isMortgaged()) {
+					gamePrompt.setText("Roll the dice to estimate the amount of rent");
 					extraRollNeeded = true;
 					rollTheDice.setEnabled(true);
 				}
 			} else {
 				if (randomDice1 != randomDice2) {
-				finishTurn.setEnabled(true);
+					finishTurn.setEnabled(true);
 				}
 			}
 		}
@@ -3075,8 +2849,7 @@ public class Monopoly {
 		for (Entity entity : entities.getEntities()) {
 			if (entity.canBePurchased()) {
 				if (entity.getGroup().equals(group)) {
-					if (entity.getOwner() != null
-							&& entity.getOwner().getName().equals(name)) {
+					if (entity.getOwner() != null && entity.getOwner().getName().equals(name)) {
 						counter++;
 					}
 				}
@@ -3099,10 +2872,8 @@ public class Monopoly {
 		int counter = 0;
 		double rentValue = 0;
 		for (Entity entity : entities.getEntities()) {
-			if (entity.getGroup() != null
-					&& entity.getGroup().equals("railroads")) {
-				if (entity.getOwner() != null
-						&& entity.getOwner().getName().equals(name)) {
+			if (entity.getGroup() != null && entity.getGroup().equals("railroads")) {
+				if (entity.getOwner() != null && entity.getOwner().getName().equals(name)) {
 					counter++;
 				}
 			}
@@ -3143,15 +2914,28 @@ public class Monopoly {
 		return -1;
 	}
 
+	private double getEntityCost(String name) {
+		for (Entity entity : entities.getEntities()) {
+			if (entity.getName().equals(name)) {
+				return entity.getCost();
+			}
+		}
+		return -1;
+	}
+
+	private int getEntityPosition(String name) {
+		for (Entity entity : entities.getEntities()) {
+			if (entity.getName().equals(name)) {
+				return entity.getPosition();
+			}
+		}
+		return -1;
+	}
+
 	private void adjustPlayerPosition() {
 		if (!(players.get(playerIndex).isInJail())) {
-			log = "  /> "
-					+ players.get(playerIndex).getName()
-					+ " went to "
-					+ entities
-							.getEntities()
-							.get(players.get(playerIndex)
-									.getPositionOnGameBoard()).getName() + "\n";
+			log = "  /> " + players.get(playerIndex).getName() + " went to "
+					+ entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getName() + "\n";
 			logText.append(log);
 		}
 
@@ -3159,61 +2943,49 @@ public class Monopoly {
 		case 0:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(frameHeight - 80,
-						frameHeight - 80, 20, 20);
+				playerIndicators.get(0).setBounds(frameHeight - 80, frameHeight - 80, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(frameHeight - 60,
-						frameHeight - 80, 20, 20);
+				playerIndicators.get(1).setBounds(frameHeight - 60, frameHeight - 80, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(frameHeight - 80,
-						frameHeight - 60, 20, 20);
+				playerIndicators.get(2).setBounds(frameHeight - 80, frameHeight - 60, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(frameHeight - 60,
-						frameHeight - 60, 20, 20);
+				playerIndicators.get(3).setBounds(frameHeight - 60, frameHeight - 60, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(frameHeight - 80,
-						frameHeight - 40, 20, 20);
+				playerIndicators.get(4).setBounds(frameHeight - 80, frameHeight - 40, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(frameHeight - 60,
-						frameHeight - 40, 20, 20);
+				playerIndicators.get(5).setBounds(frameHeight - 60, frameHeight - 40, 20, 20);
 				break;
 			}
 			break;
 		case 1:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 5) + 10,
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 5) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 5) + 30,
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 5) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 5) + 10,
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 5) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 5) + 30,
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 5) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 5) + 10,
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 5) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 5) + 30,
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 5) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
 				break;
 			}
@@ -3222,33 +2994,27 @@ public class Monopoly {
 		case 2:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 4.5) + 10,
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 4.5) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 4.5) + 30,
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 4.5) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 4.5) + 10,
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 4.5) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 4.5) + 30,
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 4.5) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 4.5) + 10,
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 4.5) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 4.5) + 30,
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 4.5) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
 				break;
 			}
@@ -3256,73 +3022,59 @@ public class Monopoly {
 		case 3:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 4) + 10,
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 4) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 4) + 30,
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 4) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 4) + 10,
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 4) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 4) + 30,
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 4) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 4) + 10,
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 4) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 4) + 30,
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 4) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
 				break;
 			}
 			break;
 		case 4:
 			players.get(playerIndex).setMoneyHeld(-200);
-			balanceLabels.get(playerIndex).setText(
-					"E" + players.get(playerIndex).getMoneyHeld());
-			log = "  /> " + players.get(playerIndex).getName()
-					+ " paid income tax (M200) " + "\n";
+			balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
+			log = "  /> " + players.get(playerIndex).getName() + " paid income tax (M200) " + "\n";
 			logText.append(log);
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 3.5) + 10,
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 3.5) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 3.5) + 30,
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 3.5) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 3.5) + 10,
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 3.5) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 3.5) + 30,
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 3.5) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 3.5) + 10,
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 3.5) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 3.5) + 30,
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 3.5) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
 				break;
 			}
@@ -3330,33 +3082,27 @@ public class Monopoly {
 		case 5:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 3) + 10,
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 3) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 3) + 30,
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 3) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 3) + 10,
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 3) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 3) + 30,
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 3) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 3) + 10,
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 3) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 3) + 30,
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 3) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
 				break;
 			}
@@ -3364,33 +3110,27 @@ public class Monopoly {
 		case 6:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 2.5) + 10,
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 2.5) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 2.5) + 30,
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 2.5) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 2.5) + 10,
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 2.5) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 2.5) + 30,
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 2.5) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 2.5) + 10,
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 2.5) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 2.5) + 30,
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 2.5) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
 				break;
 			}
@@ -3398,33 +3138,27 @@ public class Monopoly {
 		case 7:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 2) + 10,
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 2) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 2) + 30,
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 2) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 2) + 10,
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 2) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 2) + 30,
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 2) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 2) + 10,
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 2) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 2) + 30,
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 2) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
 				break;
 			}
@@ -3432,33 +3166,27 @@ public class Monopoly {
 		case 8:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 1.5) + 10,
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 1.5) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 1.5) + 30,
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 1.5) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 1.5) + 10,
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 1.5) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 1.5) + 30,
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 1.5) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 1.5) + 10,
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 1.5) + 10,
 						(int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 1.5) + 30,
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 1.5) + 30,
 						(int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
 				break;
 			}
@@ -3466,314 +3194,248 @@ public class Monopoly {
 		case 9:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5) + 10,
-						(int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5) + 10, (int) (frameHeight / 6.5 * 5.5) + 30,
+						20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5) + 30,
-						(int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5) + 30, (int) (frameHeight / 6.5 * 5.5) + 30,
+						20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5) + 10,
-						(int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5) + 10, (int) (frameHeight / 6.5 * 5.5) + 50,
+						20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5) + 30,
-						(int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5) + 30, (int) (frameHeight / 6.5 * 5.5) + 50,
+						20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5) + 10,
-						(int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5) + 10, (int) (frameHeight / 6.5 * 5.5) + 70,
+						20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5) + 30,
-						(int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5) + 30, (int) (frameHeight / 6.5 * 5.5) + 70,
+						20, 20);
 				break;
 			}
 			break;
 		case 10:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(60,
-						(int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
+				playerIndicators.get(0).setBounds(60, (int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(80,
-						(int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
+				playerIndicators.get(1).setBounds(80, (int) (frameHeight / 6.5 * 5.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(60,
-						(int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
+				playerIndicators.get(2).setBounds(60, (int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(80,
-						(int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
+				playerIndicators.get(3).setBounds(80, (int) (frameHeight / 6.5 * 5.5) + 50, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(60,
-						(int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
+				playerIndicators.get(4).setBounds(60, (int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(80,
-						(int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
+				playerIndicators.get(5).setBounds(80, (int) (frameHeight / 6.5 * 5.5) + 70, 20, 20);
 				break;
 			}
 			break;
 		case 11:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(20,
-						(int) (frameHeight / 6.5 * 5) + 10, 20, 20);
+				playerIndicators.get(0).setBounds(20, (int) (frameHeight / 6.5 * 5) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(20,
-						(int) (frameHeight / 6.5 * 5) + 30, 20, 20);
+				playerIndicators.get(1).setBounds(20, (int) (frameHeight / 6.5 * 5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(40,
-						(int) (frameHeight / 6.5 * 5) + 10, 20, 20);
+				playerIndicators.get(2).setBounds(40, (int) (frameHeight / 6.5 * 5) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(40,
-						(int) (frameHeight / 6.5 * 5) + 30, 20, 20);
+				playerIndicators.get(3).setBounds(40, (int) (frameHeight / 6.5 * 5) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(60,
-						(int) (frameHeight / 6.5 * 5) + 10, 20, 20);
+				playerIndicators.get(4).setBounds(60, (int) (frameHeight / 6.5 * 5) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(60,
-						(int) (frameHeight / 6.5 * 5) + 30, 20, 20);
+				playerIndicators.get(5).setBounds(60, (int) (frameHeight / 6.5 * 5) + 30, 20, 20);
 				break;
 			}
 			break;
 		case 12:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(20,
-						(int) (frameHeight / 6.5 * 4.5) + 10, 20, 20);
+				playerIndicators.get(0).setBounds(20, (int) (frameHeight / 6.5 * 4.5) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(20,
-						(int) (frameHeight / 6.5 * 4.5) + 30, 20, 20);
+				playerIndicators.get(1).setBounds(20, (int) (frameHeight / 6.5 * 4.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(40,
-						(int) (frameHeight / 6.5 * 4.5) + 10, 20, 20);
+				playerIndicators.get(2).setBounds(40, (int) (frameHeight / 6.5 * 4.5) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(40,
-						(int) (frameHeight / 6.5 * 4.5) + 30, 20, 20);
+				playerIndicators.get(3).setBounds(40, (int) (frameHeight / 6.5 * 4.5) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(60,
-						(int) (frameHeight / 6.5 * 4.5) + 10, 20, 20);
+				playerIndicators.get(4).setBounds(60, (int) (frameHeight / 6.5 * 4.5) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(60,
-						(int) (frameHeight / 6.5 * 4.5) + 30, 20, 20);
+				playerIndicators.get(5).setBounds(60, (int) (frameHeight / 6.5 * 4.5) + 30, 20, 20);
 				break;
 			}
 			break;
 		case 13:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(20,
-						(int) (frameHeight / 6.5 * 4) + 10, 20, 20);
+				playerIndicators.get(0).setBounds(20, (int) (frameHeight / 6.5 * 4) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(20,
-						(int) (frameHeight / 6.5 * 4) + 30, 20, 20);
+				playerIndicators.get(1).setBounds(20, (int) (frameHeight / 6.5 * 4) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(40,
-						(int) (frameHeight / 6.5 * 4) + 10, 20, 20);
+				playerIndicators.get(2).setBounds(40, (int) (frameHeight / 6.5 * 4) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(40,
-						(int) (frameHeight / 6.5 * 4) + 30, 20, 20);
+				playerIndicators.get(3).setBounds(40, (int) (frameHeight / 6.5 * 4) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(60,
-						(int) (frameHeight / 6.5 * 4) + 10, 20, 20);
+				playerIndicators.get(4).setBounds(60, (int) (frameHeight / 6.5 * 4) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(60,
-						(int) (frameHeight / 6.5 * 4) + 30, 20, 20);
+				playerIndicators.get(5).setBounds(60, (int) (frameHeight / 6.5 * 4) + 30, 20, 20);
 				break;
 			}
 			break;
 		case 14:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(20,
-						(int) (frameHeight / 6.5 * 3.5) + 10, 20, 20);
+				playerIndicators.get(0).setBounds(20, (int) (frameHeight / 6.5 * 3.5) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(20,
-						(int) (frameHeight / 6.5 * 3.5) + 30, 20, 20);
+				playerIndicators.get(1).setBounds(20, (int) (frameHeight / 6.5 * 3.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(40,
-						(int) (frameHeight / 6.5 * 3.5) + 10, 20, 20);
+				playerIndicators.get(2).setBounds(40, (int) (frameHeight / 6.5 * 3.5) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(40,
-						(int) (frameHeight / 6.5 * 3.5) + 30, 20, 20);
+				playerIndicators.get(3).setBounds(40, (int) (frameHeight / 6.5 * 3.5) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(60,
-						(int) (frameHeight / 6.5 * 3.5) + 10, 20, 20);
+				playerIndicators.get(4).setBounds(60, (int) (frameHeight / 6.5 * 3.5) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(60,
-						(int) (frameHeight / 6.5 * 3.5) + 30, 20, 20);
+				playerIndicators.get(5).setBounds(60, (int) (frameHeight / 6.5 * 3.5) + 30, 20, 20);
 				break;
 			}
 			break;
 		case 15:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(20,
-						(int) (frameHeight / 6.5 * 3) + 10, 20, 20);
+				playerIndicators.get(0).setBounds(20, (int) (frameHeight / 6.5 * 3) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(20,
-						(int) (frameHeight / 6.5 * 3) + 30, 20, 20);
+				playerIndicators.get(1).setBounds(20, (int) (frameHeight / 6.5 * 3) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(40,
-						(int) (frameHeight / 6.5 * 3) + 10, 20, 20);
+				playerIndicators.get(2).setBounds(40, (int) (frameHeight / 6.5 * 3) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(40,
-						(int) (frameHeight / 6.5 * 3) + 30, 20, 20);
+				playerIndicators.get(3).setBounds(40, (int) (frameHeight / 6.5 * 3) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(60,
-						(int) (frameHeight / 6.5 * 3) + 10, 20, 20);
+				playerIndicators.get(4).setBounds(60, (int) (frameHeight / 6.5 * 3) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(60,
-						(int) (frameHeight / 6.5 * 3) + 30, 20, 20);
+				playerIndicators.get(5).setBounds(60, (int) (frameHeight / 6.5 * 3) + 30, 20, 20);
 				break;
 			}
 			break;
 		case 16:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(20,
-						(int) (frameHeight / 6.5 * 2.5) + 10, 20, 20);
+				playerIndicators.get(0).setBounds(20, (int) (frameHeight / 6.5 * 2.5) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(20,
-						(int) (frameHeight / 6.5 * 2.5) + 30, 20, 20);
+				playerIndicators.get(1).setBounds(20, (int) (frameHeight / 6.5 * 2.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(40,
-						(int) (frameHeight / 6.5 * 2.5) + 10, 20, 20);
+				playerIndicators.get(2).setBounds(40, (int) (frameHeight / 6.5 * 2.5) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(40,
-						(int) (frameHeight / 6.5 * 2.5) + 30, 20, 20);
+				playerIndicators.get(3).setBounds(40, (int) (frameHeight / 6.5 * 2.5) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(60,
-						(int) (frameHeight / 6.5 * 2.5) + 10, 20, 20);
+				playerIndicators.get(4).setBounds(60, (int) (frameHeight / 6.5 * 2.5) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(60,
-						(int) (frameHeight / 6.5 * 2.5) + 30, 20, 20);
+				playerIndicators.get(5).setBounds(60, (int) (frameHeight / 6.5 * 2.5) + 30, 20, 20);
 				break;
 			}
 			break;
 		case 17:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(20,
-						(int) (frameHeight / 6.5 * 2) + 10, 20, 20);
+				playerIndicators.get(0).setBounds(20, (int) (frameHeight / 6.5 * 2) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(20,
-						(int) (frameHeight / 6.5 * 2) + 30, 20, 20);
+				playerIndicators.get(1).setBounds(20, (int) (frameHeight / 6.5 * 2) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(40,
-						(int) (frameHeight / 6.5 * 2) + 10, 20, 20);
+				playerIndicators.get(2).setBounds(40, (int) (frameHeight / 6.5 * 2) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(40,
-						(int) (frameHeight / 6.5 * 2) + 30, 20, 20);
+				playerIndicators.get(3).setBounds(40, (int) (frameHeight / 6.5 * 2) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(60,
-						(int) (frameHeight / 6.5 * 2) + 10, 20, 20);
+				playerIndicators.get(4).setBounds(60, (int) (frameHeight / 6.5 * 2) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(60,
-						(int) (frameHeight / 6.5 * 2) + 30, 20, 20);
+				playerIndicators.get(5).setBounds(60, (int) (frameHeight / 6.5 * 2) + 30, 20, 20);
 				break;
 			}
 			break;
 		case 18:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(20,
-						(int) (frameHeight / 6.5 * 1.5) + 10, 20, 20);
+				playerIndicators.get(0).setBounds(20, (int) (frameHeight / 6.5 * 1.5) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(20,
-						(int) (frameHeight / 6.5 * 1.5) + 30, 20, 20);
+				playerIndicators.get(1).setBounds(20, (int) (frameHeight / 6.5 * 1.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(40,
-						(int) (frameHeight / 6.5 * 1.5) + 10, 20, 20);
+				playerIndicators.get(2).setBounds(40, (int) (frameHeight / 6.5 * 1.5) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(40,
-						(int) (frameHeight / 6.5 * 1.5) + 30, 20, 20);
+				playerIndicators.get(3).setBounds(40, (int) (frameHeight / 6.5 * 1.5) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(60,
-						(int) (frameHeight / 6.5 * 1.5) + 10, 20, 20);
+				playerIndicators.get(4).setBounds(60, (int) (frameHeight / 6.5 * 1.5) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(60,
-						(int) (frameHeight / 6.5 * 1.5) + 30, 20, 20);
+				playerIndicators.get(5).setBounds(60, (int) (frameHeight / 6.5 * 1.5) + 30, 20, 20);
 				break;
 			}
 			break;
 		case 19:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(20,
-						(int) (frameHeight / 6.5) + 10, 20, 20);
+				playerIndicators.get(0).setBounds(20, (int) (frameHeight / 6.5) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(20,
-						(int) (frameHeight / 6.5) + 30, 20, 20);
+				playerIndicators.get(1).setBounds(20, (int) (frameHeight / 6.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(40,
-						(int) (frameHeight / 6.5) + 10, 20, 20);
+				playerIndicators.get(2).setBounds(40, (int) (frameHeight / 6.5) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(40,
-						(int) (frameHeight / 6.5) + 30, 20, 20);
+				playerIndicators.get(3).setBounds(40, (int) (frameHeight / 6.5) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(60,
-						(int) (frameHeight / 6.5) + 10, 20, 20);
+				playerIndicators.get(4).setBounds(60, (int) (frameHeight / 6.5) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(60,
-						(int) (frameHeight / 6.5) + 30, 20, 20);
+				playerIndicators.get(5).setBounds(60, (int) (frameHeight / 6.5) + 30, 20, 20);
 				break;
 			}
 			break;
@@ -3802,347 +3464,275 @@ public class Monopoly {
 		case 21:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5) + 10, 30, 20, 20);
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5) + 10, 30, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5) + 30, 30, 20, 20);
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5) + 30, 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5) + 10, 50, 20, 20);
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5) + 10, 50, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5) + 30, 50, 20, 20);
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5) + 30, 50, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5) + 10, 70, 20, 20);
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5) + 10, 70, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5) + 30, 70, 20, 20);
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5) + 30, 70, 20, 20);
 				break;
 			}
 			break;
 		case 22:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 1.5) + 10, 30, 20, 20);
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 1.5) + 10, 30, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 1.5) + 30, 30, 20, 20);
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 1.5) + 30, 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 1.5) + 10, 50, 20, 20);
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 1.5) + 10, 50, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 1.5) + 30, 50, 20, 20);
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 1.5) + 30, 50, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 1.5) + 10, 70, 20, 20);
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 1.5) + 10, 70, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 1.5) + 30, 70, 20, 20);
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 1.5) + 30, 70, 20, 20);
 				break;
 			}
 			break;
 		case 23:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 2) + 10, 30, 20, 20);
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 2) + 10, 30, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 2) + 30, 30, 20, 20);
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 2) + 30, 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 2) + 10, 50, 20, 20);
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 2) + 10, 50, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 2) + 30, 50, 20, 20);
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 2) + 30, 50, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 2) + 10, 70, 20, 20);
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 2) + 10, 70, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 2) + 10, 70, 20, 20);
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 2) + 10, 70, 20, 20);
 				break;
 			}
 			break;
 		case 24:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 2.5) + 10, 30, 20, 20);
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 2.5) + 10, 30, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 2.5) + 30, 30, 20, 20);
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 2.5) + 30, 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 2.5) + 10, 50, 20, 20);
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 2.5) + 10, 50, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 2.5) + 30, 50, 20, 20);
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 2.5) + 30, 50, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 2.5) + 10, 70, 20, 20);
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 2.5) + 10, 70, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 2.5) + 10, 70, 20, 20);
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 2.5) + 10, 70, 20, 20);
 				break;
 			}
 			break;
 		case 25:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 3) + 10, 30, 20, 20);
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 3) + 10, 30, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 3) + 30, 30, 20, 20);
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 3) + 30, 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 3) + 10, 50, 20, 20);
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 3) + 10, 50, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 3) + 30, 50, 20, 20);
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 3) + 30, 50, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 3) + 10, 70, 20, 20);
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 3) + 10, 70, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 3) + 10, 70, 20, 20);
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 3) + 10, 70, 20, 20);
 				break;
 			}
 			break;
 		case 26:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 3.5) + 10, 30, 20, 20);
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 3.5) + 10, 30, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 3.5) + 30, 30, 20, 20);
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 3.5) + 30, 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 3.5) + 10, 50, 20, 20);
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 3.5) + 10, 50, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 3.5) + 30, 50, 20, 20);
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 3.5) + 30, 50, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 3.5) + 10, 70, 20, 20);
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 3.5) + 10, 70, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 3.5) + 10, 70, 20, 20);
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 3.5) + 10, 70, 20, 20);
 				break;
 			}
 			break;
 		case 27:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 4) + 10, 30, 20, 20);
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 4) + 10, 30, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 4) + 30, 30, 20, 20);
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 4) + 30, 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 4) + 10, 50, 20, 20);
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 4) + 10, 50, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 4) + 30, 50, 20, 20);
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 4) + 30, 50, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 4) + 10, 70, 20, 20);
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 4) + 10, 70, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 4) + 10, 70, 20, 20);
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 4) + 10, 70, 20, 20);
 				break;
 			}
 			break;
 		case 28:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 4.5) + 10, 30, 20, 20);
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 4.5) + 10, 30, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 4.5) + 30, 30, 20, 20);
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 4.5) + 30, 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 4.5) + 10, 50, 20, 20);
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 4.5) + 10, 50, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 4.5) + 30, 50, 20, 20);
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 4.5) + 30, 50, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 4.5) + 10, 70, 20, 20);
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 4.5) + 10, 70, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 4.5) + 10, 70, 20, 20);
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 4.5) + 10, 70, 20, 20);
 				break;
 			}
 			break;
 		case 29:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 5) + 10, 30, 20, 20);
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 5) + 10, 30, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 5) + 30, 30, 20, 20);
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 5) + 30, 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 5) + 10, 50, 20, 20);
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 5) + 10, 50, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 5) + 30, 50, 20, 20);
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 5) + 30, 50, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 5) + 10, 70, 20, 20);
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 5) + 10, 70, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 5) + 10, 70, 20, 20);
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 5) + 10, 70, 20, 20);
 				break;
 			}
 			break;
 		case 30:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 10, 30, 20, 20);
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 5.5) + 10, 30, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 30, 30, 20, 20);
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 5.5) + 30, 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 10, 50, 20, 20);
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 5.5) + 10, 50, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 30, 50, 20, 20);
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 5.5) + 30, 50, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 10, 70, 20, 20);
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 5.5) + 10, 70, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 10, 70, 20, 20);
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 5.5) + 10, 70, 20, 20);
 				break;
 			}
 			break;
 		case 31:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 40,
-						(int) (frameHeight / 6.5) + 10, 20, 20);
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 5.5) + 40, (int) (frameHeight / 6.5) + 10,
+						20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 40,
-						(int) (frameHeight / 6.5) + 30, 20, 20);
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 5.5) + 40, (int) (frameHeight / 6.5) + 30,
+						20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 60,
-						(int) (frameHeight / 6.5) + 10, 20, 20);
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 5.5) + 60, (int) (frameHeight / 6.5) + 10,
+						20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 60,
-						(int) (frameHeight / 6.5) + 30, 20, 20);
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 5.5) + 60, (int) (frameHeight / 6.5) + 30,
+						20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 80,
-						(int) (frameHeight / 6.5) + 10, 20, 20);
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 5.5) + 80, (int) (frameHeight / 6.5) + 10,
+						20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 80,
-						(int) (frameHeight / 6.5) + 30, 20, 20);
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 5.5) + 80, (int) (frameHeight / 6.5) + 30,
+						20, 20);
 				break;
 			}
 			break;
 		case 32:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 40,
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 5.5) + 40,
 						(int) (frameHeight / 6.5 * 1.5) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 40,
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 5.5) + 40,
 						(int) (frameHeight / 6.5 * 1.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 60,
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 5.5) + 60,
 						(int) (frameHeight / 6.5 * 1.5) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 60,
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 5.5) + 60,
 						(int) (frameHeight / 6.5 * 1.5) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 80,
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 5.5) + 80,
 						(int) (frameHeight / 6.5 * 1.5) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 80,
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 5.5) + 80,
 						(int) (frameHeight / 6.5 * 1.5) + 30, 20, 20);
 				break;
 			}
@@ -4150,33 +3740,27 @@ public class Monopoly {
 		case 33:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 40,
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 5.5) + 40,
 						(int) (frameHeight / 6.5 * 2) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 40,
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 5.5) + 40,
 						(int) (frameHeight / 6.5 * 2) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 60,
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 5.5) + 60,
 						(int) (frameHeight / 6.5 * 2) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 60,
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 5.5) + 60,
 						(int) (frameHeight / 6.5 * 2) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 80,
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 5.5) + 80,
 						(int) (frameHeight / 6.5 * 2) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 80,
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 5.5) + 80,
 						(int) (frameHeight / 6.5 * 2) + 30, 20, 20);
 				break;
 			}
@@ -4184,33 +3768,27 @@ public class Monopoly {
 		case 34:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 40,
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 5.5) + 40,
 						(int) (frameHeight / 6.5 * 2.5) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 40,
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 5.5) + 40,
 						(int) (frameHeight / 6.5 * 2.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 60,
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 5.5) + 60,
 						(int) (frameHeight / 6.5 * 2.5) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 60,
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 5.5) + 60,
 						(int) (frameHeight / 6.5 * 2.5) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 80,
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 5.5) + 80,
 						(int) (frameHeight / 6.5 * 2.5) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 80,
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 5.5) + 80,
 						(int) (frameHeight / 6.5 * 2.5) + 30, 20, 20);
 				break;
 			}
@@ -4218,33 +3796,27 @@ public class Monopoly {
 		case 35:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 40,
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 5.5) + 40,
 						(int) (frameHeight / 6.5 * 3) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 40,
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 5.5) + 40,
 						(int) (frameHeight / 6.5 * 3) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 60,
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 5.5) + 60,
 						(int) (frameHeight / 6.5 * 3) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 60,
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 5.5) + 60,
 						(int) (frameHeight / 6.5 * 3) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 80,
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 5.5) + 80,
 						(int) (frameHeight / 6.5 * 3) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 80,
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 5.5) + 80,
 						(int) (frameHeight / 6.5 * 3) + 30, 20, 20);
 				break;
 			}
@@ -4252,33 +3824,27 @@ public class Monopoly {
 		case 36:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 40,
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 5.5) + 40,
 						(int) (frameHeight / 6.5 * 3.5) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 40,
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 5.5) + 40,
 						(int) (frameHeight / 6.5 * 3.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 60,
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 5.5) + 60,
 						(int) (frameHeight / 6.5 * 3.5) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 60,
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 5.5) + 60,
 						(int) (frameHeight / 6.5 * 3.5) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 80,
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 5.5) + 80,
 						(int) (frameHeight / 6.5 * 3.5) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 80,
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 5.5) + 80,
 						(int) (frameHeight / 6.5 * 3.5) + 30, 20, 20);
 				break;
 			}
@@ -4286,73 +3852,59 @@ public class Monopoly {
 		case 37:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 40,
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 5.5) + 40,
 						(int) (frameHeight / 6.5 * 4) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 40,
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 5.5) + 40,
 						(int) (frameHeight / 6.5 * 4) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 60,
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 5.5) + 60,
 						(int) (frameHeight / 6.5 * 4) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 60,
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 5.5) + 60,
 						(int) (frameHeight / 6.5 * 4) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 80,
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 5.5) + 80,
 						(int) (frameHeight / 6.5 * 4) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 80,
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 5.5) + 80,
 						(int) (frameHeight / 6.5 * 4) + 30, 20, 20);
 				break;
 			}
 			break;
 		case 38:
 			players.get(playerIndex).setMoneyHeld(-100);
-			balanceLabels.get(playerIndex).setText(
-					"E" + players.get(playerIndex).getMoneyHeld());
-			log = "  /> " + players.get(playerIndex).getName()
-					+ " paid luxury tax (M100) " + "\n";
+			balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
+			log = "  /> " + players.get(playerIndex).getName() + " paid luxury tax (M100) " + "\n";
 			logText.append(log);
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 40,
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 5.5) + 40,
 						(int) (frameHeight / 6.5 * 4.5) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 40,
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 5.5) + 40,
 						(int) (frameHeight / 6.5 * 4.5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 60,
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 5.5) + 60,
 						(int) (frameHeight / 6.5 * 4.5) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 60,
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 5.5) + 60,
 						(int) (frameHeight / 6.5 * 4.5) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 80,
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 5.5) + 80,
 						(int) (frameHeight / 6.5 * 4.5) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 80,
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 5.5) + 80,
 						(int) (frameHeight / 6.5 * 4.5) + 30, 20, 20);
 				break;
 			}
@@ -4360,43 +3912,35 @@ public class Monopoly {
 		case 39:
 			switch (playerIndex) {
 			case 0:
-				playerIndicators.get(0).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 40,
+				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 5.5) + 40,
 						(int) (frameHeight / 6.5 * 5) + 10, 20, 20);
 				break;
 			case 1:
-				playerIndicators.get(1).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 40,
+				playerIndicators.get(1).setBounds((int) (frameHeight / 6.5 * 5.5) + 40,
 						(int) (frameHeight / 6.5 * 5) + 30, 20, 20);
 				break;
 			case 2:
-				playerIndicators.get(2).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 60,
+				playerIndicators.get(2).setBounds((int) (frameHeight / 6.5 * 5.5) + 60,
 						(int) (frameHeight / 6.5 * 5) + 10, 20, 20);
 				break;
 			case 3:
-				playerIndicators.get(3).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 60,
+				playerIndicators.get(3).setBounds((int) (frameHeight / 6.5 * 5.5) + 60,
 						(int) (frameHeight / 6.5 * 5) + 30, 20, 20);
 				break;
 			case 4:
-				playerIndicators.get(4).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 80,
+				playerIndicators.get(4).setBounds((int) (frameHeight / 6.5 * 5.5) + 80,
 						(int) (frameHeight / 6.5 * 5) + 10, 20, 20);
 				break;
 			case 5:
-				playerIndicators.get(5).setBounds(
-						(int) (frameHeight / 6.5 * 5.5) + 80,
+				playerIndicators.get(5).setBounds((int) (frameHeight / 6.5 * 5.5) + 80,
 						(int) (frameHeight / 6.5 * 5) + 30, 20, 20);
 				break;
 			}
 			break;
 		}
 		if (players.get(playerIndex).didPassGo()) {
-			balanceLabels.get(playerIndex).setText(
-					"E" + players.get(playerIndex).getMoneyHeld());
-			log = "  /> " + players.get(playerIndex).getName()
-					+ " got M200 for passing \"GO\" " + "\n";
+			balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
+			log = "  /> " + players.get(playerIndex).getName() + " got M200 for passing \"GO\" " + "\n";
 			logText.append(log);
 			players.get(playerIndex).setPassedGo(false);
 		}
