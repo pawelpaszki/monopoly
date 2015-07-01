@@ -15,14 +15,16 @@ public class Entity {
 	private int numberOfHouses;
 	private int numberOfHotels;
 	private boolean buldingPurchasedInCurrentTurn;
+	private int buildingIndex;
 	
-	public Entity(String name, String group, int cost, ArrayList<Double> rentValues, int position, boolean canBePurchased) {
+	public Entity(String name, String group, int cost, ArrayList<Double> rentValues, int position, boolean canBePurchased, int buildingIndex) {
 		this.name = name;
 		this.group = group;
 		this.cost = cost;
 		this.rentValues = rentValues;
 		this.position = position;
 		this.canBePurchased = canBePurchased;
+		this.buildingIndex = buildingIndex;
 	}
 	
 	public String getName() {
@@ -111,5 +113,13 @@ public class Entity {
 	public void setBuldingPurchasedInCurrentTurn(
 			boolean buldingPurchasedInCurrentTurn) {
 		this.buldingPurchasedInCurrentTurn = buldingPurchasedInCurrentTurn;
+	}
+
+	public int getBuildingIndex() {
+		return buildingIndex;
+	}
+
+	public void setBuildingIndex(int buildingIndex) {
+		this.buildingIndex = buildingIndex;
 	}
 }

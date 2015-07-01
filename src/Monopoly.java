@@ -11,7 +11,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -224,8 +226,30 @@ public class Monopoly {
 	private JComboBox<String> addBuildingTo;
 	private JButton addHouseButton;
 	private JButton addHotelButton;
-	private JLabel testHotel;
-
+	private JLabel buildingLabel0;
+	private JLabel buildingLabel1;
+	private JLabel buildingLabel2;
+	private JLabel buildingLabel3;
+	private JLabel buildingLabel4;
+	private JLabel buildingLabel5;
+	private JLabel buildingLabel6;
+	private JLabel buildingLabel7;
+	private JLabel buildingLabel8;
+	private JLabel buildingLabel9;
+	private JLabel buildingLabel10;
+	private JLabel buildingLabel11;
+	private JLabel buildingLabel12;
+	private JLabel buildingLabel13;
+	private JLabel buildingLabel14;
+	private JLabel buildingLabel15;
+	private JLabel buildingLabel16;
+	private JLabel buildingLabel17;
+	private JLabel buildingLabel18;
+	private JLabel buildingLabel19;
+	private JLabel buildingLabel20;
+	private JLabel buildingLabel21;
+	private ArrayList<JLabel> buildingLabels;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -256,6 +280,7 @@ public class Monopoly {
 		doubleCounter = 0;
 		playersPanes = new ArrayList<JLayeredPane>();
 		getOutOfJailLabels = new ArrayList<JLabel>();
+		buildingLabels = new ArrayList<JLabel>();
 		initialize();
 	}
 
@@ -379,7 +404,76 @@ public class Monopoly {
 		bottomRight = new JLayeredPane();
 		bottomRight.setBounds((int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 6.5 * 5.5),
 				(int) (frameHeight / 6.5), (int) (frameHeight / 6.5));
-		communityChest = new JButton();
+		
+		buildingLabel0 = new JLabel();
+		buildingLabel1 = new JLabel();
+		buildingLabel2 = new JLabel();
+		buildingLabel3 = new JLabel();
+		buildingLabel4 = new JLabel();
+		buildingLabel5 = new JLabel();
+		buildingLabel6 = new JLabel();
+		buildingLabel7 = new JLabel();
+		buildingLabel8 = new JLabel();
+		buildingLabel9 = new JLabel();
+		buildingLabel10 = new JLabel();
+		buildingLabel11 = new JLabel();
+		buildingLabel12 = new JLabel();
+		buildingLabel13 = new JLabel();
+		buildingLabel14 = new JLabel();
+		buildingLabel15 = new JLabel();
+		buildingLabel16 = new JLabel();
+		buildingLabel17 = new JLabel();
+		buildingLabel18 = new JLabel();
+		buildingLabel19 = new JLabel();
+		buildingLabel20 = new JLabel();
+		buildingLabel21 = new JLabel();
+		
+		buildingLabel0.setBounds((int) (frameHeight / 6.5 * 5) + 1, (int) (frameHeight / 6.5 * 5.5) + 1, 50, 25);
+		buildingLabel1.setBounds((int) (frameHeight / 6.5 * 4) + 1, (int) (frameHeight / 6.5 * 5.5) + 1, 50, 25);
+		buildingLabel2.setBounds((int) (frameHeight / 6.5 * 2.5) + 1, (int) (frameHeight / 6.5 * 5.5) + 1, 50, 25);
+		buildingLabel3.setBounds((int) (frameHeight / 6.5 * 1.5) + 1, (int) (frameHeight / 6.5 * 5.5) + 1, 50, 25);
+		buildingLabel4.setBounds((int) (frameHeight / 6.5) + 1, (int) (frameHeight / 6.5 * 5.5) + 1, 50, 25);
+		buildingLabel5.setBounds((int) (frameHeight / 6.5) - 26, (int) (frameHeight / 6.5 * 5) + 4, 25, 50);
+		buildingLabel6.setBounds((int) (frameHeight / 6.5) - 26, (int) (frameHeight / 6.5 * 4) + 4, 25, 50);
+		buildingLabel7.setBounds((int) (frameHeight / 6.5) - 26, (int) (frameHeight / 6.5 * 3.5) + 4, 25, 50);
+		buildingLabel8.setBounds((int) (frameHeight / 6.5) - 26, (int) (frameHeight / 6.5 * 2.5) + 4, 25, 50);
+		buildingLabel9.setBounds((int) (frameHeight / 6.5) - 26, (int) (frameHeight / 6.5 * 1.5) + 4, 25, 50);
+		buildingLabel10.setBounds((int) (frameHeight / 6.5) - 26, (int) (frameHeight / 6.5) + 4, 25, 50);
+		buildingLabel11.setBounds((int) (frameHeight / 6.5) + 1, (int) (frameHeight / 6.5) - 26, 50, 25);
+		buildingLabel12.setBounds((int) (frameHeight / 6.5 * 2) + 1, (int) (frameHeight / 6.5) - 26, 50, 25);
+		buildingLabel13.setBounds((int) (frameHeight / 6.5 * 2.5) + 1, (int) (frameHeight / 6.5) - 26, 50, 25);
+		buildingLabel14.setBounds((int) (frameHeight / 6.5 * 3.5) + 1, (int) (frameHeight / 6.5) - 26, 50, 25);
+		buildingLabel15.setBounds((int) (frameHeight / 6.5 * 4) + 1, (int) (frameHeight / 6.5) - 26, 50, 25);
+		buildingLabel16.setBounds((int) (frameHeight / 6.5 * 5) + 1, (int) (frameHeight / 6.5) - 26, 50, 25);
+		buildingLabel17.setBounds((int) (frameHeight / 6.5 * 5.5) + 1, (int) (frameHeight / 6.5) + 1, 25, 50);
+		buildingLabel18.setBounds((int) (frameHeight / 6.5 * 5.5) + 1, (int) (frameHeight / 6.5 * 1.5) + 1, 25, 50);
+		buildingLabel19.setBounds((int) (frameHeight / 6.5 * 5.5) + 1, (int) (frameHeight / 6.5 * 2.5) + 1, 25, 50);
+		buildingLabel20.setBounds((int) (frameHeight / 6.5 * 5.5) + 1, (int) (frameHeight / 6.5 * 4) + 1, 25, 50);
+		buildingLabel21.setBounds((int) (frameHeight / 6.5 * 5.5) + 1, (int) (frameHeight / 6.5 * 5) + 1, 25, 50);
+		
+		buildingLabels.add(buildingLabel0);
+		buildingLabels.add(buildingLabel1);
+		buildingLabels.add(buildingLabel2);
+		buildingLabels.add(buildingLabel3);
+		buildingLabels.add(buildingLabel4);
+		buildingLabels.add(buildingLabel5);
+		buildingLabels.add(buildingLabel6);
+		buildingLabels.add(buildingLabel7);
+		buildingLabels.add(buildingLabel8);
+		buildingLabels.add(buildingLabel9);
+		buildingLabels.add(buildingLabel10);
+		buildingLabels.add(buildingLabel11);
+		buildingLabels.add(buildingLabel12);
+		buildingLabels.add(buildingLabel13);
+		buildingLabels.add(buildingLabel14);
+		buildingLabels.add(buildingLabel15);
+		buildingLabels.add(buildingLabel16);
+		buildingLabels.add(buildingLabel17);
+		buildingLabels.add(buildingLabel18);
+		buildingLabels.add(buildingLabel19);
+		buildingLabels.add(buildingLabel20);
+		buildingLabels.add(buildingLabel21);
+		
 		communityChest = new JButton("?");
 
 		boardPanels.add(bottomRight);
@@ -940,6 +1034,10 @@ public class Monopoly {
 		addBuildingTo.setBounds(frameHeight + 185, (int) (frameHeight / 2 + 150), 200, 20);
 		addHouseButton.setBounds(frameHeight + 390, (int) (frameHeight / 2 + 150), 90, 20);
 		addHotelButton.setBounds(frameHeight + 485, (int) (frameHeight / 2 + 150), 90, 20);
+		buyBuilding.setVisible(false);
+		addBuildingTo.setVisible(false);
+		addHouseButton.setVisible(false);
+		addHotelButton.setVisible(false);
 		
 		buyUnwantedProperty.addActionListener(new ActionListener() {
 			@Override
@@ -2016,15 +2114,139 @@ public class Monopoly {
 		frame.getContentPane().add(addHouseButton);
 		frame.getContentPane().add(addHotelButton);
 		
-		testHotel = new JLabel();
-		testHotel.setBounds((int) (frameHeight / 6.5 * 5) + 1, (int) (frameHeight / 6.5 * 5.5) + 1, 50,
-				25);
 		try {
 			Image img = ImageIO.read(getClass().getResource("resources/house2.png"));
-			testHotel.setIcon(new ImageIcon(img));
+			buildingLabel0.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
-		frame.getContentPane().add(testHotel, 2);
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house2.png"));
+			buildingLabel1.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house2.png"));
+			buildingLabel2.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house2.png"));
+			buildingLabel3.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house2.png"));
+			buildingLabel4.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house2FlippedRight.png"));
+			buildingLabel5.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house2FlippedRight.png"));
+			buildingLabel6.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house2FlippedRight.png"));
+			buildingLabel7.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house2FlippedRight.png"));
+			buildingLabel8.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house2FlippedRight.png"));
+			buildingLabel9.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house2FlippedRight.png"));
+			buildingLabel10.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house5UpsideDown.png"));
+			buildingLabel11.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house5UpsideDown.png"));
+			buildingLabel12.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house5UpsideDown.png"));
+			buildingLabel13.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house5UpsideDown.png"));
+			buildingLabel14.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house5UpsideDown.png"));
+			buildingLabel15.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house5UpsideDown.png"));
+			buildingLabel16.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house4FlippedLeft.png"));
+			buildingLabel17.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house4FlippedLeft.png"));
+			buildingLabel18.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house4FlippedLeft.png"));
+			buildingLabel19.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house4FlippedLeft.png"));
+			buildingLabel20.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house4FlippedLeft.png"));
+			buildingLabel21.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		
+		frame.getContentPane().add(buildingLabel0, 2);
+		frame.getContentPane().add(buildingLabel1, 2);
+		frame.getContentPane().add(buildingLabel2, 2);
+		frame.getContentPane().add(buildingLabel3, 2);
+		frame.getContentPane().add(buildingLabel4, 2);
+		frame.getContentPane().add(buildingLabel5, 2);
+		frame.getContentPane().add(buildingLabel6, 2);
+		frame.getContentPane().add(buildingLabel7, 2);
+		frame.getContentPane().add(buildingLabel8, 2);
+		frame.getContentPane().add(buildingLabel9, 2);
+		frame.getContentPane().add(buildingLabel10, 2);
+		frame.getContentPane().add(buildingLabel11, 2);
+		frame.getContentPane().add(buildingLabel12, 2);
+		frame.getContentPane().add(buildingLabel13, 2);
+		frame.getContentPane().add(buildingLabel14, 2);
+		frame.getContentPane().add(buildingLabel15, 2);
+		frame.getContentPane().add(buildingLabel16, 2);
+		frame.getContentPane().add(buildingLabel17, 2);
+		frame.getContentPane().add(buildingLabel18, 2);
+		frame.getContentPane().add(buildingLabel19, 2);
+		frame.getContentPane().add(buildingLabel20, 2);
+		frame.getContentPane().add(buildingLabel21, 2);
 		
 	}
 
@@ -2420,6 +2642,8 @@ public class Monopoly {
 								+ " used his/her get out of Jail card to avoid going to Jail" + "\n";
 						logText.append(log);
 						adjustPlayerPosition();
+					} else {
+						rollTheDice.setEnabled(true);
 					}
 
 				} else if (!players.get(playerIndex).isInJail()
@@ -2540,6 +2764,20 @@ public class Monopoly {
 					sellingPrice.setVisible(false);
 					sellPropertyButton.setVisible(false);
 				}
+				Set<String> entitiesNames = new HashSet<String>();
+				for (Entity entity: players.get(playerIndex).getOwnedProperties()) {
+					if (playerHasAll(entity.getGroup(), players.get(playerIndex).getName())) {
+						entitiesNames.add(entity.getName());
+					}
+				}
+				if (entitiesNames.size() > 0) {
+					buyBuilding.setVisible(true);
+					for (String name: entitiesNames) {
+						System.out.println(name);
+					}
+				} else {
+					buyBuilding.setVisible(false);
+				}
 			}
 
 		});
@@ -2632,7 +2870,6 @@ public class Monopoly {
 			}
 			
 		});
-		
 		
 		sellingPrice.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
