@@ -220,6 +220,11 @@ public class Monopoly {
 	private DefaultComboBoxModel<String> buyerModel;
 	private JTextField sellingPrice;
 	private JButton sellPropertyButton;
+	private JLabel buyBuilding;
+	private JComboBox<String> addBuildingTo;
+	private JButton addHouseButton;
+	private JButton addHotelButton;
+	private JLabel testHotel;
 
 	/**
 	 * Launch the application.
@@ -926,7 +931,16 @@ public class Monopoly {
 		buyer.setVisible(false);
 		sellingPrice.setVisible(false);
 		sellPropertyButton.setVisible(false);
-
+		
+		buyBuilding = new JLabel("Add house or hotel >>");
+		addBuildingTo = new JComboBox<String>();
+		addHouseButton = new JButton("+ house");
+		addHotelButton = new JButton("+ hotel");
+		buyBuilding.setBounds(frameHeight + 50, (int) (frameHeight / 2 + 150), 130, 20);
+		addBuildingTo.setBounds(frameHeight + 185, (int) (frameHeight / 2 + 150), 200, 20);
+		addHouseButton.setBounds(frameHeight + 390, (int) (frameHeight / 2 + 150), 90, 20);
+		addHotelButton.setBounds(frameHeight + 485, (int) (frameHeight / 2 + 150), 90, 20);
+		
 		buyUnwantedProperty.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -1997,7 +2011,21 @@ public class Monopoly {
 		frame.getContentPane().add(buyer);
 		frame.getContentPane().add(sellingPrice);
 		frame.getContentPane().add(sellPropertyButton);
-
+		frame.getContentPane().add(buyBuilding);
+		frame.getContentPane().add(addBuildingTo);
+		frame.getContentPane().add(addHouseButton);
+		frame.getContentPane().add(addHotelButton);
+		
+		testHotel = new JLabel();
+		testHotel.setBounds((int) (frameHeight / 6.5 * 5) + 1, (int) (frameHeight / 6.5 * 5.5) + 1, 50,
+				25);
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/house2.png"));
+			testHotel.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		frame.getContentPane().add(testHotel, 2);
+		
 	}
 
 	private void startNewGame() {
@@ -2589,12 +2617,23 @@ public class Monopoly {
 					}
 				}
 				buyer.setModel(buyerModel);
+				sellingPrice.setText("");
 				buyer.setSelectedItem(null);
 				// mortgageComboBox.setSelectedItem(null);
 			}
 
 		});
 
+		buyer.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				sellingPrice.setText("");
+			}
+			
+		});
+		
+		
 		sellingPrice.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
 			public void changedUpdate(DocumentEvent arg0) {
@@ -2608,6 +2647,7 @@ public class Monopoly {
 
 			@Override
 			public void removeUpdate(DocumentEvent arg0) {
+				sellPropertyButton.setEnabled(false);
 				checkValue();
 			}
 
@@ -2628,6 +2668,11 @@ public class Monopoly {
 							&& tempQty >= (entities.getEntities()
 									.get(getEntityPosition(String.valueOf(sellPropertyComboBox.getSelectedItem())))
 									.getCost() * 0.55)) {
+						sellPropertyButton.setEnabled(true);
+						valueOfUnwantedProperty = tempQty;
+					} else if (!entities.getEntities()
+							.get(getEntityPosition(String.valueOf(sellPropertyComboBox.getSelectedItem())))
+							.isMortgaged()) {
 						sellPropertyButton.setEnabled(true);
 						valueOfUnwantedProperty = tempQty;
 					}
