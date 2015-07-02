@@ -224,6 +224,7 @@ public class Monopoly {
 	private JButton sellPropertyButton;
 	private JLabel buyBuilding;
 	private JComboBox<String> addBuildingTo;
+	private DefaultComboBoxModel<String> addBuildingToModel;
 	private JButton addHouseButton;
 	private JButton addHotelButton;
 	private JLabel buildingLabel0;
@@ -249,7 +250,7 @@ public class Monopoly {
 	private JLabel buildingLabel20;
 	private JLabel buildingLabel21;
 	private ArrayList<JLabel> buildingLabels;
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -404,7 +405,7 @@ public class Monopoly {
 		bottomRight = new JLayeredPane();
 		bottomRight.setBounds((int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 6.5 * 5.5),
 				(int) (frameHeight / 6.5), (int) (frameHeight / 6.5));
-		
+
 		buildingLabel0 = new JLabel();
 		buildingLabel1 = new JLabel();
 		buildingLabel2 = new JLabel();
@@ -427,7 +428,7 @@ public class Monopoly {
 		buildingLabel19 = new JLabel();
 		buildingLabel20 = new JLabel();
 		buildingLabel21 = new JLabel();
-		
+
 		buildingLabel0.setBounds((int) (frameHeight / 6.5 * 5) + 1, (int) (frameHeight / 6.5 * 5.5) + 1, 50, 25);
 		buildingLabel1.setBounds((int) (frameHeight / 6.5 * 4) + 1, (int) (frameHeight / 6.5 * 5.5) + 1, 50, 25);
 		buildingLabel2.setBounds((int) (frameHeight / 6.5 * 2.5) + 1, (int) (frameHeight / 6.5 * 5.5) + 1, 50, 25);
@@ -450,7 +451,7 @@ public class Monopoly {
 		buildingLabel19.setBounds((int) (frameHeight / 6.5 * 5.5) + 1, (int) (frameHeight / 6.5 * 2.5) + 1, 25, 50);
 		buildingLabel20.setBounds((int) (frameHeight / 6.5 * 5.5) + 1, (int) (frameHeight / 6.5 * 4) + 1, 25, 50);
 		buildingLabel21.setBounds((int) (frameHeight / 6.5 * 5.5) + 1, (int) (frameHeight / 6.5 * 5) + 1, 25, 50);
-		
+
 		buildingLabels.add(buildingLabel0);
 		buildingLabels.add(buildingLabel1);
 		buildingLabels.add(buildingLabel2);
@@ -473,7 +474,7 @@ public class Monopoly {
 		buildingLabels.add(buildingLabel19);
 		buildingLabels.add(buildingLabel20);
 		buildingLabels.add(buildingLabel21);
-		
+
 		communityChest = new JButton("?");
 
 		boardPanels.add(bottomRight);
@@ -1025,7 +1026,7 @@ public class Monopoly {
 		buyer.setVisible(false);
 		sellingPrice.setVisible(false);
 		sellPropertyButton.setVisible(false);
-		
+
 		buyBuilding = new JLabel("Add house or hotel >>");
 		addBuildingTo = new JComboBox<String>();
 		addHouseButton = new JButton("+ house");
@@ -1038,7 +1039,7 @@ public class Monopoly {
 		addBuildingTo.setVisible(false);
 		addHouseButton.setVisible(false);
 		addHotelButton.setVisible(false);
-		
+
 		buyUnwantedProperty.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -2113,7 +2114,7 @@ public class Monopoly {
 		frame.getContentPane().add(addBuildingTo);
 		frame.getContentPane().add(addHouseButton);
 		frame.getContentPane().add(addHotelButton);
-		
+
 		try {
 			Image img = ImageIO.read(getClass().getResource("resources/house2.png"));
 			buildingLabel0.setIcon(new ImageIcon(img));
@@ -2224,7 +2225,53 @@ public class Monopoly {
 			buildingLabel21.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
-		
+
+		///////// ^^ Test ^^ ////////
+		///////// ^^ Test ^^ ////////
+		//////// ^^ Test ^^ ////////
+		/*
+		 * JLabel test1 = new JLabel(); JLabel test2 = new JLabel(); JLabel
+		 * test3 = new JLabel(); JLabel test4 = new JLabel(); JLabel test5 = new
+		 * JLabel(); JLabel test6 = new JLabel();
+		 * 
+		 * test1.setBounds((int) (frameHeight / 6.5 * 5.5) + 20, (int)
+		 * (frameHeight / 6.5 * 5.5) + 20, 35, 35); test2.setBounds((int)
+		 * (frameHeight / 6.5 * 5.5) + 23, (int) (frameHeight / 6.5 * 5.5) + 23,
+		 * 35, 35); test3.setBounds((int) (frameHeight / 6.5 * 5.5) + 26, (int)
+		 * (frameHeight / 6.5 * 5.5) + 26, 35, 35); test4.setBounds((int)
+		 * (frameHeight / 6.5 * 5.5) + 29, (int) (frameHeight / 6.5 * 5.5) + 29,
+		 * 35, 35); test5.setBounds((int) (frameHeight / 6.5 * 5.5) + 32, (int)
+		 * (frameHeight / 6.5 * 5.5) + 32, 35, 35); test6.setBounds((int)
+		 * (frameHeight / 6.5 * 5.5) + 35, (int) (frameHeight / 6.5 * 5.5) + 35,
+		 * 35, 35); try { Image img =
+		 * ImageIO.read(getClass().getResource("resources/token1.png"));
+		 * test1.setIcon(new ImageIcon(img)); } catch (IOException ex) { } try {
+		 * Image img =
+		 * ImageIO.read(getClass().getResource("resources/token2.png"));
+		 * test2.setIcon(new ImageIcon(img)); } catch (IOException ex) { } try {
+		 * Image img =
+		 * ImageIO.read(getClass().getResource("resources/token3.png"));
+		 * test3.setIcon(new ImageIcon(img)); } catch (IOException ex) { } try {
+		 * Image img =
+		 * ImageIO.read(getClass().getResource("resources/token4.png"));
+		 * test4.setIcon(new ImageIcon(img)); } catch (IOException ex) { } try {
+		 * Image img =
+		 * ImageIO.read(getClass().getResource("resources/token5.png"));
+		 * test5.setIcon(new ImageIcon(img)); } catch (IOException ex) { } try {
+		 * Image img =
+		 * ImageIO.read(getClass().getResource("resources/token6.png"));
+		 * test6.setIcon(new ImageIcon(img)); } catch (IOException ex) { }
+		 * frame.getContentPane().add(test1, 2);
+		 * frame.getContentPane().add(test2, 2);
+		 * frame.getContentPane().add(test3, 2);
+		 * frame.getContentPane().add(test4, 2);
+		 * frame.getContentPane().add(test5, 2);
+		 * frame.getContentPane().add(test6, 2);
+		 */
+		///////// ^^ Test ^^ ////////
+		///////// ^^ Test ^^ ////////
+		///////// ^^ Test ^^ ////////
+
 		frame.getContentPane().add(buildingLabel0, 2);
 		frame.getContentPane().add(buildingLabel1, 2);
 		frame.getContentPane().add(buildingLabel2, 2);
@@ -2247,7 +2294,7 @@ public class Monopoly {
 		frame.getContentPane().add(buildingLabel19, 2);
 		frame.getContentPane().add(buildingLabel20, 2);
 		frame.getContentPane().add(buildingLabel21, 2);
-		
+
 	}
 
 	private void startNewGame() {
@@ -2467,6 +2514,8 @@ public class Monopoly {
 
 				if (randomDice1 != randomDice2 || doubleCounter == 3) {
 					finishTurn.setEnabled(true);
+				} else if (randomDice1 == randomDice2 && doubleCounter < 3) {
+					rollTheDice.setEnabled(true);
 				}
 				buyProperty.setVisible(false);
 				dontBuyProperty.setVisible(false);
@@ -2502,6 +2551,37 @@ public class Monopoly {
 				sellingPrice.setVisible(true);
 				sellPropertyButton.setVisible(true);
 				sellPropertyButton.setEnabled(false);
+
+				Set<String> entitiesNames = new HashSet<String>();
+				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
+					if (playerHasAll(entity.getGroup(), players.get(playerIndex).getName())
+							|| entity.getNumberOfHouses() > 0) {
+						if (entity.getGroup() != "railroads" && entity.getGroup() != "utilities") {
+							entitiesNames.add(entity.getName());
+						}
+					}
+				}
+				if (entitiesNames.size() > 0) {
+					addBuildingToModel = new DefaultComboBoxModel<String>();
+					buyBuilding.setVisible(true);
+					for (String name : entitiesNames) {
+						addBuildingToModel.addElement(name);
+					}
+					addBuildingTo.setModel(addBuildingToModel);
+					addBuildingTo.setVisible(true);
+					addBuildingTo.setSelectedItem(null);
+					addHouseButton.setVisible(true);
+					addHouseButton.setEnabled(false);
+					addHotelButton.setVisible(true);
+					addHotelButton.setEnabled(false);
+				} else {
+					buyBuilding.setVisible(false);
+					addBuildingTo.setVisible(false);
+					addHouseButton.setVisible(false);
+					addHouseButton.setEnabled(false);
+					addHotelButton.setVisible(false);
+					addHotelButton.setEnabled(false);
+				}
 			}
 		});
 
@@ -2531,6 +2611,9 @@ public class Monopoly {
 				buyUnwantedProperty.setVisible(true);
 				buyUnwantedPropertyButton.setVisible(true);
 				priceOfUnwantedProperty.setVisible(true);
+				if (randomDice1 == randomDice2 && doubleCounter < 3) {
+					rollTheDice.setEnabled(true);
+				}
 			}
 		});
 
@@ -2765,18 +2848,36 @@ public class Monopoly {
 					sellPropertyButton.setVisible(false);
 				}
 				Set<String> entitiesNames = new HashSet<String>();
-				for (Entity entity: players.get(playerIndex).getOwnedProperties()) {
-					if (playerHasAll(entity.getGroup(), players.get(playerIndex).getName())) {
-						entitiesNames.add(entity.getName());
+				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
+					if (playerHasAll(entity.getGroup(), players.get(playerIndex).getName())
+							|| entity.getNumberOfHouses() > 0) {
+						if (entity.getGroup() != "railroads" && entity.getGroup() != "utilities"
+								&& entity.getNumberOfHouses() < 5 && entity.getNumberOfHotels() < 1) {
+							entitiesNames.add(entity.getName());
+						}
+
 					}
 				}
 				if (entitiesNames.size() > 0) {
+					addBuildingToModel = new DefaultComboBoxModel<String>();
 					buyBuilding.setVisible(true);
-					for (String name: entitiesNames) {
-						System.out.println(name);
+					for (String name : entitiesNames) {
+						addBuildingToModel.addElement(name);
 					}
+					addBuildingTo.setModel(addBuildingToModel);
+					addBuildingTo.setVisible(true);
+					addBuildingTo.setSelectedItem(null);
+					addHouseButton.setVisible(true);
+					addHouseButton.setEnabled(false);
+					addHotelButton.setVisible(true);
+					addHotelButton.setEnabled(false);
 				} else {
 					buyBuilding.setVisible(false);
+					addBuildingTo.setVisible(false);
+					addHouseButton.setVisible(false);
+					addHouseButton.setEnabled(false);
+					addHotelButton.setVisible(false);
+					addHotelButton.setEnabled(false);
 				}
 			}
 
@@ -2862,15 +2963,15 @@ public class Monopoly {
 
 		});
 
-		buyer.addActionListener(new ActionListener(){
+		buyer.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				sellingPrice.setText("");
 			}
-			
+
 		});
-		
+
 		sellingPrice.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
 			public void changedUpdate(DocumentEvent arg0) {
@@ -2935,7 +3036,7 @@ public class Monopoly {
 				ownerIndex = getPlayerIndex(String.valueOf(buyer.getSelectedItem()));
 				int entityPosition = getEntityPosition(entityName);
 				entities.getEntities().get(entityPosition).setOwner(players.get(ownerIndex));
-				
+
 				if (entities.getEntities().get(entityPosition).isMortgaged()) {
 					isMortgaged = true;
 				}
@@ -3002,6 +3103,36 @@ public class Monopoly {
 					sellingPrice.setText("");
 					sellPropertyButton.setVisible(false);
 					sellPropertyButton.setEnabled(false);
+				}
+				Set<String> entitiesNames = new HashSet<String>();
+				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
+					if (playerHasAll(entity.getGroup(), players.get(playerIndex).getName())
+							|| entity.getNumberOfHouses() > 0) {
+						if (entity.getGroup() != "railroads" && entity.getGroup() != "utilities") {
+							entitiesNames.add(entity.getName());
+						}
+					}
+				}
+				if (entitiesNames.size() > 0) {
+					addBuildingToModel = new DefaultComboBoxModel<String>();
+					buyBuilding.setVisible(true);
+					for (String name : entitiesNames) {
+						addBuildingToModel.addElement(name);
+					}
+					addBuildingTo.setModel(addBuildingToModel);
+					addBuildingTo.setVisible(true);
+					addBuildingTo.setSelectedItem(null);
+					addHouseButton.setVisible(true);
+					addHouseButton.setEnabled(false);
+					addHotelButton.setVisible(true);
+					addHotelButton.setEnabled(false);
+				} else {
+					buyBuilding.setVisible(false);
+					addBuildingTo.setVisible(false);
+					addHouseButton.setVisible(false);
+					addHouseButton.setEnabled(false);
+					addHotelButton.setVisible(false);
+					addHotelButton.setEnabled(false);
 				}
 			}
 
@@ -3070,6 +3201,65 @@ public class Monopoly {
 			}
 
 		});
+
+		addBuildingTo.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String entityName = String.valueOf(addBuildingTo.getSelectedItem());
+				String group = "";
+				int entityPosition = 0;
+				int numberOfTheSameGroup = 0;
+				int totalNumberOfHousesInAGroup = 0;
+				for (Entity entity : entities.getEntities()) {
+					if (entity.getName().equals(entityName)) {
+						group = entity.getGroup();
+						entityPosition = entity.getPosition();
+						break;
+					}
+				}
+				for (Entity anEntity : players.get(playerIndex).getOwnedProperties()) {
+					if (anEntity.getGroup().equals(group)) {
+						numberOfTheSameGroup++;
+						totalNumberOfHousesInAGroup += anEntity.getNumberOfHouses();
+					}
+				}
+
+				if (numberOfTheSameGroup == 1) {
+					if (entities.getEntities().get(entityPosition).getNumberOfHouses() == 4) {
+						addHotelButton.setEnabled(true);
+					}
+					addHouseButton.setEnabled(true);
+				} else if (numberOfTheSameGroup == 2) {
+					if (totalNumberOfHousesInAGroup != 0) {
+						if (!(entities.getEntities().get(entityPosition)
+								.getNumberOfHouses() > (totalNumberOfHousesInAGroup % 2))) {
+							if (entities.getEntities().get(entityPosition).getNumberOfHouses() == 4) {
+								addHotelButton.setEnabled(true);
+							}
+							addHouseButton.setEnabled(true);
+						}
+					} else {
+						addHouseButton.setEnabled(true);
+					}
+				} else if (numberOfTheSameGroup == 3) {
+					if (totalNumberOfHousesInAGroup != 0) {
+						if (!(entities.getEntities().get(entityPosition)
+								.getNumberOfHouses() > (totalNumberOfHousesInAGroup % 3))) {
+							if (entities.getEntities().get(entityPosition).getNumberOfHouses() == 4) {
+								addHotelButton.setEnabled(true);
+							}
+							addHouseButton.setEnabled(true);
+						}
+					} else {
+						addHouseButton.setEnabled(true);
+					}
+				}
+
+			}
+
+		});
+
 	}
 
 	private void buyOrRent() {
@@ -3091,6 +3281,7 @@ public class Monopoly {
 						.get(playerIndex).getMoneyHeld()) {
 					buyProperty.setVisible(true);
 					dontBuyProperty.setVisible(true);
+					rollTheDice.setEnabled(false);
 					// insufficient funds
 				} else {
 					buyProperty.setVisible(true);
