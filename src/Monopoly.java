@@ -250,6 +250,7 @@ public class Monopoly {
 	private JLabel buildingLabel20;
 	private JLabel buildingLabel21;
 	private ArrayList<JLabel> buildingLabels;
+	private boolean houseOrHotelBought;
 
 	/**
 	 * Launch the application.
@@ -282,6 +283,7 @@ public class Monopoly {
 		playersPanes = new ArrayList<JLayeredPane>();
 		getOutOfJailLabels = new ArrayList<JLabel>();
 		buildingLabels = new ArrayList<JLabel>();
+		houseOrHotelBought = false;
 		initialize();
 	}
 
@@ -2115,117 +2117,6 @@ public class Monopoly {
 		frame.getContentPane().add(addHouseButton);
 		frame.getContentPane().add(addHotelButton);
 
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house2.png"));
-			buildingLabel0.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house2.png"));
-			buildingLabel1.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house2.png"));
-			buildingLabel2.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house2.png"));
-			buildingLabel3.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house2.png"));
-			buildingLabel4.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house2FlippedRight.png"));
-			buildingLabel5.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house2FlippedRight.png"));
-			buildingLabel6.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house2FlippedRight.png"));
-			buildingLabel7.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house2FlippedRight.png"));
-			buildingLabel8.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house2FlippedRight.png"));
-			buildingLabel9.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house2FlippedRight.png"));
-			buildingLabel10.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house5UpsideDown.png"));
-			buildingLabel11.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house5UpsideDown.png"));
-			buildingLabel12.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house5UpsideDown.png"));
-			buildingLabel13.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house5UpsideDown.png"));
-			buildingLabel14.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house5UpsideDown.png"));
-			buildingLabel15.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house5UpsideDown.png"));
-			buildingLabel16.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house4FlippedLeft.png"));
-			buildingLabel17.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house4FlippedLeft.png"));
-			buildingLabel18.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house4FlippedLeft.png"));
-			buildingLabel19.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house4FlippedLeft.png"));
-			buildingLabel20.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/house4FlippedLeft.png"));
-			buildingLabel21.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-
 		///////// ^^ Test ^^ ////////
 		///////// ^^ Test ^^ ////////
 		//////// ^^ Test ^^ ////////
@@ -2552,35 +2443,37 @@ public class Monopoly {
 				sellPropertyButton.setVisible(true);
 				sellPropertyButton.setEnabled(false);
 
-				Set<String> entitiesNames = new HashSet<String>();
-				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
-					if (playerHasAll(entity.getGroup(), players.get(playerIndex).getName())
-							|| entity.getNumberOfHouses() > 0) {
-						if (entity.getGroup() != "railroads" && entity.getGroup() != "utilities") {
-							entitiesNames.add(entity.getName());
+				if (!houseOrHotelBought) {
+					Set<String> entitiesNames = new HashSet<String>();
+					for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
+						if (playerHasAll(entity.getGroup(), players.get(playerIndex).getName())
+								|| entity.getNumberOfHouses() > 0) {
+							if (entity.getGroup() != "railroads" && entity.getGroup() != "utilities") {
+								entitiesNames.add(entity.getName());
+							}
 						}
 					}
-				}
-				if (entitiesNames.size() > 0) {
-					addBuildingToModel = new DefaultComboBoxModel<String>();
-					buyBuilding.setVisible(true);
-					for (String name : entitiesNames) {
-						addBuildingToModel.addElement(name);
+					if (entitiesNames.size() > 0) {
+						addBuildingToModel = new DefaultComboBoxModel<String>();
+						buyBuilding.setVisible(true);
+						for (String name : entitiesNames) {
+							addBuildingToModel.addElement(name);
+						}
+						addBuildingTo.setModel(addBuildingToModel);
+						addBuildingTo.setVisible(true);
+						addBuildingTo.setSelectedItem(null);
+						addHouseButton.setVisible(true);
+						addHouseButton.setEnabled(false);
+						addHotelButton.setVisible(true);
+						addHotelButton.setEnabled(false);
+					} else {
+						buyBuilding.setVisible(false);
+						addBuildingTo.setVisible(false);
+						addHouseButton.setVisible(false);
+						addHouseButton.setEnabled(false);
+						addHotelButton.setVisible(false);
+						addHotelButton.setEnabled(false);
 					}
-					addBuildingTo.setModel(addBuildingToModel);
-					addBuildingTo.setVisible(true);
-					addBuildingTo.setSelectedItem(null);
-					addHouseButton.setVisible(true);
-					addHouseButton.setEnabled(false);
-					addHotelButton.setVisible(true);
-					addHotelButton.setEnabled(false);
-				} else {
-					buyBuilding.setVisible(false);
-					addBuildingTo.setVisible(false);
-					addHouseButton.setVisible(false);
-					addHouseButton.setEnabled(false);
-					addHotelButton.setVisible(false);
-					addHotelButton.setEnabled(false);
 				}
 			}
 		});
@@ -2691,6 +2584,8 @@ public class Monopoly {
 					rollTheDice.setEnabled(true);
 				}
 				gamePrompt.setText("");
+				System.out.println("number of houses: " + entities.getEntities()
+						.get(players.get(playerIndex).getPositionOnGameBoard()).getNumberOfHouses());
 			}
 
 		});
@@ -3211,6 +3106,8 @@ public class Monopoly {
 				int entityPosition = 0;
 				int numberOfTheSameGroup = 0;
 				int totalNumberOfHousesInAGroup = 0;
+				boolean canAfford = false;
+
 				for (Entity entity : entities.getEntities()) {
 					if (entity.getName().equals(entityName)) {
 						group = entity.getGroup();
@@ -3225,41 +3122,147 @@ public class Monopoly {
 					}
 				}
 
-				if (numberOfTheSameGroup == 1) {
-					if (entities.getEntities().get(entityPosition).getNumberOfHouses() == 4) {
-						addHotelButton.setEnabled(true);
+				if (entityPosition < 10) {
+					if (players.get(playerIndex).getMoneyHeld() >= 50) {
+						canAfford = true;
 					}
-					addHouseButton.setEnabled(true);
-				} else if (numberOfTheSameGroup == 2) {
-					if (totalNumberOfHousesInAGroup != 0) {
-						if (!(entities.getEntities().get(entityPosition)
-								.getNumberOfHouses() > (totalNumberOfHousesInAGroup % 2))) {
-							if (entities.getEntities().get(entityPosition).getNumberOfHouses() == 4) {
+				} else if (entityPosition < 20) {
+					if (players.get(playerIndex).getMoneyHeld() >= 100) {
+						canAfford = true;
+					}
+				} else if (entityPosition < 30) {
+					if (players.get(playerIndex).getMoneyHeld() >= 150) {
+						canAfford = true;
+					}
+				} else {
+					if (players.get(playerIndex).getMoneyHeld() >= 200) {
+						canAfford = true;
+					}
+				}
+				addHouseButton.setEnabled(false);
+				if (canAfford) {
+					if (numberOfTheSameGroup == 1) {
+						if (players.get(playerIndex).getOwnedProperties()
+								.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+								.getNumberOfHouses() == 4) {
+							addHotelButton.setEnabled(true);
+						}
+						addHouseButton.setEnabled(true);
+					} else if (numberOfTheSameGroup == 2) {
+						if (totalNumberOfHousesInAGroup != 0) {
+							if (players.get(playerIndex).getOwnedProperties()
+									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+									.getNumberOfHouses() == 0) {
+								addHouseButton.setEnabled(true);
+							} else if (players.get(playerIndex).getOwnedProperties()
+									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+									.getNumberOfHouses() == 1 && totalNumberOfHousesInAGroup >= 2) {
+								addHouseButton.setEnabled(true);
+							} else if (players.get(playerIndex).getOwnedProperties()
+									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+									.getNumberOfHouses() == 2 && totalNumberOfHousesInAGroup >= 4) {
+								addHouseButton.setEnabled(true);
+							} else if (players.get(playerIndex).getOwnedProperties()
+									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+									.getNumberOfHouses() == 3 && totalNumberOfHousesInAGroup >= 6) {
+								addHouseButton.setEnabled(true);
+							} else if (players.get(playerIndex).getOwnedProperties()
+									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+									.getNumberOfHouses() == 4 && totalNumberOfHousesInAGroup >= 8) {
+								addHouseButton.setEnabled(true);
 								addHotelButton.setEnabled(true);
 							}
+
+						} else {
 							addHouseButton.setEnabled(true);
 						}
-					} else {
-						addHouseButton.setEnabled(true);
-					}
-				} else if (numberOfTheSameGroup == 3) {
-					if (totalNumberOfHousesInAGroup != 0) {
-						if (!(entities.getEntities().get(entityPosition)
-								.getNumberOfHouses() > (totalNumberOfHousesInAGroup % 3))) {
-							if (entities.getEntities().get(entityPosition).getNumberOfHouses() == 4) {
+
+					} else if (numberOfTheSameGroup == 3) {
+						if (totalNumberOfHousesInAGroup != 0) {
+							if (players.get(playerIndex).getOwnedProperties()
+									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+									.getNumberOfHouses() == 0) {
+								addHouseButton.setEnabled(true);
+							} else if (players.get(playerIndex).getOwnedProperties()
+									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+									.getNumberOfHouses() == 1 && totalNumberOfHousesInAGroup >= 3) {
+								addHouseButton.setEnabled(true);
+							} else if (players.get(playerIndex).getOwnedProperties()
+									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+									.getNumberOfHouses() == 2 && totalNumberOfHousesInAGroup >= 6) {
+								addHouseButton.setEnabled(true);
+							} else if (players.get(playerIndex).getOwnedProperties()
+									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+									.getNumberOfHouses() == 3 && totalNumberOfHousesInAGroup >= 9) {
+								addHouseButton.setEnabled(true);
+							} else if (players.get(playerIndex).getOwnedProperties()
+									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+									.getNumberOfHouses() == 4 && totalNumberOfHousesInAGroup >= 12) {
+								addHouseButton.setEnabled(true);
 								addHotelButton.setEnabled(true);
 							}
+						} else {
 							addHouseButton.setEnabled(true);
 						}
-					} else {
-						addHouseButton.setEnabled(true);
 					}
 				}
 
+				System.out.println("number of total houses in a group: " + totalNumberOfHousesInAGroup);
+				System.out.println("number of the same group: " + numberOfTheSameGroup);
 			}
 
 		});
 
+		addHouseButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				houseOrHotelBought = true;
+				double houseCost = 0;
+				if (entities.getEntities().get(getEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+						.getBuildingIndex() < 5) {
+					houseCost = 50;
+				} else
+					if (entities.getEntities().get(getEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+							.getBuildingIndex() < 11) {
+					houseCost = 100;
+				} else if (entities.getEntities()
+						.get(getEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+						.getBuildingIndex() < 17) {
+					houseCost = 150;
+				} else {
+					houseCost = 200;
+				}
+
+				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
+					if (entity.getName().equals(String.valueOf(addBuildingTo.getSelectedItem()))) {
+						entity.setNumberOfHouses(1);
+						break;
+					}
+				}
+				int numberOfHouses = players.get(playerIndex).getOwnedProperties()
+						.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+						.getNumberOfHouses();
+				log = "  /> " + players.get(playerIndex).getName()
+						+ " has just bought a house at " + entities.getEntities()
+								.get(getEntityPosition(String.valueOf(addBuildingTo.getSelectedItem()))).getName()
+						+ "\n";
+				logText.append(log);
+				players.get(playerIndex).setMoneyHeld(-houseCost);
+				addHotelButton.setEnabled(false);
+				addHouseButton.setEnabled(false);
+				addHotelButton.setVisible(false);
+				addHouseButton.setVisible(false);
+				addBuildingTo.setVisible(false);
+				buyBuilding.setVisible(false);
+				balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
+				displayProperBuildingLabel(players.get(playerIndex).getOwnedProperties()
+						.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+						.getBuildingIndex(), numberOfHouses);
+				System.out.println(numberOfHouses);
+			}
+
+		});
 	}
 
 	private void buyOrRent() {
@@ -3403,6 +3406,171 @@ public class Monopoly {
 			}
 		}
 		return -1;
+	}
+
+	private int getPlayersEntityPosition(String name) {
+		for (int i = 0; i < players.get(playerIndex).getOwnedProperties().size(); i++) {
+			if (players.get(playerIndex).getOwnedProperties().get(i).getName().equals(name)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	private void displayProperBuildingLabel(int buildingIndex, int numberOfHouses) {
+		if (buildingIndex < 5) {
+			switch (numberOfHouses) {
+			case 1:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/house1.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
+			case 2:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/house2.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
+			case 3:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/house3.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
+			case 4:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/house4.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
+			case 5:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/house5.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
+			}
+		} else if (buildingIndex < 11) {
+			switch (numberOfHouses) {
+			case 1:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/house1FlippedRight.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
+			case 2:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/house2FlippedRight.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
+			case 3:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/house3FlippedRight.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
+			case 4:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/house4FlippedRight.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
+			case 5:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/house5FlippedRight.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
+			}
+		} else if (buildingIndex < 17) {
+			switch (numberOfHouses) {
+			case 1:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/house1UpsideDown.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
+			case 2:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/house2UpsideDown.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
+			case 3:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/house3UpsideDown.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
+			case 4:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/house4UpsideDown.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
+			case 5:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/house5UpsideDown.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
+			}
+		} else {
+			switch (numberOfHouses) {
+			case 1:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/house1FlippedLeft.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
+			case 2:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/house2FlippedLeft.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
+			case 3:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/house3FlippedLeft.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
+			case 4:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/house4FlippedLeft.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
+			case 5:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/house5FlippedLeft.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
+			}
+		}
 	}
 
 	private void adjustPlayerPosition() {
