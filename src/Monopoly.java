@@ -2938,13 +2938,18 @@ public class Monopoly {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean isMortgaged = false;
 				String entityName = String.valueOf(sellPropertyComboBox.getSelectedItem());
+				ownerIndex = getPlayerIndex(String.valueOf(buyer.getSelectedItem()));
+				
 				for (int i = 0; i < players.get(playerIndex).getOwnedProperties().size(); i++) {
 					if (players.get(playerIndex).getOwnedProperties().get(i).getName().equals(entityName)) {
+						players.get(playerIndex).getOwnedProperties().get(i).setMortgaged(false);
+						players.get(playerIndex).getOwnedProperties().get(i).setOwner(players.get(ownerIndex));
+						players.get(ownerIndex).getOwnedProperties().add(players.get(playerIndex).getOwnedProperties().get(i));
 						players.get(playerIndex).getOwnedProperties().remove(i);
-						continue;
+						break;
 					}
 				}
-				ownerIndex = getPlayerIndex(String.valueOf(buyer.getSelectedItem()));
+				
 				int entityPosition = getEntityPosition(entityName);
 				entities.getEntities().get(entityPosition).setOwner(players.get(ownerIndex));
 
@@ -2952,7 +2957,6 @@ public class Monopoly {
 					isMortgaged = true;
 				}
 				entities.getEntities().get(entityPosition).setMortgaged(false);
-				players.get(ownerIndex).getOwnedProperties().add(entities.getEntities().get(entityPosition));
 
 				log = "  /> " + players.get(playerIndex).getName() + " has just sold "
 						+ entities.getEntities().get(entityPosition).getName() + " to "
