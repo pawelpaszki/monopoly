@@ -251,6 +251,7 @@ public class Monopoly {
 	private JLabel buildingLabel21;
 	private ArrayList<JLabel> buildingLabels;
 	private boolean houseOrHotelBought;
+	private boolean gotDouble;
 
 	/**
 	 * Launch the application.
@@ -2380,6 +2381,7 @@ public class Monopoly {
 						}
 					} else {
 						payRent.setVisible(true);
+						rollTheDice.setEnabled(false);
 					}
 				}
 			}
@@ -2548,6 +2550,13 @@ public class Monopoly {
 							entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner());
 					players.get(ownerIndex).setMoneyHeld(rentValue);
 					extraRollNeeded = false;
+					if (!gotDouble) {
+						rollTheDice.setEnabled(false);
+						finishTurn.setEnabled(true);
+					} else {
+						rollTheDice.setEnabled(true);
+						gotDouble = false;
+					}
 				} else if (players.get(playerIndex).getPositionOnGameBoard() == 12
 						&& entities.getEntities().get(28).getOwner() == null
 						|| players.get(playerIndex).getPositionOnGameBoard() == 28
@@ -2558,6 +2567,13 @@ public class Monopoly {
 							entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner());
 					players.get(ownerIndex).setMoneyHeld(rentValue);
 					extraRollNeeded = false;
+					if (!gotDouble) {
+						rollTheDice.setEnabled(false);
+						finishTurn.setEnabled(true);
+					} else {
+						rollTheDice.setEnabled(true);
+						gotDouble = false;
+					}
 				} else if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getGroup()
 						.equals("railroads")) {
 					ownerIndex = getPlayerIndex(
@@ -3310,6 +3326,9 @@ public class Monopoly {
 					gamePrompt.setText("Roll the dice to estimate the amount of rent");
 					extraRollNeeded = true;
 					rollTheDice.setEnabled(true);
+					if (randomDice1 == randomDice2) {
+						gotDouble = true;
+					}
 				}
 			} else {
 				if (randomDice1 != randomDice2) {
