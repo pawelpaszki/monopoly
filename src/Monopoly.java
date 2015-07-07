@@ -303,11 +303,10 @@ public class Monopoly {
 		frame.setBackground(new Color(173, 216, 230));
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setSize(screenSize);
-		frame.setResizable(false);
+		//frame.setResizable(false);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		// frameWidth = frame.getWidth();
 		frameHeight = frame.getHeight() - 40;
 		topLeft = new JLayeredPane();
 		topLeft.setBounds(0, 0, (int) (frameHeight / 6.5), (int) (frameHeight / 6.5));
@@ -2449,10 +2448,12 @@ public class Monopoly {
 					Set<String> entitiesNames = new HashSet<String>();
 					for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
 						if (playerHasAll(entity.getGroup(), players.get(playerIndex).getName())
-								|| entity.getNumberOfHouses() > 0) {
-							if (entity.getGroup() != "railroads" && entity.getGroup() != "utilities") {
+								|| entity.getNumberOfHouses() > 0 || hasBuildings(entity.getGroup())) {
+							if (entity.getGroup() != "railroads" && entity.getGroup() != "utilities"
+									&& entity.getNumberOfHouses() < 5 && entity.getNumberOfHotels() < 1) {
 								entitiesNames.add(entity.getName());
 							}
+
 						}
 					}
 					if (entitiesNames.size() > 0) {
@@ -2761,7 +2762,7 @@ public class Monopoly {
 				Set<String> entitiesNames = new HashSet<String>();
 				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
 					if (playerHasAll(entity.getGroup(), players.get(playerIndex).getName())
-							|| entity.getNumberOfHouses() > 0) {
+							|| entity.getNumberOfHouses() > 0 || hasBuildings(entity.getGroup())) {
 						if (entity.getGroup() != "railroads" && entity.getGroup() != "utilities"
 								&& entity.getNumberOfHouses() < 5 && entity.getNumberOfHotels() < 1) {
 							entitiesNames.add(entity.getName());
@@ -3022,10 +3023,12 @@ public class Monopoly {
 				Set<String> entitiesNames = new HashSet<String>();
 				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
 					if (playerHasAll(entity.getGroup(), players.get(playerIndex).getName())
-							|| entity.getNumberOfHouses() > 0) {
-						if (entity.getGroup() != "railroads" && entity.getGroup() != "utilities") {
+							|| entity.getNumberOfHouses() > 0 || hasBuildings(entity.getGroup())) {
+						if (entity.getGroup() != "railroads" && entity.getGroup() != "utilities"
+								&& entity.getNumberOfHouses() < 5 && entity.getNumberOfHotels() < 1) {
 							entitiesNames.add(entity.getName());
 						}
+
 					}
 				}
 				if (entitiesNames.size() > 0) {
@@ -3279,10 +3282,59 @@ public class Monopoly {
 				displayProperBuildingLabel(players.get(playerIndex).getOwnedProperties()
 						.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
 						.getBuildingIndex(), numberOfHouses);
-				System.out.println(numberOfHouses);
 			}
 
 		});
+	
+		addHotelButton.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				houseOrHotelBought = true;
+				double hotelCost = 0;
+				if (entities.getEntities().get(getEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+						.getBuildingIndex() < 5) {
+					hotelCost = 50;
+				} else
+					if (entities.getEntities().get(getEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+							.getBuildingIndex() < 11) {
+						hotelCost = 100;
+				} else if (entities.getEntities()
+						.get(getEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+						.getBuildingIndex() < 17) {
+					hotelCost = 150;
+				} else {
+					hotelCost = 200;
+				}
+				
+				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
+					if (entity.getName().equals(String.valueOf(addBuildingTo.getSelectedItem()))) {
+						entity.setNumberOfHouses(-entity.getNumberOfHouses());
+						entity.setNumberOfHotels(1);
+						break;
+					}
+				}
+				int numberOfHouses = 0;
+				log = "  /> " + players.get(playerIndex).getName()
+						+ " has just bought a hotel at " + entities.getEntities()
+								.get(getEntityPosition(String.valueOf(addBuildingTo.getSelectedItem()))).getName()
+						+ "\n";
+				logText.append(log);
+				players.get(playerIndex).setMoneyHeld(-hotelCost);
+				addHotelButton.setEnabled(false);
+				addHouseButton.setEnabled(false);
+				addHotelButton.setVisible(false);
+				addHouseButton.setVisible(false);
+				addBuildingTo.setVisible(false);
+				buyBuilding.setVisible(false);
+				balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
+				displayProperBuildingLabel(players.get(playerIndex).getOwnedProperties()
+						.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+						.getBuildingIndex(), numberOfHouses);
+			}
+			
+		});
+	
 	}
 
 	private void buyOrRent() {
@@ -3422,6 +3474,19 @@ public class Monopoly {
 		return -1;
 	}
 
+	private boolean hasBuildings (String group) {
+		for (Player player: players) {
+			for (Entity entity: player.getOwnedProperties()) {
+				if (entity.getGroup().equals(group)) {
+					if (entity.getNumberOfHouses() > 0 || entity.getNumberOfHotels() > 0) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
 	private int getEntityPosition(String name) {
 		for (Entity entity : entities.getEntities()) {
 			if (entity.getName().equals(name)) {
@@ -3443,6 +3508,13 @@ public class Monopoly {
 	private void displayProperBuildingLabel(int buildingIndex, int numberOfHouses) {
 		if (buildingIndex < 5) {
 			switch (numberOfHouses) {
+			case 0:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/hotel.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
 			case 1:
 				try {
 					Image img = ImageIO.read(getClass().getResource("resources/house1.png"));
@@ -3481,6 +3553,13 @@ public class Monopoly {
 			}
 		} else if (buildingIndex < 11) {
 			switch (numberOfHouses) {
+			case 0:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/hotelFlippedRight.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
 			case 1:
 				try {
 					Image img = ImageIO.read(getClass().getResource("resources/house1FlippedRight.png"));
@@ -3519,6 +3598,13 @@ public class Monopoly {
 			}
 		} else if (buildingIndex < 17) {
 			switch (numberOfHouses) {
+			case 0:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/hotelUpsideDown.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
 			case 1:
 				try {
 					Image img = ImageIO.read(getClass().getResource("resources/house1UpsideDown.png"));
@@ -3557,6 +3643,13 @@ public class Monopoly {
 			}
 		} else {
 			switch (numberOfHouses) {
+			case 0:
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/hotelFlippedLeft.png"));
+					buildingLabels.get(buildingIndex).setIcon(new ImageIcon(img));
+				} catch (IOException ex) {
+				}
+				break;
 			case 1:
 				try {
 					Image img = ImageIO.read(getClass().getResource("resources/house1FlippedLeft.png"));
