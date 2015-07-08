@@ -40,6 +40,7 @@
 /Monopoly$39.class
 /Monopoly$4.class
 /Monopoly$40.class
+/Monopoly$41.class
 /Monopoly$5.class
 /Monopoly$6$1.class
 /Monopoly$6.class
@@ -49,4 +50,6 @@
 /Monopoly$9.class
 /Monopoly.class
 /Player.class
-/Monopoly$41.class
+/ChanceCard.class
+/DeckOfChanceCards.class
+/Card.class

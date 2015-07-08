@@ -8,16 +8,16 @@ public class Player {
 	private double moneyHeld;
 	private int positionOnGameBoard;
 	private ArrayList <Entity> ownedProperties;
-	private int numberOfGetOutOfJailCards;
 	private boolean inJail;
 	private boolean passedGo;
 	private int turnsInJail;
+	private ArrayList<Card> outOfJailCards;
 	
 	public Player(String name) {
 		this.name = name;
 		this.moneyHeld = 1500;
 		ownedProperties = new ArrayList<Entity>();
-		numberOfGetOutOfJailCards = 1;
+		outOfJailCards = new ArrayList<>();
 	}
 	public String getName() {
 		return name;
@@ -50,10 +50,15 @@ public class Player {
 	}
 
 	public int getNumberOfGetOutOfJailCards() {
-		return numberOfGetOutOfJailCards;
+		return outOfJailCards.size();
 	}
-	public void setNumberOfGetOutOfJailCards(int change) {
-		this.numberOfGetOutOfJailCards += change;
+	
+	public void addGetOutOfJailCard(Card card) {
+		outOfJailCards.add(card);
+	}
+	
+	public ArrayList<Card> getOutOfJailCards() {
+		return outOfJailCards;
 	}
 	public boolean isInJail() {
 		return inJail;
