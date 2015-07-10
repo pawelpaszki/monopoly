@@ -56,7 +56,7 @@ public class DeckOfChanceAndCommunityChestCards {
 	public int dealChanceCard() {
 		if (chanceCards.size() == 0) {
 			chanceCards = dealtChanceCards;
-			dealtChanceCards= new ArrayList<ChanceCard>();
+			dealtChanceCards = new ArrayList<ChanceCard>();
 		}
 		int position = random.nextInt(chanceCards.size());
 		int id = chanceCards.get(position).getId();
@@ -65,6 +65,7 @@ public class DeckOfChanceAndCommunityChestCards {
 		} else {
 			setGetOutOfJailChance(chanceCards.get(position));
 		}
+		dealtChanceCards.add(chanceCards.get(position));
 		chanceCards.remove(position);
 		return id;
 	}
@@ -81,7 +82,8 @@ public class DeckOfChanceAndCommunityChestCards {
 		} else {
 			setGetOutOfJailCommunity(communityCards.get(position));
 		}
-		chanceCards.remove(position);
+		dealtCommunityCards.add(communityCards.get(position));
+		communityCards.remove(position);
 		return id;
 	}
 	
