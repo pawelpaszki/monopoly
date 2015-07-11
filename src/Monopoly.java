@@ -2328,8 +2328,10 @@ public class Monopoly {
 						rollTheDice.setEnabled(false);
 					} else {
 						doubleCounter++;
-						players.get(playerIndex).setPositionOnGameBoard(randomDice1 + randomDice2);
-						finishTurn.setEnabled(false);
+						if (doubleCounter < 3) {
+							players.get(playerIndex).setPositionOnGameBoard(randomDice1 + randomDice2);
+							finishTurn.setEnabled(false);
+						}
 					}
 
 					// three doubles - player goes to the jail
@@ -2443,65 +2445,10 @@ public class Monopoly {
 						+ ")\n";
 				logText.append(log);
 				balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
-				mortgageModel = new DefaultComboBoxModel<String>();
-				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
-					mortgageModel.addElement(entity.getName());
-				}
-				sellPropertyModel = new DefaultComboBoxModel<String>();
-				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
-					sellPropertyModel.addElement(entity.getName());
-				}
-				sellPropertyComboBox.setModel(sellPropertyModel);
-				mortgageComboBox.setModel(mortgageModel);
-				mortgageComboBox.setSelectedItem(null);
-				mortgageManagement.setVisible(true);
-				mortgageComboBox.setVisible(true);
-				takeLoan.setVisible(true);
-				payLoan.setVisible(true);
-				takeLoan.setEnabled(false);
-				payLoan.setEnabled(false);
-				sellProperty.setVisible(true);
-				sellPropertyComboBox.setVisible(true);
-				sellPropertyComboBox.setSelectedItem(null);
-				buyer.setVisible(true);
-				buyer.setSelectedItem(null);
-				sellingPrice.setVisible(true);
-				sellPropertyButton.setVisible(true);
-				sellPropertyButton.setEnabled(false);
 
-				if (!houseOrHotelBought) {
-					Set<String> entitiesNames = new HashSet<String>();
-					for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
-						if (playerHasAll(entity.getGroup(), players.get(playerIndex).getName())
-								|| entity.getNumberOfHouses() > 0 || hasBuildings(entity.getGroup())) {
-							if (entity.getGroup() != "railroads" && entity.getGroup() != "utilities"
-									&& entity.getNumberOfHouses() < 5 && entity.getNumberOfHotels() < 1) {
-								entitiesNames.add(entity.getName());
-							}
-
-						}
-					}
-					if (entitiesNames.size() > 0) {
-						addBuildingToModel = new DefaultComboBoxModel<String>();
-						buyBuilding.setVisible(true);
-						for (String name : entitiesNames) {
-							addBuildingToModel.addElement(name);
-						}
-						addBuildingTo.setModel(addBuildingToModel);
-						addBuildingTo.setVisible(true);
-						addBuildingTo.setSelectedItem(null);
-						addHouseButton.setVisible(true);
-						addHouseButton.setEnabled(false);
-						addHotelButton.setVisible(true);
-						addHotelButton.setEnabled(false);
-					} else {
-						buyBuilding.setVisible(false);
-						addBuildingTo.setVisible(false);
-						addHouseButton.setVisible(false);
-						addHouseButton.setEnabled(false);
-						addHotelButton.setVisible(false);
-						addHotelButton.setEnabled(false);
-					}
+				generateMortgageComboBox();
+				if (!houseOrHotelBought && (getNumberOfHotels() > 0 || getNumberOfHouses() > 0)) {
+					generateAddBuildingComboBox();
 				}
 			}
 		});
@@ -2566,6 +2513,12 @@ public class Monopoly {
 					}
 					players.get(playerIndex).setMoneyHeld(-rentValue);
 					players.get(ownerIndex).setMoneyHeld(rentValue);
+					if (randomDice1 != randomDice2 || doubleCounter == 3) {
+						finishTurn.setEnabled(true);
+						rollTheDice.setEnabled(false);
+					} else if (doubleCounter < 3) {
+						rollTheDice.setEnabled(true);
+					}
 				} else if ((players.get(playerIndex).getPositionOnGameBoard() == 12
 						&& entities.getEntities().get(28).getOwner() != null)
 						|| (players.get(playerIndex).getPositionOnGameBoard() == 28
@@ -2614,6 +2567,12 @@ public class Monopoly {
 					}
 					players.get(playerIndex).setMoneyHeld(-rentValue);
 					players.get(ownerIndex).setMoneyHeld(rentValue);
+					if (randomDice1 != randomDice2 || doubleCounter == 3) {
+						finishTurn.setEnabled(true);
+						rollTheDice.setEnabled(false);
+					} else if (doubleCounter < 3) {
+						rollTheDice.setEnabled(true);
+					}
 				}
 				payRent.setVisible(false);
 				log = "  /> "
@@ -2625,13 +2584,6 @@ public class Monopoly {
 				logText.append(log);
 				balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
 				balanceLabels.get(ownerIndex).setText("E" + players.get(ownerIndex).getMoneyHeld());
-
-				if (randomDice1 != randomDice2 || doubleCounter == 3) {
-					finishTurn.setEnabled(true);
-					rollTheDice.setEnabled(false);
-				} else if (doubleCounter < 3) {
-					rollTheDice.setEnabled(true);
-				}
 				gamePrompt.setText("");
 				System.out.println("number of houses: " + entities.getEntities()
 						.get(players.get(playerIndex).getPositionOnGameBoard()).getNumberOfHouses());
@@ -2794,31 +2746,7 @@ public class Monopoly {
 				buyUnwantedPropertyButton.setVisible(false);
 				priceOfUnwantedProperty.setVisible(false);
 				if (players.get(playerIndex).getOwnedProperties().size() > 0) {
-					mortgageModel = new DefaultComboBoxModel<String>();
-					for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
-						mortgageModel.addElement(entity.getName());
-					}
-					mortgageComboBox.setModel(mortgageModel);
-					mortgageComboBox.setSelectedItem(null);
-					sellPropertyModel = new DefaultComboBoxModel<String>();
-					for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
-						sellPropertyModel.addElement(entity.getName());
-					}
-					sellPropertyComboBox.setModel(sellPropertyModel);
-					mortgageManagement.setVisible(true);
-					mortgageComboBox.setVisible(true);
-					takeLoan.setVisible(true);
-					payLoan.setVisible(true);
-					takeLoan.setEnabled(false);
-					payLoan.setEnabled(false);
-					sellProperty.setVisible(true);
-					sellPropertyComboBox.setVisible(true);
-					sellPropertyComboBox.setSelectedItem(null);
-					buyer.setVisible(true);
-					buyer.setSelectedItem(null);
-					sellingPrice.setVisible(true);
-					sellPropertyButton.setVisible(true);
-					sellPropertyButton.setEnabled(false);
+					generateMortgageComboBox();
 				} else {
 					mortgageManagement.setVisible(false);
 					mortgageComboBox.setVisible(false);
@@ -2830,42 +2758,14 @@ public class Monopoly {
 					sellingPrice.setVisible(false);
 					sellPropertyButton.setVisible(false);
 				}
-				Set<String> entitiesNames = new HashSet<String>();
-				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
-					if (playerHasAll(entity.getGroup(), players.get(playerIndex).getName())
-							|| entity.getNumberOfHouses() > 0 || hasBuildings(entity.getGroup())) {
-						if (entity.getGroup() != "railroads" && entity.getGroup() != "utilities"
-								&& entity.getNumberOfHouses() < 5 && entity.getNumberOfHotels() < 1) {
-							entitiesNames.add(entity.getName());
-						}
-
-					}
-				}
-				if (entitiesNames.size() > 0) {
-					addBuildingToModel = new DefaultComboBoxModel<String>();
-					buyBuilding.setVisible(true);
-					for (String name : entitiesNames) {
-						addBuildingToModel.addElement(name);
-					}
-					addBuildingTo.setModel(addBuildingToModel);
-					addBuildingTo.setVisible(true);
-					addBuildingTo.setSelectedItem(null);
-					addHouseButton.setVisible(true);
-					addHouseButton.setEnabled(false);
-					addHotelButton.setVisible(true);
-					addHotelButton.setEnabled(false);
-				} else {
-					buyBuilding.setVisible(false);
-					addBuildingTo.setVisible(false);
-					addHouseButton.setVisible(false);
-					addHouseButton.setEnabled(false);
-					addHotelButton.setVisible(false);
-					addHotelButton.setEnabled(false);
+				if (getNumberOfHouses() > 0 || getNumberOfHotels() > 0) {
+					generateAddBuildingComboBox();
 				}
 			}
 
 		});
 
+		// no need to simplify
 		buyUnwantedPropertyButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -2893,6 +2793,7 @@ public class Monopoly {
 
 		});
 
+		// no need to simplify
 		mortgageComboBox.addActionListener(new ActionListener() {
 
 			@Override
@@ -2910,11 +2811,11 @@ public class Monopoly {
 				}
 				// buyer.setSelectedItem(null);
 				sellPropertyComboBox.setSelectedItem(null);
-
 			}
 
 		});
 
+		// no need to simplify
 		sellPropertyComboBox.addActionListener(new ActionListener() {
 
 			@Override
@@ -2941,11 +2842,11 @@ public class Monopoly {
 				buyer.setModel(buyerModel);
 				sellingPrice.setText("");
 				buyer.setSelectedItem(null);
-				// mortgageComboBox.setSelectedItem(null);
 			}
 
 		});
 
+		// no need to simplify
 		buyer.addActionListener(new ActionListener() {
 
 			@Override
@@ -2955,6 +2856,7 @@ public class Monopoly {
 
 		});
 
+		// no need to simplify
 		sellingPrice.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
 			public void changedUpdate(DocumentEvent arg0) {
@@ -3049,32 +2951,7 @@ public class Monopoly {
 				balanceLabels.get(ownerIndex).setText("E" + players.get(ownerIndex).getMoneyHeld());
 				balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
 				if (players.get(playerIndex).getOwnedProperties().size() > 0) {
-					mortgageModel = new DefaultComboBoxModel<String>();
-					for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
-						mortgageModel.addElement(entity.getName());
-					}
-					mortgageComboBox.setModel(mortgageModel);
-					mortgageComboBox.setSelectedItem(null);
-					sellPropertyModel = new DefaultComboBoxModel<String>();
-					for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
-						sellPropertyModel.addElement(entity.getName());
-					}
-					sellPropertyComboBox.setModel(sellPropertyModel);
-					mortgageManagement.setVisible(true);
-					mortgageComboBox.setVisible(true);
-					takeLoan.setVisible(true);
-					payLoan.setVisible(true);
-					takeLoan.setEnabled(false);
-					payLoan.setEnabled(false);
-					sellProperty.setVisible(true);
-					sellPropertyComboBox.setVisible(true);
-					sellPropertyComboBox.setSelectedItem(null);
-					buyer.setVisible(true);
-					buyer.setSelectedItem(null);
-					sellingPrice.setVisible(true);
-					sellingPrice.setText("");
-					sellPropertyButton.setVisible(true);
-					sellPropertyButton.setEnabled(false);
+					generateMortgageComboBox();
 				} else {
 					mortgageManagement.setVisible(false);
 					mortgageComboBox.setVisible(false);
@@ -3092,37 +2969,8 @@ public class Monopoly {
 					sellPropertyButton.setVisible(false);
 					sellPropertyButton.setEnabled(false);
 				}
-				Set<String> entitiesNames = new HashSet<String>();
-				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
-					if (playerHasAll(entity.getGroup(), players.get(playerIndex).getName())
-							|| entity.getNumberOfHouses() > 0 || hasBuildings(entity.getGroup())) {
-						if (entity.getGroup() != "railroads" && entity.getGroup() != "utilities"
-								&& entity.getNumberOfHouses() < 5 && entity.getNumberOfHotels() < 1) {
-							entitiesNames.add(entity.getName());
-						}
-
-					}
-				}
-				if (entitiesNames.size() > 0) {
-					addBuildingToModel = new DefaultComboBoxModel<String>();
-					buyBuilding.setVisible(true);
-					for (String name : entitiesNames) {
-						addBuildingToModel.addElement(name);
-					}
-					addBuildingTo.setModel(addBuildingToModel);
-					addBuildingTo.setVisible(true);
-					addBuildingTo.setSelectedItem(null);
-					addHouseButton.setVisible(true);
-					addHouseButton.setEnabled(false);
-					addHotelButton.setVisible(true);
-					addHotelButton.setEnabled(false);
-				} else {
-					buyBuilding.setVisible(false);
-					addBuildingTo.setVisible(false);
-					addHouseButton.setVisible(false);
-					addHouseButton.setEnabled(false);
-					addHotelButton.setVisible(false);
-					addHotelButton.setEnabled(false);
+				if (!houseOrHotelBought && (getNumberOfHouses() > 0 || getNumberOfHotels() > 0)) {
+					generateAddBuildingComboBox();
 				}
 			}
 
@@ -3216,7 +3064,6 @@ public class Monopoly {
 						totalNumberOfHousesInAGroup += anEntity.getNumberOfHouses();
 					}
 				}
-
 				if (entityPosition < 10) {
 					if (players.get(playerIndex).getMoneyHeld() >= 50) {
 						canAfford = true;
@@ -3275,13 +3122,11 @@ public class Monopoly {
 									addHotelButton.setEnabled(true);
 								}
 							}
-
 						} else {
 							if (getNumberOfHouses() > 0) {
 								addHouseButton.setEnabled(true);
 							}
 						}
-
 					} else if (numberOfTheSameGroup == 3) {
 						if (totalNumberOfHousesInAGroup != 0) {
 							if (players.get(playerIndex).getOwnedProperties()
@@ -3290,19 +3135,23 @@ public class Monopoly {
 								addHouseButton.setEnabled(true);
 							} else if (players.get(playerIndex).getOwnedProperties()
 									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
-									.getNumberOfHouses() == 1 && totalNumberOfHousesInAGroup >= 3 && getNumberOfHouses() > 0) {
+									.getNumberOfHouses() == 1 && totalNumberOfHousesInAGroup >= 3
+									&& getNumberOfHouses() > 0) {
 								addHouseButton.setEnabled(true);
 							} else if (players.get(playerIndex).getOwnedProperties()
 									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
-									.getNumberOfHouses() == 2 && totalNumberOfHousesInAGroup >= 6 && getNumberOfHouses() > 0) {
+									.getNumberOfHouses() == 2 && totalNumberOfHousesInAGroup >= 6
+									&& getNumberOfHouses() > 0) {
 								addHouseButton.setEnabled(true);
 							} else if (players.get(playerIndex).getOwnedProperties()
 									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
-									.getNumberOfHouses() == 3 && totalNumberOfHousesInAGroup >= 9 && getNumberOfHouses() > 0) {
+									.getNumberOfHouses() == 3 && totalNumberOfHousesInAGroup >= 9
+									&& getNumberOfHouses() > 0) {
 								addHouseButton.setEnabled(true);
 							} else if (players.get(playerIndex).getOwnedProperties()
 									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
-									.getNumberOfHouses() == 4 && totalNumberOfHousesInAGroup >= 12 && getNumberOfHouses() > 0) {
+									.getNumberOfHouses() == 4 && totalNumberOfHousesInAGroup >= 12
+									&& getNumberOfHouses() > 0) {
 								addHouseButton.setEnabled(true);
 								if (getNumberOfHotels() > 0) {
 									addHotelButton.setEnabled(true);
@@ -3327,7 +3176,7 @@ public class Monopoly {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				houseOrHotelBought = true;
-				decreaseNumberOfHouses();
+				setNumberOfHouses(-1);
 				double houseCost = 0;
 				if (entities.getEntities().get(getEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
 						.getBuildingIndex() < 5) {
@@ -3359,12 +3208,7 @@ public class Monopoly {
 						+ "\n";
 				logText.append(log);
 				players.get(playerIndex).setMoneyHeld(-houseCost);
-				addHotelButton.setEnabled(false);
-				addHouseButton.setEnabled(false);
-				addHotelButton.setVisible(false);
-				addHouseButton.setVisible(false);
-				addBuildingTo.setVisible(false);
-				buyBuilding.setVisible(false);
+				hideAddBuildingComponents();
 				balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
 				displayProperBuildingLabel(players.get(playerIndex).getOwnedProperties()
 						.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
@@ -3378,6 +3222,7 @@ public class Monopoly {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				decreaseNumberOfHotels();
+				setNumberOfHouses(4);
 				houseOrHotelBought = true;
 				double hotelCost = 0;
 				if (entities.getEntities().get(getEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
@@ -3409,12 +3254,7 @@ public class Monopoly {
 						+ "\n";
 				logText.append(log);
 				players.get(playerIndex).setMoneyHeld(-hotelCost);
-				addHotelButton.setEnabled(false);
-				addHouseButton.setEnabled(false);
-				addHotelButton.setVisible(false);
-				addHouseButton.setVisible(false);
-				addBuildingTo.setVisible(false);
-				buyBuilding.setVisible(false);
+				hideAddBuildingComponents();
 				balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
 				displayProperBuildingLabel(players.get(playerIndex).getOwnedProperties()
 						.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
@@ -3423,6 +3263,79 @@ public class Monopoly {
 
 		});
 
+	}
+
+	private void generateMortgageComboBox() {
+		mortgageModel = new DefaultComboBoxModel<String>();
+		for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
+			mortgageModel.addElement(entity.getName());
+		}
+		mortgageComboBox.setModel(mortgageModel);
+		mortgageComboBox.setSelectedItem(null);
+		sellPropertyModel = new DefaultComboBoxModel<String>();
+		for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
+			sellPropertyModel.addElement(entity.getName());
+		}
+		sellPropertyComboBox.setModel(sellPropertyModel);
+		mortgageManagement.setVisible(true);
+		mortgageComboBox.setVisible(true);
+		takeLoan.setVisible(true);
+		payLoan.setVisible(true);
+		takeLoan.setEnabled(false);
+		payLoan.setEnabled(false);
+		sellProperty.setVisible(true);
+		sellPropertyComboBox.setVisible(true);
+		sellPropertyComboBox.setSelectedItem(null);
+		buyer.setVisible(true);
+		buyer.setSelectedItem(null);
+		sellingPrice.setVisible(true);
+		sellingPrice.setText("");
+		sellPropertyButton.setVisible(true);
+		sellPropertyButton.setEnabled(false);
+	}
+
+	private void generateAddBuildingComboBox() {
+		Set<String> entitiesNames = new HashSet<String>();
+		for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
+			if (playerHasAll(entity.getGroup(), players.get(playerIndex).getName()) || entity.getNumberOfHouses() > 0
+					|| hasBuildings(entity.getGroup())) {
+				if (entity.getGroup() != "railroads" && entity.getGroup() != "utilities"
+						&& entity.getNumberOfHouses() < 5 && entity.getNumberOfHotels() < 1) {
+					entitiesNames.add(entity.getName());
+				}
+
+			}
+		}
+		if (entitiesNames.size() > 0) {
+			if (getNumberOfHouses() == 0) {
+				gamePrompt.setText("There are no houses left to buy...");
+			} else if (getNumberOfHotels() == 0) {
+				gamePrompt.setText("There are no hotels left to buy...");
+			}
+			addBuildingToModel = new DefaultComboBoxModel<String>();
+			buyBuilding.setVisible(true);
+			for (String name : entitiesNames) {
+				addBuildingToModel.addElement(name);
+			}
+			addBuildingTo.setModel(addBuildingToModel);
+			addBuildingTo.setVisible(true);
+			addBuildingTo.setSelectedItem(null);
+			addHouseButton.setVisible(true);
+			addHouseButton.setEnabled(false);
+			addHotelButton.setVisible(true);
+			addHotelButton.setEnabled(false);
+		} else {
+			hideAddBuildingComponents();
+		}
+	}
+
+	private void hideAddBuildingComponents() {
+		addHotelButton.setEnabled(false);
+		addHouseButton.setEnabled(false);
+		addHotelButton.setVisible(false);
+		addHouseButton.setVisible(false);
+		addBuildingTo.setVisible(false);
+		buyBuilding.setVisible(false);
 	}
 
 	private void dealChanceCard() {
@@ -4252,10 +4165,17 @@ public class Monopoly {
 	}
 
 	private void adjustPlayerPosition() {
-		if (!(players.get(playerIndex).isInJail())) {
+		if (!(players.get(playerIndex).getPositionOnGameBoard() == 10)) {
 			log = "  /> " + players.get(playerIndex).getName() + " went to "
 					+ entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getName() + "\n";
 			logText.append(log);
+		} else {
+			if (!players.get(playerIndex).isInJail()) {
+				log = "  /> " + players.get(playerIndex).getName() + " went to "
+						+ entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getName()
+						+ " (just visiting)\n";
+				logText.append(log);
+			}
 		}
 
 		switch (players.get(playerIndex).getPositionOnGameBoard()) {
@@ -5277,7 +5197,7 @@ public class Monopoly {
 		return numberOfHouses;
 	}
 
-	public void decreaseNumberOfHouses() {
-		numberOfHouses--;
+	public void setNumberOfHouses(int update) {
+		numberOfHouses += update;
 	}
 }
