@@ -260,6 +260,7 @@ public class Monopoly {
 	private boolean communityCardPicked;
 	private int numberOfHotels;
 	private int numberOfHouses;
+	private JLabel deed;
 
 	/**
 	 * Launch the application.
@@ -418,7 +419,961 @@ public class Monopoly {
 		bottomRight = new JLayeredPane();
 		bottomRight.setBounds((int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 6.5 * 5.5),
 				(int) (frameHeight / 6.5), (int) (frameHeight / 6.5));
+		deed = new JLabel();
+		deed.setBounds((int) (frameHeight / 6.5 * 1.95), (int) (frameHeight / 6.5 * 1.6), (int) (frameHeight * 0.4), (int) (frameHeight * 0.5));
+		deed.setVisible(true);
+		bottom_9.addMouseListener(new MouseListener(){
 
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/bottom_9.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		bottom_7.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/bottom_7.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		bottom_5.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/bottom_5.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		bottom_4.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/bottom_4.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		bottom_2.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/bottom_2.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		bottom_1.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/bottom_1.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		left_9.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/left_9.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		left_8.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/left_8.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		left_7.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/left_7.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		left_6.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/left_6.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+
+		left_5.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/left_5.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+
+		left_4.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/left_4.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+
+		left_2.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/left_2.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+
+		left_1.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/left_1.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+
+		top_1.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/top_1.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+
+		top_3.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/top_3.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		top_4.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/top_4.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		top_5.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/top_5.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		top_6.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/top_6.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		top_7.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/top_7.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		top_8.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/top_8.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		top_9.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/top_9.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		right_1.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/right_1.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		right_2.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/right_2.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		right_4.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/right_4.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		right_5.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/right_5.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		right_7.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/right_7.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
+		right_9.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				try {
+					Image img = ImageIO.read(getClass().getResource("resources/right_9.jpg"));
+					deed.setIcon(new ImageIcon(img));
+					deed.setVisible(true);
+				} catch (IOException ex) {
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				deed.setVisible(false);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
+		
 		buildingLabel0 = new JLabel();
 		buildingLabel1 = new JLabel();
 		buildingLabel2 = new JLabel();
@@ -2085,6 +3040,7 @@ public class Monopoly {
 		frame.getContentPane().add(buyProperty);
 		frame.getContentPane().add(dontBuyProperty);
 		frame.getContentPane().add(payRent);
+		frame.getContentPane().add(deed, 2);
 
 		rollTheDice = new JButton();
 		rollTheDice.setBounds(frameHeight / 2 - 70, frameHeight / 2 + 40, 140, 40);
@@ -2333,7 +3289,6 @@ public class Monopoly {
 							finishTurn.setEnabled(false);
 						}
 					}
-
 					// three doubles - player goes to the jail
 					if (doubleCounter == 3 || players.get(playerIndex).getPositionOnGameBoard() == 30) {
 						// no get out of jail card
@@ -3239,7 +4194,6 @@ public class Monopoly {
 				} else {
 					hotelCost = 200;
 				}
-
 				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
 					if (entity.getName().equals(String.valueOf(addBuildingTo.getSelectedItem()))) {
 						entity.setNumberOfHouses(-entity.getNumberOfHouses());
@@ -3260,7 +4214,6 @@ public class Monopoly {
 						.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
 						.getBuildingIndex(), numberOfHouses);
 			}
-
 		});
 
 	}
