@@ -261,6 +261,7 @@ public class Monopoly {
 	private int numberOfHotels;
 	private int numberOfHouses;
 	private JLabel deed;
+	private boolean rentCalculated;
 
 	/**
 	 * Launch the application.
@@ -420,13 +421,14 @@ public class Monopoly {
 		bottomRight.setBounds((int) (frameHeight / 6.5 * 5.5), (int) (frameHeight / 6.5 * 5.5),
 				(int) (frameHeight / 6.5), (int) (frameHeight / 6.5));
 		deed = new JLabel();
-		deed.setBounds((int) (frameHeight / 6.5 * 1.95), (int) (frameHeight / 6.5 * 1.6), (int) (frameHeight * 0.4), (int) (frameHeight * 0.5));
+		deed.setBounds((int) (frameHeight / 6.5 * 1.95), (int) (frameHeight / 6.5 * 1.6), (int) (frameHeight * 0.4),
+				(int) (frameHeight * 0.5));
 		deed.setVisible(true);
-		bottom_9.addMouseListener(new MouseListener(){
+		bottom_9.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -446,21 +448,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		bottom_7.addMouseListener(new MouseListener(){
+
+		bottom_7.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -480,21 +482,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		bottom_5.addMouseListener(new MouseListener(){
+
+		bottom_5.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -514,21 +516,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		bottom_4.addMouseListener(new MouseListener(){
+
+		bottom_4.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -548,21 +550,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		bottom_2.addMouseListener(new MouseListener(){
+
+		bottom_2.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -582,21 +584,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		bottom_1.addMouseListener(new MouseListener(){
+
+		bottom_1.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -616,21 +618,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		left_9.addMouseListener(new MouseListener(){
+
+		left_9.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -650,21 +652,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		left_8.addMouseListener(new MouseListener(){
+
+		left_8.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -684,21 +686,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		left_7.addMouseListener(new MouseListener(){
+
+		left_7.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -718,21 +720,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		left_6.addMouseListener(new MouseListener(){
+
+		left_6.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -752,21 +754,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
 
-		left_5.addMouseListener(new MouseListener(){
+		left_5.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -786,21 +788,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
 
-		left_4.addMouseListener(new MouseListener(){
+		left_4.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -820,21 +822,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
 
-		left_2.addMouseListener(new MouseListener(){
+		left_2.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -854,21 +856,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
 
-		left_1.addMouseListener(new MouseListener(){
+		left_1.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -888,21 +890,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
 
-		top_1.addMouseListener(new MouseListener(){
+		top_1.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -922,21 +924,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
 
-		top_3.addMouseListener(new MouseListener(){
+		top_3.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -956,21 +958,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		top_4.addMouseListener(new MouseListener(){
+
+		top_4.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -990,21 +992,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		top_5.addMouseListener(new MouseListener(){
+
+		top_5.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -1024,21 +1026,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		top_6.addMouseListener(new MouseListener(){
+
+		top_6.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -1058,21 +1060,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		top_7.addMouseListener(new MouseListener(){
+
+		top_7.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -1092,21 +1094,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		top_8.addMouseListener(new MouseListener(){
+
+		top_8.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -1126,21 +1128,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		top_9.addMouseListener(new MouseListener(){
+
+		top_9.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -1160,21 +1162,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		right_1.addMouseListener(new MouseListener(){
+
+		right_1.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -1194,21 +1196,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		right_2.addMouseListener(new MouseListener(){
+
+		right_2.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -1228,21 +1230,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		right_4.addMouseListener(new MouseListener(){
+
+		right_4.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -1262,21 +1264,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		right_5.addMouseListener(new MouseListener(){
+
+		right_5.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -1296,21 +1298,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		right_7.addMouseListener(new MouseListener(){
+
+		right_7.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -1330,21 +1332,21 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		right_9.addMouseListener(new MouseListener(){
+
+		right_9.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 
 			@Override
@@ -1364,16 +1366,16 @@ public class Monopoly {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
-			
+
 		});
-		
+
 		buildingLabel0 = new JLabel();
 		buildingLabel1 = new JLabel();
 		buildingLabel2 = new JLabel();
@@ -3277,17 +3279,14 @@ public class Monopoly {
 					}
 					break;
 				}
+				System.out.println(extraRollNeeded);
 				if (!extraRollNeeded) {
-					if (!(randomDice1 == randomDice2)) {
-						players.get(playerIndex).setPositionOnGameBoard(randomDice1 + randomDice2);
-						finishTurn.setEnabled(true);
-						rollTheDice.setEnabled(false);
-					} else {
+					if (randomDice1 == randomDice2) {
 						doubleCounter++;
-						if (doubleCounter < 3) {
-							players.get(playerIndex).setPositionOnGameBoard(randomDice1 + randomDice2);
-							finishTurn.setEnabled(false);
-						}
+					}
+					if (doubleCounter < 3) {
+						players.get(playerIndex).setPositionOnGameBoard(randomDice1 + randomDice2);
+						finishTurn.setEnabled(false);
 					}
 					// three doubles - player goes to the jail
 					if (doubleCounter == 3 || players.get(playerIndex).getPositionOnGameBoard() == 30) {
@@ -3363,6 +3362,19 @@ public class Monopoly {
 					} else {
 						payRent.setVisible(true);
 						rollTheDice.setEnabled(false);
+						if ((players.get(playerIndex).getPositionOnGameBoard() == 12
+								&& entities.getEntities().get(28).getOwner() != null)
+								|| (players.get(playerIndex).getPositionOnGameBoard() == 28
+										&& entities.getEntities().get(12).getOwner() != null)
+								|| (sentByChanceCard && players.get(playerIndex).getPositionOnGameBoard() == 12)
+								|| (sentByChanceCard && players.get(playerIndex).getPositionOnGameBoard() == 28)) {
+							rentValue = 10 * (randomDice1 + randomDice2);
+						} else if (players.get(playerIndex).getPositionOnGameBoard() == 12
+								&& entities.getEntities().get(28).getOwner() == null
+								|| players.get(playerIndex).getPositionOnGameBoard() == 28
+										&& entities.getEntities().get(12).getOwner() == null) {
+							rentValue = 4 * (randomDice1 + randomDice2);
+						}
 					}
 				}
 			}
@@ -3444,90 +3456,24 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				sentByChanceCard = false;
+				rentCalculated = false;
+				extraRollNeeded = false;
+				ownerIndex = getPlayerIndex(
+						entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner());
+				players.get(playerIndex).setMoneyHeld(-rentValue);
+				players.get(ownerIndex).setMoneyHeld(rentValue);
 
-				if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard())
-						.getNumberOfHotels() == 0
-						&& !entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getGroup()
-								.equals("utilities")
-						&& !entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getGroup()
-								.equals("railroads")) {
-					rentValue = entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard())
-							.getRentValues().get(entities.getEntities()
-									.get(players.get(playerIndex).getPositionOnGameBoard()).getNumberOfHouses());
-
-					ownerIndex = getPlayerIndex(
-							entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner());
-					if (playerHasAll(
-							entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getGroup(),
-							players.get(ownerIndex).getName())
-							&& entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard())
-									.getNumberOfHotels() == 0
-							&& entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard())
-									.getNumberOfHouses() == 0) {
-						rentValue = rentValue * 2;
-					}
-					players.get(playerIndex).setMoneyHeld(-rentValue);
-					players.get(ownerIndex).setMoneyHeld(rentValue);
+				if (!gotDouble) {
 					if (randomDice1 != randomDice2 || doubleCounter == 3) {
 						finishTurn.setEnabled(true);
 						rollTheDice.setEnabled(false);
 					} else if (doubleCounter < 3) {
 						rollTheDice.setEnabled(true);
 					}
-				} else if ((players.get(playerIndex).getPositionOnGameBoard() == 12
-						&& entities.getEntities().get(28).getOwner() != null)
-						|| (players.get(playerIndex).getPositionOnGameBoard() == 28
-								&& entities.getEntities().get(12).getOwner() != null)
-						|| (sentByChanceCard && players.get(playerIndex).getPositionOnGameBoard() == 12)
-						|| (sentByChanceCard && players.get(playerIndex).getPositionOnGameBoard() == 28)) {
-					rentValue = 10 * (randomDice1 + randomDice2);
-					players.get(playerIndex).setMoneyHeld(-rentValue);
-					ownerIndex = getPlayerIndex(
-							entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner());
-					players.get(ownerIndex).setMoneyHeld(rentValue);
-					extraRollNeeded = false;
-					sentByChanceCard = false;
-					if (!gotDouble) {
-						rollTheDice.setEnabled(false);
-						finishTurn.setEnabled(true);
-					} else {
-						rollTheDice.setEnabled(true);
-						gotDouble = false;
-					}
-				} else if (players.get(playerIndex).getPositionOnGameBoard() == 12
-						&& entities.getEntities().get(28).getOwner() == null
-						|| players.get(playerIndex).getPositionOnGameBoard() == 28
-								&& entities.getEntities().get(12).getOwner() == null) {
-					rentValue = 4 * (randomDice1 + randomDice2);
-					players.get(playerIndex).setMoneyHeld(-rentValue);
-					ownerIndex = getPlayerIndex(
-							entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner());
-					players.get(ownerIndex).setMoneyHeld(rentValue);
-					extraRollNeeded = false;
-					if (!gotDouble) {
-						rollTheDice.setEnabled(false);
-						finishTurn.setEnabled(true);
-					} else {
-						rollTheDice.setEnabled(true);
-						gotDouble = false;
-					}
-				} else if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getGroup()
-						.equals("railroads")) {
-					ownerIndex = getPlayerIndex(
-							entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner());
-					rentValue = getRailRoadRent(players.get(ownerIndex).getName());
-					if (sentByChanceCard) {
-						rentValue *= 2;
-						sentByChanceCard = false;
-					}
-					players.get(playerIndex).setMoneyHeld(-rentValue);
-					players.get(ownerIndex).setMoneyHeld(rentValue);
-					if (randomDice1 != randomDice2 || doubleCounter == 3) {
-						finishTurn.setEnabled(true);
-						rollTheDice.setEnabled(false);
-					} else if (doubleCounter < 3) {
-						rollTheDice.setEnabled(true);
-					}
+				} else {
+					rollTheDice.setEnabled(true);
+					gotDouble = false;
 				}
 				payRent.setVisible(false);
 				log = "  /> "
@@ -3865,6 +3811,13 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if (rentCalculated) {
+					if (rentValue > players.get(playerIndex).getMoneyHeld()) {
+						gamePrompt.setText("You need to sell something or borrow some money to pay the rent");
+					} else {
+						payRent.setVisible(true);
+					}
+				}
 				boolean isMortgaged = false;
 				String entityName = String.valueOf(sellPropertyComboBox.getSelectedItem());
 				ownerIndex = getPlayerIndex(String.valueOf(buyer.getSelectedItem()));
@@ -3962,6 +3915,13 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (rentCalculated) {
+					if (rentValue > players.get(playerIndex).getMoneyHeld()) {
+						gamePrompt.setText("You need to sell something or borrow some money to pay the rent");
+					} else {
+						payRent.setVisible(true);
+					}
+				}
 				String comboSelection = String.valueOf(mortgageComboBox.getSelectedItem());
 				for (Entity anEntity : entities.getEntities()) {
 					if (anEntity.getName().equals(comboSelection)) {
@@ -4767,60 +4727,119 @@ public class Monopoly {
 			dealCommunityCard();
 		}
 		if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).canBePurchased()) {
-			finishTurn.setEnabled(false);
 
-			// mortgaged
 			if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner() != null
-					&& !entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner()
-							.getName().equals(players.get(playerIndex).getName())
-					&& entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).isMortgaged()) {
-				gamePrompt.setText("The property is mortgaged, so there is no need to pay rent");
-			}
-
-			// unowned property
-			if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner() == null) {
-				// sufficient funds to buy
-				if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getCost() <= players
-						.get(playerIndex).getMoneyHeld()) {
-					buyProperty.setVisible(true);
-					dontBuyProperty.setVisible(true);
+					&& entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner().getName()
+							.equals(players.get(playerIndex).getName())) {
+				if (randomDice1 != randomDice2 || doubleCounter == 3) {
+					finishTurn.setEnabled(true);
 					rollTheDice.setEnabled(false);
-					// insufficient funds
-				} else {
-					buyProperty.setVisible(true);
-					buyProperty.setEnabled(false);
-					gamePrompt.setText(
-							"You don't have enough cash to buy this property. Press don't buy or borrow some money");
-					dontBuyProperty.setVisible(true);
-				}
-			} else if (!entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner()
-					.getName().equals(players.get(playerIndex).getName())
-					&& players.get(playerIndex).getPositionOnGameBoard() != 12
-					&& players.get(playerIndex).getPositionOnGameBoard() != 28
-					&& !entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).isMortgaged()) {
-				payRent.setVisible(true);
-				if (randomDice1 == randomDice2) {
-					rollTheDice.setEnabled(false);
-				}
-			} else if (!entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner()
-					.getName().equals(players.get(playerIndex).getName())
-					&& entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getGroup()
-							.equals("utilities")) {
-				if (!entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).isMortgaged()) {
-					gamePrompt.setText("Roll the dice to estimate the amount of rent");
-					extraRollNeeded = true;
-					rollTheDice.setEnabled(true);
-					if (randomDice1 == randomDice2) {
-						gotDouble = true;
-					}
+					
+					System.out.println("owned!!!!!!!!");
 				}
 			} else {
-				if (randomDice1 != randomDice2 || players.get(playerIndex).isInJail()) {
-					finishTurn.setEnabled(true);
+				finishTurn.setEnabled(false);
+				// mortgaged
+				if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner() != null
+						&& !entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner()
+								.getName().equals(players.get(playerIndex).getName())
+						&& entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard())
+								.isMortgaged()) {
+					gamePrompt.setText("The property is mortgaged, so there is no need to pay rent");
 				}
+
+				// unowned property
+				if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner() == null) {
+					// sufficient funds to buy
+					if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard())
+							.getCost() <= players.get(playerIndex).getMoneyHeld()) {
+						buyProperty.setVisible(true);
+						dontBuyProperty.setVisible(true);
+						rollTheDice.setEnabled(false);
+						// insufficient funds
+					} else {
+						buyProperty.setVisible(true);
+						buyProperty.setEnabled(false);
+						gamePrompt.setText(
+								"You don't have enough cash to buy this property. Press don't buy or borrow some money");
+						dontBuyProperty.setVisible(true);
+					}
+
+				} else if (!entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner()
+						.getName().equals(players.get(playerIndex).getName())) {
+					if (!rentCalculated) {
+						calculateRent();
+					}
+					if (rentCalculated) {
+						if (rentValue > players.get(playerIndex).getMoneyHeld()) {
+							gamePrompt.setText("You need to sell something or borrow some money to pay the rent");
+						} else {
+							if (players.get(playerIndex).getPositionOnGameBoard() != 12
+									&& players.get(playerIndex).getPositionOnGameBoard() != 28)
+								payRent.setVisible(true);
+						}
+					}
+				}
+			}
+
+		}
+		if (!entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).canBePurchased()) {
+			if (randomDice1 != randomDice2 || doubleCounter == 3) {
+				finishTurn.setEnabled(true);
+				rollTheDice.setEnabled(false);
 			}
 		}
 
+	}
+
+	private void calculateRent() {
+		ownerIndex = getPlayerIndex(
+				entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner());
+
+		if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getGroup()
+				.equals("utilities")) {
+			gamePrompt.setText("Roll the dice to estimate the amount of rent");
+			extraRollNeeded = true;
+			rollTheDice.setEnabled(true);
+			payRent.setVisible(false);
+			if (randomDice1 == randomDice2) {
+				gotDouble = true;
+			}
+		} 
+
+		if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getNumberOfHotels() == 0
+				&& !entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getGroup()
+						.equals("utilities")
+				&& !entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getGroup()
+						.equals("railroads")) {
+			rentValue = entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getRentValues()
+					.get(entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard())
+							.getNumberOfHouses());
+
+			if (playerHasAll(entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getGroup(),
+					players.get(ownerIndex).getName())
+					&& entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard())
+							.getNumberOfHotels() == 0
+					&& entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard())
+							.getNumberOfHouses() == 0) {
+				rentValue = rentValue * 2;
+			}
+		} else if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getGroup()
+				.equals("railroads")) {
+
+			rentValue = getRailRoadRent(players.get(ownerIndex).getName());
+			if (sentByChanceCard) {
+				rentValue *= 2;
+			}
+		}
+		
+		if (players.get(playerIndex).getPositionOnGameBoard() == 12
+				|| players.get(playerIndex).getPositionOnGameBoard() == 28) {
+			rollTheDice.setEnabled(true);
+		} else {
+			rollTheDice.setEnabled(false);
+			rentCalculated = true;
+		}
 	}
 
 	private boolean playerHasAll(String group, String name) {
