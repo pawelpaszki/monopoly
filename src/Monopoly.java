@@ -3283,6 +3283,9 @@ public class Monopoly {
 				if (!extraRollNeeded) {
 					if (randomDice1 == randomDice2) {
 						doubleCounter++;
+						gotDouble = true;
+					} else {
+						gotDouble = false;
 					}
 					if (doubleCounter < 3) {
 						players.get(playerIndex).setPositionOnGameBoard(randomDice1 + randomDice2);
@@ -3398,9 +3401,9 @@ public class Monopoly {
 				players.get(playerIndex).setMoneyHeld(
 						-entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getCost());
 
-				if (randomDice1 != randomDice2 || doubleCounter == 3) {
+				if (!gotDouble || doubleCounter == 3) {
 					finishTurn.setEnabled(true);
-				} else if (randomDice1 == randomDice2 && doubleCounter < 3) {
+				} else if (gotDouble && doubleCounter < 3) {
 					rollTheDice.setEnabled(true);
 				}
 				buyProperty.setVisible(false);
@@ -3424,7 +3427,7 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (randomDice1 != randomDice2 || doubleCounter == 3) {
+				if (!gotDouble || doubleCounter == 3) {
 					finishTurn.setEnabled(true);
 				}
 				buyProperty.setVisible(false);
@@ -3446,7 +3449,7 @@ public class Monopoly {
 				buyUnwantedProperty.setVisible(true);
 				buyUnwantedPropertyButton.setVisible(true);
 				priceOfUnwantedProperty.setVisible(true);
-				if (randomDice1 == randomDice2 && doubleCounter < 3) {
+				if (gotDouble && doubleCounter < 3) {
 					rollTheDice.setEnabled(true);
 				}
 			}
@@ -3464,16 +3467,13 @@ public class Monopoly {
 				players.get(playerIndex).setMoneyHeld(-rentValue);
 				players.get(ownerIndex).setMoneyHeld(rentValue);
 
-				if (!gotDouble) {
-					if (randomDice1 != randomDice2 || doubleCounter == 3) {
+				if (!gotDouble || doubleCounter == 3) {
 						finishTurn.setEnabled(true);
 						rollTheDice.setEnabled(false);
-					} else if (doubleCounter < 3) {
-						rollTheDice.setEnabled(true);
-					}
-				} else {
+					
+				} else if (gotDouble && doubleCounter < 3) {
 					rollTheDice.setEnabled(true);
-					gotDouble = false;
+
 				}
 				payRent.setVisible(false);
 				log = "  /> "
@@ -3518,19 +3518,19 @@ public class Monopoly {
 				if (!sentByChanceCard) {
 					if (!players.get(playerIndex).isInJail()
 							&& players.get(playerIndex).getPositionOnGameBoard() == 30) {
-						if (doubleCounter == 3 || randomDice1 != randomDice2) {
+						if (doubleCounter == 3 || !gotDouble) {
 							finishTurn.setEnabled(true);
 							log = "  /> " + players.get(playerIndex).getName()
 									+ " used his/her get out of Jail card to avoid going to Jail" + "\n";
 							logText.append(log);
 							adjustPlayerPosition();
-						} else {
+						} else if (gotDouble) {
 							rollTheDice.setEnabled(true);
 						}
 
 					} else if (!players.get(playerIndex).isInJail()
 							&& players.get(playerIndex).getPositionOnGameBoard() != 30) {
-						if (doubleCounter == 3 || randomDice1 != randomDice2) {
+						if (doubleCounter == 3 || !gotDouble) {
 							finishTurn.setEnabled(true);
 						}
 						adjustPlayerPosition();
@@ -3553,7 +3553,7 @@ public class Monopoly {
 							+ " used his/her get out of Jail card to avoid going to Jail" + "\n";
 					logText.append(log);
 					sentByChanceCard = false;
-					if (randomDice1 != randomDice2) {
+					if (!gotDouble) {
 						finishTurn.setEnabled(true);
 					} else {
 						rollTheDice.setEnabled(true);
@@ -3662,6 +3662,7 @@ public class Monopoly {
 				if (getNumberOfHouses() > 0 || getNumberOfHotels() > 0) {
 					generateAddBuildingComboBox();
 				}
+				houseOrHotelBought = false;
 			}
 
 		});
@@ -4729,13 +4730,11 @@ public class Monopoly {
 		if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).canBePurchased()) {
 
 			if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner() != null
-					&& entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner().getName()
-							.equals(players.get(playerIndex).getName())) {
-				if (randomDice1 != randomDice2 || doubleCounter == 3) {
+					&& entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner()
+							.getName().equals(players.get(playerIndex).getName())) {
+				if (!gotDouble || doubleCounter == 3) {
 					finishTurn.setEnabled(true);
 					rollTheDice.setEnabled(false);
-					
-					System.out.println("owned!!!!!!!!");
 				}
 			} else {
 				finishTurn.setEnabled(false);
@@ -4784,7 +4783,7 @@ public class Monopoly {
 
 		}
 		if (!entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).canBePurchased()) {
-			if (randomDice1 != randomDice2 || doubleCounter == 3) {
+			if (!gotDouble || doubleCounter == 3) {
 				finishTurn.setEnabled(true);
 				rollTheDice.setEnabled(false);
 			}
@@ -4804,8 +4803,8 @@ public class Monopoly {
 			payRent.setVisible(false);
 			if (randomDice1 == randomDice2) {
 				gotDouble = true;
-			}
-		} 
+			} // needed??
+		}
 
 		if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getNumberOfHotels() == 0
 				&& !entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getGroup()
@@ -4832,7 +4831,7 @@ public class Monopoly {
 				rentValue *= 2;
 			}
 		}
-		
+
 		if (players.get(playerIndex).getPositionOnGameBoard() == 12
 				|| players.get(playerIndex).getPositionOnGameBoard() == 28) {
 			rollTheDice.setEnabled(true);
