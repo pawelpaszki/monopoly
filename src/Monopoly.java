@@ -4031,7 +4031,20 @@ public class Monopoly {
 				case 38:
 					payLuxuryTax();
 					break;
+				case 102:
+					followCommunityCard2();
+					break;
+				case 109:
+					followCommunityCard9();
+					break;
+				case 110:
+					followCommunityCard10();
+					break;
+				case 112:
+					followCommunityCard12();
+					break;
 				}
+
 				if (!gotDouble || doubleCounter == 3) {
 					finishTurn.setEnabled(true);
 				} else {
@@ -4475,6 +4488,7 @@ public class Monopoly {
 				chanceButton.setIcon(new ImageIcon(img));
 			} catch (IOException ex) {
 			}
+			paymentDueAmount = 0;
 			for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
 				if (entity.getNumberOfHouses() > 0) {
 					paymentDueAmount += entity.getNumberOfHouses() * 25;
@@ -4604,6 +4618,35 @@ public class Monopoly {
 		logText.append(log);
 	}
 
+	private void followCommunityCard2() {
+		players.get(playerIndex).setMoneyHeld(-paymentDueAmount);
+		balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
+		log = "  /> " + players.get(playerIndex).getName() + " has paid M50 for a doctor fees\n";
+		logText.append(log);
+	}
+
+	private void followCommunityCard9() {
+		players.get(playerIndex).setMoneyHeld(-paymentDueAmount);
+		balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
+		log = "  /> " + players.get(playerIndex).getName() + " has paid M100 for hospital fees" + "\n";
+		logText.append(log);
+	}
+
+	private void followCommunityCard10() {
+		players.get(playerIndex).setMoneyHeld(-paymentDueAmount);
+		balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
+		log = "  /> " + players.get(playerIndex).getName() + " has paid M50 for school fees" + "\n";
+		logText.append(log);
+	}
+
+	private void followCommunityCard12() {
+		players.get(playerIndex).setMoneyHeld(-paymentDueAmount);
+		balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
+		log = "  /> " + players.get(playerIndex).getName() + " has spent M" + paymentDueAmount
+				+ " on street repairs \n";
+		logText.append(log);
+	}
+
 	private void dealCommunityCard() {
 		communityCardPicked = true;
 		switch (deck.dealChanceCard()) {
@@ -4633,10 +4676,13 @@ public class Monopoly {
 				communityChest.setIcon(new ImageIcon(img));
 			} catch (IOException ex) {
 			}
-			players.get(playerIndex).setMoneyHeld(-50);
-			balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
-			log = "  /> " + players.get(playerIndex).getName() + " has paid M50 for a doctor fees\n";
-			logText.append(log);
+			paymentDueAmount = 50;
+			if (players.get(playerIndex).getMoneyHeld() >= paymentDueAmount) {
+				followCommunityCard2();
+			} else {
+				paymentDue = true;
+				arrearsIndex = 102;
+			}
 			break;
 		case 3:
 			try {
@@ -4703,9 +4749,11 @@ public class Monopoly {
 			counter = 0;
 			for (int i = 0; i < players.size(); i++) {
 				if (i != playerIndex) {
-					players.get(i).setMoneyHeld(-50);
-					counter++;
-					balanceLabels.get(i).setText("E" + players.get(i).getMoneyHeld());
+					if (!players.get(i).isBankrupt()) {
+						players.get(i).setMoneyHeld(-50);
+						counter++;
+						balanceLabels.get(i).setText("E" + players.get(i).getMoneyHeld());
+					}
 				}
 			}
 			players.get(playerIndex).setMoneyHeld(counter * 50);
@@ -4741,10 +4789,13 @@ public class Monopoly {
 				communityChest.setIcon(new ImageIcon(img));
 			} catch (IOException ex) {
 			}
-			players.get(playerIndex).setMoneyHeld(-100);
-			balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
-			log = "  /> " + players.get(playerIndex).getName() + " has paid M100 for hospital fees" + "\n";
-			logText.append(log);
+			paymentDueAmount = 100;
+			if (players.get(playerIndex).getMoneyHeld() >= paymentDueAmount) {
+				followCommunityCard9();
+			} else {
+				paymentDue = true;
+				arrearsIndex = 109;
+			}
 			break;
 		case 10:
 			try {
@@ -4752,10 +4803,13 @@ public class Monopoly {
 				communityChest.setIcon(new ImageIcon(img));
 			} catch (IOException ex) {
 			}
-			players.get(playerIndex).setMoneyHeld(-50);
-			balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
-			log = "  /> " + players.get(playerIndex).getName() + " has paid M50 for school fees" + "\n";
-			logText.append(log);
+			paymentDueAmount = 50;
+			if (players.get(playerIndex).getMoneyHeld() >= paymentDueAmount) {
+				followCommunityCard10();
+			} else {
+				paymentDue = true;
+				arrearsIndex = 110;
+			}
 			break;
 		case 11:
 			try {
@@ -4774,21 +4828,22 @@ public class Monopoly {
 				communityChest.setIcon(new ImageIcon(img));
 			} catch (IOException ex) {
 			}
-			double moneyOwed = 0;
+			paymentDueAmount = 0;
 			for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
 				if (entity.getNumberOfHouses() > 0) {
-					moneyOwed += entity.getNumberOfHouses() * 40;
+					paymentDueAmount += entity.getNumberOfHouses() * 40;
 				}
 				if (entity.getNumberOfHotels() > 0) {
-					moneyOwed += 115;
+					paymentDueAmount += 115;
 				}
 			}
-			if (moneyOwed > 0) {
-				players.get(playerIndex).setMoneyHeld(-moneyOwed);
-				balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
-				log = "  /> " + players.get(playerIndex).getName() + " has spent M" + moneyOwed
-						+ " on street repairs \n";
-				logText.append(log);
+			if (paymentDueAmount > 0) {
+				if (paymentDueAmount <= players.get(playerIndex).getMoneyHeld()) {
+					followCommunityCard12();
+				} else {
+					paymentDue = true;
+					arrearsIndex = 112;
+				}
 			}
 			break;
 		case 13:
