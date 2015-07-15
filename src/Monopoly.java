@@ -262,6 +262,11 @@ public class Monopoly {
 	private int numberOfHouses;
 	private JLabel deed;
 	private boolean rentCalculated;
+	private JButton retireFromGame;
+	private boolean paymentDue;
+	private double paymentDueAmount;
+	private JButton payArrears;
+	private int arrearsIndex;
 
 	/**
 	 * Launch the application.
@@ -1946,12 +1951,18 @@ public class Monopoly {
 		buyProperty = new JButton("buy");
 		dontBuyProperty = new JButton("don't buy");
 		payRent = new JButton("pay rent");
+		payArrears = new JButton("pay arrears");
+		payArrears.setBounds(frameHeight + 200, (int) (frameHeight / 2 + 60), 230, 20);
+		retireFromGame = new JButton("retire from game");
+		retireFromGame.setBounds(frameHeight + 170, (int) (frameHeight / 2 + 35), 290, 20);
 		buyProperty.setBounds(frameHeight + 150, (int) (frameHeight / 2 + 35), 160, 20);
 		dontBuyProperty.setBounds(frameHeight + 320, (int) (frameHeight / 2 + 35), 160, 20);
 		payRent.setBounds(frameHeight + 200, (int) (frameHeight / 2 + 60), 230, 20);
+		retireFromGame.setVisible(false);
 		buyProperty.setVisible(false);
 		dontBuyProperty.setVisible(false);
 		payRent.setVisible(false);
+		payArrears.setVisible(false);
 		logText = new JTextArea();
 		logText.setFont(new Font("Arial", Font.BOLD, 12));
 		log = "  /> the Game has started\n";
@@ -3042,6 +3053,8 @@ public class Monopoly {
 		frame.getContentPane().add(buyProperty);
 		frame.getContentPane().add(dontBuyProperty);
 		frame.getContentPane().add(payRent);
+		frame.getContentPane().add(payArrears);
+		frame.getContentPane().add(retireFromGame);
 		frame.getContentPane().add(deed, 2);
 
 		rollTheDice = new JButton();
@@ -3363,7 +3376,7 @@ public class Monopoly {
 							doubleCounter = 0;
 						}
 					} else {
-						payRent.setVisible(true);
+						rentCalculated = true;
 						rollTheDice.setEnabled(false);
 						if ((players.get(playerIndex).getPositionOnGameBoard() == 12
 								&& entities.getEntities().get(28).getOwner() != null)
@@ -3378,6 +3391,17 @@ public class Monopoly {
 										&& entities.getEntities().get(12).getOwner() == null) {
 							rentValue = 4 * (randomDice1 + randomDice2);
 						}
+						if (rentCalculated) {
+							if (rentValue > players.get(playerIndex).getMoneyHeld()) {
+								gamePrompt.setText(
+										"You need money to pay the rent. Sell property, take loan or retire from game");
+								retireFromGame.setVisible(true);
+							} else {
+								payRent.setVisible(true);
+								retireFromGame.setVisible(false);
+							}
+						}
+
 					}
 				}
 			}
@@ -3427,9 +3451,7 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (!gotDouble || doubleCounter == 3) {
-					finishTurn.setEnabled(true);
-				}
+
 				buyProperty.setVisible(false);
 				dontBuyProperty.setVisible(false);
 				log = "  /> " + players.get(playerIndex).getName() + " did not buy "
@@ -3451,6 +3473,8 @@ public class Monopoly {
 				priceOfUnwantedProperty.setVisible(true);
 				if (gotDouble && doubleCounter < 3) {
 					rollTheDice.setEnabled(true);
+				} else {
+					finishTurn.setEnabled(true);
 				}
 			}
 		});
@@ -3468,9 +3492,9 @@ public class Monopoly {
 				players.get(ownerIndex).setMoneyHeld(rentValue);
 
 				if (!gotDouble || doubleCounter == 3) {
-						finishTurn.setEnabled(true);
-						rollTheDice.setEnabled(false);
-					
+					finishTurn.setEnabled(true);
+					rollTheDice.setEnabled(false);
+
 				} else if (gotDouble && doubleCounter < 3) {
 					rollTheDice.setEnabled(true);
 
@@ -3691,6 +3715,10 @@ public class Monopoly {
 						.add(entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()));
 
 				priceOfUnwantedProperty.setText("");
+				if (!gotDouble || doubleCounter == 3) {
+					finishTurn.setEnabled(true);
+					rollTheDice.setEnabled(false);
+				}
 			}
 
 		});
@@ -3812,13 +3840,7 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (rentCalculated) {
-					if (rentValue > players.get(playerIndex).getMoneyHeld()) {
-						gamePrompt.setText("You need to sell something or borrow some money to pay the rent");
-					} else {
-						payRent.setVisible(true);
-					}
-				}
+
 				boolean isMortgaged = false;
 				String entityName = String.valueOf(sellPropertyComboBox.getSelectedItem());
 				ownerIndex = getPlayerIndex(String.valueOf(buyer.getSelectedItem()));
@@ -3881,6 +3903,24 @@ public class Monopoly {
 				if (!houseOrHotelBought && (getNumberOfHouses() > 0 || getNumberOfHotels() > 0)) {
 					generateAddBuildingComboBox();
 				}
+				if (rentCalculated) {
+					if (rentValue > players.get(playerIndex).getMoneyHeld()) {
+						gamePrompt.setText(
+								"You need money to pay the rent. Sell property, take loan or retire from game");
+					} else {
+						payRent.setVisible(true);
+						retireFromGame.setVisible(false);
+					}
+				}
+				if (paymentDue) {
+					if (paymentDueAmount > players.get(playerIndex).getMoneyHeld()) {
+						gamePrompt.setText("you need to pay arrears. Sell or mortgage property or retire from game");
+					} else {
+						payArrears.setVisible(true);
+						retireFromGame.setVisible(false);
+						gamePrompt.setText("");
+					}
+				}
 			}
 
 		});
@@ -3916,13 +3956,7 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (rentCalculated) {
-					if (rentValue > players.get(playerIndex).getMoneyHeld()) {
-						gamePrompt.setText("You need to sell something or borrow some money to pay the rent");
-					} else {
-						payRent.setVisible(true);
-					}
-				}
+
 				String comboSelection = String.valueOf(mortgageComboBox.getSelectedItem());
 				for (Entity anEntity : entities.getEntities()) {
 					if (anEntity.getName().equals(comboSelection)) {
@@ -3951,6 +3985,57 @@ public class Monopoly {
 							buyOrRent();
 						}
 					}
+				}
+				if (rentCalculated) {
+					if (rentValue > players.get(playerIndex).getMoneyHeld()) {
+						gamePrompt.setText(
+								"You need money to pay the rent. Sell property, take loan or retire from game");
+					} else {
+						payRent.setVisible(true);
+						retireFromGame.setVisible(false);
+						gamePrompt.setText("");
+					}
+				}
+				if (paymentDue) {
+					if (paymentDueAmount > players.get(playerIndex).getMoneyHeld()) {
+						gamePrompt.setText("you need to pay arrears. Sell or mortgage property or retire from game");
+					} else {
+						payArrears.setVisible(true);
+						retireFromGame.setVisible(false);
+						gamePrompt.setText("");
+					}
+				}
+			}
+
+		});
+
+		payArrears.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				payArrears.setVisible(false);
+				paymentDue = false;
+				switch (arrearsIndex) {
+				case 4:
+					payIncomeTax();
+					break;
+				case 9:
+					followChanceCard9();
+					break;
+				case 10:
+					followChanceCard10();
+					break;
+				case 13:
+					followChanceCard13();
+					break;
+				case 38:
+					payLuxuryTax();
+					break;
+				}
+				if (!gotDouble || doubleCounter == 3) {
+					finishTurn.setEnabled(true);
+				} else {
+					rollTheDice.setEnabled(true);
 				}
 			}
 
@@ -4390,21 +4475,21 @@ public class Monopoly {
 				chanceButton.setIcon(new ImageIcon(img));
 			} catch (IOException ex) {
 			}
-			double moneyOwed = 0;
 			for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
 				if (entity.getNumberOfHouses() > 0) {
-					moneyOwed += entity.getNumberOfHouses() * 25;
+					paymentDueAmount += entity.getNumberOfHouses() * 25;
 				}
 				if (entity.getNumberOfHotels() > 0) {
-					moneyOwed += 100;
+					paymentDueAmount += 100;
 				}
 			}
-			if (moneyOwed > 0) {
-				players.get(playerIndex).setMoneyHeld(-moneyOwed);
-				balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
-				log = "  /> " + players.get(playerIndex).getName() + " has spent M" + moneyOwed
-						+ " on general repairs on his properties \n";
-				logText.append(log);
+			if (paymentDueAmount > 0) {
+				if (paymentDueAmount <= players.get(playerIndex).getMoneyHeld()) {
+					followChanceCard9();
+				} else {
+					paymentDue = true;
+					arrearsIndex = 9;
+				}
 			}
 			break;
 		case 10:
@@ -4413,10 +4498,13 @@ public class Monopoly {
 				chanceButton.setIcon(new ImageIcon(img));
 			} catch (IOException ex) {
 			}
-			players.get(playerIndex).setMoneyHeld(-15);
-			balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
-			log = "  /> " + players.get(playerIndex).getName() + " paid poor tax: M15" + "\n";
-			logText.append(log);
+			paymentDueAmount = 15;
+			if (paymentDueAmount <= players.get(playerIndex).getMoneyHeld()) {
+				followChanceCard10();
+			} else {
+				paymentDue = true;
+				arrearsIndex = 10;
+			}
 			break;
 		case 11:
 			try {
@@ -4447,15 +4535,18 @@ public class Monopoly {
 			int counter = 0;
 			for (int i = 0; i < players.size(); i++) {
 				if (i != playerIndex) {
-					players.get(i).setMoneyHeld(50);
-					counter++;
-					balanceLabels.get(i).setText("E" + players.get(i).getMoneyHeld());
+					if (!players.get(i).isBankrupt()) {
+						counter++;
+					}
 				}
 			}
-			players.get(playerIndex).setMoneyHeld(-(counter * 50));
-			balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
-			log = "  /> " + players.get(playerIndex).getName() + " paid each of other players M50" + "\n";
-			logText.append(log);
+			paymentDueAmount = counter * 50;
+			if (paymentDueAmount > players.get(playerIndex).getMoneyHeld()) {
+				paymentDue = true;
+				arrearsIndex = 13;
+			} else {
+				followChanceCard13();
+			}
 			break;
 		case 14:
 			try {
@@ -4481,6 +4572,36 @@ public class Monopoly {
 			break;
 
 		}
+	}
+
+	private void followChanceCard9() {
+		players.get(playerIndex).setMoneyHeld(-paymentDueAmount);
+		balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
+		log = "  /> " + players.get(playerIndex).getName() + " has spent M" + paymentDueAmount
+				+ " on general repairs on his properties \n";
+		logText.append(log);
+	}
+
+	private void followChanceCard10() {
+		players.get(playerIndex).setMoneyHeld(-15);
+		balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
+		log = "  /> " + players.get(playerIndex).getName() + " paid poor tax: M15" + "\n";
+		logText.append(log);
+	}
+
+	private void followChanceCard13() {
+		for (int i = 0; i < players.size(); i++) {
+			if (i != playerIndex) {
+				if (!players.get(i).isBankrupt()) {
+					players.get(i).setMoneyHeld(50);
+					balanceLabels.get(i).setText("E" + players.get(i).getMoneyHeld());
+				}
+			}
+		}
+		players.get(playerIndex).setMoneyHeld(-paymentDueAmount);
+		balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
+		log = "  /> " + players.get(playerIndex).getName() + " paid each of other players M50" + "\n";
+		logText.append(log);
 	}
 
 	private void dealCommunityCard() {
@@ -4762,16 +4883,21 @@ public class Monopoly {
 						gamePrompt.setText(
 								"You don't have enough cash to buy this property. Press don't buy or borrow some money");
 						dontBuyProperty.setVisible(true);
+						rollTheDice.setEnabled(false);
 					}
 
 				} else if (!entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getOwner()
-						.getName().equals(players.get(playerIndex).getName())) {
+						.getName().equals(players.get(playerIndex).getName())
+						&& !entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard())
+								.isMortgaged()) {
 					if (!rentCalculated) {
 						calculateRent();
 					}
 					if (rentCalculated) {
 						if (rentValue > players.get(playerIndex).getMoneyHeld()) {
-							gamePrompt.setText("You need to sell something or borrow some money to pay the rent");
+							gamePrompt.setText(
+									"You need money to pay the rent. Sell property, take loan or retire from game");
+							retireFromGame.setVisible(true);
 						} else {
 							if (players.get(playerIndex).getPositionOnGameBoard() != 12
 									&& players.get(playerIndex).getPositionOnGameBoard() != 28)
@@ -4783,9 +4909,15 @@ public class Monopoly {
 
 		}
 		if (!entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).canBePurchased()) {
-			if (!gotDouble || doubleCounter == 3) {
-				finishTurn.setEnabled(true);
+			if (!paymentDue) {
+				if (!gotDouble || doubleCounter == 3) {
+					finishTurn.setEnabled(true);
+					rollTheDice.setEnabled(false);
+				}
+			} else {
+				gamePrompt.setText("you need to pay arrears. Sell or mortgage property or retire from game");
 				rollTheDice.setEnabled(false);
+				retireFromGame.setVisible(true);
 			}
 		}
 
@@ -5135,6 +5267,20 @@ public class Monopoly {
 		}
 	}
 
+	private void payIncomeTax() {
+		players.get(playerIndex).setMoneyHeld(-paymentDueAmount);
+		balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
+		log = "  /> " + players.get(playerIndex).getName() + " paid income tax (M200) " + "\n";
+		logText.append(log);
+	}
+
+	private void payLuxuryTax() {
+		players.get(playerIndex).setMoneyHeld(-paymentDueAmount);
+		balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
+		log = "  /> " + players.get(playerIndex).getName() + " paid luxury tax (M100) " + "\n";
+		logText.append(log);
+	}
+
 	private void adjustPlayerPosition() {
 		if (!(players.get(playerIndex).getPositionOnGameBoard() == 10)) {
 			log = "  /> " + players.get(playerIndex).getName() + " went to "
@@ -5258,10 +5404,16 @@ public class Monopoly {
 			}
 			break;
 		case 4:
-			players.get(playerIndex).setMoneyHeld(-200);
-			balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
-			log = "  /> " + players.get(playerIndex).getName() + " paid income tax (M200) " + "\n";
-			logText.append(log);
+			paymentDueAmount = 200;
+			if (paymentDueAmount > players.get(playerIndex).getMoneyHeld()) {
+				gamePrompt.setText("you need to pay arrears. Sell or mortgage property or retire from game");
+				rollTheDice.setEnabled(false);
+				retireFromGame.setVisible(true);
+				paymentDue = true;
+				arrearsIndex = 4;
+			} else {
+				payIncomeTax();
+			}
 			switch (playerIndex) {
 			case 0:
 				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 3.5) + 10,
@@ -6088,10 +6240,16 @@ public class Monopoly {
 			}
 			break;
 		case 38:
-			players.get(playerIndex).setMoneyHeld(-100);
-			balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
-			log = "  /> " + players.get(playerIndex).getName() + " paid luxury tax (M100) " + "\n";
-			logText.append(log);
+			paymentDueAmount = 100;
+			if (paymentDueAmount > players.get(playerIndex).getMoneyHeld()) {
+				gamePrompt.setText("you need to pay arrears. Sell or mortgage property or retire from game");
+				rollTheDice.setEnabled(false);
+				retireFromGame.setVisible(true);
+				paymentDue = true;
+				arrearsIndex = 38;
+			} else {
+				payLuxuryTax();
+			}
 			switch (playerIndex) {
 			case 0:
 				playerIndicators.get(0).setBounds((int) (frameHeight / 6.5 * 5.5) + 40,
@@ -6148,12 +6306,15 @@ public class Monopoly {
 			}
 			break;
 		}
-		if (players.get(playerIndex).didPassGo()) {
+		if (players.get(playerIndex).didPassGo())
+
+		{
 			balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
 			log = "  /> " + players.get(playerIndex).getName() + " got M200 for passing \"GO\" " + "\n";
 			logText.append(log);
 			players.get(playerIndex).setPassedGo(false);
 		}
+
 	}
 
 	public int getNumberOfHotels() {

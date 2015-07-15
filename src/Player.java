@@ -12,6 +12,7 @@ public class Player {
 	private boolean passedGo;
 	private int turnsInJail;
 	private ArrayList<Card> outOfJailCards;
+	private boolean isBankrupt;
 	
 	public Player(String name) {
 		this.name = name;
@@ -77,6 +78,12 @@ public class Player {
 	}
 	public void setTurnsInJail(int turnsInJail) {
 		this.turnsInJail = turnsInJail;
+	}
+	public boolean isBankrupt() {
+		return isBankrupt;
+	}
+	public void setBankrupt(boolean isBankrupt) {
+		this.isBankrupt = isBankrupt;
 	}
 	
 }
