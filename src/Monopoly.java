@@ -273,6 +273,9 @@ public class Monopoly {
 	private JTextField cardPrice;
 	private JButton sellGetOutOfJailCardButton;
 	private int valueOfSoldCard;
+	private JButton yesButton;
+	private JButton noButton;
+	private JButton restartGame;
 
 	/**
 	 * Launch the application.
@@ -1960,6 +1963,12 @@ public class Monopoly {
 		payArrears = new JButton("pay arrears");
 		payArrears.setBounds(frameHeight + 200, (int) (frameHeight / 2 + 60), 230, 20);
 		retireFromGame = new JButton("retire from game");
+		yesButton = new JButton("yes");
+		noButton = new JButton("no");
+		yesButton.setVisible(false);
+		noButton.setVisible(false);
+		yesButton.setBounds(frameHeight + 180, (int) (frameHeight / 2 + 35), 135, 20);
+		noButton.setBounds(frameHeight + 325, (int) (frameHeight / 2 + 35), 135, 20);
 		retireFromGame.setBounds(frameHeight + 170, (int) (frameHeight / 2 + 35), 290, 20);
 		buyProperty.setBounds(frameHeight + 150, (int) (frameHeight / 2 + 35), 160, 20);
 		dontBuyProperty.setBounds(frameHeight + 320, (int) (frameHeight / 2 + 35), 160, 20);
@@ -2960,8 +2969,11 @@ public class Monopoly {
 
 		startGame = new JButton();
 		finishTurn = new JButton();
+		restartGame = new JButton();
 		startGame.setBounds(frameHeight + 60 + (int) (frameHeight / 4), (int) (frameHeight / 3), 140, 40);
 		finishTurn.setBounds(frameHeight + 60 + (int) (frameHeight / 4), frameHeight - 80, 140, 40);
+		restartGame.setBounds(frameHeight + 60 + (int) (frameHeight / 4), frameHeight - 70, 140, 20);
+		restartGame.setVisible(false);
 		try {
 			Image img = ImageIO.read(getClass().getResource("resources/startthegame.jpg"));
 			startGame.setIcon(new ImageIcon(img));
@@ -3073,7 +3085,10 @@ public class Monopoly {
 		frame.getContentPane().add(payRent);
 		frame.getContentPane().add(payArrears);
 		frame.getContentPane().add(retireFromGame);
+		frame.getContentPane().add(yesButton);
+		frame.getContentPane().add(noButton);
 		frame.getContentPane().add(deed, 2);
+		frame.getContentPane().add(restartGame);
 
 		rollTheDice = new JButton();
 		rollTheDice.setBounds(frameHeight / 2 - 70, frameHeight / 2 + 40, 140, 40);
@@ -3651,72 +3666,94 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (chanceCardPicked) {
-					try {
-						Image img = ImageIO.read(getClass().getResource("resources/chance.jpg"));
-						chanceButton.setIcon(new ImageIcon(img));
-					} catch (IOException ex) {
+				if (gameOn()) {
+					if (chanceCardPicked) {
+						try {
+							Image img = ImageIO.read(getClass().getResource("resources/chance.jpg"));
+							chanceButton.setIcon(new ImageIcon(img));
+						} catch (IOException ex) {
+						}
+						chanceCardPicked = false;
 					}
-					chanceCardPicked = false;
-				}
-				if (communityCardPicked) {
-					try {
-						Image img = ImageIO.read(getClass().getResource("resources/chest.jpg"));
-						communityChest.setIcon(new ImageIcon(img));
-					} catch (IOException ex) {
+					if (communityCardPicked) {
+						try {
+							Image img = ImageIO.read(getClass().getResource("resources/chest.jpg"));
+							communityChest.setIcon(new ImageIcon(img));
+						} catch (IOException ex) {
+						}
+						communityCardPicked = false;
 					}
-					communityCardPicked = false;
-				}
-				playersPanes.get(playerIndex).setBorder(BorderFactory.createLineBorder(Color.black, 2));
-				playerIndex = (playerIndex + 1) % players.size();
-				playersPanes.get(playerIndex).setBorder(BorderFactory.createLineBorder(Color.green, 2));
-				if (players.get(playerIndex).isInJail()
-						&& players.get(playerIndex).getNumberOfGetOutOfJailCards() > 0) {
-					gamePrompt.setText("Use the card, pay M50 or roll the dice to get out of Jail");
-					useGetOutOfJailCard.setVisible(true);
-					pay50toGetOutOfJail.setVisible(true);
-					rollTheDice.setEnabled(true);
-					extraRollNeeded = true;
-				} else if (players.get(playerIndex).isInJail()) {
-					gamePrompt.setText("You need to pay M50 or roll double to get out of Jail");
-					extraRollNeeded = true;
-					rollTheDice.setEnabled(true);
-					pay50toGetOutOfJail.setVisible(true);
+
+					do {
+						playersPanes.get(playerIndex).setBorder(BorderFactory.createLineBorder(Color.black, 2));
+						playerIndex = (playerIndex + 1) % players.size();
+						playersPanes.get(playerIndex).setBorder(BorderFactory.createLineBorder(Color.green, 2));
+					} while (players.get(playerIndex).isBankrupt());
+
+					if (players.get(playerIndex).isInJail()
+							&& players.get(playerIndex).getNumberOfGetOutOfJailCards() > 0) {
+						gamePrompt.setText("Use the card, pay M50 or roll the dice to get out of Jail");
+						useGetOutOfJailCard.setVisible(true);
+						pay50toGetOutOfJail.setVisible(true);
+						rollTheDice.setEnabled(true);
+						extraRollNeeded = true;
+					} else if (players.get(playerIndex).isInJail()) {
+						gamePrompt.setText("You need to pay M50 or roll double to get out of Jail");
+						extraRollNeeded = true;
+						rollTheDice.setEnabled(true);
+						pay50toGetOutOfJail.setVisible(true);
+					} else {
+						rollTheDice.setEnabled(true);
+						gamePrompt.setText("");
+					}
+					finishTurn.setEnabled(false);
+					doubleCounter = 0;
+					buyProperty.setEnabled(true);
+					buyUnwantedProperty.setVisible(false);
+					buyUnwantedPropertyButton.setVisible(false);
+					priceOfUnwantedProperty.setVisible(false);
+					if (players.get(playerIndex).getOwnedProperties().size() > 0) {
+						generateMortgageComboBox();
+					} else {
+						mortgageManagement.setVisible(false);
+						mortgageComboBox.setVisible(false);
+						takeLoan.setVisible(false);
+						payLoan.setVisible(false);
+						sellProperty.setVisible(false);
+						sellPropertyComboBox.setVisible(false);
+						buyer.setVisible(false);
+						sellingPrice.setVisible(false);
+						sellPropertyButton.setVisible(false);
+					}
+					if (getNumberOfHouses() > 0 || getNumberOfHotels() > 0) {
+						generateAddBuildingComboBox();
+					}
+					houseOrHotelBought = false;
+					if (players.get(playerIndex).getNumberOfGetOutOfJailCards() > 0) {
+						generateSellGetOutOfJailCardComboBox();
+					} else {
+						sellGetOutOfJailCard.setVisible(false);
+						cardBuyers.setVisible(false);
+						cardPrice.setVisible(false);
+						sellGetOutOfJailCardButton.setVisible(false);
+					}
 				} else {
-					rollTheDice.setEnabled(true);
-					gamePrompt.setText("");
+					finishTurn.setEnabled(false);
+					finishTurn.setVisible(false);
+					int winnerIndex = 0;
+					for (int i = 0; i < players.size(); i++) {
+						if (!players.get(i).isBankrupt()) {
+							winnerIndex = i;
+						}
+						
+					}
+					log = "  /> " + players.get(winnerIndex).getName() + " won the game. " + "\n";
+					logText.append(log);
+					balanceLabels.get(winnerIndex).setText("WINNER !!!");
+					restartGame.setVisible(true);
+					
 				}
-				finishTurn.setEnabled(false);
-				doubleCounter = 0;
-				buyProperty.setEnabled(true);
-				buyUnwantedProperty.setVisible(false);
-				buyUnwantedPropertyButton.setVisible(false);
-				priceOfUnwantedProperty.setVisible(false);
-				if (players.get(playerIndex).getOwnedProperties().size() > 0) {
-					generateMortgageComboBox();
-				} else {
-					mortgageManagement.setVisible(false);
-					mortgageComboBox.setVisible(false);
-					takeLoan.setVisible(false);
-					payLoan.setVisible(false);
-					sellProperty.setVisible(false);
-					sellPropertyComboBox.setVisible(false);
-					buyer.setVisible(false);
-					sellingPrice.setVisible(false);
-					sellPropertyButton.setVisible(false);
-				}
-				if (getNumberOfHouses() > 0 || getNumberOfHotels() > 0) {
-					generateAddBuildingComboBox();
-				}
-				houseOrHotelBought = false;
-				if (players.get(playerIndex).getNumberOfGetOutOfJailCards() > 0) {
-					generateSellGetOutOfJailCardComboBox();
-				} else {
-					sellGetOutOfJailCard.setVisible(false);
-					cardBuyers.setVisible(false);
-					cardPrice.setVisible(false);
-					sellGetOutOfJailCardButton.setVisible(false);
-				}
+
 			}
 
 		});
@@ -3726,6 +3763,16 @@ public class Monopoly {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cardPrice.setText("");
+			}
+
+		});
+
+		buyUnwantedProperty.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				priceOfUnwantedProperty.setEnabled(true);
+				priceOfUnwantedProperty.setText("");
 			}
 
 		});
@@ -3809,7 +3856,7 @@ public class Monopoly {
 					}
 				}
 				buyer.setModel(buyerModel);
-				sellingPrice.setText("");
+
 				buyer.setSelectedItem(null);
 			}
 
@@ -3820,6 +3867,7 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				sellingPrice.setEnabled(true);
 				sellingPrice.setText("");
 			}
 
@@ -3827,20 +3875,27 @@ public class Monopoly {
 
 		// no need to simplify
 		sellingPrice.getDocument().addDocumentListener(new DocumentListener() {
+
 			@Override
 			public void changedUpdate(DocumentEvent arg0) {
-				checkValue();
+				if (buyer.getSelectedItem() != null) {
+					checkValue();
+				}
 			}
 
 			@Override
 			public void insertUpdate(DocumentEvent arg0) {
-				checkValue();
+				if (buyer.getSelectedItem() != null) {
+					checkValue();
+				}
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent arg0) {
 				sellPropertyButton.setEnabled(false);
-				checkValue();
+				if (buyer.getSelectedItem() != null) {
+					checkValue();
+				}
 			}
 
 			public void checkValue() {
@@ -3877,18 +3932,24 @@ public class Monopoly {
 		cardPrice.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
 			public void changedUpdate(DocumentEvent arg0) {
-				checkValue();
+				if (cardBuyers.getSelectedItem() != null) {
+					checkValue();
+				}
 			}
 
 			@Override
 			public void insertUpdate(DocumentEvent arg0) {
-				checkValue();
+				if (cardBuyers.getSelectedItem() != null) {
+					checkValue();
+				}
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent arg0) {
 				sellGetOutOfJailCardButton.setEnabled(false);
-				checkValue();
+				if (cardBuyers.getSelectedItem() != null) {
+					checkValue();
+				}
 			}
 
 			public void checkValue() {
@@ -3910,7 +3971,7 @@ public class Monopoly {
 			}
 		});
 
-		sellGetOutOfJailCardButton.addActionListener(new ActionListener(){
+		sellGetOutOfJailCardButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -3918,7 +3979,8 @@ public class Monopoly {
 				players.get(ownerIndex).getOutOfJailCards().add(players.get(playerIndex).getOutOfJailCards().remove(0));
 				players.get(playerIndex).setMoneyHeld(valueOfSoldCard);
 				players.get(ownerIndex).setMoneyHeld(-valueOfSoldCard);
-				getOutOfJailLabels.get(ownerIndex).setText("get out of jail cards : " + players.get(ownerIndex).getNumberOfGetOutOfJailCards());
+				getOutOfJailLabels.get(ownerIndex)
+						.setText("get out of jail cards : " + players.get(ownerIndex).getNumberOfGetOutOfJailCards());
 				getOutOfJailLabels.get(ownerIndex).setVisible(true);
 				if (players.get(playerIndex).getNumberOfGetOutOfJailCards() == 0) {
 					sellGetOutOfJailCard.setVisible(false);
@@ -3928,13 +3990,13 @@ public class Monopoly {
 					getOutOfJailLabels.get(playerIndex).setVisible(false);
 				} else {
 					generateSellGetOutOfJailCardComboBox();
-					getOutOfJailLabels.get(playerIndex)
-					.setText("get out of jail cards : " + players.get(playerIndex).getNumberOfGetOutOfJailCards());
+					getOutOfJailLabels.get(playerIndex).setText(
+							"get out of jail cards : " + players.get(playerIndex).getNumberOfGetOutOfJailCards());
 				}
 			}
-			
+
 		});
-		
+
 		sellPropertyButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -4051,6 +4113,146 @@ public class Monopoly {
 
 		});
 
+		retireFromGame.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				gamePrompt.setText("Are you sure you want to retire from the game?");
+				yesButton.setVisible(true);
+				noButton.setVisible(true);
+				retireFromGame.setVisible(false);
+			}
+
+		});
+
+		noButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				yesButton.setVisible(false);
+				noButton.setVisible(false);
+				retireFromGame.setVisible(true);
+				if (paymentDue) {
+					gamePrompt.setText("you need to pay arrears. Sell or mortgage property or retire from game");
+				} else if (rentCalculated) {
+					gamePrompt.setText("You need money to pay the rent. Sell property, take loan or retire from game");
+				}
+			}
+
+		});
+
+		yesButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				log = "  /> " + players.get(playerIndex).getName() + " retired from the game. " + "\n";
+				logText.append(log);
+				int numberOfHousesToBeRestored = 0;
+				int numberOfHotelsToBeRestored = 0;
+				double balanceToBeTransferred = 0;
+				yesButton.setVisible(false);
+				noButton.setVisible(false);
+				retireFromGame.setVisible(false);
+				mortgageManagement.setVisible(false);
+				mortgageComboBox.setVisible(false);
+				takeLoan.setVisible(false);
+				payLoan.setVisible(false);
+				sellProperty.setVisible(false);
+				sellPropertyComboBox.setVisible(false);
+				buyer.setVisible(false);
+				sellingPrice.setVisible(false);
+				sellPropertyButton.setVisible(false);
+				sellGetOutOfJailCard.setVisible(false);
+				cardBuyers.setVisible(false);
+				cardPrice.setVisible(false);
+				sellGetOutOfJailCardButton.setVisible(false);
+				hideAddBuildingComponents();
+				if (paymentDue) {
+					System.out.println("hotels: " + getNumberOfHotels());
+					System.out.println("houses: " + getNumberOfHouses());
+					paymentDue = false;
+					if (players.get(playerIndex).getOwnedProperties().size() > 0) {
+						for (Entity entity : entities.getEntities()) {
+							if (entity.getOwner() != null
+									&& entity.getOwner().getName().equals(players.get(playerIndex).getName())) {
+								entity.setOwner(null);
+							}
+						}
+						for (Entity property : players.get(playerIndex).getOwnedProperties()) {
+							if (property.getNumberOfHotels() == 1) {
+								numberOfHotelsToBeRestored++;
+							}
+							if (property.getNumberOfHouses() > 0) {
+								numberOfHousesToBeRestored += property.getNumberOfHouses();
+							}
+							if (property.getBuildingIndex() != -1) {
+								buildingLabels.get(property.getBuildingIndex()).setIcon(null);
+							}
+
+						}
+						setNumberOfHotels(numberOfHotelsToBeRestored);
+						setNumberOfHouses(numberOfHousesToBeRestored);
+						System.out.println("hotels: " + getNumberOfHotels());
+						System.out.println("houses: " + getNumberOfHouses());
+					}
+				} else if (rentCalculated) {
+					rentCalculated = false;
+					if (players.get(playerIndex).getMoneyHeld() > 0) {
+						balanceToBeTransferred = players.get(playerIndex).getMoneyHeld();
+					}
+					if (players.get(playerIndex).getOwnedProperties().size() > 0) {
+						for (Entity entity : entities.getEntities()) {
+							if (entity.getOwner() != null
+									&& entity.getOwner().getName().equals(players.get(playerIndex).getName())) {
+								entity.setOwner(players.get(ownerIndex));
+							}
+						}
+						for (int i = 0; i < players.get(playerIndex).getOwnedProperties().size(); i++) {
+							players.get(playerIndex).getOwnedProperties().get(i).setOwner(players.get(ownerIndex));
+							players.get(ownerIndex).getOwnedProperties()
+									.add(players.get(playerIndex).getOwnedProperties().get(i));
+							if (players.get(playerIndex).getOwnedProperties().get(i).isMortgaged()) {
+								balanceToBeTransferred -= (players.get(playerIndex).getOwnedProperties().get(i)
+										.getCost() * 0.1);
+							}
+						}
+						for (int i = players.get(playerIndex).getOwnedProperties().size(); i > 0; i--) {
+							players.get(playerIndex).getOwnedProperties().remove(i - 1);
+						}
+
+					}
+					players.get(ownerIndex).setMoneyHeld(balanceToBeTransferred);
+					while (players.get(playerIndex).getNumberOfGetOutOfJailCards() != 0) {
+						players.get(ownerIndex).getOutOfJailCards()
+								.add(players.get(playerIndex).getOutOfJailCards().remove(0));
+					}
+					log = "  /> " + players.get(ownerIndex).getName() + " acquired all "
+							+ players.get(playerIndex).getName() + "'s properties" + "\n";
+					logText.append(log);
+					balanceLabels.get(ownerIndex).setText("E" + players.get(ownerIndex).getMoneyHeld());
+				}
+				players.get(playerIndex).setBankrupt(true);
+				balanceLabels.get(playerIndex).setText("retired from game");
+				getOutOfJailLabels.get(playerIndex).setVisible(false);
+				while (players.get(playerIndex).getNumberOfGetOutOfJailCards() != 0) {
+					if (players.get(playerIndex).getOutOfJailCards().get(0) instanceof ChanceCard) {
+						players.get(playerIndex).getOutOfJailCards().remove(0);
+						deck.returnOutOfJailCardChance();
+					} else {
+						players.get(playerIndex).getOutOfJailCards().remove(0);
+						deck.returnOutOfJailCardCommunity();
+					}
+					log = "  /> " + players.get(ownerIndex).getName() + " received all "
+							+ players.get(playerIndex).getName() + "'s get out of jail cards" + "\n";
+					logText.append(log);
+				}
+				finishTurn.setEnabled(true);
+				gamePrompt.setText("");
+				playerIndicators.get(playerIndex).setVisible(false);
+			}
+
+		});
+
 		takeLoan.addActionListener(new ActionListener() {
 
 			@Override
@@ -4162,6 +4364,7 @@ public class Monopoly {
 				int entityPosition = 0;
 				int numberOfTheSameGroup = 0;
 				int totalNumberOfHousesInAGroup = 0;
+				int totalNumberOfHotelsInAGroup = 0;
 				boolean canAfford = false;
 
 				for (Entity entity : entities.getEntities()) {
@@ -4175,6 +4378,7 @@ public class Monopoly {
 					if (anEntity.getGroup().equals(group)) {
 						numberOfTheSameGroup++;
 						totalNumberOfHousesInAGroup += anEntity.getNumberOfHouses();
+						totalNumberOfHotelsInAGroup += anEntity.getNumberOfHotels();
 					}
 				}
 				if (entityPosition < 10) {
@@ -4228,7 +4432,9 @@ public class Monopoly {
 								addHouseButton.setEnabled(true);
 							} else if (players.get(playerIndex).getOwnedProperties()
 									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
-									.getNumberOfHouses() == 4 && totalNumberOfHousesInAGroup >= 8
+									.getNumberOfHouses() == 4
+									&& (totalNumberOfHousesInAGroup >= 8
+											|| (totalNumberOfHousesInAGroup >= 4 && totalNumberOfHotelsInAGroup == 1))
 									&& getNumberOfHouses() > 0) {
 								addHouseButton.setEnabled(true);
 								if (getNumberOfHotels() > 0) {
@@ -4263,7 +4469,10 @@ public class Monopoly {
 								addHouseButton.setEnabled(true);
 							} else if (players.get(playerIndex).getOwnedProperties()
 									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
-									.getNumberOfHouses() == 4 && totalNumberOfHousesInAGroup >= 12
+									.getNumberOfHouses() == 4
+									&& (totalNumberOfHousesInAGroup >= 12
+											|| (totalNumberOfHousesInAGroup >= 8 && totalNumberOfHotelsInAGroup == 1)
+											|| (totalNumberOfHousesInAGroup >= 4 && totalNumberOfHotelsInAGroup == 2))
 									&& getNumberOfHouses() > 0) {
 								addHouseButton.setEnabled(true);
 								if (getNumberOfHotels() > 0) {
@@ -4334,7 +4543,7 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				decreaseNumberOfHotels();
+				setNumberOfHotels(-1);
 				setNumberOfHouses(4);
 				houseOrHotelBought = true;
 				double hotelCost = 0;
@@ -4374,6 +4583,36 @@ public class Monopoly {
 			}
 		});
 
+		restartGame.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							Monopoly window = new Monopoly();
+							window.frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+				restartGame.setVisible(false);
+				
+			}
+			
+		});
+	}
+
+	private boolean gameOn() {
+		int playersCounter = 0;
+		for (Player player : players) {
+			if (!player.isBankrupt()) {
+				playersCounter++;
+			}
+		}
+		return (playersCounter >= 2);
 	}
 
 	private void generateMortgageComboBox() {
@@ -4401,6 +4640,7 @@ public class Monopoly {
 		buyer.setSelectedItem(null);
 		sellingPrice.setVisible(true);
 		sellingPrice.setText("");
+		sellingPrice.setEnabled(false);
 		sellPropertyButton.setVisible(true);
 		sellPropertyButton.setEnabled(false);
 	}
@@ -5137,6 +5377,9 @@ public class Monopoly {
 							.getNumberOfHouses() == 0) {
 				rentValue = rentValue * 2;
 			}
+		} else if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getNumberOfHotels() == 1) {
+			rentValue = entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getRentValues()
+					.get(5);
 		} else if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getGroup()
 				.equals("railroads")) {
 
@@ -6503,8 +6746,8 @@ public class Monopoly {
 		return numberOfHotels;
 	}
 
-	public void decreaseNumberOfHotels() {
-		numberOfHotels--;
+	public void setNumberOfHotels(int update) {
+		numberOfHotels += update;
 	}
 
 	public int getNumberOfHouses() {
