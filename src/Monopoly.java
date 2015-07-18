@@ -276,6 +276,9 @@ public class Monopoly {
 	private JButton yesButton;
 	private JButton noButton;
 	private JButton restartGame;
+	private JScrollPane howToPlay;
+	private String instruction;
+	private JTextArea instructionText;
 
 	/**
 	 * Launch the application.
@@ -1982,6 +1985,115 @@ public class Monopoly {
 		logText.setFont(new Font("Arial", Font.BOLD, 12));
 		log = "  /> the Game has started\n";
 		logText.append(log);
+		instruction = "The game can be played by 2-6 players. Start entering players' names (which\n"
+				+ "must be unique and no longer than 10 characters) and hit start game button \n" + "to begin\n\n"
+				+ "At the start of the game each of the players gets M1500\n" + "When you pass GO you receive M200\n\n"
+				+ "GENERAL:\n\n" + "Each player, in turn, rolls both dice and then moves forward (clockwise around\n"
+				+ "the board) the number of spaces indicated by the sum of the numbers rolled. \n"
+				+ "Action is then takendepending on the space on which the player lands:\n\n"
+				+ "- If the player lands on an unowned property, he or she may buy it for \n"
+				+ "the price listed on that property's space. If he or she agrees to buy it,\n"
+				+ "he or she pays the Bank the amount shown on the property space and receives \n"
+				+ "the deed for that property. There can only be one player per color. If he \n"
+				+ "or she decides not to buy it, the property is auctioned, and the bidding may \n"
+				+ "start at any price. The highest bidder wins the property and pays the Bank \n"
+				+ "the amount bid and receives the property's title deed. Railroads and \n"
+				+ "utilities are also properties.\n"
+				+ "- If the player lands on an unmortgaged property owned by another player, \n"
+				+ "he or she pays rent to that person, as specified on the property's deed. \n "
+				+ "- If the player lands on his or her own property, or on property which \n"
+				+ "is owned by another player but currently mortgaged, nothing happens.\n"
+				+ "- If the player lands on Luxury Tax, he or she must pay the Bank M100 \n"
+				+ "- If the player lands on Income Tax he or she must pay the Bank M200 \n"
+				+ "- If the player lands on a Chance or Community Chest, the player takes \n"
+				+ "a card from the top of the respective pack and performs the instruction \n" + "given on the card."
+				+ "- If the player lands on the Jail space, he or she is \"Just Visiting\" \n"
+				+ "and does nothing. No penalty applies.\n"
+				+ "- If the player lands on the Go to Jail square, he or she must move his \n"
+				+ "token directly to Jail, unless he or she has Get Out of Jail Card\n"
+				+ "If a player does not have sufficient funds to pay off a rent or fee, he \n"
+				+ "or she may take a loan from the bank by mortgaging one or more properties \n"
+				+ "or trade property deeds to other players in the game.\n"
+				+ "Players may not loan money to other players, only the bank can loan money, \n"
+				+ "and then only by mortgaging properties. \n\n" + "DOUBLES:\n\n"
+				+ "When doubles are rolled, the player picks up the dice and moves again. \n"
+				+ "However you DO land on the square the dice led you to on your roll, \n"
+				+ "and you must pay the price or, should you so choose, buy the property\n"
+				+ "in question. After the third roll of doubles, rather than landing on the \n"
+				+ "square the dice led you to, you immediately go to jail and thus do not \n"
+				+ "enact the appropriate action of landing on that square, unless you \n"
+				+ "have spare Get Out of Jail Card\n\n" + "JAIL:\n\n"
+				+ "A player can be directed to jail in three ways: by landing on the \n"
+				+ "Go to Jail space, by drawing a \"Go to Jail\" Chance or Community Chest\n"
+				+ "card or rolling three doubles.\n\n"
+				+ "A player in jail remains there until he/she does one of the following:\n\n"
+				+ "opts to pay a $50 bailout to the bank, or spend a \"Get Out of Jail Free\"\n"
+				+ "card, before rolling the dice\n" + "rolls doubles.\n"
+				+ "fails to roll doubles on his/her third turn in jail, in which case the\n"
+				+ "M50 charge is levied anyway (the player may not use a \"Get Out of Jail\n"
+				+ "Free\" card in this situation)\n\n" + 
+				"While in jail, a player may still collect rent, but can not buy houses/hotels \n" + 
+				"unless they roll doubles first to get out of jail\n\n" + 
+				"PROPERTIES, RENT, CONSTRUCTIONS:\n\n" + 
+				"You cannot buy more than one house at the time. Any player may buy a property \n" + 
+				"from one or others. If a player lands on property and refuses to buy it the \n" + 
+				"others may bid on the property. The player with the highest bid gets the \n" + 
+				"property. Properties are arranged in \"color groups\" of two or three \n" + 
+				"properties. Once a player owns all properties of a color group (a monopoly),\n" + 
+				"the rent is now doubled on all unimproved lots of that color group, even if\n" + 
+				"some of the properties are mortgaged to the Bank, and the player may purchase\n" + 
+				"either one to four houses or one hotel (which is equivalent to five houses) for\n" +
+				"those properties (as long as none of the properties of that color group are \n" +
+				"mortgaged to the bank), which raise the rents that must be paid when other \n" +
+				"players land on the property. The properties in a color group must be developed\n" +
+				"evenly, i.e. each house that is built must go on a property in the group with\n" +
+				"the fewest number of houses on it so far. In another way of speaking, the \n" +
+				"number of houses of any properties of a same color group must not differ by \n" + 
+				"more than one. For example, houses in a group may be distributed (2,3,2) or \n" +
+				"(0,1,1) or (4,4,3), but not (1,2,3) or (0,4,4).\n\n" + 
+				"You may have up to 1 Hotel or 4 Houses. 5 Houses are equal to 1 Hotel. \n" +
+				"House prices should be on the property cards.\n\n" + 
+				"A hotel may be built on a color group only after all properties in the group\n" +
+				"have four houses. A player purchases a hotel by paying the price of an additional\n" +
+				"house, and returning the four houses on that property to the bank in exchange \n" +
+				"for a hotel. If there are not enough houses in the bank for a player to build \n" +
+				"four houses on each property before building a hotel, the player may not skip \n" +
+				"directly to buying a hotel by paying the full price at one go.\n" + 
+				"The bank has a fixed supply of 32 houses and 12 hotels\n" + 
+				"It is not possible to buy more houses than there is available in the bank. \n" + 
+				"This could stop people buying hotels in the future!\n" + 
+				"Properties with no houses or hotels may be mortgaged for half of the property\n" +
+				"price. A property does not collect rent while mortgaged and may not be developed.\n" +
+				"To de-mortgage a property a player must pay interest of 10% in addition to the \n" + 
+				"mortgage price. Whenever a mortgaged property changes hands between players, either\n" +
+				"through a trade, sale or by bankruptcy, the new owner must immediately pay 10% \n" +
+				"interest on the mortgage and at their option may pay the principal or hold the \n" +
+				"property. If the player holds the property and later wishes to lift the mortgage \n" +
+				"they must pay the 10% interest again as well as the principal.\n" + 
+				"Sharing the ownership of any property is strictly forbidden\n" +
+				"For a street repairs card, the player must pay for every house and/or hotel \n" +
+				"they own on the board.\n\n" +
+				"RAILROAD and UTILITY RENT:\n\n" + 
+				"The rent a player owes for landing on a railroad varies with the number of \n" +
+				"railroads the owner possesses. The rent is as follows: Charge M25 if one owned\n" +
+				", M50 if two owned, M100 if three owned, M200 if all owned by the same owner.\n" +
+				"If you get a chance card and it says advance to the nearest railroad, you may \n" +
+				"either buy it if unowned or if owned by the other player you must pay double \n" +
+				"what you would normally pay.\n\n" + 
+				"For utilities, after a player lands on one to owe rent, they must roll the dice\n" +
+				"again to determine the rent amount. The rent is 10 times the amount rolled if \n" +
+				"the both are owned, or 4 times if not. One player does not have to posess both\n" +
+				"in order the rent to be 10 tmes the amount.\n"
+				;
+		instructionText = new JTextArea();
+		instructionText.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		instructionText.setFont(new Font("Arial", Font.ITALIC, 14));
+		instructionText.append(instruction);
+		instructionText.setEditable(false);
+		howToPlay = new JScrollPane(instructionText);
+		howToPlay.setBounds(frameHeight + 40, 0, (int) (frameHeight / 4) * 3, frameHeight);
+		howToPlay.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		howToPlay.setVisible(false);
 		gameLog = new JScrollPane(logText);
 		gameConsole.setBounds(frameHeight + 40, (int) (frameHeight / 2), (int) (frameHeight / 4) * 3,
 				(int) (frameHeight / 2.8));
@@ -3015,6 +3127,7 @@ public class Monopoly {
 				startNewGame();
 			}
 		});
+		frame.getContentPane().add(howToPlay);
 		frame.getContentPane().add(player_1);
 		frame.getContentPane().add(player_2);
 		frame.getContentPane().add(player_3);
@@ -3411,6 +3524,9 @@ public class Monopoly {
 							extraRollNeeded = false;
 							balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
 							doubleCounter = 0;
+							if (getNumberOfHouses() > 0 || getNumberOfHotels() > 0) {
+								generateAddBuildingComboBox();
+							}
 						}
 					} else {
 						rentCalculated = true;
@@ -3478,7 +3594,8 @@ public class Monopoly {
 				balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
 
 				generateMortgageComboBox();
-				if (!houseOrHotelBought && (getNumberOfHotels() > 0 || getNumberOfHouses() > 0)) {
+				if (!houseOrHotelBought && (getNumberOfHotels() > 0 || getNumberOfHouses() > 0)
+						&& !players.get(playerIndex).isInJail()) {
 					generateAddBuildingComboBox();
 				}
 			}
@@ -3552,6 +3669,7 @@ public class Monopoly {
 			}
 
 		});
+
 		pay50toGetOutOfJail.addActionListener(new ActionListener() {
 
 			@Override
@@ -3725,7 +3843,7 @@ public class Monopoly {
 						sellingPrice.setVisible(false);
 						sellPropertyButton.setVisible(false);
 					}
-					if (getNumberOfHouses() > 0 || getNumberOfHotels() > 0) {
+					if (getNumberOfHouses() > 0 || getNumberOfHotels() > 0 && !players.get(playerIndex).isInJail()) {
 						generateAddBuildingComboBox();
 					}
 					houseOrHotelBought = false;
@@ -3745,13 +3863,13 @@ public class Monopoly {
 						if (!players.get(i).isBankrupt()) {
 							winnerIndex = i;
 						}
-						
+
 					}
 					log = "  /> " + players.get(winnerIndex).getName() + " won the game. " + "\n";
 					logText.append(log);
 					balanceLabels.get(winnerIndex).setText("WINNER !!!");
 					restartGame.setVisible(true);
-					
+
 				}
 
 			}
@@ -4061,7 +4179,8 @@ public class Monopoly {
 					sellPropertyButton.setVisible(false);
 					sellPropertyButton.setEnabled(false);
 				}
-				if (!houseOrHotelBought && (getNumberOfHouses() > 0 || getNumberOfHotels() > 0)) {
+				if (!houseOrHotelBought && (getNumberOfHouses() > 0 || getNumberOfHotels() > 0)
+						&& !players.get(playerIndex).isInJail()) {
 					generateAddBuildingComboBox();
 				}
 				if (rentCalculated) {
@@ -4399,7 +4518,8 @@ public class Monopoly {
 					}
 				}
 				addHouseButton.setEnabled(false);
-				if (canAfford) {
+				if (canAfford && !players.get(playerIndex).getOwnedProperties()
+						.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem()))).isMortgaged()) {
 					if (numberOfTheSameGroup == 1) {
 						if (players.get(playerIndex).getOwnedProperties()
 								.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
@@ -4583,7 +4703,7 @@ public class Monopoly {
 			}
 		});
 
-		restartGame.addActionListener(new ActionListener(){
+		restartGame.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -4599,9 +4719,9 @@ public class Monopoly {
 					}
 				});
 				restartGame.setVisible(false);
-				
+
 			}
-			
+
 		});
 	}
 
@@ -5377,7 +5497,8 @@ public class Monopoly {
 							.getNumberOfHouses() == 0) {
 				rentValue = rentValue * 2;
 			}
-		} else if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getNumberOfHotels() == 1) {
+		} else if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard())
+				.getNumberOfHotels() == 1) {
 			rentValue = entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getRentValues()
 					.get(5);
 		} else if (entities.getEntities().get(players.get(playerIndex).getPositionOnGameBoard()).getGroup()
