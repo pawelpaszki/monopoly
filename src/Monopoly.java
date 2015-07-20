@@ -279,10 +279,18 @@ public class Monopoly {
 	private JScrollPane howToPlay;
 	private String instruction;
 	private JTextArea instructionText;
+	private JLabel buyOwnedProperty;
+	private JComboBox<String> ownedProperties;
+	private JTextField propertyOwner;
+	private JTextField ownedPropertyValue;
+	private JButton buyOwnedPropertyButton;
+	private DefaultComboBoxModel<String> ownedPropertiesModel;
+	private double valueOfOwnedProperty;
 
 	/**
 	 * Launch the application.
 	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -2031,60 +2039,57 @@ public class Monopoly {
 				+ "card, before rolling the dice\n" + "rolls doubles.\n"
 				+ "fails to roll doubles on his/her third turn in jail, in which case the\n"
 				+ "M50 charge is levied anyway (the player may not use a \"Get Out of Jail\n"
-				+ "Free\" card in this situation)\n\n" + 
-				"While in jail, a player may still collect rent, but can not buy houses/hotels \n" + 
-				"unless they roll doubles first to get out of jail\n\n" + 
-				"PROPERTIES, RENT, CONSTRUCTIONS:\n\n" + 
-				"You cannot buy more than one house at the time. Any player may buy a property \n" + 
-				"from one or others. If a player lands on property and refuses to buy it the \n" + 
-				"others may bid on the property. The player with the highest bid gets the \n" + 
-				"property. Properties are arranged in \"color groups\" of two or three \n" + 
-				"properties. Once a player owns all properties of a color group (a monopoly),\n" + 
-				"the rent is now doubled on all unimproved lots of that color group, even if\n" + 
-				"some of the properties are mortgaged to the Bank, and the player may purchase\n" + 
-				"either one to four houses or one hotel (which is equivalent to five houses) for\n" +
-				"those properties (as long as none of the properties of that color group are \n" +
-				"mortgaged to the bank), which raise the rents that must be paid when other \n" +
-				"players land on the property. The properties in a color group must be developed\n" +
-				"evenly, i.e. each house that is built must go on a property in the group with\n" +
-				"the fewest number of houses on it so far. In another way of speaking, the \n" +
-				"number of houses of any properties of a same color group must not differ by \n" + 
-				"more than one. For example, houses in a group may be distributed (2,3,2) or \n" +
-				"(0,1,1) or (4,4,3), but not (1,2,3) or (0,4,4).\n\n" + 
-				"You may have up to 1 Hotel or 4 Houses. 5 Houses are equal to 1 Hotel. \n" +
-				"House prices should be on the property cards.\n\n" + 
-				"A hotel may be built on a color group only after all properties in the group\n" +
-				"have four houses. A player purchases a hotel by paying the price of an additional\n" +
-				"house, and returning the four houses on that property to the bank in exchange \n" +
-				"for a hotel. If there are not enough houses in the bank for a player to build \n" +
-				"four houses on each property before building a hotel, the player may not skip \n" +
-				"directly to buying a hotel by paying the full price at one go.\n" + 
-				"The bank has a fixed supply of 32 houses and 12 hotels\n" + 
-				"It is not possible to buy more houses than there is available in the bank. \n" + 
-				"This could stop people buying hotels in the future!\n" + 
-				"Properties with no houses or hotels may be mortgaged for half of the property\n" +
-				"price. A property does not collect rent while mortgaged and may not be developed.\n" +
-				"To de-mortgage a property a player must pay interest of 10% in addition to the \n" + 
-				"mortgage price. Whenever a mortgaged property changes hands between players, either\n" +
-				"through a trade, sale or by bankruptcy, the new owner must immediately pay 10% \n" +
-				"interest on the mortgage and at their option may pay the principal or hold the \n" +
-				"property. If the player holds the property and later wishes to lift the mortgage \n" +
-				"they must pay the 10% interest again as well as the principal.\n" + 
-				"Sharing the ownership of any property is strictly forbidden\n" +
-				"For a street repairs card, the player must pay for every house and/or hotel \n" +
-				"they own on the board.\n\n" +
-				"RAILROAD and UTILITY RENT:\n\n" + 
-				"The rent a player owes for landing on a railroad varies with the number of \n" +
-				"railroads the owner possesses. The rent is as follows: Charge M25 if one owned\n" +
-				", M50 if two owned, M100 if three owned, M200 if all owned by the same owner.\n" +
-				"If you get a chance card and it says advance to the nearest railroad, you may \n" +
-				"either buy it if unowned or if owned by the other player you must pay double \n" +
-				"what you would normally pay.\n\n" + 
-				"For utilities, after a player lands on one to owe rent, they must roll the dice\n" +
-				"again to determine the rent amount. The rent is 10 times the amount rolled if \n" +
-				"the both are owned, or 4 times if not. One player does not have to posess both\n" +
-				"in order the rent to be 10 tmes the amount.\n"
-				;
+				+ "Free\" card in this situation)\n\n"
+				+ "While in jail, a player may still collect rent, but can not buy houses/hotels \n"
+				+ "unless they roll doubles first to get out of jail\n\n" + "PROPERTIES, RENT, CONSTRUCTIONS:\n\n"
+				+ "You cannot buy more than one house at the time. Any player may buy a property \n"
+				+ "from one or others. If a player lands on property and refuses to buy it the \n"
+				+ "others may bid on the property. The player with the highest bid gets the \n"
+				+ "property. Properties are arranged in \"color groups\" of two or three \n"
+				+ "properties. Once a player owns all properties of a color group (a monopoly),\n"
+				+ "the rent is now doubled on all unimproved lots of that color group, even if\n"
+				+ "some of the properties are mortgaged to the Bank, and the player may purchase\n"
+				+ "either one to four houses or one hotel (which is equivalent to five houses) for\n"
+				+ "those properties (as long as none of the properties of that color group are \n"
+				+ "mortgaged to the bank), which raise the rents that must be paid when other \n"
+				+ "players land on the property. The properties in a color group must be developed\n"
+				+ "evenly, i.e. each house that is built must go on a property in the group with\n"
+				+ "the fewest number of houses on it so far. In another way of speaking, the \n"
+				+ "number of houses of any properties of a same color group must not differ by \n"
+				+ "more than one. For example, houses in a group may be distributed (2,3,2) or \n"
+				+ "(0,1,1) or (4,4,3), but not (1,2,3) or (0,4,4).\n\n"
+				+ "You may have up to 1 Hotel or 4 Houses. 5 Houses are equal to 1 Hotel. \n"
+				+ "House prices should be on the property cards.\n\n"
+				+ "A hotel may be built on a color group only after all properties in the group\n"
+				+ "have four houses. A player purchases a hotel by paying the price of an additional\n"
+				+ "house, and returning the four houses on that property to the bank in exchange \n"
+				+ "for a hotel. If there are not enough houses in the bank for a player to build \n"
+				+ "four houses on each property before building a hotel, the player may not skip \n"
+				+ "directly to buying a hotel by paying the full price at one go.\n"
+				+ "The bank has a fixed supply of 32 houses and 12 hotels\n"
+				+ "It is not possible to buy more houses than there is available in the bank. \n"
+				+ "This could stop people buying hotels in the future!\n"
+				+ "Properties with no houses or hotels may be mortgaged for half of the property\n"
+				+ "price. A property does not collect rent while mortgaged and may not be developed.\n"
+				+ "To de-mortgage a property a player must pay interest of 10% in addition to the \n"
+				+ "mortgage price. Whenever a mortgaged property changes hands between players, either\n"
+				+ "through a trade, sale or by bankruptcy, the new owner must immediately pay 10% \n"
+				+ "interest on the mortgage and at their option may pay the principal or hold the \n"
+				+ "property. If the player holds the property and later wishes to lift the mortgage \n"
+				+ "they must pay the 10% interest again as well as the principal.\n"
+				+ "Sharing the ownership of any property is strictly forbidden\n"
+				+ "For a street repairs card, the player must pay for every house and/or hotel \n"
+				+ "they own on the board.\n\n" + "RAILROAD and UTILITY RENT:\n\n"
+				+ "The rent a player owes for landing on a railroad varies with the number of \n"
+				+ "railroads the owner possesses. The rent is as follows: Charge M25 if one owned\n"
+				+ ", M50 if two owned, M100 if three owned, M200 if all owned by the same owner.\n"
+				+ "If you get a chance card and it says advance to the nearest railroad, you may \n"
+				+ "either buy it if unowned or if owned by the other player you must pay double \n"
+				+ "what you would normally pay.\n\n"
+				+ "For utilities, after a player lands on one to owe rent, they must roll the dice\n"
+				+ "again to determine the rent amount. The rent is 10 times the amount rolled if \n"
+				+ "the both are owned, or 4 times if not. One player does not have to posess both\n"
+				+ "in order the rent to be 10 tmes the amount.\n";
 		instructionText = new JTextArea();
 		instructionText.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		instructionText.setFont(new Font("Arial", Font.ITALIC, 14));
@@ -2149,27 +2154,45 @@ public class Monopoly {
 		sellingPrice.setVisible(false);
 		sellPropertyButton.setVisible(false);
 
+		buyOwnedProperty = new JLabel("Buy property >>");
+		ownedProperties = new JComboBox<String>();
+		propertyOwner = new JTextField();
+		ownedPropertyValue = new JTextField();
+		buyOwnedPropertyButton = new JButton("buy");
+		buyOwnedProperty.setBounds(frameHeight + 50, (int) (frameHeight / 2 + 150), 110, 20);
+		ownedProperties.setBounds(frameHeight + 165, (int) (frameHeight / 2 + 150), 160, 20);
+		propertyOwner.setBounds(frameHeight + 330, (int) (frameHeight / 2 + 150), 100, 20);
+		ownedPropertyValue.setBounds(frameHeight + 435, (int) (frameHeight / 2 + 150), 45, 20);
+		buyOwnedPropertyButton.setBounds(frameHeight + 485, (int) (frameHeight / 2 + 150), 60, 20);
+		propertyOwner.setEditable(false);
+		ownedPropertyValue.setToolTipText("price");
+		buyOwnedProperty.setVisible(false);
+		ownedProperties.setVisible(false);
+		propertyOwner.setVisible(false);
+		ownedPropertyValue.setVisible(false);
+		buyOwnedPropertyButton.setVisible(false);
+
 		buyBuilding = new JLabel("Add house or hotel >>");
 		addBuildingTo = new JComboBox<String>();
 		addHouseButton = new JButton("+ house");
 		addHotelButton = new JButton("+ hotel");
-		buyBuilding.setBounds(frameHeight + 50, (int) (frameHeight / 2 + 150), 130, 20);
-		addBuildingTo.setBounds(frameHeight + 185, (int) (frameHeight / 2 + 150), 200, 20);
-		addHouseButton.setBounds(frameHeight + 390, (int) (frameHeight / 2 + 150), 90, 20);
-		addHotelButton.setBounds(frameHeight + 485, (int) (frameHeight / 2 + 150), 90, 20);
+		buyBuilding.setBounds(frameHeight + 50, (int) (frameHeight / 2 + 180), 130, 20);
+		addBuildingTo.setBounds(frameHeight + 185, (int) (frameHeight / 2 + 180), 200, 20);
+		addHouseButton.setBounds(frameHeight + 390, (int) (frameHeight / 2 + 180), 90, 20);
+		addHotelButton.setBounds(frameHeight + 485, (int) (frameHeight / 2 + 180), 90, 20);
 		buyBuilding.setVisible(false);
 		addBuildingTo.setVisible(false);
 		addHouseButton.setVisible(false);
 		addHotelButton.setVisible(false);
 
 		sellGetOutOfJailCard = new JLabel("Sell get out of Jail card >>");
-		sellGetOutOfJailCard.setBounds(frameHeight + 50, (int) (frameHeight / 2 + 180), 150, 20);
+		sellGetOutOfJailCard.setBounds(frameHeight + 50, (int) (frameHeight / 2 + 210), 150, 20);
 		cardBuyers = new JComboBox<String>();
-		cardBuyers.setBounds(frameHeight + 205, (int) (frameHeight / 2 + 180), 140, 20);
+		cardBuyers.setBounds(frameHeight + 205, (int) (frameHeight / 2 + 210), 140, 20);
 		cardPrice = new JTextField();
-		cardPrice.setBounds(frameHeight + 350, (int) (frameHeight / 2 + 180), 45, 20);
+		cardPrice.setBounds(frameHeight + 350, (int) (frameHeight / 2 + 210), 45, 20);
 		sellGetOutOfJailCardButton = new JButton("sell");
-		sellGetOutOfJailCardButton.setBounds(frameHeight + 400, (int) (frameHeight / 2 + 180), 60, 20);
+		sellGetOutOfJailCardButton.setBounds(frameHeight + 400, (int) (frameHeight / 2 + 210), 60, 20);
 		sellGetOutOfJailCard.setVisible(false);
 		cardBuyers.setVisible(false);
 		sellGetOutOfJailCardButton.setVisible(false);
@@ -3202,6 +3225,11 @@ public class Monopoly {
 		frame.getContentPane().add(noButton);
 		frame.getContentPane().add(deed, 2);
 		frame.getContentPane().add(restartGame);
+		frame.getContentPane().add(buyOwnedProperty);
+		frame.getContentPane().add(ownedProperties);
+		frame.getContentPane().add(propertyOwner);
+		frame.getContentPane().add(ownedPropertyValue);
+		frame.getContentPane().add(buyOwnedPropertyButton);
 
 		rollTheDice = new JButton();
 		rollTheDice.setBounds(frameHeight / 2 - 70, frameHeight / 2 + 40, 140, 40);
@@ -3855,6 +3883,7 @@ public class Monopoly {
 						cardPrice.setVisible(false);
 						sellGetOutOfJailCardButton.setVisible(false);
 					}
+					generateBuyOwnedPropertyComboBox();
 				} else {
 					finishTurn.setEnabled(false);
 					finishTurn.setVisible(false);
@@ -4032,7 +4061,7 @@ public class Monopoly {
 							.isMortgaged()
 							&& tempQty >= (entities.getEntities()
 									.get(getEntityPosition(String.valueOf(sellPropertyComboBox.getSelectedItem())))
-									.getCost() * 0.6)) {
+									.getCost() * 0.1)) {
 						sellPropertyButton.setEnabled(true);
 						valueOfUnwantedProperty = tempQty;
 					} else if (!entities.getEntities()
@@ -4126,7 +4155,6 @@ public class Monopoly {
 
 				for (int i = 0; i < players.get(playerIndex).getOwnedProperties().size(); i++) {
 					if (players.get(playerIndex).getOwnedProperties().get(i).getName().equals(entityName)) {
-						players.get(playerIndex).getOwnedProperties().get(i).setMortgaged(false);
 						players.get(playerIndex).getOwnedProperties().get(i).setOwner(players.get(ownerIndex));
 						players.get(ownerIndex).getOwnedProperties()
 								.add(players.get(playerIndex).getOwnedProperties().get(i));
@@ -4141,7 +4169,6 @@ public class Monopoly {
 				if (entities.getEntities().get(entityPosition).isMortgaged()) {
 					isMortgaged = true;
 				}
-				entities.getEntities().get(entityPosition).setMortgaged(false);
 
 				log = "  /> " + players.get(playerIndex).getName() + " has just sold "
 						+ entities.getEntities().get(entityPosition).getName() + " to "
@@ -4149,10 +4176,7 @@ public class Monopoly {
 				logText.append(log);
 				if (isMortgaged) {
 					players.get(playerIndex).setMoneyHeld(
-							valueOfUnwantedProperty - (entities.getEntities().get(entityPosition).getCost() * 0.6));
-					log = "  /> " + entities.getEntities().get(entityPosition).getName() + " is no longer mortgaged "
-							+ "\n";
-					logText.append(log);
+							valueOfUnwantedProperty - (entities.getEntities().get(entityPosition).getCost() * 0.1));
 				} else {
 					players.get(playerIndex).setMoneyHeld(valueOfUnwantedProperty);
 				}
@@ -4201,8 +4225,124 @@ public class Monopoly {
 						gamePrompt.setText("");
 					}
 				}
+				generateBuyOwnedPropertyComboBox();
 			}
 
+		});
+		
+		ownedProperties.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				propertyOwner.setText(getOwner(String.valueOf(ownedProperties.getSelectedItem())));
+				ownedPropertyValue.setText("");
+				ownedPropertyValue.setEnabled(true);
+			}
+			
+		});
+		
+		ownedPropertyValue.getDocument().addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {
+				if (ownedProperties.getSelectedItem() != null) {
+					checkValue();
+				}
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				if (ownedProperties.getSelectedItem() != null) {
+					checkValue();
+				}
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				buyOwnedPropertyButton.setEnabled(false);
+				if (ownedProperties.getSelectedItem() != null) {
+					checkValue();
+				}
+			}
+
+			public void checkValue() {
+				String value = ownedPropertyValue.getText();
+				int tempQty = 0;
+				try {
+					tempQty = Integer.parseInt(value);
+				} catch (Exception e) {
+
+				}
+
+				if (tempQty > 0 && tempQty <= players.get(playerIndex)
+						.getMoneyHeld() && !paymentDue && !rentCalculated) {
+					if (entities.getEntities()
+							.get(getEntityPosition(String.valueOf(ownedProperties.getSelectedItem())))
+							.isMortgaged()
+							&& tempQty >= (entities.getEntities()
+									.get(getEntityPosition(String.valueOf(ownedProperties.getSelectedItem())))
+									.getCost() * 0.1)) {
+						buyOwnedPropertyButton.setEnabled(true);
+						valueOfOwnedProperty = tempQty;
+					} else if (!entities.getEntities()
+							.get(getEntityPosition(String.valueOf(ownedProperties.getSelectedItem())))
+							.isMortgaged()) {
+						buyOwnedPropertyButton.setEnabled(true);
+						valueOfOwnedProperty = tempQty;
+					}
+				} else {
+					buyOwnedPropertyButton.setEnabled(false);
+				}
+			}
+		});
+
+		buyOwnedPropertyButton.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				boolean isMortgaged = false;
+				String entityName = String.valueOf(ownedProperties.getSelectedItem());
+				ownerIndex = getPlayerIndex(String.valueOf(propertyOwner.getText()));
+
+				for (int i = 0; i < players.get(ownerIndex).getOwnedProperties().size(); i++) {
+					if (players.get(ownerIndex).getOwnedProperties().get(i).getName().equals(entityName)) {
+						players.get(ownerIndex).getOwnedProperties().get(i).setOwner(players.get(playerIndex));
+						players.get(playerIndex).getOwnedProperties()
+								.add(players.get(ownerIndex).getOwnedProperties().get(i));
+						players.get(ownerIndex).getOwnedProperties().remove(i);
+						break;
+					}
+				}
+
+				int entityPosition = getEntityPosition(entityName);
+				entities.getEntities().get(entityPosition).setOwner(players.get(playerIndex));
+
+				if (entities.getEntities().get(entityPosition).isMortgaged()) {
+					isMortgaged = true;
+				}
+
+				log = "  /> " + players.get(playerIndex).getName() + " has just bought "
+						+ entities.getEntities().get(entityPosition).getName() + " from "
+						+ players.get(ownerIndex).getName() + " (for M" + valueOfOwnedProperty + ")\n";
+				logText.append(log);
+				if (isMortgaged) {
+					players.get(ownerIndex).setMoneyHeld(
+							valueOfOwnedProperty - (entities.getEntities().get(entityPosition).getCost() * 0.1));
+				} else {
+					players.get(ownerIndex).setMoneyHeld(valueOfOwnedProperty);
+				}
+				players.get(playerIndex).setMoneyHeld(-valueOfOwnedProperty);
+
+				balanceLabels.get(ownerIndex).setText("E" + players.get(ownerIndex).getMoneyHeld());
+				balanceLabels.get(playerIndex).setText("E" + players.get(playerIndex).getMoneyHeld());
+				generateMortgageComboBox();
+				if (!houseOrHotelBought && (getNumberOfHouses() > 0 || getNumberOfHotels() > 0)
+						&& !players.get(playerIndex).isInJail()) {
+					generateAddBuildingComboBox();
+				}
+				generateBuyOwnedPropertyComboBox();
+			}
+			
 		});
 
 		payLoan.addActionListener(new ActionListener() {
@@ -4425,6 +4565,13 @@ public class Monopoly {
 						gamePrompt.setText("");
 					}
 				}
+				addBuildingTo.setSelectedItem(null);
+				if (addHouseButton.isEnabled()) {
+					addHouseButton.setEnabled(false);
+				}
+				if (addHotelButton.isEnabled()) {
+					addHotelButton.setEnabled(false);
+				}
 			}
 
 		});
@@ -4478,137 +4625,150 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String entityName = String.valueOf(addBuildingTo.getSelectedItem());
-				String group = "";
-				int entityPosition = 0;
-				int numberOfTheSameGroup = 0;
-				int totalNumberOfHousesInAGroup = 0;
-				int totalNumberOfHotelsInAGroup = 0;
-				boolean canAfford = false;
+				if (addBuildingTo.getSelectedItem() != null) {
+					String entityName = String.valueOf(addBuildingTo.getSelectedItem());
+					String group = "";
+					int entityPosition = 0;
+					int numberOfTheSameGroup = 0;
+					int totalNumberOfHousesInAGroup = 0;
+					int totalNumberOfHotelsInAGroup = 0;
+					boolean canAfford = false;
 
-				for (Entity entity : entities.getEntities()) {
-					if (entity.getName().equals(entityName)) {
-						group = entity.getGroup();
-						entityPosition = entity.getPosition();
-						break;
-					}
-				}
-				for (Entity anEntity : players.get(playerIndex).getOwnedProperties()) {
-					if (anEntity.getGroup().equals(group)) {
-						numberOfTheSameGroup++;
-						totalNumberOfHousesInAGroup += anEntity.getNumberOfHouses();
-						totalNumberOfHotelsInAGroup += anEntity.getNumberOfHotels();
-					}
-				}
-				if (entityPosition < 10) {
-					if (players.get(playerIndex).getMoneyHeld() >= 50) {
-						canAfford = true;
-					}
-				} else if (entityPosition < 20) {
-					if (players.get(playerIndex).getMoneyHeld() >= 100) {
-						canAfford = true;
-					}
-				} else if (entityPosition < 30) {
-					if (players.get(playerIndex).getMoneyHeld() >= 150) {
-						canAfford = true;
-					}
-				} else {
-					if (players.get(playerIndex).getMoneyHeld() >= 200) {
-						canAfford = true;
-					}
-				}
-				addHouseButton.setEnabled(false);
-				if (canAfford && !players.get(playerIndex).getOwnedProperties()
-						.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem()))).isMortgaged()) {
-					if (numberOfTheSameGroup == 1) {
-						if (players.get(playerIndex).getOwnedProperties()
-								.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
-								.getNumberOfHouses() == 4 && getNumberOfHotels() > 0) {
-							addHotelButton.setEnabled(true);
+					for (Entity entity : entities.getEntities()) {
+						if (entity.getName().equals(entityName)) {
+							group = entity.getGroup();
+							entityPosition = entity.getPosition();
+							break;
 						}
-						if (getNumberOfHouses() > 0) {
-							addHouseButton.setEnabled(true);
+					}
+					for (Entity anEntity : players.get(playerIndex).getOwnedProperties()) {
+						if (anEntity.getGroup().equals(group)) {
+							numberOfTheSameGroup++;
+							totalNumberOfHousesInAGroup += anEntity.getNumberOfHouses();
+							totalNumberOfHotelsInAGroup += anEntity.getNumberOfHotels();
 						}
-					} else if (numberOfTheSameGroup == 2) {
-						if (totalNumberOfHousesInAGroup != 0) {
+					}
+					if (entityPosition < 10) {
+						if (players.get(playerIndex).getMoneyHeld() >= 50) {
+							canAfford = true;
+						}
+					} else if (entityPosition < 20) {
+						if (players.get(playerIndex).getMoneyHeld() >= 100) {
+							canAfford = true;
+						}
+					} else if (entityPosition < 30) {
+						if (players.get(playerIndex).getMoneyHeld() >= 150) {
+							canAfford = true;
+						}
+					} else {
+						if (players.get(playerIndex).getMoneyHeld() >= 200) {
+							canAfford = true;
+						}
+					}
+					addHouseButton.setEnabled(false);
+					if (canAfford && !players.get(playerIndex).getOwnedProperties()
+							.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+							.isMortgaged()) {
+						if (numberOfTheSameGroup == 1) {
 							if (players.get(playerIndex).getOwnedProperties()
 									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
-									.getNumberOfHouses() == 0 && getNumberOfHouses() > 0) {
-								addHouseButton.setEnabled(true);
-							} else if (players.get(playerIndex).getOwnedProperties()
-									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
-									.getNumberOfHouses() == 1 && totalNumberOfHousesInAGroup >= 2
-									&& getNumberOfHouses() > 0) {
-								addHouseButton.setEnabled(true);
-							} else if (players.get(playerIndex).getOwnedProperties()
-									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
-									.getNumberOfHouses() == 2 && totalNumberOfHousesInAGroup >= 4
-									&& getNumberOfHouses() > 0) {
-								addHouseButton.setEnabled(true);
-							} else if (players.get(playerIndex).getOwnedProperties()
-									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
-									.getNumberOfHouses() == 3 && totalNumberOfHousesInAGroup >= 6
-									&& getNumberOfHouses() > 0) {
-								addHouseButton.setEnabled(true);
-							} else if (players.get(playerIndex).getOwnedProperties()
-									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
-									.getNumberOfHouses() == 4
-									&& (totalNumberOfHousesInAGroup >= 8
-											|| (totalNumberOfHousesInAGroup >= 4 && totalNumberOfHotelsInAGroup == 1))
-									&& getNumberOfHouses() > 0) {
-								addHouseButton.setEnabled(true);
-								if (getNumberOfHotels() > 0) {
-									addHotelButton.setEnabled(true);
-								}
+									.getNumberOfHouses() == 4 && getNumberOfHotels() > 0) {
+								addHotelButton.setEnabled(true);
 							}
-						} else {
 							if (getNumberOfHouses() > 0) {
 								addHouseButton.setEnabled(true);
 							}
-						}
-					} else if (numberOfTheSameGroup == 3) {
-						if (totalNumberOfHousesInAGroup != 0) {
-							if (players.get(playerIndex).getOwnedProperties()
-									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
-									.getNumberOfHouses() == 0 && getNumberOfHouses() > 0) {
-								addHouseButton.setEnabled(true);
-							} else if (players.get(playerIndex).getOwnedProperties()
-									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
-									.getNumberOfHouses() == 1 && totalNumberOfHousesInAGroup >= 3
-									&& getNumberOfHouses() > 0) {
-								addHouseButton.setEnabled(true);
-							} else if (players.get(playerIndex).getOwnedProperties()
-									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
-									.getNumberOfHouses() == 2 && totalNumberOfHousesInAGroup >= 6
-									&& getNumberOfHouses() > 0) {
-								addHouseButton.setEnabled(true);
-							} else if (players.get(playerIndex).getOwnedProperties()
-									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
-									.getNumberOfHouses() == 3 && totalNumberOfHousesInAGroup >= 9
-									&& getNumberOfHouses() > 0) {
-								addHouseButton.setEnabled(true);
-							} else if (players.get(playerIndex).getOwnedProperties()
-									.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
-									.getNumberOfHouses() == 4
-									&& (totalNumberOfHousesInAGroup >= 12
-											|| (totalNumberOfHousesInAGroup >= 8 && totalNumberOfHotelsInAGroup == 1)
-											|| (totalNumberOfHousesInAGroup >= 4 && totalNumberOfHotelsInAGroup == 2))
-									&& getNumberOfHouses() > 0) {
-								addHouseButton.setEnabled(true);
-								if (getNumberOfHotels() > 0) {
-									addHotelButton.setEnabled(true);
+						} else if (numberOfTheSameGroup == 2) {
+							if (totalNumberOfHousesInAGroup != 0) {
+								if (players.get(playerIndex).getOwnedProperties()
+										.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+										.getNumberOfHouses() == 0 && getNumberOfHouses() > 0) {
+									addHouseButton.setEnabled(true);
+								} else
+									if (players.get(playerIndex).getOwnedProperties()
+											.get(getPlayersEntityPosition(
+													String.valueOf(addBuildingTo.getSelectedItem())))
+											.getNumberOfHouses() == 1 && totalNumberOfHousesInAGroup >= 2
+											&& getNumberOfHouses() > 0) {
+									addHouseButton.setEnabled(true);
+								} else if (players.get(playerIndex).getOwnedProperties()
+										.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+										.getNumberOfHouses() == 2 && totalNumberOfHousesInAGroup >= 4
+										&& getNumberOfHouses() > 0) {
+									addHouseButton.setEnabled(true);
+								} else
+									if (players.get(playerIndex).getOwnedProperties()
+											.get(getPlayersEntityPosition(
+													String.valueOf(addBuildingTo.getSelectedItem())))
+											.getNumberOfHouses() == 3 && totalNumberOfHousesInAGroup >= 6
+											&& getNumberOfHouses() > 0) {
+									addHouseButton.setEnabled(true);
+								} else if (players.get(playerIndex).getOwnedProperties()
+										.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+										.getNumberOfHouses() == 4
+										&& (totalNumberOfHousesInAGroup >= 8 || (totalNumberOfHousesInAGroup >= 4
+												&& totalNumberOfHotelsInAGroup == 1))
+										&& getNumberOfHouses() > 0) {
+									addHouseButton.setEnabled(true);
+									if (getNumberOfHotels() > 0) {
+										addHotelButton.setEnabled(true);
+									}
+								}
+							} else {
+								if (getNumberOfHouses() > 0) {
+									addHouseButton.setEnabled(true);
 								}
 							}
-						} else {
-							if (getNumberOfHouses() > 0) {
-								addHouseButton.setEnabled(true);
+						} else if (numberOfTheSameGroup == 3) {
+							if (totalNumberOfHousesInAGroup != 0) {
+								if (players.get(playerIndex).getOwnedProperties()
+										.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+										.getNumberOfHouses() == 0 && getNumberOfHouses() > 0) {
+									addHouseButton.setEnabled(true);
+								} else
+									if (players.get(playerIndex).getOwnedProperties()
+											.get(getPlayersEntityPosition(
+													String.valueOf(addBuildingTo.getSelectedItem())))
+											.getNumberOfHouses() == 1 && totalNumberOfHousesInAGroup >= 3
+											&& getNumberOfHouses() > 0) {
+									addHouseButton.setEnabled(true);
+								} else if (players.get(playerIndex).getOwnedProperties()
+										.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+										.getNumberOfHouses() == 2 && totalNumberOfHousesInAGroup >= 6
+										&& getNumberOfHouses() > 0) {
+									addHouseButton.setEnabled(true);
+								} else
+									if (players.get(playerIndex).getOwnedProperties()
+											.get(getPlayersEntityPosition(
+													String.valueOf(addBuildingTo.getSelectedItem())))
+											.getNumberOfHouses() == 3 && totalNumberOfHousesInAGroup >= 9
+											&& getNumberOfHouses() > 0) {
+									addHouseButton.setEnabled(true);
+								} else if (players.get(playerIndex).getOwnedProperties()
+										.get(getPlayersEntityPosition(String.valueOf(addBuildingTo.getSelectedItem())))
+										.getNumberOfHouses() == 4
+										&& (totalNumberOfHousesInAGroup >= 12
+												|| (totalNumberOfHousesInAGroup >= 8
+														&& totalNumberOfHotelsInAGroup == 1)
+												|| (totalNumberOfHousesInAGroup >= 4
+														&& totalNumberOfHotelsInAGroup == 2))
+										&& getNumberOfHouses() > 0) {
+									addHouseButton.setEnabled(true);
+									if (getNumberOfHotels() > 0) {
+										addHotelButton.setEnabled(true);
+									}
+								}
+							} else {
+								if (getNumberOfHouses() > 0) {
+									addHouseButton.setEnabled(true);
+								}
 							}
 						}
 					}
-				}
 
-				System.out.println("number of total houses in a group: " + totalNumberOfHousesInAGroup);
-				System.out.println("number of the same group: " + numberOfTheSameGroup);
+					System.out.println("number of total houses in a group: " + totalNumberOfHousesInAGroup);
+					System.out.println("number of the same group: " + numberOfTheSameGroup);
+				}
 			}
 
 		});
@@ -4733,6 +4893,37 @@ public class Monopoly {
 			}
 		}
 		return (playersCounter >= 2);
+	}
+
+	private void generateBuyOwnedPropertyComboBox() {
+		int counter = 0;
+		ownedPropertiesModel = new DefaultComboBoxModel<String>();
+		for (Entity entity : entities.getEntities()) {
+			if (entity.getOwner() != null && !entity.getOwner().getName().equals(players.get(playerIndex).getName())) {
+				ownedPropertiesModel.addElement(entity.getName());
+				counter++;
+			}
+		}
+		if (counter > 0) {
+			ownedProperties.setModel(ownedPropertiesModel);
+			ownedProperties.setSelectedItem(null);
+			propertyOwner.setText("");
+			ownedPropertyValue.setText("");
+			buyOwnedProperty.setVisible(true);
+			ownedProperties.setVisible(true);
+			propertyOwner.setVisible(true);
+			ownedPropertyValue.setVisible(true);
+			ownedPropertyValue.setEnabled(false);
+			buyOwnedPropertyButton.setVisible(true);
+			buyOwnedPropertyButton.setEnabled(false);
+		} else {
+			buyOwnedProperty.setVisible(false);
+			ownedProperties.setVisible(false);
+			propertyOwner.setVisible(false);
+			ownedPropertyValue.setVisible(false);
+			buyOwnedPropertyButton.setVisible(false);
+		}
+		
 	}
 
 	private void generateMortgageComboBox() {
@@ -5620,6 +5811,15 @@ public class Monopoly {
 		return -1;
 	}
 
+	private String getOwner(String entityName) {
+		for (Entity entity: entities.getEntities()) {
+			if (entity.getName().equals(entityName)) {
+				return entity.getOwner().getName();
+			}
+		}
+		return null;
+	}
+	
 	private int getPlayersEntityPosition(String name) {
 		for (int i = 0; i < players.get(playerIndex).getOwnedProperties().size(); i++) {
 			if (players.get(playerIndex).getOwnedProperties().get(i).getName().equals(name)) {
