@@ -3898,6 +3898,7 @@ public class Monopoly {
 					finishTurn.setEnabled(true);
 					rollTheDice.setEnabled(false);
 				}
+				generateBuyOwnedPropertyComboBox();
 			}
 
 		});
@@ -4369,6 +4370,11 @@ public class Monopoly {
 				cardBuyers.setVisible(false);
 				cardPrice.setVisible(false);
 				sellGetOutOfJailCardButton.setVisible(false);
+				buyOwnedProperty.setVisible(false);
+				ownedProperties.setVisible(false);
+				propertyOwner.setVisible(false);
+				ownedPropertyValue.setVisible(false);
+				buyOwnedPropertyButton.setVisible(false);
 				hideAddBuildingComponents();
 				if (paymentDue) {
 					System.out.println("hotels: " + getNumberOfHotels());
@@ -4397,6 +4403,15 @@ public class Monopoly {
 						setNumberOfHouses(numberOfHousesToBeRestored);
 						System.out.println("hotels: " + getNumberOfHotels());
 						System.out.println("houses: " + getNumberOfHouses());
+						while (players.get(playerIndex).getNumberOfGetOutOfJailCards() != 0) {
+							if (players.get(playerIndex).getOutOfJailCards().get(0) instanceof ChanceCard) {
+								players.get(playerIndex).getOutOfJailCards().remove(0);
+								deck.returnOutOfJailCardChance();
+							} else {
+								players.get(playerIndex).getOutOfJailCards().remove(0);
+								deck.returnOutOfJailCardCommunity();
+							}
+						}
 					}
 				} else if (rentCalculated) {
 					rentCalculated = false;
@@ -4428,6 +4443,9 @@ public class Monopoly {
 					while (players.get(playerIndex).getNumberOfGetOutOfJailCards() != 0) {
 						players.get(ownerIndex).getOutOfJailCards()
 								.add(players.get(playerIndex).getOutOfJailCards().remove(0));
+						getOutOfJailLabels.get(ownerIndex).setVisible(true);
+						getOutOfJailLabels.get(ownerIndex).setText(
+								"get out of jail cards : " + players.get(ownerIndex).getNumberOfGetOutOfJailCards());
 					}
 					log = "  /> " + players.get(ownerIndex).getName() + " acquired all "
 							+ players.get(playerIndex).getName() + "'s properties" + "\n";
@@ -4437,18 +4455,6 @@ public class Monopoly {
 				players.get(playerIndex).setBankrupt(true);
 				balanceLabels.get(playerIndex).setText("retired from game");
 				getOutOfJailLabels.get(playerIndex).setVisible(false);
-				while (players.get(playerIndex).getNumberOfGetOutOfJailCards() != 0) {
-					if (players.get(playerIndex).getOutOfJailCards().get(0) instanceof ChanceCard) {
-						players.get(playerIndex).getOutOfJailCards().remove(0);
-						deck.returnOutOfJailCardChance();
-					} else {
-						players.get(playerIndex).getOutOfJailCards().remove(0);
-						deck.returnOutOfJailCardCommunity();
-					}
-					log = "  /> " + players.get(ownerIndex).getName() + " received all "
-							+ players.get(playerIndex).getName() + "'s get out of jail cards" + "\n";
-					logText.append(log);
-				}
 				finishTurn.setEnabled(true);
 				gamePrompt.setText("");
 				playerIndicators.get(playerIndex).setVisible(false);

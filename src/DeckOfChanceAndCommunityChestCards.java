@@ -61,11 +61,11 @@ public class DeckOfChanceAndCommunityChestCards {
 		int position = random.nextInt(chanceCards.size());
 		int id = chanceCards.get(position).getId();
 		if (id == 6) {
-			getOutOfJailChance = chanceCards.get(position);
-		} else {
 			setGetOutOfJailChance(chanceCards.get(position));
+		} else {
+			dealtChanceCards.add(chanceCards.get(position));
 		}
-		dealtChanceCards.add(chanceCards.get(position));
+		
 		chanceCards.remove(position);
 		return id;
 	}
@@ -78,11 +78,10 @@ public class DeckOfChanceAndCommunityChestCards {
 		int position = random.nextInt(communityCards.size());
 		int id = communityCards.get(position).getId();
 		if (id == 3) {
-			getOutOfJailCommunity = communityCards.get(position);
-		} else {
 			setGetOutOfJailCommunity(communityCards.get(position));
+		} else {
+			dealtCommunityCards.add(communityCards.get(position));
 		}
-		dealtCommunityCards.add(communityCards.get(position));
 		communityCards.remove(position);
 		return id;
 	}
