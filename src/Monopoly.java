@@ -248,8 +248,6 @@ public class Monopoly {
 	private boolean gotDouble;
 	private boolean chanceCardPicked;
 	private boolean sentByChanceCard;
-	private JLabel mortgagedLandscape;
-	private JLabel mortgagedPortrait;
 	private boolean communityCardPicked;
 	private int numberOfHotels;
 	private int numberOfHouses;
@@ -1508,20 +1506,6 @@ public class Monopoly {
 
 		bottomRightLabel = new JLabel();
 		bottomLeftLabel = new JLabel();
-		mortgagedLandscape = new JLabel();
-		mortgagedPortrait = new JLabel();
-		mortgagedPortrait.setVisible(true);
-		mortgagedLandscape.setVisible(true);
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/mortgagedLandscaped.png"));
-			mortgagedLandscape.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/mortgagedPortraited.png"));
-			mortgagedPortrait.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
 		try {
 			Image img = ImageIO.read(getClass().getResource("resources/start.jpg"));
 			bottomRightLabel.setIcon(new ImageIcon(img));
@@ -1541,51 +1525,28 @@ public class Monopoly {
 		bottom7Label = new JLabel();
 		bottom8Label = new JLabel();
 		bottom9Label = new JLabel();
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/bottom1.jpg"));
-			bottom1Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/bottom2.jpg"));
-			bottom2Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
+
+		setBottom1Clean();
+		setBottom2Clean();
 		try {
 			Image img = ImageIO.read(getClass().getResource("resources/bottom3.jpg"));
 			bottom3Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/bottom4.jpg"));
-			bottom4Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/bottom5.jpg"));
-			bottom5Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
+		setBottom4Clean();
+		setBottom5Clean();
 		try {
 			Image img = ImageIO.read(getClass().getResource("resources/bottom6.jpg"));
 			bottom6Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/bottom7.jpg"));
-			bottom7Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
+		setBottom7Clean();
 		try {
 			Image img = ImageIO.read(getClass().getResource("resources/bottom8.jpg"));
 			bottom8Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/bottom9.jpg"));
-			bottom9Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
+		setBottom9Clean();
 		bottom_1.setLayout(flow);
 		bottom_2.setLayout(flow);
 		bottom_3.setLayout(flow);
@@ -1620,51 +1581,19 @@ public class Monopoly {
 		left8Label = new JLabel();
 		left9Label = new JLabel();
 
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/left1.jpg"));
-			left1Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/left2.jpg"));
-			left2Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
+		setLeft1Clean();
+		setLeft2Clean();
 		try {
 			Image img = ImageIO.read(getClass().getResource("resources/left3.jpg"));
 			left3Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/left4.jpg"));
-			left4Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/left5.jpg"));
-			left5Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/left6.jpg"));
-			left6Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/left7.jpg"));
-			left7Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/left8.jpg"));
-			left8Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/left9.jpg"));
-			left9Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
+		setLeft4Clean();
+		setLeft5Clean();
+		setLeft6Clean();
+		setLeft7Clean();
+		setLeft8Clean();
+		setLeft9Clean();
 
 		left_1.setLayout(flow);
 		left_2.setLayout(flow);
@@ -1717,49 +1646,10 @@ public class Monopoly {
 		top_8.add(top8Label);
 		top_9.add(top9Label);
 
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/top1.jpg"));
-			top1Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
+		setTop1Clean();
 		try {
 			Image img = ImageIO.read(getClass().getResource("resources/top2.jpg"));
 			top2Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/top3.jpg"));
-			top3Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/top4.jpg"));
-			top4Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/top5.jpg"));
-			top5Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/top6.jpg"));
-			top6Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/top7.jpg"));
-			top7Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/top8.jpg"));
-			top8Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/top9.jpg"));
-			top9Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
 		try {
@@ -1767,7 +1657,13 @@ public class Monopoly {
 			topLeftLabel.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
-
+		setTop3Clean();
+		setTop4Clean();
+		setTop5Clean();
+		setTop6Clean();
+		setTop7Clean();
+		setTop8Clean();
+		setTop9Clean();
 		topRightLabel = new JLabel();
 		right1Label = new JLabel();
 		right2Label = new JLabel();
@@ -1800,51 +1696,27 @@ public class Monopoly {
 		right_8.add(right8Label);
 		right_9.add(right9Label);
 
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/right1.jpg"));
-			right1Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/right2.jpg"));
-			right2Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
+		setRight1Clean();
+		setRight2Clean();
 		try {
 			Image img = ImageIO.read(getClass().getResource("resources/right3.jpg"));
 			right3Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/right4.jpg"));
-			right4Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/right5.jpg"));
-			right5Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
+		setRight4Clean();
+		setRight5Clean();
 		try {
 			Image img = ImageIO.read(getClass().getResource("resources/right6.jpg"));
 			right6Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/right7.jpg"));
-			right7Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
+		setRight7Clean();
 		try {
 			Image img = ImageIO.read(getClass().getResource("resources/right8.jpg"));
 			right8Label.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/right9.jpg"));
-			right9Label.setIcon(new ImageIcon(img));
-		} catch (IOException ex) {
-		}
+		setRight9Clean();
 		try {
 			Image img = ImageIO.read(getClass().getResource("resources/topRight.jpg"));
 			topRightLabel.setIcon(new ImageIcon(img));
@@ -4294,10 +4166,13 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				int position = 0;
+				boolean mortgaged = false;
 				String comboSelection = String.valueOf(mortgageComboBox.getSelectedItem());
 				for (Entity anEntity : entities.getEntities()) {
 					if (anEntity.getName().equals(comboSelection)) {
 						anEntity.setMortgaged(false);
+						position = anEntity.getPosition();
 					}
 				}
 				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
@@ -4313,6 +4188,7 @@ public class Monopoly {
 						takeLoan.setEnabled(false);
 					}
 				}
+				applyOrRemoveMortgagedLabel(position, mortgaged);
 			}
 
 		});
@@ -4466,11 +4342,13 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				int position = 0;
+				boolean mortgaged = true;
 				String comboSelection = String.valueOf(mortgageComboBox.getSelectedItem());
 				for (Entity anEntity : entities.getEntities()) {
 					if (anEntity.getName().equals(comboSelection)) {
 						anEntity.setMortgaged(true);
+						position = anEntity.getPosition();
 					}
 				}
 				for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
@@ -4522,6 +4400,7 @@ public class Monopoly {
 				if (addHotelButton.isEnabled()) {
 					addHotelButton.setEnabled(false);
 				}
+				applyOrRemoveMortgagedLabel(position, mortgaged);
 			}
 
 		});
@@ -4833,6 +4712,655 @@ public class Monopoly {
 			}
 
 		});
+	}
+
+	private void applyOrRemoveMortgagedLabel(int position, boolean mortgaged) {
+		switch (position) {
+		case 1:
+			if (mortgaged) {
+				setBottom9Mortgaged();
+			} else {
+				setBottom9Clean();
+			}
+			break;
+		case 3:
+			if (mortgaged) {
+				setBottom7Mortgaged();
+			} else {
+				setBottom7Clean();
+			}
+			break;
+		case 5:
+			if (mortgaged) {
+				setBottom5Mortgaged();
+			} else {
+				setBottom5Clean();
+			}
+			break;
+		case 6:
+			if (mortgaged) {
+				setBottom4Mortgaged();
+			} else {
+				setBottom4Clean();
+			}
+			break;
+		case 8:
+			if (mortgaged) {
+				setBottom2Mortgaged();
+			} else {
+				setBottom2Clean();
+			}
+			break;
+		case 9:
+			if (mortgaged) {
+				setBottom1Mortgaged();
+			} else {
+				setBottom1Clean();
+			}
+			break;
+		case 11:
+			if (mortgaged) {
+				setLeft9Mortgaged();
+			} else {
+				setLeft9Clean();
+			}
+			break;
+		case 12:
+			if (mortgaged) {
+				setLeft8Mortgaged();
+			} else {
+				setLeft8Clean();
+			}
+			break;
+		case 13:
+			if (mortgaged) {
+				setLeft7Mortgaged();
+			} else {
+				setLeft7Clean();
+			}
+			break;
+		case 14:
+			if (mortgaged) {
+				setLeft6Mortgaged();
+			} else {
+				setLeft6Clean();
+			}
+			break;
+		case 15:
+			if (mortgaged) {
+				setLeft5Mortgaged();
+			} else {
+				setLeft5Clean();
+			}
+			break;
+		case 16:
+			if (mortgaged) {
+				setLeft4Mortgaged();
+			} else {
+				setLeft4Clean();
+			}
+			break;
+		case 18:
+			if (mortgaged) {
+				setLeft2Mortgaged();
+			} else {
+				setLeft2Clean();
+			}
+			break;
+		case 19:
+			if (mortgaged) {
+				setLeft1Mortgaged();
+			} else {
+				setLeft1Clean();
+			}
+			break;
+		case 21:
+			if (mortgaged) {
+				setTop1Mortgaged();
+			} else {
+				setTop1Clean();
+			}
+			break;
+		case 23:
+			if (mortgaged) {
+				setTop3Mortgaged();
+			} else {
+				setTop3Clean();
+			}
+			break;
+		case 24:
+			if (mortgaged) {
+				setTop4Mortgaged();
+			} else {
+				setTop4Clean();
+			}
+			break;
+		case 25:
+			if (mortgaged) {
+				setTop5Mortgaged();
+			} else {
+				setTop5Clean();
+			}
+			break;
+		case 26:
+			if (mortgaged) {
+				setTop6Mortgaged();
+			} else {
+				setTop6Clean();
+			}
+			break;
+		case 27:
+			if (mortgaged) {
+				setTop7Mortgaged();
+			} else {
+				setTop7Clean();
+			}
+			break;
+		case 28:
+			if (mortgaged) {
+				setTop8Mortgaged();
+			} else {
+				setTop8Clean();
+			}
+			break;
+		case 29:
+			if (mortgaged) {
+				setTop9Mortgaged();
+			} else {
+				setTop9Clean();
+			}
+			break;
+		case 31:
+			if (mortgaged) {
+				setRight1Mortgaged();
+			} else {
+				setRight1Clean();
+			}
+			break;
+		case 32:
+			if (mortgaged) {
+				setRight2Mortgaged();
+			} else {
+				setRight2Clean();
+			}
+			break;
+		case 34:
+			if (mortgaged) {
+				setRight4Mortgaged();
+			} else {
+				setRight4Clean();
+			}
+			break;
+		case 35:
+			if (mortgaged) {
+				setRight5Mortgaged();
+			} else {
+				setRight5Clean();
+			}
+			break;
+		case 37:
+			if (mortgaged) {
+				setRight7Mortgaged();
+			} else {
+				setRight7Clean();
+			}
+			break;
+		case 39:
+			if (mortgaged) {
+				setRight9Mortgaged();
+			} else {
+				setRight9Clean();
+			}
+			break;
+		}
+	}
+
+	private void setBottom9Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/bottom9.jpg"));
+			bottom9Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setBottom9Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/bottom9Mortgaged.jpg"));
+			bottom9Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setBottom7Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/bottom7.jpg"));
+			bottom7Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setBottom7Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/bottom7Mortgaged.jpg"));
+			bottom7Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setBottom5Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/bottom5.jpg"));
+			bottom5Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setBottom5Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/bottom5Mortgaged.jpg"));
+			bottom5Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setBottom4Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/bottom4.jpg"));
+			bottom4Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setBottom4Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/bottom4Mortgaged.jpg"));
+			bottom4Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setBottom2Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/bottom2.jpg"));
+			bottom2Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setBottom2Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/bottom2Mortgaged.jpg"));
+			bottom2Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setBottom1Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/bottom1.jpg"));
+			bottom1Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setBottom1Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/bottom1Mortgaged.jpg"));
+			bottom1Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setLeft9Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/left9.jpg"));
+			left9Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setLeft9Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/left9Mortgaged.jpg"));
+			left9Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setLeft8Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/left8.jpg"));
+			left8Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setLeft8Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/left8Mortgaged.jpg"));
+			left8Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setLeft7Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/left7.jpg"));
+			left7Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setLeft7Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/left7Mortgaged.jpg"));
+			left7Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setLeft6Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/left6.jpg"));
+			left6Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setLeft6Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/left6Mortgaged.jpg"));
+			left6Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setLeft5Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/left5.jpg"));
+			left5Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setLeft5Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/left5Mortgaged.jpg"));
+			left5Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setLeft4Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/left4.jpg"));
+			left4Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setLeft4Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/left4Mortgaged.jpg"));
+			left4Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setLeft2Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/left2.jpg"));
+			left2Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setLeft2Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/left2Mortgaged.jpg"));
+			left2Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setLeft1Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/left1.jpg"));
+			left1Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setLeft1Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/left1Mortgaged.jpg"));
+			left1Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setTop1Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/top1.jpg"));
+			top1Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setTop1Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/top1Mortgaged.jpg"));
+			top1Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setTop3Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/top3.jpg"));
+			top3Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setTop3Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/top3Mortgaged.jpg"));
+			top3Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setTop4Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/top4.jpg"));
+			top4Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setTop4Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/top4Mortgaged.jpg"));
+			top4Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setTop5Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/top5.jpg"));
+			top5Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setTop5Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/top5Mortgaged.jpg"));
+			top5Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setTop6Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/top6.jpg"));
+			top6Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setTop6Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/top6Mortgaged.jpg"));
+			top6Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setTop7Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/top7.jpg"));
+			top7Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setTop7Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/top7Mortgaged.jpg"));
+			top7Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setTop8Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/top8.jpg"));
+			top8Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setTop8Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/top8Mortgaged.jpg"));
+			top8Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setTop9Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/top9.jpg"));
+			top9Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setTop9Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/top9Mortgaged.jpg"));
+			top9Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setRight1Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/right1.jpg"));
+			right1Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setRight1Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/right1Mortgaged.jpg"));
+			right1Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setRight2Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/right2.jpg"));
+			right2Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setRight2Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/right2Mortgaged.jpg"));
+			right2Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setRight4Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/right4.jpg"));
+			right4Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setRight4Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/right4Mortgaged.jpg"));
+			right4Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setRight5Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/right5.jpg"));
+			right5Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setRight5Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/right5Mortgaged.jpg"));
+			right5Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setRight7Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/right7.jpg"));
+			right7Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setRight7Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/right7Mortgaged.jpg"));
+			right7Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setRight9Clean() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/right9.jpg"));
+			right9Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+	}
+
+	private void setRight9Mortgaged() {
+		try {
+			Image img = ImageIO.read(getClass().getResource("resources/right9Mortgaged.jpg"));
+			right9Label.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
 	}
 
 	private boolean gameOn() {
