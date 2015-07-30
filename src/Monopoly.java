@@ -4216,6 +4216,8 @@ public class Monopoly {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				takeLoan.setEnabled(false);
+				payLoan.setEnabled(false);
 				String comboSelection = String.valueOf(mortgageComboBox
 						.getSelectedItem());
 				for (Entity entity : players.get(playerIndex)
