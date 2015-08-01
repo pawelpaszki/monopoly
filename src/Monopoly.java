@@ -365,17 +365,18 @@ public class Monopoly {
 		frameHeight = frame.getHeight() - 40;
 		frameWidth = frame.getWidth();
 		showInstruction = new JButton();
-		showInstruction.setBounds(frameWidth - 45,10,40,40);
+		showInstruction.setBounds(frameWidth - 45, 10, 40, 40);
 		try {
 			Image img = ImageIO.read(getClass().getResource(
 					"resources/instruction.png"));
 			showInstruction.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
-		//showInstruction.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-		//showInstruction.setBorderPainted(false);
-		//showInstruction.setContentAreaFilled(false);
-		showInstruction.addActionListener(new ActionListener(){
+		// showInstruction.setBorder(BorderFactory.createEmptyBorder(0, 0, 0,
+		// 0));
+		// showInstruction.setBorderPainted(false);
+		// showInstruction.setContentAreaFilled(false);
+		showInstruction.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				howToPlay.setVisible(true);
@@ -384,7 +385,7 @@ public class Monopoly {
 			}
 		});
 		hideInstruction = new JButton();
-		hideInstruction.setBounds(frameWidth - 65,10,40,40);
+		hideInstruction.setBounds(frameWidth - 65, 10, 40, 40);
 		try {
 			Image img = ImageIO.read(getClass().getResource(
 					"resources/hideInstruction.png"));
@@ -392,7 +393,7 @@ public class Monopoly {
 		} catch (IOException ex) {
 		}
 		hideInstruction.setVisible(false);
-		hideInstruction.addActionListener(new ActionListener(){
+		hideInstruction.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				howToPlay.setVisible(false);
@@ -2049,8 +2050,9 @@ public class Monopoly {
 			instruction.setIcon(new ImageIcon(img));
 		} catch (IOException ex) {
 		}
-		instruction.setSize(1366,5427);
-		howToPlay = new JScrollPane(instruction);//new JScrollPane(instructionText);
+		instruction.setSize(1366, 5427);
+		howToPlay = new JScrollPane(instruction);// new
+													// JScrollPane(instructionText);
 		howToPlay.setSize(screenSize);
 		howToPlay
 				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -6289,7 +6291,16 @@ public class Monopoly {
 				position = 9;
 			}
 			players.get(playerIndex).setPositionOnGameBoard(position);
-			sentByChanceCard = true;
+			if (entities.getEntities()
+					.get(players.get(playerIndex).getPositionOnGameBoard())
+					.getOwner() != null
+					&& entities
+							.getEntities()
+							.get(players.get(playerIndex)
+									.getPositionOnGameBoard()).getOwner()
+							.getName() != players.get(playerIndex).getName()) {
+				sentByChanceCard = true;
+			}
 			adjustPlayerPosition();
 			break;
 		case 4:
