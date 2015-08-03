@@ -2,11 +2,24 @@
 
 import java.util.ArrayList;
 
+/**
+ * @author Pawel Paszki
+ * this class is used to deal with collection of Entities
+ * It has following fields:
+ * entities collection
+ * rentValues collection to initialise entities
+ * noRent ArrayList to be used in initialising entities, which cannot
+ * be purchased
+ */
 public class Entities {
 
 	private ArrayList <Entity> entities;
 	private ArrayList <Double> rentValues;
 	private ArrayList <Double> noRent;
+	
+	/**
+	 * Constructor of Entities class, which creates all entities used in the game 
+	 */
 	public Entities() {
 		entities = new ArrayList<Entity>();
 		noRent = new ArrayList<Double>();
@@ -172,6 +185,11 @@ public class Entities {
 		rentValues.add(2000.0);
 		entities.add(new Entity("Boardwalk", "blue", 400, rentValues, 39, true, 21));
 	}
+	
+	/**
+	 * entities getter
+	 * @return ArrayList of the entities
+	 */
 	public ArrayList<Entity> getEntities() {
 		return entities;
 	}
