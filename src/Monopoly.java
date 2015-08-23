@@ -33,6 +33,15 @@ import javax.swing.border.Border;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+/**
+ * @author Pawel Paszki
+ * This class is the main class of the application.
+ * The board is generated and all buttons are controlled by 
+ * this class. The game is designed for resolution 1366 x 768 and will not
+ * run on any other screen resolution (when attempted to do so screen with
+ * appropriate info will be displayed. In the right top corner of the main
+ * game window is a button which after clicked displays game instruction. 
+ */
 public class Monopoly {
 
 	private DeckOfChanceAndCommunityChestCards deck;
@@ -298,7 +307,10 @@ public class Monopoly {
 	}
 
 	/**
-	 * Create the application.
+	 * Create the main frame. All fields required to start the game without 
+	 * crash are initialised in the constructor. When screen resolution is 
+	 * 1366 x 768 application starts, otherwise wrong resolution info is 
+	 * displayed
 	 */
 	public Monopoly() {
 		double width = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
@@ -325,6 +337,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * this method is run, if screen resolution is other than 1366 x 768
+	 */
 	private void showRequiredResolutionWindow() {
 		frame = new JFrame("info");
 		frame.setForeground(new Color(173, 216, 230));
@@ -344,7 +359,8 @@ public class Monopoly {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialise the contents of the frame. All needed panels are created before
+	 * start of the actual game 
 	 */
 	private void initialize() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -3499,6 +3515,10 @@ public class Monopoly {
 
 	}
 
+	/**
+	 * after players names are gathered the actual game starts. all action
+	 * for the game control buttons are here. 
+	 */
 	private void startNewGame() {
 		startGame.setVisible(false);
 		gameLog.setVisible(true);
@@ -4213,7 +4233,6 @@ public class Monopoly {
 
 		});
 
-		// no need to simplify
 		mortgageComboBox.addActionListener(new ActionListener() {
 
 			@Override
@@ -4236,13 +4255,11 @@ public class Monopoly {
 						takeLoan.setEnabled(true);
 					}
 				}
-				// buyer.setSelectedItem(null);
 				sellPropertyComboBox.setSelectedItem(null);
 			}
 
 		});
 
-		// no need to simplify
 		sellPropertyComboBox.addActionListener(new ActionListener() {
 
 			@Override
@@ -4277,7 +4294,6 @@ public class Monopoly {
 
 		});
 
-		// no need to simplify
 		buyer.addActionListener(new ActionListener() {
 
 			@Override
@@ -4288,7 +4304,6 @@ public class Monopoly {
 
 		});
 
-		// no need to simplify
 		sellingPrice.getDocument().addDocumentListener(new DocumentListener() {
 
 			@Override
@@ -5380,6 +5395,12 @@ public class Monopoly {
 		});
 	}
 
+	/**
+	 * 
+	 * @param position is a position of the deed to be dealt with
+	 * @param mortgaged specifies whether the deed label needs to 
+	 * be "mortgaged" or "clean"
+	 */
 	private void applyOrRemoveMortgagedLabel(int position, boolean mortgaged) {
 		switch (position) {
 		case 1:
@@ -5581,6 +5602,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setBottom9Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5590,6 +5614,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setBottom9Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5599,6 +5626,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setBottom7Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5608,6 +5638,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setBottom7Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5617,6 +5650,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setBottom5Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5626,6 +5662,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setBottom5Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5635,6 +5674,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setBottom4Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5644,6 +5686,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setBottom4Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5653,6 +5698,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setBottom2Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5662,6 +5710,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setBottom2Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5671,6 +5722,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setBottom1Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5680,6 +5734,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setBottom1Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5689,6 +5746,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setLeft9Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5698,6 +5758,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setLeft9Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5707,6 +5770,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setLeft8Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5716,6 +5782,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setLeft8Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5725,6 +5794,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setLeft7Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5734,6 +5806,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setLeft7Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5743,6 +5818,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setLeft6Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5752,6 +5830,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setLeft6Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5761,6 +5842,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setLeft5Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5770,6 +5854,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setLeft5Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5779,6 +5866,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setLeft4Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5788,6 +5878,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setLeft4Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5797,6 +5890,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setLeft2Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5806,6 +5902,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setLeft2Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5815,6 +5914,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setLeft1Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5824,6 +5926,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setLeft1Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5833,6 +5938,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setTop1Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5842,6 +5950,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setTop1Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5851,6 +5962,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setTop3Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5860,6 +5974,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setTop3Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5869,6 +5986,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setTop4Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5878,6 +5998,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setTop4Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5887,6 +6010,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setTop5Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5896,6 +6022,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setTop5Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5905,6 +6034,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setTop6Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5914,6 +6046,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setTop6Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5923,6 +6058,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setTop7Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5932,6 +6070,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setTop7Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5941,6 +6082,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setTop8Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5950,6 +6094,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setTop8Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5959,6 +6106,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setTop9Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5968,6 +6118,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setTop9Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5977,6 +6130,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setRight1Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5986,6 +6142,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setRight1Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -5995,6 +6154,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setRight2Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -6004,6 +6166,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setRight2Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -6013,6 +6178,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setRight4Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -6022,6 +6190,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setRight4Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -6031,6 +6202,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setRight5Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -6040,6 +6214,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setRight5Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -6049,6 +6226,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setRight7Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -6058,6 +6238,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setRight7Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -6067,6 +6250,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to clean
+	 */
 	private void setRight9Clean() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -6076,6 +6262,9 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sets specified deed label to mortgaged
+	 */
 	private void setRight9Mortgaged() {
 		try {
 			Image img = ImageIO.read(getClass().getResource(
@@ -6085,6 +6274,11 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * 
+	 * @return true if number of players, which did not go bankrupt is greater
+	 * than or equal to 2, false otherwise
+	 */
 	private boolean gameOn() {
 		int playersCounter = 0;
 		for (Player player : players) {
@@ -6095,6 +6289,10 @@ public class Monopoly {
 		return (playersCounter >= 2);
 	}
 
+	/**
+	 * buy owned property comboBox is generated, when this method is called and
+	 * all relevant components are set to be visible, when appropriate
+	 */
 	private void generateBuyOwnedPropertyComboBox() {
 		int counter = 0;
 		ownedPropertiesModel = new DefaultComboBoxModel<String>();
@@ -6128,6 +6326,10 @@ public class Monopoly {
 
 	}
 
+	/**
+	 * mortgage comboBox is generated, when this method is called and
+	 * all relevant components are set to be visible, when appropriate
+	 */
 	private void generateMortgageComboBox() {
 		mortgageModel = new DefaultComboBoxModel<String>();
 		for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
@@ -6161,6 +6363,10 @@ public class Monopoly {
 		sellPropertyButton.setEnabled(false);
 	}
 
+	/**
+	 * add building comboBox is generated, when this method is called and
+	 * all relevant components are set to be visible, when appropriate
+	 */
 	private void generateAddBuildingComboBox() {
 		Set<String> entitiesNames = new HashSet<String>();
 		for (Entity entity : players.get(playerIndex).getOwnedProperties()) {
@@ -6200,6 +6406,10 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * sell get out of jail card comboBox is generated, when this method is 
+	 * called and all relevant components are set to be visible, when appropriate
+	 */
 	private void generateSellGetOutOfJailCardComboBox() {
 		cardBuyersModel = new DefaultComboBoxModel<String>();
 		for (int i = 0; i < players.size(); i++) {
@@ -6219,6 +6429,10 @@ public class Monopoly {
 		sellGetOutOfJailCardButton.setEnabled(false);
 	}
 
+	/**
+	 * add hotel and house buttons and comboBox are hidden, when this method 
+	 * is called
+	 */
 	private void hideAddBuildingComponents() {
 		addHotelButton.setEnabled(false);
 		addHouseButton.setEnabled(false);
@@ -6228,6 +6442,10 @@ public class Monopoly {
 		buyBuilding.setVisible(false);
 	}
 
+	/**
+	 * Chance card is dealt, when this method is called and appropriate action 
+	 * is taken according to the dealt card
+	 */
 	private void dealChanceCard() {
 		chanceCardPicked = true;
 		int position = players.get(playerIndex).getPositionOnGameBoard();
@@ -6505,7 +6723,11 @@ public class Monopoly {
 
 		}
 	}
-
+	
+	/**
+	 * when player has sufficient funds, action is taken according to the 
+	 * dealt card
+	 */
 	private void followChanceCard9() {
 		players.get(playerIndex).setMoneyHeld(-paymentDueAmount);
 		balanceLabels.get(playerIndex).setText(
@@ -6515,6 +6737,10 @@ public class Monopoly {
 		logText.append(log);
 	}
 
+	/**
+	 * when player has sufficient funds, action is taken according to the 
+	 * dealt card
+	 */
 	private void followChanceCard10() {
 		players.get(playerIndex).setMoneyHeld(-15);
 		balanceLabels.get(playerIndex).setText(
@@ -6524,6 +6750,10 @@ public class Monopoly {
 		logText.append(log);
 	}
 
+	/**
+	 * when player has sufficient funds, action is taken according to the 
+	 * dealt card
+	 */
 	private void followChanceCard13() {
 		for (int i = 0; i < players.size(); i++) {
 			if (i != playerIndex) {
@@ -6542,6 +6772,10 @@ public class Monopoly {
 		logText.append(log);
 	}
 
+	/**
+	 * when player has sufficient funds, action is taken according to the 
+	 * dealt card
+	 */
 	private void followCommunityCard2() {
 		players.get(playerIndex).setMoneyHeld(-paymentDueAmount);
 		balanceLabels.get(playerIndex).setText(
@@ -6551,6 +6785,10 @@ public class Monopoly {
 		logText.append(log);
 	}
 
+	/**
+	 * when player has sufficient funds, action is taken according to the 
+	 * dealt card
+	 */
 	private void followCommunityCard9() {
 		players.get(playerIndex).setMoneyHeld(-paymentDueAmount);
 		balanceLabels.get(playerIndex).setText(
@@ -6560,6 +6798,10 @@ public class Monopoly {
 		logText.append(log);
 	}
 
+	/**
+	 * when player has sufficient funds, action is taken according to the 
+	 * dealt card
+	 */
 	private void followCommunityCard10() {
 		players.get(playerIndex).setMoneyHeld(-paymentDueAmount);
 		balanceLabels.get(playerIndex).setText(
@@ -6569,6 +6811,10 @@ public class Monopoly {
 		logText.append(log);
 	}
 
+	/**
+	 * when player has sufficient funds, action is taken according to the 
+	 * dealt card
+	 */
 	private void followCommunityCard12() {
 		players.get(playerIndex).setMoneyHeld(-paymentDueAmount);
 		balanceLabels.get(playerIndex).setText(
@@ -6578,6 +6824,10 @@ public class Monopoly {
 		logText.append(log);
 	}
 
+	/**
+	 * Community card is dealt, when this method is called and appropriate 
+	 * action is taken according to the dealt card
+	 */
 	private void dealCommunityCard() {
 		communityCardPicked = true;
 		switch (deck.dealChanceCard()) {
@@ -6872,6 +7122,14 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * after a player makes a move to a certain position action is taken
+	 * according to that position. this method control it - deals chance 
+	 * or community card, asks for rent or allows to buy the property. 
+	 * if a player does not have sufficient funds to pay arrears, further
+	 * action is taken to let the player get money to pay the arrears or 
+	 * retire from the game
+	 */
 	private void buyOrRent() {
 		if (players.get(playerIndex).getPositionOnGameBoard() == 7
 				|| players.get(playerIndex).getPositionOnGameBoard() == 22
@@ -6995,6 +7253,9 @@ public class Monopoly {
 
 	}
 
+	/**
+	 * rent is calculated, when this method is called
+	 */
 	private void calculateRent() {
 		ownerIndex = getPlayerIndex(entities.getEntities()
 				.get(players.get(playerIndex).getPositionOnGameBoard())
@@ -7073,6 +7334,14 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * @param group - group of the property
+	 * @param name - name of the player
+	 * are passed to determine, if a player has all properties of specified
+	 * group
+	 * @return true, if he/she has or false, if a player does not have all 
+	 * the properties of specified group
+	 */
 	private boolean playerHasAll(String group, String name) {
 		int counter = 0;
 		for (Entity entity : entities.getEntities()) {
@@ -7098,6 +7367,13 @@ public class Monopoly {
 		return false;
 	}
 
+	/**
+	 * 
+	 * @param name of the player is passed to determine number of railroad
+	 * properties held
+	 * @return amount of rent to be paid by other player, which has landed 
+	 * on the player specified by the passed name parameter
+	 */
 	private double getRailRoadRent(String name) {
 		int counter = 0;
 		double rentValue = 0;
@@ -7128,6 +7404,11 @@ public class Monopoly {
 		return rentValue;
 	}
 
+	/**
+	 * 
+	 * @param player is passed to determine index to be returned
+	 * @return the index of the player
+	 */
 	private int getPlayerIndex(Player player) {
 		for (int i = 0; i < players.size(); i++) {
 			if (players.get(i).getName().equals(player.getName())) {
@@ -7137,6 +7418,11 @@ public class Monopoly {
 		return -1;
 	}
 
+	/**
+	 * 
+	 * @param name is passed to determine index to be returned
+	 * @return the index of the player
+	 */
 	private int getPlayerIndex(String name) {
 		for (int i = 0; i < players.size(); i++) {
 			if (players.get(i).getName().equals(name)) {
@@ -7146,6 +7432,11 @@ public class Monopoly {
 		return -1;
 	}
 
+	/**
+	 * 
+	 * @param name of the entity is passed
+	 * @return cost of that property
+	 */
 	private double getEntityCost(String name) {
 		for (Entity entity : entities.getEntities()) {
 			if (entity.getName().equals(name)) {
@@ -7155,6 +7446,12 @@ public class Monopoly {
 		return -1;
 	}
 
+	/**
+	 * 
+	 * @param group is passed
+	 * @return true, if any property of the specified group has any buildings
+	 * or false otherwise
+	 */
 	private boolean hasBuildings(String group) {
 		for (Player player : players) {
 			for (Entity entity : player.getOwnedProperties()) {
@@ -7169,6 +7466,11 @@ public class Monopoly {
 		return false;
 	}
 
+	/**
+	 * 
+	 * @param name is passed
+	 * @return position of the entity with specified name
+	 */
 	private int getEntityPosition(String name) {
 		for (Entity entity : entities.getEntities()) {
 			if (entity.getName().equals(name)) {
@@ -7178,6 +7480,11 @@ public class Monopoly {
 		return -1;
 	}
 
+	/**
+	 * 
+	 * @param entityName is passed to determine its owner
+	 * @return the name of the entity owner
+	 */
 	private String getOwner(String entityName) {
 		for (Entity entity : entities.getEntities()) {
 			if (entity.getName().equals(entityName)) {
@@ -7187,6 +7494,11 @@ public class Monopoly {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @param name of the property is passed
+	 * @return position of the player's entity
+	 */
 	private int getPlayersEntityPosition(String name) {
 		for (int i = 0; i < players.get(playerIndex).getOwnedProperties()
 				.size(); i++) {
@@ -7198,6 +7510,13 @@ public class Monopoly {
 		return -1;
 	}
 
+	/**
+	 * 
+	 * @param buildingIndex is passed to determine a label to deal with
+	 * @param numberOfHouses is passed to determine, which label should be 
+	 * displayed. Label indicating number of houses/hotels on the property
+	 * is updated on the appropriate property panel
+	 */
 	private void displayProperBuildingLabel(int buildingIndex,
 			int numberOfHouses) {
 		if (buildingIndex < 5) {
@@ -7431,6 +7750,10 @@ public class Monopoly {
 		}
 	}
 
+	/**
+	 * income tax is paid by a player and appropriate info is displayed
+	 * in the log
+	 */
 	private void payIncomeTax() {
 		players.get(playerIndex).setMoneyHeld(-paymentDueAmount);
 		balanceLabels.get(playerIndex).setText(
@@ -7440,6 +7763,10 @@ public class Monopoly {
 		logText.append(log);
 	}
 
+	/**
+	 * luxury tax is paid by a player and appropriate info is displayed
+	 * in the log
+	 */
 	private void payLuxuryTax() {
 		players.get(playerIndex).setMoneyHeld(-paymentDueAmount);
 		balanceLabels.get(playerIndex).setText(
@@ -7449,6 +7776,10 @@ public class Monopoly {
 		logText.append(log);
 	}
 
+	/**
+	 * player's position label is updated accordingly to his/her current position
+	 * and info of the position change is displayed in the game log
+	 */
 	private void adjustPlayerPosition() {
 		if (!(players.get(playerIndex).getPositionOnGameBoard() == 10)) {
 			log = "  /> "
@@ -7748,18 +8079,34 @@ public class Monopoly {
 
 	}
 
+	/**
+	 * 
+	 * @return number of hotels available in the hotels pool
+	 */
 	public int getNumberOfHotels() {
 		return numberOfHotels;
 	}
 
+	/**
+	 * 
+	 * @param update is added to the current number of hotels
+	 */
 	public void setNumberOfHotels(int update) {
 		numberOfHotels += update;
 	}
 
+	/**
+	 * 
+	 * @return number of houses available in the houses pool
+	 */
 	public int getNumberOfHouses() {
 		return numberOfHouses;
 	}
 
+	/**
+	 * 
+	 * @param update is added to the current number of houses
+	 */
 	public void setNumberOfHouses(int update) {
 		numberOfHouses += update;
 	}

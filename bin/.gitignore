@@ -1,5 +1,4 @@
 /resources/
-/Player.class
 /Card.class
 /ChanceCard.class
 /CommunityChestCard.class
@@ -97,3 +96,4 @@
 /Monopoly$83.class
 /Monopoly$9.class
 /Monopoly.class
+/Player.class
