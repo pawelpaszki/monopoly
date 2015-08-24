@@ -367,7 +367,7 @@ public class Monopoly {
 		FlowLayout flow = new FlowLayout();
 		flow.setHgap(0);
 		flow.setVgap(0);
-		frame = new JFrame("Monopoly");
+		frame = new JFrame("Monopoly (C) Hasbro. developed by: Pawel Paszki (pawelpaszki@gmail.com)");
 		frame.setLayout(flow);
 		frame.getContentPane().setBackground(new Color(173, 216, 230));
 		frame.setForeground(new Color(173, 216, 230));
